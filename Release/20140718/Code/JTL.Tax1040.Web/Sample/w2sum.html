@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaxGarden.com</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var serviceUrl = 'http://localhost:9797/';
+        //function W2GetData() {
+        //    $.ajax({
+        //        url: serviceUrl + 'Income/GetUserDataW2ListandErrorList',
+        //        async: false,
+        //        dataType: "json",
+        //        type: "POST",
+        //        data: JSON.stringify({
+        //            "userId": 1,
+        //            "userDataId": 13
+        //        }),
+        //        contentType: "application/json; charset=utf-8",
+        //        error: function (jqXHR, textStatus, errorThrown) {
+        //            alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+        //        },
+        //        success: function (data, textStatus) {
+        //            alert('success');
+        //            $.each(data.m_Item2, function (key, value) {
+        //                $("#ulErrorMsgList").append($("<li></li>").val(value.ErrorText).html(value.ErrorText));
+        //            });
+        //            $.each(data.m_Item1, function (key, value) {
+        //                //$("#ulEmployerName").append($("<li></li>").val(value.Employer.Organization.Name).html(value.Employer.Organization.Name));
+        //                //$("#ulName").append($("<li></li>").val(value.ErrorText).html(value.ErrorText));
+        //                //$("#ulAmount").append($("<li></li>").val(value.ErrorText).html(value.ErrorText));
+        //                //$("#lblEmployerName").append($("text").val(value.Employer.Organization.Name).html(value.Employer.Organization.Name));
+        //                $("#lblEmployerName").append($("divEmployerName").html(value.Employer.Organization.Name));
+        //            });
+        //            //var EmployerName = data.;
+        //            //var PayerName = data;
+        //            //var WagesAmount = data;
+        //        }
+        //    });
+        //}
+
+        function W2GetData() {
+            $.ajax({
+                url: serviceUrl + 'personalinfo/getstate',
+                async: false,
+                dataType: "json",
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+                },
+                success: function (data, textStatus) {
+                    
+                    $("#divtest").loadJSON(data);
+                    //$.each(data, function(index, value) {
+                    //    $("#divtest").html(value.message[index]);
+                    //});
+                    //$.each(data, function (key, value) {
+                    //    //$("#divtest").html(value.StateName);
+
+                    //    $("#lblEmployerName").append($("text").html(value.StateName));
+                    //    //$("#ddlW2State").append($("<option></option>").val(value.StateId).html(value.StateName));
+                    //    //$("#ddlW2EmployerState").append($("<option></option>").val(value.StateId).html(value.StateName));
+                    //});
+                }
+            });
+        }
+    </script>
+
+</head>
+<body onload="W2GetData()">
+
+
+    <div class="container">
+        <header role="banner" class="navbar">
+
+            <div class="navbar-header">
+                <button data-target=".navbar-collapse" data-toggle="collapse" type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a alt="Less" class="navbar-brand" href="#">
+                    <img alt="" class="img-responsive" src="../images/Tax-Garden-Logo.png" /></a>
+            </div>
+
+            <nav role="navigation" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" class="actv">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Serives</a>
+                    </li>
+                    <li>
+                        <a href="#" class="active">Price</a>
+                    </li>
+                    <li>
+                        <a href="#">Tax Resources   </a>
+                    </li>
+                    <li>
+                        <a href="#">Support</a>
+                    </li>
+                    <li>
+                        <a href="#">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-sign">Sign In</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </header>
+
+        <div class="whtwell" id="signin">
+            <div role="form" class="container-fluid">
+
+                <div class="row crumb">
+                    <div class="btn-group btn-breadcrumb">
+                        <a href="#" class="btn btn-default home"><i class="glyphicon glyphicon-home"></i></a>
+                        <a href="#" class="btn btn-default">Snippets</a>
+                        <a href="#" class="btn btn-default active">Breadcrumbs</a>
+                        <a href="#" class="btn btn-default">Default</a>
+                    </div>
+                    <!-- Left Responsive action Menu   -->
+
+                    <a data-toggle="collapse" class="navbar-toggle pull-right" data-target="#lftmenu" href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+
+                </div>
+
+                <div class="innerform">
+
+                    <!-- Left menu -->
+                    <div class="menu " role="navigation">
+
+                        <div class="collapse navbar-collapse" id="lftmenu">
+                            <ul class="nav side-nav">
+                                <li data-toggle="tooltip" data-placement="top" title="Tooltip on top"><a href="#"><i class="fa fa-exchange"></i><span>Filing Status</span></a></li>
+                                <li><a href="wiz.html"><i class="fa fa-user"></i><span>Primary Filer</span></a></li>
+                                <li class="active"><a href="w2sum.html"><i class="fa fa-female"></i><span>Spouse</span></a></li>
+                                <li><a href="#"><i class="fa fa-users"></i><span>Dependent</span></a></li>
+                                <li><a href="#"><i class="fa fa-barcode"></i><span>Address</span> </a></li>
+                                <li><a href="#"><i class="fa fa-check"></i><span>EZ-Eligibility</span></a></li>
+                                <li><a href="#"><i class="fa fa-th-list"></i><span>Personal Summary</span></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="formfull">
+
+                        <!-- Right Help area -->
+                        <div id="riht">
+                            Right Help area
+                        </div>
+
+                        <!-- Center form area -->
+
+                        <div id="content">
+                            <div class="c12">
+                                <div class="title">
+                                    <h2>W2 Summary       
+                                        <!-- Right side collapse area menu  -->
+                                        <a id="changeSidebarPos" data-original-title="Show / Hide Sidebar" data-toggle="tooltip" class="hidden-xs open pull-right" href="#"><i class="fa fa-bars"></i></a>
+
+                                    </h2>
+                                    <h5>Your total W2 wages Income is <span class="wag">$00.00</span> Amount. If you want to report another Form W2 for yourself click on ADD <i class="fa fa-plus"></i>to add. To edit any form W2, Click on  <i class="fa fa-edit"></i></h5>
+                                </div>
+
+
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3>Panel heading <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-plus "></i>Add New</a></h3>
+                                    </div>
+
+                                    <div class="panel-body">
+
+
+                                        <div class="row" id="divtest">
+
+                                            <div class="col-md-4">
+                                                <div class="pangird">
+                                                    <label class="head">Employer Name</label>
+                                                    <label id="lblEmployerName" class="itm">Jeevan Tech</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="pangird">
+                                                    <label class="head">Name</label>
+                                                    <label class="itm">Ram kumar Ram kumar</label>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                <div class="pangird">
+                                                    <label class="head">Wage</label>
+                                                    <label class="itm">$00.00</label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="pangird">
+                                                    <label class="head">Action</label>
+                                                    <label class="itm"><a href="#" class="fa fa-edit"></a><a href="#" class="fa fa-minus-square-o"></a></label>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                       <!-- <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="pangird">
+                                                    <label class="head">Employer Name</label>
+                                                    <label class="itm">Jeevan Jeevan Jeevan Tech</label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="pangird">
+                                                    <label class="head">Name</label>
+                                                    <label class="itm">Ram kumar</label>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                <div class="pangird">
+                                                    <label class="head">Wage</label>
+                                                    <label class="itm">$00.00</label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="pangird">
+                                                    <label class="head">Action</label>
+                                                    <label class="itm"><a href="#" class="fa fa-edit"></a><a href="#" class="fa fa-minus-square-o"></a></label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>-->
+
+                                        <!--<div class="row">
+                                            <div class="col-md-4">
+                                                <div class="pangird">
+                                                    <label class="head">Employer Name</label>
+                                                    <label class="itm">Jeevan Jeevan Jeevan Tech</label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="pangird">
+                                                    <label class="head">Name</label>
+                                                    <label class="itm">Ram kumar</label>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                <div class="pangird">
+                                                    <label class="head">Wage</label>
+                                                    <label class="itm">$00.00</label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="pangird">
+                                                    <label class="head">Action</label>
+                                                    <label class="itm"><a href="#" class="fa fa-edit"></a><a href="#" class="fa fa-minus-square-o"></a></label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>-->
+
+
+
+
+
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+                            </div>
+                          
+                            <div class="c12">
+                                <div class="title">
+                                    <h5>Diagnostics</h5>
+                                    <div class="row">                                                                          
+                                    <!--<div id="divErrorMsg" class="error-alert"></div>-->
+                                        <ul id="ulErrorMsgList"></ul>
+                                    </div>
+                                </div>  
+                                </div>
+
+                            </div>
+                        
+
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+        <footer role="contentinfo">
+
+            <nav>
+                <a href="#" class="comodo"></a><a href="#" class="mcafee">
+                    <img alt="" src="images/mcafee.gif" /></a><a href="#" class="bbb"></a><a href="#" class="irs"></a>
+            </nav>
+            <div class="copy">
+                &copy; Copyright 2014 by Think Trade Inc.  | <a href="#">Privacy</a>  |  <a href="#">Terms of Service </a>
+            </div>
+
+        </footer>
+
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+    <!--<script src="js/prettify.js"></script>-->
+
+
+</body>
+
+</html>

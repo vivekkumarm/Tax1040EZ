@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaxGarden.com</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/jquery.barrating.js"></script>
+    <script src="../Scripts/Pages/Finalpage/userrating.js"></script>
+    <style type="text/css">
+        .rating-f .br-widget {
+            height: 24px;
+        }
+
+            .rating-f .br-widget a {
+                background: url('../Images/star.png');
+                width: 24px;
+                height: 24px;
+                display: block;
+                float: left;
+            }
+
+                .rating-f .br-widget a:hover,
+                .rating-f .br-widget a.br-active,
+                .rating-f .br-widget a.br-selected {
+                    background-position: 0 24px;
+                }
+
+        .f-book {
+            background: #3b5b98;
+            color: #fff;
+            border: 1px solid #3b5588;
+        }
+
+        .twitter {
+            background: #41a9f0;
+            color: #fff;
+            border: 1px solid #4a90c1;
+        }
+
+        .pinterest {
+            background: #d20104;
+            color: #fff;
+            border: 1px solid #bd2f22;
+        }
+
+        .skype {
+            background: #ff3b43;
+            color: #fff;
+            border: 1px solid #d6363c;
+        }
+
+        .g-plus {
+            background: #eb4130;
+            color: #fff;
+            border: 1px solid #c43628;
+        }
+    </style>
+
+</head>
+<body>
+    <form id="reviewTaxReturn">
+        <div class="container">
+            
+            <!--Slide Menu-->
+
+            <script src="../lib/slidemenu.js"></script>
+
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <!--   <script type="text/javascript" src="../lib/default.js"></script>-->
+                        <div class="">
+                         
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c4h8">
+                                    <div class="title">
+                                        <h2>Rate Our Product</h2>
+                                    </div>
+
+                                    <div id="divUserRating" class="alert alert-success" style="display: none;">
+                                    </div>
+
+                                    <div class="panel panel-primary animated fadeInDown">
+                                             <div class="panel-heading"><h3>Rate Our Product</h3></div>
+                                           <!--  <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Rate Our Product</a>
+                                                </h4>
+                                            </div>-->
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+                                                    <p></p>
+                                                    <p>Take a minute to let us know how much you liked using TaxGarden.</p>
+                                                    <p>In our efforts to make a better, user friendly product, we like to hear about it straight from our clients.</p>
+                                                    <p>We would like to know how our product fit your needs on both Federal and State.</p>
+                                                    <p>Please share your experience by rating our Tax product below!</p>
+                                                    <br/>
+                                                    <div class="field-group ylw">
+                                                        <br />
+
+                                                        <div class="left-lbl">Rating:</div>
+                                                        <div class="right">
+                                                            <div class="input select rating-f">
+                                                                <select id="starRating" name="rating">
+
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                    <option value="4">4</option>
+                                                                    <option value="5">5</option>
+                                                                    <option value="6">6</option>
+                                                                    <option value="7">7</option>
+                                                                    <option value="8">8</option>
+                                                                    <option value="9">9</option>
+                                                                    <option value="10">10</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <br />
+                                                    </div>
+
+
+
+
+
+
+
+                                                    <!--<div class="checkbox-inline">
+                                                            <label>
+                                                                1<br />
+                                                                <input type="radio" name="radUserRating" value="1" tabindex="22" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-inline">
+                                                            <label>
+                                                                2<br />
+                                                                <input type="radio" name="radUserRating" value="2" tabindex="23" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-inline">
+                                                            <label>
+                                                                3<br />
+                                                                <input type="radio" name="radUserRating" value="3" tabindex="24" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-inline">
+                                                            <label>
+                                                                4<br />
+                                                                <input type="radio" name="radUserRating" value="4" tabindex="25" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-inline">
+                                                            <label>
+                                                                5<br />
+                                                                <input type="radio" name="radUserRating" value="5" tabindex="26" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-inline">
+                                                            <label>
+                                                                6<br />
+                                                                <input type="radio" name="radUserRating" value="6" tabindex="27" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-inline">
+                                                            <label>
+                                                                7<br />
+                                                                <input type="radio" name="radUserRating" value="7" tabindex="28" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-inline">
+                                                            <label>
+                                                                8<br />
+                                                                <input type="radio" name="radUserRating" value="8" tabindex="29" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-inline">
+                                                            <label>
+                                                                9<br />
+                                                                <input type="radio" name="radUserRating" value="9" tabindex="30" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-inline">
+                                                            <label>
+                                                                10<br />
+                                                                <input type="radio" name="radUserRating" value="10" tabindex="31" />
+                                                            </label>
+                                                        </div>-->
+
+                                                    <p><strong>Your Comments</strong></p>
+                                                    <input type="text" maxlength="300" id="txtUserComment" />
+                                                    <br />
+
+                                                    <h4>Share your experience on social Network</h4>
+                                                    <a href="#" class="btn btn-default f-book"><i class="fa fa-facebook-square "></i> Facebook</a>
+                                                    <a href="#" class="btn btn-default twitter"><i class="fa fa-twitter-square "></i> Twitter</a>
+                                                    <a href="#" class="btn btn-default pinterest"><i class="fa fa-pinterest-square "></i> Pinterest</a>
+                                                    <a href="#" class="btn btn-default g-plus"><i class="fa fa-google-plus-square "></i> Google+</a>
+                                                    <a href="#" class="btn btn-default skype"><i class="fa fa-skype "></i> Skpe</a>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                    </div>
+
+                                    <button type="button" id="btnBack" class="btn btn-primary" onclick="GoToPreviousPage();return false;">
+                                        Back</button>
+                                    <button type="submit" id="btnNext" class="btn btn-success pull-right">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+</body>
+
+</html>
+
+

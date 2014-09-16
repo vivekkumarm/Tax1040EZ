@@ -1,0 +1,636 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<local:F1040EZEICEligibilityRuleCheckWithAGI xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:local="clr-namespace:JTL.Tax1040.BusinessLogic.WorkFlow.Activities.CalculationWithNoValidation;assembly=JTL.Tax1040.BusinessLogic" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Process</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <local:F1040EZEICEligibilityRuleCheckWithAGI.Implementation>
+    <Sequence DisplayName="EICEligibilityRules">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Double" Default="14339" Name="SingleAdjustedGrossIncome" />
+        <Variable x:TypeArguments="x:Double" Default="19679" Name="MFJAdjustedGrossIncome" />
+        <Variable x:TypeArguments="x:Boolean" Default="True" Name="IsEICEligible" />
+        <Variable x:TypeArguments="x:Double" Default="0" Name="TotalWages" />
+      </Sequence.Variables>
+      <If DisplayName="If Tax1040ObjectCheck">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object !=null</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <Sequence DisplayName="EIC EligibilityCheck">
+            <Sequence DisplayName="Wages Check">
+              <If>
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income != null &amp;&amp; Tax1040Object.Income.W2Wages != null</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Sequence DisplayName="W2 Calculation">
+                    <local:W2WithNoValidation NonQualifiedPlansAmount="{x:Null}" PrefixTotalWages="{x:Null}" TaxableScholarshipAmount="{x:Null}">
+                      <local:W2WithNoValidation.Tax1040Object>
+                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                        </InOutArgument>
+                      </local:W2WithNoValidation.Tax1040Object>
+                      <local:W2WithNoValidation.TotalWages>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">TotalWages</mca:CSharpReference>
+                        </OutArgument>
+                      </local:W2WithNoValidation.TotalWages>
+                    </local:W2WithNoValidation>
+                    <If>
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">TotalWages==0</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </If.Then>
+                    </If>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </If.Else>
+              </If>
+            </Sequence>
+            <Sequence DisplayName="AdjustmentGrossIncome">
+              <If DisplayName="If EICPersonalDetailsCheck -AGI">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">(IsEICEligible &amp;&amp; Tax1040Object.PersonalDetails != null)</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <If DisplayName="If EICPrimaryTaxPayerCheck">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.PrimaryTaxPayer != null</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="AGIStatus">
+                        <Switch x:TypeArguments="jtco:FilingStatus" DisplayName="Switch&lt;FilingStatus&gt;">
+                          <Switch.Expression>
+                            <InArgument x:TypeArguments="jtco:FilingStatus">
+                              <mca:CSharpValue x:TypeArguments="jtco:FilingStatus">Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus</mca:CSharpValue>
+                            </InArgument>
+                          </Switch.Expression>
+                          <If x:Key="Single" DisplayName="AGIStatusCheck -Single">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">AdjustedGrossIncome &lt;= SingleAdjustedGrossIncome</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Else>
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                          <If x:Key="MarriedFilingJointly" DisplayName="AGIStatusCheck-MFJ">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">AdjustedGrossIncome &lt;= MFJAdjustedGrossIncome</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Else>
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                        </Switch>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </If.Then>
+              </If>
+            </Sequence>
+            <Sequence DisplayName="HasDependent">
+              <If DisplayName="If PersonalDetails-PrimaryTaxpayer Check">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails !=null</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Sequence DisplayName="Dependent Check">
+                    <If DisplayName="If PrimaryTaxpayerCheck">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.PrimaryTaxPayer !=null</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <If DisplayName="If Person Check">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person !=null</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <If DisplayName="DependentCheck - PrimaryTaxPayer">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">(IsEICEligible &amp;&amp; Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue &amp;&amp; Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value)</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Boolean">
+                                      <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                          </If.Then>
+                        </If>
+                      </If.Then>
+                    </If>
+                    <If DisplayName="If SpouseCheck">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.Spouse !=null</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <If DisplayName="If PersonCheck">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.Spouse.Person !=null</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <If DisplayName="DependentCheck-Spouse">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">(IsEICEligible &amp;&amp; Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue &amp;&amp; Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value)</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Boolean">
+                                      <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                          </If.Then>
+                        </If>
+                      </If.Then>
+                    </If>
+                  </Sequence>
+                </If.Then>
+              </If>
+            </Sequence>
+            <Sequence DisplayName="EarnedIncomeCredits">
+              <If DisplayName="If EICCreditsCheck">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits !=null</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <If DisplayName="If EICCheck">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits.EIC !=null</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="EIC">
+                        <Sequence DisplayName="LivedInUSStatus">
+                          <If DisplayName="LivedInUsStatusCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">(IsEICEligible &amp;&amp; Tax1040Object.Credits.EIC.IsInUSMorethanHalfYear.HasValue &amp;&amp; Tax1040Object.Credits.EIC.IsInUSMorethanHalfYear.Value)</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Else>
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="HasValidSSNStatus">
+                          <If DisplayName="ValidSSNStatusCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">(IsEICEligible &amp;&amp; Tax1040Object.Credits.EIC.HasValidSSN.HasValue &amp;&amp; Tax1040Object.Credits.EIC.HasValidSSN.Value)</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Else>
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="QualifyingChildStatus ">
+                          <If DisplayName="QualifyingChildStatusCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits.EIC.HasClaimedAsQualifyingChild.HasValue &amp;&amp; Tax1040Object.Credits.EIC.HasClaimedAsQualifyingChild.Value</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="IRSNoticeOnEICStatus">
+                          <If DisplayName="IRSNoticeOnEICStatusCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits.EIC.HasReceivedIRSNoticeOnEICNotEligible.HasValue &amp;&amp; Tax1040Object.Credits.EIC.HasReceivedIRSNoticeOnEICNotEligible.Value</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Else>
+                  </If>
+                </If.Then>
+                <If.Else>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </If.Else>
+              </If>
+            </Sequence>
+            <Sequence DisplayName="AgeEligibilityStatus">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="s:DateTime" Name="TodaysDate">
+                  <Variable.Default>
+                    <mca:CSharpValue x:TypeArguments="s:DateTime">DateTime.Now</mca:CSharpValue>
+                  </Variable.Default>
+                </Variable>
+                <Variable x:TypeArguments="x:Int32" Default="25" Name="MinAge" />
+                <Variable x:TypeArguments="x:Int32" Default="65" Name="MaxAge" />
+              </Sequence.Variables>
+              <If DisplayName="If PersonalDetailsCheck">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails !=null</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <If DisplayName="If PrimaryTaxPayerCheck">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.PrimaryTaxPayer != null</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Switch x:TypeArguments="jtco:FilingStatus">
+                        <Switch.Expression>
+                          <InArgument x:TypeArguments="jtco:FilingStatus">
+                            <mca:CSharpValue x:TypeArguments="jtco:FilingStatus">Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus</mca:CSharpValue>
+                          </InArgument>
+                        </Switch.Expression>
+                        <If x:Key="Single" DisplayName="If Single Check">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">(IsEICEligible &amp;&amp; Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person != null) &amp;&amp; (Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth != null)</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Sequence DisplayName="Single Check">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:TimeSpan" Name="TaxPayerTimeZone">
+                                  <Variable.Default>
+                                    <mca:CSharpValue x:TypeArguments="x:TimeSpan">TodaysDate - Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth</mca:CSharpValue>
+                                  </Variable.Default>
+                                </Variable>
+                                <Variable x:TypeArguments="s:DateTime" Name="PersonAge">
+                                  <Variable.Default>
+                                    <mca:CSharpValue x:TypeArguments="s:DateTime">DateTime.MinValue + TaxPayerTimeZone</mca:CSharpValue>
+                                  </Variable.Default>
+                                </Variable>
+                                <Variable x:TypeArguments="x:Int32" Name="PersonAgeCompleted">
+                                  <Variable.Default>
+                                    <mca:CSharpValue x:TypeArguments="x:Int32">PersonAge.Year - 1</mca:CSharpValue>
+                                  </Variable.Default>
+                                </Variable>
+                              </Sequence.Variables>
+                              <If DisplayName="AgeEligibilityStatusCheck">
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">(IsEICEligible &amp;&amp; (Utilities.EICAgeCalculation(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth)))</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Else>
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Boolean">
+                                        <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <If x:Key="MarriedFilingJointly" DisplayName="If MFJ Check">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">(IsEICEligible &amp;&amp; ((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person != null &amp;&amp; Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth != null) &amp;&amp; (Tax1040Object.PersonalDetails.Spouse != null) &amp;&amp; (Tax1040Object.PersonalDetails.Spouse.Person != null &amp;&amp; Tax1040Object.PersonalDetails.Spouse.Person.DateOfBirth !=null)))</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Sequence DisplayName="MJF Check">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:TimeSpan" Name="SpouseTimeZone">
+                                  <Variable.Default>
+                                    <mca:CSharpValue x:TypeArguments="x:TimeSpan">TodaysDate - Tax1040Object.PersonalDetails.Spouse.Person.DateOfBirth</mca:CSharpValue>
+                                  </Variable.Default>
+                                </Variable>
+                                <Variable x:TypeArguments="s:DateTime" Name="SpouseAge">
+                                  <Variable.Default>
+                                    <mca:CSharpValue x:TypeArguments="s:DateTime">DateTime.MinValue + SpouseTimeZone</mca:CSharpValue>
+                                  </Variable.Default>
+                                </Variable>
+                                <Variable x:TypeArguments="x:Int32" Name="SpouseAgeCompleted">
+                                  <Variable.Default>
+                                    <mca:CSharpValue x:TypeArguments="x:Int32">SpouseAge.Year - 1</mca:CSharpValue>
+                                  </Variable.Default>
+                                </Variable>
+                                <Variable x:TypeArguments="x:TimeSpan" Name="TaxPayerTimeZone">
+                                  <Variable.Default>
+                                    <mca:CSharpValue x:TypeArguments="x:TimeSpan">TodaysDate - Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth</mca:CSharpValue>
+                                  </Variable.Default>
+                                </Variable>
+                                <Variable x:TypeArguments="s:DateTime" Name="PersonAge">
+                                  <Variable.Default>
+                                    <mca:CSharpValue x:TypeArguments="s:DateTime">DateTime.MinValue + TaxPayerTimeZone</mca:CSharpValue>
+                                  </Variable.Default>
+                                </Variable>
+                                <Variable x:TypeArguments="x:Int32" Name="PersonAgeCompleted">
+                                  <Variable.Default>
+                                    <mca:CSharpValue x:TypeArguments="x:Int32">PersonAge.Year - 1</mca:CSharpValue>
+                                  </Variable.Default>
+                                </Variable>
+                              </Sequence.Variables>
+                              <If DisplayName="AgeEligibilityStatusCheck">
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">(IsEICEligible &amp;&amp; (Utilities.EICAgeCalculation(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth) &amp;&amp;
+Utilities.EICAgeCalculation(Tax1040Object.PersonalDetails.Spouse.Person.DateOfBirth)))</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Else>
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Boolean">
+                                        <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpReference x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                      </Switch>
+                    </If.Then>
+                  </If>
+                </If.Then>
+              </If>
+            </Sequence>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpReference x:TypeArguments="x:Boolean">HasEarnedIncomeCredit</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">IsEICEligible</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <If>
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits != null</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Assign>
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="s:Nullable(x:Boolean)">
+                      <mca:CSharpReference x:TypeArguments="s:Nullable(x:Boolean)">Tax1040Object.Credits.HasEarnedIncomeCredits</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="s:Nullable(x:Boolean)">
+                      <mca:CSharpValue x:TypeArguments="s:Nullable(x:Boolean)">IsEICEligible</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+              </If.Then>
+              <If.Else>
+                <Sequence>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="jtb:Credits">
+                        <mca:CSharpReference x:TypeArguments="jtb:Credits">Tax1040Object.Credits</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="jtb:Credits">
+                        <mca:CSharpValue x:TypeArguments="jtb:Credits">new Credits()</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:Nullable(x:Boolean)">
+                        <mca:CSharpReference x:TypeArguments="s:Nullable(x:Boolean)">Tax1040Object.Credits.HasEarnedIncomeCredits</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:Nullable(x:Boolean)">
+                        <mca:CSharpValue x:TypeArguments="s:Nullable(x:Boolean)">IsEICEligible</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </If.Then>
+      </If>
+      <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </local:F1040EZEICEligibilityRuleCheckWithAGI.Implementation>
+</local:F1040EZEICEligibilityRuleCheckWithAGI>

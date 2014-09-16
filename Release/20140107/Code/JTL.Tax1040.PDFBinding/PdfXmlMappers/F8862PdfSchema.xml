@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "8862">
+  <Mapping>
+    <PDFField>txtF8862TaxpayerName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.FirstName</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862TaxpayerSSN</PDFField>
+    <TROField Type="String">tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.SSN</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862FilerYearPart</PDFField>
+    <TROField Type="Split">tax1040.Income.Form8862.FormFilingTaxYear</TROField>
+  </Mapping>
+  <!--<Mapping>
+    <PDFField>txtF8862FilerYearPart2</PDFField>
+    <TROField Type="List">tax1040.OutputForms.Tax8862Page1.YearOfFiling</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862FilerYearPart3</PDFField>
+    <TROField Type="List">tax1040.OutputForms.Tax8862Page1.YearOfFiling</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862FilerYearPart4</PDFField>
+    <TROField Type="List">tax1040.OutputForms.Tax8862Page1.YearOfFiling</TROField>
+  </Mapping>-->
+  <Mapping>
+    <PDFField>chkF8862FilersEarnedIncomeYes</PDFField>    
+    <!--<TROField Type="Check">tax1040.OutputForms.Tax8862Page1.HasReportedIncorrectIncome</TROField>-->
+    <TROField Type="Check">tax1040.Income.Form8862.HasClaimedAsQualifyingChild</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkF8862FilersEarnedIncomeNo</PDFField>
+    <TROField Type="UnCheck">tax1040.Income.Form8862.HasClaimedAsQualifyingChild</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkF8862SpouseFilingJointlyYes</PDFField>
+    <TROField Type="Check">tax1040.Income.Form8862.HasReportedIncorrectIncome</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkF8862SpouseFilingJointlyNo</PDFField>
+    <TROField Type="UnCheck">tax1040.Income.Form8862.HasReportedIncorrectIncome</TROField>
+  </Mapping>
+  <!--<Mapping>
+    <PDFField>txtF8862QualifyingChild1Part1</PDFField>
+    --><!--field is missing--><!--
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1Part2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1Part3</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2Part1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2Part2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2Part3</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3Part1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3Part2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3Part3</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1MonthDOBPart1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1MonthDOBPart2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1MonthDOBPart3</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1MonthDOBPart4</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2MonthDOBPart1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2MonthDOBPart2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2MonthDOBPart3</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2MonthDOBPart4</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3MonthDOBPart1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3MonthDOBPart2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3MonthDOBPart3</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3MonthDOBPart4</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1MonthDayOfDeathPart1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1MonthDayOfDeathPart2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1MonthDayOfDeathPart3</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1MonthDayOfDeathPart4</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2MonthDayOfDeathPart1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2MonthDayOfDeathPart2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2MonthDayOfDeathPart3</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2MonthDayOfDeathPart4</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3MonthDayOfDeathPart1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3MonthDayOfDeathPart2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3MonthDayOfDeathPart3</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3MonthDayOfDeathPart4</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1Address1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild1Address2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2Address1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild2Address2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkF8862FilersAddressChild1</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkF8862FilersAddressSameChild3</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+
+  <Mapping>
+    <PDFField>chkF8862FilersAddressDifferentChild3</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3Address1</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+
+
+  <Mapping>
+    <PDFField>txtF8862QualifyingChild3Address2</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+
+
+  <Mapping>
+    <PDFField>chkF8862FilersOtherPersonYes</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkF8862FilersOtherPersonNo</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8862QualifyingOtherPersonChild1Name</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8862QualifyingOtherPersonChild1Relationship</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8862QualifyingOtherPersonChild2Name</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8862QualifyingOtherPersonChild2Relationship</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkF8862NameRelationshipChild1</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkF8862NameRelationshipSameChild3</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkF8862NameRelationshipDifferentChild3</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8862QualifyingOtherPersonChild3Name</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>
+
+
+  <Mapping>
+    <PDFField>txtF8862QualifyingOtherPersonChild3Name</PDFField>
+    <TROField Type="List"></TROField>
+  </Mapping>-->
+
+  <Mapping>
+    <PDFField>txtF8862WithoutQualifyingChildNoDaysPart</PDFField>
+    <TROField Type="SplitReverse" MaxLength="3">tax1040.Income.Form8862.DaysLivedInUS</TROField>
+  </Mapping>
+
+  <!--<Mapping>
+    <PDFField>txtF8862TaxPayerNoDaysPart2</PDFField>
+    <TROField Type="List">tax1040.OutputForms.Tax8862Page1.DaysLivedInUS</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField> txtF8862TaxPayerNoDaysPart3</PDFField>
+    <TROField Type="List">tax1040.OutputForms.Tax8862Page1.DaysLivedInUS</TROField>
+  </Mapping>-->
+
+  <Mapping>
+    <PDFField>txtF8862MarriedFilingReturnPart</PDFField>
+    <TROField Type="SplitReverse" MaxLength="3">tax1040.Income.Form8862.DaysSpouseLivedInUS</TROField>
+  </Mapping>
+
+  <!--<Mapping>
+    <PDFField> txtF8862SpouseNoDaysPart2</PDFField>
+    <TROField Type="List">tax1040.OutputForms.Tax8862Page1.DaysSpouseLivedInUS</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField> txtF8862SpouseNoDaysPart3</PDFField>
+    <TROField Type="List">tax1040.OutputForms.Tax8862Page1.DaysSpouseLivedInUS</TROField>
+  </Mapping>-->
+
+
+</OutputForm>

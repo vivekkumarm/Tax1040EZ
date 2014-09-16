@@ -1,0 +1,5 @@
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.Web\bin\JTL.Tax1040.Web.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.Web\bin\JTL.Tax1040.Web.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.Web\obj\Release\JTL.Tax1040.Web.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.Web\obj\Release\JTL.Tax1040.Web.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.Web\obj\Release\JTL.Tax1040.Web.csprojResolveAssemblyReference.cache

@@ -1,0 +1,958 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Tax1040Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Tax1040ModelStoreContainer">
+          <EntitySet Name="address" EntityType="Tax1040Model.Store.address" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="country" EntityType="Tax1040Model.Store.country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="filing_status" EntityType="Tax1040Model.Store.filing_status" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="person_type" EntityType="Tax1040Model.Store.person_type" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="personal_info" EntityType="Tax1040Model.Store.personal_info" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="state" EntityType="Tax1040Model.Store.state" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="state_feature_sku" EntityType="Tax1040Model.Store.state_feature_sku" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="state_zip_code_conditions" EntityType="Tax1040Model.Store.state_zip_code_conditions" store:Type="Tables" store:Schema="dbo" store:Name="state_zip_code_conditions">
+            <DefiningQuery>SELECT 
+      [state_zip_code_conditions].[zip_code_condition_id] AS [zip_code_condition_id], 
+      [state_zip_code_conditions].[state_id] AS [state_id], 
+      [state_zip_code_conditions].[condition] AS [condition], 
+      [state_zip_code_conditions].[is_active] AS [is_active], 
+      [state_zip_code_conditions].[is_deleted] AS [is_deleted], 
+      [state_zip_code_conditions].[create_datetime] AS [create_datetime], 
+      [state_zip_code_conditions].[update_datetime] AS [update_datetime]
+      FROM [dbo].[state_zip_code_conditions] AS [state_zip_code_conditions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="user" EntityType="Tax1040Model.Store.user" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fk_address_country" Association="Tax1040Model.Store.fk_address_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="fk_address_earned_income_from_non_lived_state" Association="Tax1040Model.Store.fk_address_earned_income_from_non_lived_state">
+            <End Role="state" EntitySet="state" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="fK_address_lived_in_another_state" Association="Tax1040Model.Store.fK_address_lived_in_another_state">
+            <End Role="state" EntitySet="state" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="fk_address_personal_address_state" Association="Tax1040Model.Store.fk_address_personal_address_state">
+            <End Role="state" EntitySet="state" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="fk_address_personal_info" Association="Tax1040Model.Store.fk_address_personal_info">
+            <End Role="personal_info" EntitySet="personal_info" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="fK_address_state_residence_state_id" Association="Tax1040Model.Store.fK_address_state_residence_state_id">
+            <End Role="state" EntitySet="state" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="fk_feature_state_id" Association="Tax1040Model.Store.fk_feature_state_id">
+            <End Role="state" EntitySet="state" />
+            <End Role="state_feature_sku" EntitySet="state_feature_sku" />
+          </AssociationSet>
+          <AssociationSet Name="fk_personal_info_filing_status" Association="Tax1040Model.Store.fk_personal_info_filing_status">
+            <End Role="filing_status" EntitySet="filing_status" />
+            <End Role="personal_info" EntitySet="personal_info" />
+          </AssociationSet>
+          <AssociationSet Name="fk_personal_info_person_type" Association="Tax1040Model.Store.fk_personal_info_person_type">
+            <End Role="person_type" EntitySet="person_type" />
+            <End Role="personal_info" EntitySet="personal_info" />
+          </AssociationSet>
+          <AssociationSet Name="fK_personal_info_state" Association="Tax1040Model.Store.fK_personal_info_state">
+            <End Role="state" EntitySet="state" />
+            <End Role="personal_info" EntitySet="personal_info" />
+          </AssociationSet>
+          <AssociationSet Name="fk_personal_info_user" Association="Tax1040Model.Store.fk_personal_info_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="personal_info" EntitySet="personal_info" />
+          </AssociationSet>
+          <AssociationSet Name="fk_state_id" Association="Tax1040Model.Store.fk_state_id">
+            <End Role="state" EntitySet="state" />
+            <End Role="state_zip_code_conditions" EntitySet="state_zip_code_conditions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="address_id" />
+          </Key>
+          <Property Name="address_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="personal_info_id" Type="bigint" Nullable="false" />
+          <Property Name="street_address" Type="nvarchar" MaxLength="35" />
+          <Property Name="city" Type="nvarchar" MaxLength="20" />
+          <Property Name="personal_address_state_id" Type="bigint" />
+          <Property Name="foreign_state" Type="nvarchar" MaxLength="15" />
+          <Property Name="country_id" Type="bigint" />
+          <Property Name="zip_code" Type="nvarchar" MaxLength="10" />
+          <Property Name="phone" Type="nvarchar" Nullable="false" MaxLength="12" />
+          <Property Name="address_type" Type="int" Nullable="false" />
+          <Property Name="residence_state_id" Type="bigint" />
+          <Property Name="has_lived_in_more_than_one_state" Type="bit" />
+          <Property Name="has_earned_income_from_non_lived_state" Type="bit" />
+          <Property Name="lived_in_another_state_id" Type="bigint" />
+          <Property Name="lived_in_another_state_from" Type="datetime" />
+          <Property Name="lived_in_another_state_to" Type="datetime" />
+          <Property Name="earned_income_from_non_lived_state_id" Type="bigint" />
+          <Property Name="apartment_number" Type="nvarchar" MaxLength="5" />
+          <Property Name="postal_code" Type="nvarchar" MaxLength="10" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Name="country_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="country_code" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="country_name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="filing_status">
+          <Key>
+            <PropertyRef Name="filing_status_id" />
+          </Key>
+          <Property Name="filing_status_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="filing_status" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="person_type">
+          <Key>
+            <PropertyRef Name="person_type_id" />
+          </Key>
+          <Property Name="person_type_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="person_type" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="personal_info">
+          <Key>
+            <PropertyRef Name="personal_info_id" />
+          </Key>
+          <Property Name="personal_info_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="bigint" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="middle_initial" Type="char" MaxLength="1" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="nick_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="occupation" Type="nvarchar" MaxLength="100" />
+          <Property Name="date_of_birth" Type="datetime" />
+          <Property Name="social_security_number" Type="varchar" MaxLength="15" />
+          <Property Name="filing_status_id" Type="bigint" />
+          <Property Name="person_type_id" Type="bigint" />
+          <Property Name="has_primaryfiler_ecf_contributed" Type="bit" />
+          <Property Name="has_spouse_ecf_contributed" Type="bit" />
+          <Property Name="is_legally_blind" Type="bit" />
+          <Property Name="is_disabled" Type="bit" />
+          <Property Name="has_claimed_as_dependent" Type="bit" />
+          <Property Name="is_died" Type="bit" />
+          <Property Name="date_of_death" Type="datetime" />
+          <Property Name="is_student" Type="bit" />
+          <Property Name="is_fulltime_student" Type="bit" />
+          <Property Name="is_other_info_none" Type="bit" />
+          <Property Name="has_lived_in_another_state" Type="bit" />
+          <Property Name="lived_in_another_state_id" Type="bigint" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="state_id" />
+          </Key>
+          <Property Name="state_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="state_code" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="state_name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" />
+          <Property Name="is_additional_mailing_address" Type="bit" />
+        </EntityType>
+        <EntityType Name="state_feature_sku">
+          <Key>
+            <PropertyRef Name="state_feature_sku_id" />
+          </Key>
+          <Property Name="state_feature_sku_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="bigint" Nullable="false" />
+          <Property Name="feature_id" Type="bigint" Nullable="false" />
+          <Property Name="state_id" Type="bigint" Nullable="false" />
+          <Property Name="price" Type="numeric" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Tax1040.dbo.state_zip_code_conditions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="state_zip_code_conditions">
+          <Key>
+            <PropertyRef Name="zip_code_condition_id" />
+            <PropertyRef Name="state_id" />
+            <PropertyRef Name="condition" />
+            <PropertyRef Name="is_active" />
+            <PropertyRef Name="is_deleted" />
+            <PropertyRef Name="create_datetime" />
+            <PropertyRef Name="update_datetime" />
+          </Key>
+          <Property Name="zip_code_condition_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="state_id" Type="bigint" Nullable="false" />
+          <Property Name="condition" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="username" Type="nvarchar" MaxLength="100" />
+          <Property Name="password" Type="nvarchar" MaxLength="100" />
+          <Property Name="salt" Type="nvarchar" MaxLength="100" />
+          <Property Name="security_question_id" Type="int" />
+          <Property Name="security_answer" Type="nvarchar" MaxLength="150" />
+          <Property Name="client_IP" Type="nvarchar" MaxLength="20" />
+          <Property Name="password_reset_code" Type="bigint" />
+          <Property Name="is_remember" Type="bit" Nullable="false" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="is_deleted" Type="bit" />
+          <Property Name="create_datetime" Type="datetime" />
+          <Property Name="update_datetime" Type="datetime" />
+        </EntityType>
+        <Association Name="fk_address_country">
+          <End Role="country" Type="Tax1040Model.Store.country" Multiplicity="0..1" />
+          <End Role="address" Type="Tax1040Model.Store.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_address_earned_income_from_non_lived_state">
+          <End Role="state" Type="Tax1040Model.Store.state" Multiplicity="0..1" />
+          <End Role="address" Type="Tax1040Model.Store.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="earned_income_from_non_lived_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fK_address_lived_in_another_state">
+          <End Role="state" Type="Tax1040Model.Store.state" Multiplicity="0..1" />
+          <End Role="address" Type="Tax1040Model.Store.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="lived_in_another_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_address_personal_address_state">
+          <End Role="state" Type="Tax1040Model.Store.state" Multiplicity="0..1" />
+          <End Role="address" Type="Tax1040Model.Store.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="personal_address_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_address_personal_info">
+          <End Role="personal_info" Type="Tax1040Model.Store.personal_info" Multiplicity="1" />
+          <End Role="address" Type="Tax1040Model.Store.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_info">
+              <PropertyRef Name="personal_info_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="personal_info_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fK_address_state_residence_state_id">
+          <End Role="state" Type="Tax1040Model.Store.state" Multiplicity="0..1" />
+          <End Role="address" Type="Tax1040Model.Store.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="residence_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_feature_state_id">
+          <End Role="state" Type="Tax1040Model.Store.state" Multiplicity="1" />
+          <End Role="state_feature_sku" Type="Tax1040Model.Store.state_feature_sku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="state_feature_sku">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_personal_info_filing_status">
+          <End Role="filing_status" Type="Tax1040Model.Store.filing_status" Multiplicity="0..1" />
+          <End Role="personal_info" Type="Tax1040Model.Store.personal_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="filing_status">
+              <PropertyRef Name="filing_status_id" />
+            </Principal>
+            <Dependent Role="personal_info">
+              <PropertyRef Name="filing_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_personal_info_person_type">
+          <End Role="person_type" Type="Tax1040Model.Store.person_type" Multiplicity="0..1" />
+          <End Role="personal_info" Type="Tax1040Model.Store.personal_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person_type">
+              <PropertyRef Name="person_type_id" />
+            </Principal>
+            <Dependent Role="personal_info">
+              <PropertyRef Name="person_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fK_personal_info_state">
+          <End Role="state" Type="Tax1040Model.Store.state" Multiplicity="0..1" />
+          <End Role="personal_info" Type="Tax1040Model.Store.personal_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="personal_info">
+              <PropertyRef Name="lived_in_another_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_personal_info_user">
+          <End Role="user" Type="Tax1040Model.Store.user" Multiplicity="1" />
+          <End Role="personal_info" Type="Tax1040Model.Store.personal_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="personal_info">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_state_id">
+          <End Role="state" Type="Tax1040Model.Store.state" Multiplicity="1" />
+          <End Role="state_zip_code_conditions" Type="Tax1040Model.Store.state_zip_code_conditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="state_zip_code_conditions">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Tax1040Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Tax1040Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="addresses" EntityType="Tax1040Model.address" />
+          <EntitySet Name="countries" EntityType="Tax1040Model.country" />
+          <EntitySet Name="filing_status" EntityType="Tax1040Model.filing_status" />
+          <EntitySet Name="person_type" EntityType="Tax1040Model.person_type" />
+          <EntitySet Name="personal_info" EntityType="Tax1040Model.personal_info" />
+          <EntitySet Name="states" EntityType="Tax1040Model.state" />
+          <EntitySet Name="state_feature_sku" EntityType="Tax1040Model.state_feature_sku" />
+          <EntitySet Name="state_zip_code_conditions" EntityType="Tax1040Model.state_zip_code_conditions" />
+          <EntitySet Name="users" EntityType="Tax1040Model.user" />
+          <AssociationSet Name="fk_address_country" Association="Tax1040Model.fk_address_country">
+            <End Role="country" EntitySet="countries" />
+            <End Role="address" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_address_earned_income_from_non_lived_state" Association="Tax1040Model.fk_address_earned_income_from_non_lived_state">
+            <End Role="state" EntitySet="states" />
+            <End Role="address" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="fK_address_lived_in_another_state" Association="Tax1040Model.fK_address_lived_in_another_state">
+            <End Role="state" EntitySet="states" />
+            <End Role="address" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_address_personal_address_state" Association="Tax1040Model.fk_address_personal_address_state">
+            <End Role="state" EntitySet="states" />
+            <End Role="address" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_address_personal_info" Association="Tax1040Model.fk_address_personal_info">
+            <End Role="personal_info" EntitySet="personal_info" />
+            <End Role="address" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="fK_address_state_residence_state_id" Association="Tax1040Model.fK_address_state_residence_state_id">
+            <End Role="state" EntitySet="states" />
+            <End Role="address" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_personal_info_filing_status" Association="Tax1040Model.fk_personal_info_filing_status">
+            <End Role="filing_status" EntitySet="filing_status" />
+            <End Role="personal_info" EntitySet="personal_info" />
+          </AssociationSet>
+          <AssociationSet Name="fk_personal_info_person_type" Association="Tax1040Model.fk_personal_info_person_type">
+            <End Role="person_type" EntitySet="person_type" />
+            <End Role="personal_info" EntitySet="personal_info" />
+          </AssociationSet>
+          <AssociationSet Name="fK_personal_info_state" Association="Tax1040Model.fK_personal_info_state">
+            <End Role="state" EntitySet="states" />
+            <End Role="personal_info" EntitySet="personal_info" />
+          </AssociationSet>
+          <AssociationSet Name="fk_personal_info_user" Association="Tax1040Model.fk_personal_info_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="personal_info" EntitySet="personal_info" />
+          </AssociationSet>
+          <AssociationSet Name="fk_feature_state_id" Association="Tax1040Model.fk_feature_state_id">
+            <End Role="state" EntitySet="states" />
+            <End Role="state_feature_sku" EntitySet="state_feature_sku" />
+          </AssociationSet>
+          <AssociationSet Name="fk_state_id" Association="Tax1040Model.fk_state_id">
+            <End Role="state" EntitySet="states" />
+            <End Role="state_zip_code_conditions" EntitySet="state_zip_code_conditions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="address_id" />
+          </Key>
+          <Property Name="address_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="personal_info_id" Type="Int64" Nullable="false" />
+          <Property Name="street_address" Type="String" MaxLength="35" Unicode="true" FixedLength="false" />
+          <Property Name="city" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="personal_address_state_id" Type="Int64" />
+          <Property Name="foreign_state" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="country_id" Type="Int64" />
+          <Property Name="zip_code" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="12" Unicode="true" FixedLength="false" />
+          <Property Name="address_type" Type="Int32" Nullable="false" />
+          <Property Name="residence_state_id" Type="Int64" />
+          <Property Name="has_lived_in_more_than_one_state" Type="Boolean" />
+          <Property Name="has_earned_income_from_non_lived_state" Type="Boolean" />
+          <Property Name="lived_in_another_state_id" Type="Int64" />
+          <Property Name="lived_in_another_state_from" Type="DateTime" Precision="3" />
+          <Property Name="lived_in_another_state_to" Type="DateTime" Precision="3" />
+          <Property Name="earned_income_from_non_lived_state_id" Type="Int64" />
+          <Property Name="apartment_number" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="postal_code" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="country" Relationship="Tax1040Model.fk_address_country" FromRole="address" ToRole="country" />
+          <NavigationProperty Name="state" Relationship="Tax1040Model.fk_address_earned_income_from_non_lived_state" FromRole="address" ToRole="state" />
+          <NavigationProperty Name="state1" Relationship="Tax1040Model.fK_address_lived_in_another_state" FromRole="address" ToRole="state" />
+          <NavigationProperty Name="state2" Relationship="Tax1040Model.fk_address_personal_address_state" FromRole="address" ToRole="state" />
+          <NavigationProperty Name="personal_info" Relationship="Tax1040Model.fk_address_personal_info" FromRole="address" ToRole="personal_info" />
+          <NavigationProperty Name="state3" Relationship="Tax1040Model.fK_address_state_residence_state_id" FromRole="address" ToRole="state" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Name="country_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="country_code" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="country_name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="addresses" Relationship="Tax1040Model.fk_address_country" FromRole="country" ToRole="address" />
+        </EntityType>
+        <EntityType Name="filing_status">
+          <Key>
+            <PropertyRef Name="filing_status_id" />
+          </Key>
+          <Property Name="filing_status_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="filing_status1" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="personal_info" Relationship="Tax1040Model.fk_personal_info_filing_status" FromRole="filing_status" ToRole="personal_info" />
+        </EntityType>
+        <EntityType Name="person_type">
+          <Key>
+            <PropertyRef Name="person_type_id" />
+          </Key>
+          <Property Name="person_type_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="person_type1" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="personal_info" Relationship="Tax1040Model.fk_personal_info_person_type" FromRole="person_type" ToRole="personal_info" />
+        </EntityType>
+        <EntityType Name="personal_info">
+          <Key>
+            <PropertyRef Name="personal_info_id" />
+          </Key>
+          <Property Name="personal_info_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int64" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="middle_initial" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="last_name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="nick_name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="occupation" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="3" />
+          <Property Name="social_security_number" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="filing_status_id" Type="Int64" />
+          <Property Name="person_type_id" Type="Int64" />
+          <Property Name="has_primaryfiler_ecf_contributed" Type="Boolean" />
+          <Property Name="has_spouse_ecf_contributed" Type="Boolean" />
+          <Property Name="is_legally_blind" Type="Boolean" />
+          <Property Name="is_disabled" Type="Boolean" />
+          <Property Name="has_claimed_as_dependent" Type="Boolean" />
+          <Property Name="is_died" Type="Boolean" />
+          <Property Name="date_of_death" Type="DateTime" Precision="3" />
+          <Property Name="is_student" Type="Boolean" />
+          <Property Name="is_fulltime_student" Type="Boolean" />
+          <Property Name="is_other_info_none" Type="Boolean" />
+          <Property Name="has_lived_in_another_state" Type="Boolean" />
+          <Property Name="lived_in_another_state_id" Type="Int64" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="addresses" Relationship="Tax1040Model.fk_address_personal_info" FromRole="personal_info" ToRole="address" />
+          <NavigationProperty Name="filing_status" Relationship="Tax1040Model.fk_personal_info_filing_status" FromRole="personal_info" ToRole="filing_status" />
+          <NavigationProperty Name="person_type" Relationship="Tax1040Model.fk_personal_info_person_type" FromRole="personal_info" ToRole="person_type" />
+          <NavigationProperty Name="state" Relationship="Tax1040Model.fK_personal_info_state" FromRole="personal_info" ToRole="state" />
+          <NavigationProperty Name="user" Relationship="Tax1040Model.fk_personal_info_user" FromRole="personal_info" ToRole="user" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="state_id" />
+          </Key>
+          <Property Name="state_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="state_code" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="state_name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="is_additional_mailing_address" Type="Boolean" />
+          <NavigationProperty Name="addresses" Relationship="Tax1040Model.fk_address_earned_income_from_non_lived_state" FromRole="state" ToRole="address" />
+          <NavigationProperty Name="addresses1" Relationship="Tax1040Model.fK_address_lived_in_another_state" FromRole="state" ToRole="address" />
+          <NavigationProperty Name="addresses2" Relationship="Tax1040Model.fk_address_personal_address_state" FromRole="state" ToRole="address" />
+          <NavigationProperty Name="addresses3" Relationship="Tax1040Model.fK_address_state_residence_state_id" FromRole="state" ToRole="address" />
+          <NavigationProperty Name="personal_info" Relationship="Tax1040Model.fK_personal_info_state" FromRole="state" ToRole="personal_info" />
+          <NavigationProperty Name="state_feature_sku" Relationship="Tax1040Model.fk_feature_state_id" FromRole="state" ToRole="state_feature_sku" />
+          <NavigationProperty Name="state_zip_code_conditions" Relationship="Tax1040Model.fk_state_id" FromRole="state" ToRole="state_zip_code_conditions" />
+        </EntityType>
+        <EntityType Name="state_feature_sku">
+          <Key>
+            <PropertyRef Name="state_feature_sku_id" />
+          </Key>
+          <Property Name="state_feature_sku_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int64" Nullable="false" />
+          <Property Name="feature_id" Type="Int64" Nullable="false" />
+          <Property Name="state_id" Type="Int64" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="state" Relationship="Tax1040Model.fk_feature_state_id" FromRole="state_feature_sku" ToRole="state" />
+        </EntityType>
+        <EntityType Name="state_zip_code_conditions">
+          <Key>
+            <PropertyRef Name="zip_code_condition_id" />
+            <PropertyRef Name="state_id" />
+            <PropertyRef Name="condition" />
+            <PropertyRef Name="is_active" />
+            <PropertyRef Name="is_deleted" />
+            <PropertyRef Name="create_datetime" />
+            <PropertyRef Name="update_datetime" />
+          </Key>
+          <Property Name="zip_code_condition_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="state_id" Type="Int64" Nullable="false" />
+          <Property Name="condition" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="state" Relationship="Tax1040Model.fk_state_id" FromRole="state_zip_code_conditions" ToRole="state" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="username" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="password" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="salt" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="security_question_id" Type="Int32" />
+          <Property Name="security_answer" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="client_IP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="password_reset_code" Type="Int64" />
+          <Property Name="is_remember" Type="Boolean" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <Property Name="create_datetime" Type="DateTime" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="personal_info" Relationship="Tax1040Model.fk_personal_info_user" FromRole="user" ToRole="personal_info" />
+        </EntityType>
+        <Association Name="fk_address_country">
+          <End Role="country" Type="Tax1040Model.country" Multiplicity="0..1" />
+          <End Role="address" Type="Tax1040Model.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_address_earned_income_from_non_lived_state">
+          <End Role="state" Type="Tax1040Model.state" Multiplicity="0..1" />
+          <End Role="address" Type="Tax1040Model.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="earned_income_from_non_lived_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fK_address_lived_in_another_state">
+          <End Role="state" Type="Tax1040Model.state" Multiplicity="0..1" />
+          <End Role="address" Type="Tax1040Model.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="lived_in_another_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_address_personal_address_state">
+          <End Role="state" Type="Tax1040Model.state" Multiplicity="0..1" />
+          <End Role="address" Type="Tax1040Model.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="personal_address_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_address_personal_info">
+          <End Role="personal_info" Type="Tax1040Model.personal_info" Multiplicity="1" />
+          <End Role="address" Type="Tax1040Model.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_info">
+              <PropertyRef Name="personal_info_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="personal_info_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fK_address_state_residence_state_id">
+          <End Role="state" Type="Tax1040Model.state" Multiplicity="0..1" />
+          <End Role="address" Type="Tax1040Model.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="residence_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_personal_info_filing_status">
+          <End Role="filing_status" Type="Tax1040Model.filing_status" Multiplicity="0..1" />
+          <End Role="personal_info" Type="Tax1040Model.personal_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="filing_status">
+              <PropertyRef Name="filing_status_id" />
+            </Principal>
+            <Dependent Role="personal_info">
+              <PropertyRef Name="filing_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_personal_info_person_type">
+          <End Role="person_type" Type="Tax1040Model.person_type" Multiplicity="0..1" />
+          <End Role="personal_info" Type="Tax1040Model.personal_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person_type">
+              <PropertyRef Name="person_type_id" />
+            </Principal>
+            <Dependent Role="personal_info">
+              <PropertyRef Name="person_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fK_personal_info_state">
+          <End Role="state" Type="Tax1040Model.state" Multiplicity="0..1" />
+          <End Role="personal_info" Type="Tax1040Model.personal_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="personal_info">
+              <PropertyRef Name="lived_in_another_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_personal_info_user">
+          <End Role="user" Type="Tax1040Model.user" Multiplicity="1" />
+          <End Role="personal_info" Type="Tax1040Model.personal_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="personal_info">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_feature_state_id">
+          <End Role="state" Type="Tax1040Model.state" Multiplicity="1" />
+          <End Role="state_feature_sku" Type="Tax1040Model.state_feature_sku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="state_feature_sku">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_state_id">
+          <End Role="state" Type="Tax1040Model.state" Multiplicity="1" />
+          <End Role="state_zip_code_conditions" Type="Tax1040Model.state_zip_code_conditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="state_zip_code_conditions">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Tax1040ModelStoreContainer" CdmEntityContainer="Tax1040Entities">
+          <EntitySetMapping Name="addresses">
+            <EntityTypeMapping TypeName="Tax1040Model.address">
+              <MappingFragment StoreEntitySet="address">
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+                <ScalarProperty Name="personal_info_id" ColumnName="personal_info_id" />
+                <ScalarProperty Name="street_address" ColumnName="street_address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="personal_address_state_id" ColumnName="personal_address_state_id" />
+                <ScalarProperty Name="foreign_state" ColumnName="foreign_state" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="zip_code" ColumnName="zip_code" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address_type" ColumnName="address_type" />
+                <ScalarProperty Name="residence_state_id" ColumnName="residence_state_id" />
+                <ScalarProperty Name="has_lived_in_more_than_one_state" ColumnName="has_lived_in_more_than_one_state" />
+                <ScalarProperty Name="has_earned_income_from_non_lived_state" ColumnName="has_earned_income_from_non_lived_state" />
+                <ScalarProperty Name="lived_in_another_state_id" ColumnName="lived_in_another_state_id" />
+                <ScalarProperty Name="lived_in_another_state_from" ColumnName="lived_in_another_state_from" />
+                <ScalarProperty Name="lived_in_another_state_to" ColumnName="lived_in_another_state_to" />
+                <ScalarProperty Name="earned_income_from_non_lived_state_id" ColumnName="earned_income_from_non_lived_state_id" />
+                <ScalarProperty Name="apartment_number" ColumnName="apartment_number" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="Tax1040Model.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="country_code" ColumnName="country_code" />
+                <ScalarProperty Name="country_name" ColumnName="country_name" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="filing_status">
+            <EntityTypeMapping TypeName="Tax1040Model.filing_status">
+              <MappingFragment StoreEntitySet="filing_status">
+                <ScalarProperty Name="filing_status_id" ColumnName="filing_status_id" />
+                <ScalarProperty Name="filing_status1" ColumnName="filing_status" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="person_type">
+            <EntityTypeMapping TypeName="Tax1040Model.person_type">
+              <MappingFragment StoreEntitySet="person_type">
+                <ScalarProperty Name="person_type_id" ColumnName="person_type_id" />
+                <ScalarProperty Name="person_type1" ColumnName="person_type" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personal_info">
+            <EntityTypeMapping TypeName="Tax1040Model.personal_info">
+              <MappingFragment StoreEntitySet="personal_info">
+                <ScalarProperty Name="personal_info_id" ColumnName="personal_info_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_initial" ColumnName="middle_initial" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="nick_name" ColumnName="nick_name" />
+                <ScalarProperty Name="occupation" ColumnName="occupation" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="social_security_number" ColumnName="social_security_number" />
+                <ScalarProperty Name="filing_status_id" ColumnName="filing_status_id" />
+                <ScalarProperty Name="person_type_id" ColumnName="person_type_id" />
+                <ScalarProperty Name="has_primaryfiler_ecf_contributed" ColumnName="has_primaryfiler_ecf_contributed" />
+                <ScalarProperty Name="has_spouse_ecf_contributed" ColumnName="has_spouse_ecf_contributed" />
+                <ScalarProperty Name="is_legally_blind" ColumnName="is_legally_blind" />
+                <ScalarProperty Name="is_disabled" ColumnName="is_disabled" />
+                <ScalarProperty Name="has_claimed_as_dependent" ColumnName="has_claimed_as_dependent" />
+                <ScalarProperty Name="is_died" ColumnName="is_died" />
+                <ScalarProperty Name="date_of_death" ColumnName="date_of_death" />
+                <ScalarProperty Name="is_student" ColumnName="is_student" />
+                <ScalarProperty Name="is_fulltime_student" ColumnName="is_fulltime_student" />
+                <ScalarProperty Name="is_other_info_none" ColumnName="is_other_info_none" />
+                <ScalarProperty Name="has_lived_in_another_state" ColumnName="has_lived_in_another_state" />
+                <ScalarProperty Name="lived_in_another_state_id" ColumnName="lived_in_another_state_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="Tax1040Model.state">
+              <MappingFragment StoreEntitySet="state">
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="state_code" ColumnName="state_code" />
+                <ScalarProperty Name="state_name" ColumnName="state_name" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+                <ScalarProperty Name="is_additional_mailing_address" ColumnName="is_additional_mailing_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="state_feature_sku">
+            <EntityTypeMapping TypeName="Tax1040Model.state_feature_sku">
+              <MappingFragment StoreEntitySet="state_feature_sku">
+                <ScalarProperty Name="state_feature_sku_id" ColumnName="state_feature_sku_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="feature_id" ColumnName="feature_id" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="state_zip_code_conditions">
+            <EntityTypeMapping TypeName="Tax1040Model.state_zip_code_conditions">
+              <MappingFragment StoreEntitySet="state_zip_code_conditions">
+                <ScalarProperty Name="zip_code_condition_id" ColumnName="zip_code_condition_id" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="condition" ColumnName="condition" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Tax1040Model.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="security_question_id" ColumnName="security_question_id" />
+                <ScalarProperty Name="security_answer" ColumnName="security_answer" />
+                <ScalarProperty Name="client_IP" ColumnName="client_IP" />
+                <ScalarProperty Name="password_reset_code" ColumnName="password_reset_code" />
+                <ScalarProperty Name="is_remember" ColumnName="is_remember" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TAX1040UserAdminDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin_role">
+          <Key>
+            <PropertyRef Name="admin_role_Id" />
+          </Key>
+          <Property Name="admin_role_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_admin">
+          <Key>
+            <PropertyRef Name="user_admin_Id" />
+          </Key>
+          <Property Name="user_admin_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="salt" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="user_admin_role">
+          <Key>
+            <PropertyRef Name="user_admin_role_id" />
+          </Key>
+          <Property Name="user_admin_role_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_admin_id" Type="bigint" Nullable="false" />
+          <Property Name="admin_role_id" Type="bigint" Nullable="false" />
+          <Property Name="role_name" Type="varchar" MaxLength="50" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="update_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_admin_role_admin_user">
+          <End Role="user_admin" Type="Self.user_admin" Multiplicity="1" />
+          <End Role="user_admin_role" Type="Self.user_admin_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_admin">
+              <PropertyRef Name="user_admin_Id" />
+            </Principal>
+            <Dependent Role="user_admin_role">
+              <PropertyRef Name="user_admin_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_admin_role_admin_role">
+          <End Role="admin_role" Type="Self.admin_role" Multiplicity="1" />
+          <End Role="user_admin_role" Type="Self.user_admin_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin_role">
+              <PropertyRef Name="admin_role_Id" />
+            </Principal>
+            <Dependent Role="user_admin_role">
+              <PropertyRef Name="admin_role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_get_all_user_admin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_get_user_admin_by_user_admin_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_admin_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_get_user_admin_by_username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_user_admin_role_by_user_admin_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_admin_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_is_user_admin_exists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_user_admin_delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_admin_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_user_admin_password_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_admin_id" Type="bigint" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_user_admin_persist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="salt" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="is_active" Type="bit" Mode="In" />
+          <Parameter Name="is_password_change" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="usp_user_admin_role_delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_admin_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_user_admin_role_persist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_admin_id" Type="bigint" Mode="In" />
+          <Parameter Name="role_name" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TAX1040UserAdminDBModelStoreContainer">
+          <EntitySet Name="admin_role" EntityType="Self.admin_role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_admin" EntityType="Self.user_admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_admin_role" EntityType="Self.user_admin_role" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_admin_role_admin_user" Association="Self.FK_admin_role_admin_user">
+            <End Role="user_admin" EntitySet="user_admin" />
+            <End Role="user_admin_role" EntitySet="user_admin_role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_admin_role_admin_role" Association="Self.FK_user_admin_role_admin_role">
+            <End Role="admin_role" EntitySet="admin_role" />
+            <End Role="user_admin_role" EntitySet="user_admin_role" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TAX1040UserAdminDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TAX1040UserAdminDB" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="admin_role" EntityType="TAX1040UserAdminDBModel.admin_role" />
+          <EntitySet Name="user_admin" EntityType="TAX1040UserAdminDBModel.user_admin" />
+          <EntitySet Name="user_admin_role" EntityType="TAX1040UserAdminDBModel.user_admin_role" />
+          <AssociationSet Name="FK_user_admin_role_admin_role" Association="TAX1040UserAdminDBModel.FK_user_admin_role_admin_role">
+            <End Role="admin_role" EntitySet="admin_role" />
+            <End Role="user_admin_role" EntitySet="user_admin_role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_admin_role_admin_user" Association="TAX1040UserAdminDBModel.FK_admin_role_admin_user">
+            <End Role="user_admin" EntitySet="user_admin" />
+            <End Role="user_admin_role" EntitySet="user_admin_role" />
+          </AssociationSet>
+          <FunctionImport Name="usp_get_all_user_admin" ReturnType="Collection(TAX1040UserAdminDBModel.usp_get_all_user_admin_Result)" />
+          <FunctionImport Name="usp_get_user_admin_by_user_admin_id" ReturnType="Collection(TAX1040UserAdminDBModel.usp_get_user_admin_by_user_admin_id_Result)">
+          <Parameter Name="user_admin_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_user_admin_by_username" ReturnType="Collection(TAX1040UserAdminDBModel.usp_get_user_admin_by_username_Result)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_user_admin_role_by_user_admin_id" ReturnType="Collection(TAX1040UserAdminDBModel.usp_get_user_admin_role_by_user_admin_id_Result)">
+          <Parameter Name="user_admin_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_is_user_admin_exists" ReturnType="Collection(Int32)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_user_admin_delete">
+          <Parameter Name="user_admin_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_user_admin_password_update">
+            <Parameter Name="user_admin_id" Mode="In" Type="Int64" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_user_admin_persist" ReturnType="Collection(Decimal)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="salt" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="is_active" Mode="In" Type="Boolean" />
+            <Parameter Name="is_password_change" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="usp_user_admin_role_delete">
+          <Parameter Name="user_admin_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_user_admin_role_persist">
+            <Parameter Name="user_admin_id" Mode="In" Type="Int64" />
+            <Parameter Name="role_name" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="admin_role">
+          <Key>
+            <PropertyRef Name="admin_role_Id" />
+          </Key>
+          <Property Name="admin_role_Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="user_admin_role" Relationship="TAX1040UserAdminDBModel.FK_user_admin_role_admin_role" FromRole="admin_role" ToRole="user_admin_role" />
+        </EntityType>
+        <EntityType Name="user_admin">
+          <Key>
+            <PropertyRef Name="user_admin_Id" />
+          </Key>
+          <Property Name="user_admin_Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="salt" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="user_admin_role" Relationship="TAX1040UserAdminDBModel.FK_admin_role_admin_user" FromRole="user_admin" ToRole="user_admin_role" />
+        </EntityType>
+        <EntityType Name="user_admin_role">
+          <Key>
+            <PropertyRef Name="user_admin_role_id" />
+          </Key>
+          <Property Name="user_admin_role_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="user_admin_id" Type="Int64" Nullable="false" />
+          <Property Name="admin_role_id" Type="Int64" Nullable="false" />
+          <Property Name="role_name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="admin_role" Relationship="TAX1040UserAdminDBModel.FK_user_admin_role_admin_role" FromRole="user_admin_role" ToRole="admin_role" />
+          <NavigationProperty Name="user_admin" Relationship="TAX1040UserAdminDBModel.FK_admin_role_admin_user" FromRole="user_admin_role" ToRole="user_admin" />
+        </EntityType>
+        <Association Name="FK_user_admin_role_admin_role">
+          <End Role="admin_role" Type="TAX1040UserAdminDBModel.admin_role" Multiplicity="1" />
+          <End Role="user_admin_role" Type="TAX1040UserAdminDBModel.user_admin_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin_role">
+              <PropertyRef Name="admin_role_Id" />
+            </Principal>
+            <Dependent Role="user_admin_role">
+              <PropertyRef Name="admin_role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_admin_role_admin_user">
+          <End Role="user_admin" Type="TAX1040UserAdminDBModel.user_admin" Multiplicity="1" />
+          <End Role="user_admin_role" Type="TAX1040UserAdminDBModel.user_admin_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_admin">
+              <PropertyRef Name="user_admin_Id" />
+            </Principal>
+            <Dependent Role="user_admin_role">
+              <PropertyRef Name="user_admin_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="usp_get_all_user_admin_Result">
+          <Property Type="Int64" Name="user_admin_Id" Nullable="false" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="salt" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="is_active" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_get_user_admin_by_user_admin_id_Result">
+          <Property Type="Int64" Name="user_admin_id" Nullable="false" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="salt" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="is_active" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_get_user_admin_by_username_Result">
+          <Property Type="Int64" Name="user_admin_id" Nullable="false" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="salt" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="is_active" Nullable="false" />
+          <Property Type="String" Name="role_name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="usp_get_user_admin_role_by_user_admin_id_Result">
+          <Property Type="Int64" Name="user_admin_id" Nullable="false" />
+          <Property Type="String" Name="role_name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TAX1040UserAdminDBModelStoreContainer" CdmEntityContainer="TAX1040UserAdminDB">
+          <EntitySetMapping Name="admin_role">
+            <EntityTypeMapping TypeName="TAX1040UserAdminDBModel.admin_role">
+              <MappingFragment StoreEntitySet="admin_role">
+                <ScalarProperty Name="admin_role_Id" ColumnName="admin_role_Id" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_admin">
+            <EntityTypeMapping TypeName="TAX1040UserAdminDBModel.user_admin">
+              <MappingFragment StoreEntitySet="user_admin">
+                <ScalarProperty Name="user_admin_Id" ColumnName="user_admin_Id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_admin_role">
+            <EntityTypeMapping TypeName="TAX1040UserAdminDBModel.user_admin_role">
+              <MappingFragment StoreEntitySet="user_admin_role">
+                <ScalarProperty Name="user_admin_role_id" ColumnName="user_admin_role_id" />
+                <ScalarProperty Name="user_admin_id" ColumnName="user_admin_id" />
+                <ScalarProperty Name="admin_role_id" ColumnName="admin_role_id" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="update_datetime" ColumnName="update_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_all_user_admin" FunctionName="TAX1040UserAdminDBModel.Store.usp_get_all_user_admin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TAX1040UserAdminDBModel.usp_get_all_user_admin_Result">
+                <ScalarProperty Name="user_admin_Id" ColumnName="user_admin_Id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_user_admin_by_user_admin_id" FunctionName="TAX1040UserAdminDBModel.Store.usp_get_user_admin_by_user_admin_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TAX1040UserAdminDBModel.usp_get_user_admin_by_user_admin_id_Result">
+                <ScalarProperty Name="user_admin_id" ColumnName="user_admin_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_user_admin_by_username" FunctionName="TAX1040UserAdminDBModel.Store.usp_get_user_admin_by_username">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TAX1040UserAdminDBModel.usp_get_user_admin_by_username_Result">
+                <ScalarProperty Name="user_admin_id" ColumnName="user_admin_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_user_admin_role_by_user_admin_id" FunctionName="TAX1040UserAdminDBModel.Store.usp_get_user_admin_role_by_user_admin_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TAX1040UserAdminDBModel.usp_get_user_admin_role_by_user_admin_id_Result">
+                <ScalarProperty Name="user_admin_id" ColumnName="user_admin_id" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_is_user_admin_exists" FunctionName="TAX1040UserAdminDBModel.Store.usp_is_user_admin_exists" />
+          <FunctionImportMapping FunctionImportName="usp_user_admin_delete" FunctionName="TAX1040UserAdminDBModel.Store.usp_user_admin_delete" />
+          <FunctionImportMapping FunctionImportName="usp_user_admin_password_update" FunctionName="TAX1040UserAdminDBModel.Store.usp_user_admin_password_update" />
+          <FunctionImportMapping FunctionImportName="usp_user_admin_persist" FunctionName="TAX1040UserAdminDBModel.Store.usp_user_admin_persist" />
+          <FunctionImportMapping FunctionImportName="usp_user_admin_role_delete" FunctionName="TAX1040UserAdminDBModel.Store.usp_user_admin_role_delete" />
+          <FunctionImportMapping FunctionImportName="usp_user_admin_role_persist" FunctionName="TAX1040UserAdminDBModel.Store.usp_user_admin_role_persist" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

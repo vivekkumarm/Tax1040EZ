@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "8879">
+  <!--<Mapping>
+    <PDFField>txtF8879SID</PDFField>
+    <TROField Type="Integer"> </TROField>
+  </Mapping>-->
+  <Mapping>
+    <PDFField>txtF8879TaxpayerName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.FirstName</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8879TaxpayerSSN</PDFField>
+    <TROField Type="SSN">tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.SSN</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8879SpouseName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.Spouse.Person.FirstName</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8879SpouseSSN</PDFField>
+    <TROField Type="SSN">tax1040Object.PersonalDetails.Spouse.Person.SSN</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF8879AdjustedGrossIncome</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.AdjustedGrossIncome</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879TotalTax</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TaxAmount</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879FederalIncomeTaxWithheld</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.FederalTaxWithholdingAmount</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879RefundAmount</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.RefundAmount</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879AmountYouOwe</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TaxOweAmount</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879TaxpayerEROFirmName</PDFField>
+    <TROField Type="String">tax1040.OutputForms.Tax8879.TaxpayerEROFirmName</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879TaxpayerPINPart1</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.TaxPayerPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879TaxpayerPINPart2</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.TaxPayerPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879TaxpayerPINPart3</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.TaxPayerPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879TaxpayerPINPart4</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.TaxPayerPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879TaxpayerPINPart5</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.TaxPayerPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879SpouseEROFirmName</PDFField>
+    <TROField Type="String">tax1040.OutputForms.Tax8879.SpouseEROFirmName</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879SpousePINPart1</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.SpousePIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879SpousePINPart2</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.SpousePIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879SpousePINPart3</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.SpousePIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879SpousePINPart4</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.SpousePIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879SpousePINPart5</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.SpousePIN</TROField>
+  </Mapping>
+
+
+  <Mapping>
+    <PDFField>txtF8879TaxpayerDate</PDFField>
+    <TROField Type="Date">tax1040.OutputForms.Tax8879.TaxpayerSignatureDate</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879SpouseDate</PDFField>
+    <TROField Type="Date">tax1040.OutputForms.Tax8879.SpouseSignatureDate</TROField>
+  </Mapping>
+  
+  <!--<Mapping>
+    <PDFField>chkF8879TaxpayerAuthorize</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>-->
+
+  <!--<Mapping>
+    <PDFField>chkF8879TaxpayerSignature</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkF8879SpouseAuthorize</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkF8879SpouseSignature</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>-->
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart1</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart2</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart3</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart4</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart5</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart6</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart7</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart8</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart9</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart10</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879PractitionerPINPart11</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROEFINPIN</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF8879ERODate</PDFField>
+    <TROField Type="PIN">tax1040.OutputForms.Tax8879.EROSignatureDate</TROField>
+  </Mapping>
+
+</OutputForm>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

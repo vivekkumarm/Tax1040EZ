@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ef928a1cf15b448b8dd0820f2aaf6b2e" Name="Diagram1">
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_comment" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_email_log" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_error" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_hold" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_hold_attachment" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_irs_schema" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_last_status" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_log" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_name_control" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_progress" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_receiver" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_request_response" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_sender" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.efile_transmit" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.fax_log" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.sms_log" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040_EfileModel.StcErrorCode" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Tax1040_EfileModel.pk_efile_comment_efile_hold" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040_EfileModel.FK_efile_email_log_efile_error" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040_EfileModel.fk_efile_attachment_hold_efile_hold" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040_EfileModel.fk_efile_irs_schema_efile_hold" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040_EfileModel.fk_efile_last_status_efile_hold" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040_EfileModel.fk_efile_log_efile_hold" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040_EfileModel.fk_efile_progress_efile_hold" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040_EfileModel.fk_efile_sender_efile_hold" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,2 @@
+AlaskaWithNoValidation.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

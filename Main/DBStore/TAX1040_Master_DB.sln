@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TAX1040_Master_DB", "TAX1040_Master_DB\TAX1040_Master_DB.sqlproj", "{8D8279E8-AE61-44F1-BBD5-D155BABEE4E0}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TAX1040_Return_2014", "TAX1040_Return_2014\TAX1040_Return_2014.sqlproj", "{142B43E3-8618-4392-A685-E6AEDD238682}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TAX1040_Efile_2014", "TAX1040_Efile_2014\TAX1040_Efile_2014.sqlproj", "{AEB98E02-5757-49FA-87D0-A4EB2486C676}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.168.1.10:8080/tfs/jeevantax
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TAX1040_Master_DB\\TAX1040_Master_DB.sqlproj
+		SccProjectName1 = TAX1040_Master_DB
+		SccLocalPath1 = TAX1040_Master_DB
+		SccProjectUniqueName2 = TAX1040_Return_2014\\TAX1040_Return_2014.sqlproj
+		SccProjectName2 = TAX1040_Return_2014
+		SccLocalPath2 = TAX1040_Return_2014
+		SccProjectUniqueName3 = TAX1040_Efile_2014\\TAX1040_Efile_2014.sqlproj
+		SccProjectName3 = TAX1040_Efile_2014
+		SccLocalPath3 = TAX1040_Efile_2014
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D8279E8-AE61-44F1-BBD5-D155BABEE4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D8279E8-AE61-44F1-BBD5-D155BABEE4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D8279E8-AE61-44F1-BBD5-D155BABEE4E0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8D8279E8-AE61-44F1-BBD5-D155BABEE4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D8279E8-AE61-44F1-BBD5-D155BABEE4E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D8279E8-AE61-44F1-BBD5-D155BABEE4E0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{142B43E3-8618-4392-A685-E6AEDD238682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{142B43E3-8618-4392-A685-E6AEDD238682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{142B43E3-8618-4392-A685-E6AEDD238682}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{142B43E3-8618-4392-A685-E6AEDD238682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{142B43E3-8618-4392-A685-E6AEDD238682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{142B43E3-8618-4392-A685-E6AEDD238682}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AEB98E02-5757-49FA-87D0-A4EB2486C676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB98E02-5757-49FA-87D0-A4EB2486C676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB98E02-5757-49FA-87D0-A4EB2486C676}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AEB98E02-5757-49FA-87D0-A4EB2486C676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB98E02-5757-49FA-87D0-A4EB2486C676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB98E02-5757-49FA-87D0-A4EB2486C676}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

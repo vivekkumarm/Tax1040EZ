@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://www.irs.gov/a2a/mef/MeFTransmitterServiceMTOM.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.irs.gov/a2a/mef/MeFTransmitterServiceMTOM.xsd" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="xmime.xsd" namespace="http://www.w3.org/2005/05/xmlmime" />
+  <xsd:annotation>
+    <xsd:documentation>Trading Partner Transmitter MTOM Web Services' Element Definitions</xsd:documentation>
+  </xsd:annotation>
+  <xsd:element name="SendSubmissionsRequest" type="SendSubmissionsRequestType" />
+  <xsd:element name="SendSubmissionsResponse" type="SendSubmissionsResponseType" />
+  <xsd:element name="GetNewAcksRequest" type="GetNewAcksRequestType" />
+  <xsd:element name="GetNewAcksResponse" type="GetNewAcksResponseType" />
+  <xsd:element name="GetAcksRequest" type="GetAcksRequestType" />
+  <xsd:element name="GetAcksResponse" type="GetAcksResponseType" />
+  <xsd:element name="GetAckRequest" type="GetAckRequestType" />
+  <xsd:element name="GetAckResponse" type="GetAckResponseType" />
+  <xsd:element name="GetNewSubmissionsStatusRequest" type="GetNewSubmissionsStatusRequestType" />
+  <xsd:element name="GetNewSubmissionsStatusResponse" type="GetNewSubmissionsStatusResponseType" />
+  <xsd:element name="GetSubmissionsStatusRequest" type="GetSubmissionsStatusRequestType" />
+  <xsd:element name="GetSubmissionsStatusResponse" type="GetSubmissionsStatusResponseType" />
+  <xsd:element name="GetSubmissionStatusRequest" type="GetSubmissionStatusRequestType" />
+  <xsd:element name="GetSubmissionStatusResponse" type="GetSubmissionStatusResponseType" />
+  <xsd:element name="GetAcksByMsgIDRequest" type="GetAcksByMsgIDRequestType" />
+  <xsd:element name="GetAcksByMsgIDResponse" type="GetAcksByMsgIDResponseType" />
+  <xsd:complexType name="SendSubmissionsRequestType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionDataList" type="SubmissionDataListType" />
+      <xsd:element name="SubmissionsAttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SendSubmissionsResponseType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionReceiptListAttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetNewAcksRequestType">
+    <xsd:sequence>
+      <xsd:element name="MaxResults" type="xsd:positiveInteger" />
+      <xsd:element minOccurs="0" name="Category" type="CategoryType" />
+      <xsd:element minOccurs="0" name="Agency" type="AgencyType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetNewAcksResponseType">
+    <xsd:sequence>
+      <xsd:element name="MoreAvailable" type="xsd:boolean" />
+      <xsd:element name="AcknowledgementListAttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetAcksRequestType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionIdList" type="SubmissionIdListType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetAcksResponseType">
+    <xsd:sequence>
+      <xsd:element name="ErrorList" nillable="true" type="ListOfSubmissionErrorType" />
+      <xsd:element name="AcknowledgementListAttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetAckRequestType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionId" type="SubmissionIdType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetAckResponseType">
+    <xsd:sequence>
+      <xsd:element name="AcknowledgementAttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetNewSubmissionsStatusRequestType">
+    <xsd:sequence>
+      <xsd:element name="MaxResults" type="xsd:positiveInteger" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetNewSubmissionsStatusResponseType">
+    <xsd:sequence>
+      <xsd:element name="MoreAvailable" type="xsd:boolean" />
+      <xsd:element name="StatusRecordListAttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetSubmissionsStatusRequestType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionIdList" type="SubmissionIdListType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetSubmissionsStatusResponseType">
+    <xsd:sequence>
+      <xsd:element name="ErrorList" nillable="true" type="ListOfSubmissionErrorType" />
+      <xsd:element name="StatusRecordListAttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetSubmissionStatusRequestType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionId" type="SubmissionIdType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetSubmissionStatusResponseType">
+    <xsd:sequence>
+      <xsd:element name="StatusRecordListAttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetAcksByMsgIDRequestType">
+    <xsd:sequence>
+      <xsd:element name="MessageID" type="MessageIdType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetAcksByMsgIDResponseType">
+    <xsd:sequence>
+      <xsd:element name="MoreAvailable" type="xsd:boolean" />
+      <xsd:element name="AcknowledgementListAttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubmissionDataType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionId" type="SubmissionIdType" />
+      <xsd:element minOccurs="0" name="ElectronicPostmark" type="xsd:dateTime" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubmissionDataListType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="SubmissionData" nillable="true" type="SubmissionDataType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="ErrorClassificationType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="SYSTEM_ERROR" />
+      <xsd:enumeration value="RESOURCE_UNAVAILABLE" />
+      <xsd:enumeration value="MESSAGE_FORMAT_ERROR" />
+      <xsd:enumeration value="SECURITY_ERROR" />
+      <xsd:enumeration value="REQUEST_ERROR" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="MeFErrorType">
+    <xsd:sequence>
+      <xsd:element name="ErrorMessage" type="xsd:string" />
+      <xsd:element name="ErrorClassification" type="ErrorClassificationType" />
+      <xsd:element minOccurs="0" name="ErrorCode" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubmissionIdListType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="SubmissionId" type="SubmissionIdType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubmissionErrorType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionId" type="SubmissionIdType" />
+      <xsd:element name="Error" type="MeFErrorType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ListOfSubmissionErrorType">
+    <xsd:sequence>
+      <xsd:element name="Count" nillable="true" type="xsd:nonNegativeInteger" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="SubmissionError" nillable="true" type="SubmissionErrorType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="SubmissionIdType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9]{13}[a-z0-9]{7}" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MessageIdType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9]{12}[a-z0-9]{8}" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CategoryType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="CORP" />
+      <xsd:enumeration value="EO" />
+      <xsd:enumeration value="PART" />
+      <xsd:enumeration value="EXCISE" />
+      <xsd:enumeration value="IND" />
+      <xsd:enumeration value="UNKN" />
+      <xsd:enumeration value="ESTRST" />
+      <xsd:enumeration value="EMPL" />
+      <xsd:enumeration value="all" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="AgencyType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Federal" />
+      <xsd:enumeration value="State" />
+      <xsd:enumeration value="both" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

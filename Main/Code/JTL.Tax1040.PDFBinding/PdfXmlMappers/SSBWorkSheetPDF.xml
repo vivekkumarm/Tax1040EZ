@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "SSBWorkSheet">
+  <Mapping>
+    <PDFField>txtWKTSSAAndRRBAmount</PDFField>
+    <TROField Type="Integer"> </TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTSSBTaxableAmount</PDFField>
+    <TROField Type="Integer"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTSSBTotalWages</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TotalWages</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTSSBTotalInterestIncome</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TaxableInterest</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTSSBTotalAddedLines</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTSSBFilingStatusAmount</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkWKTEligibilityCheckNo</PDFField>
+    <TROField Type="Integer"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkWKTEligibilityCheckYes</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+</OutputForm>
+
+
+
+
+
+
+
+
+
+
+
+

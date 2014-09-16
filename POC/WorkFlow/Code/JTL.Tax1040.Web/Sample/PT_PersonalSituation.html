@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaxGarden.com</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="css/test.css" type="text/css" /> 
+  <link rel="stylesheet/less" type="text/css" href="less/bootstrap.less" /> -->
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+    <form id="form1">
+        <div class="container">
+            <header role="banner" class="navbar">
+
+                <div class="navbar-header">
+                    <button data-target=".navbar-collapse" data-toggle="collapse" type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a alt="Less" class="navbar-brand" href="#">
+                        <img alt="" class="img-responsive" src="../images/Tax-Garden-Logo.png" /></a>
+                </div>
+
+                <nav role="navigation" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav ">
+                        <li>
+                            <a href="#" class="actv">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Serives</a>
+                        </li>
+                        <li>
+                            <a href="#" class="active">Price</a>
+                        </li>
+                        <li>
+                            <a href="#">Tax Resources   </a>
+                        </li>
+                        <li>
+                            <a href="#">Support</a>
+                        </li>
+                        <li>
+                            <a href="#">Blog</a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn btn-sign">Sign In</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </header>
+
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+
+                    <div class="innerform">
+
+                        <!-- Left menu -->
+                        <div class="menu" role="navigation">
+                            <ul class="nav  side-nav">
+                                <li><a href="#"><i class="fa fa-exchange"></i>Filing Status</a></li>
+                                <li><a href="#"><i class="fa fa-user"></i>Primary Filer</a></li>
+                                <li><a href="#"><i class="fa fa-barcode"></i>Address  </a></li>
+                                <li><a href="#"><i class="fa fa-female"></i>Spouse </a></li>
+                               <!-- <li><a href="#"><i class="fa fa-users"></i>Dependent </a></li>-->
+                                <li><a href="#"><i class="fa fa-check"></i>EZ-Eligibility </a></li>
+                                <li><a href="#"><i class="fa fa-th-list"></i>Personal Summary</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="formfull">
+
+                            <!-- Right Help area -->
+                            <div id="riht">
+                                Right Help area
+                            </div>
+
+                            <!-- Center form area -->
+
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Personal Situation<a id="changeSidebarPos" data-original-title="Show / Hide Sidebar" data-toggle="tooltip" class="hidden-xs open pull-right" href="#">
+                                            <i class="fa fa-bars"></i>
+                                        </a></h2>
+                                    </div>
+
+                                    <h3>
+                                        <label>Check if any of these applies to You?</label></h3>
+
+                                    <div class="right1">
+                                        <label class="checkbox ">
+                                            <input id="chkfirstnamelegallybliend" type="checkbox" name="terms" value="1">
+                                            First name or Nick name was Legally blind in the **Current Year**</label>
+                                        <label class="checkbox ">
+                                            <input id="chkfirstnamedisabled" type="checkbox" name="terms" value="2">
+                                            First name or nick name was Permanently and Totally disabled</label>
+                                        <label class="checkbox ">
+                                            <input id="chkclaimed" type="checkbox" name="terms" value="3">
+                                            Can be claimed as a Dependent on someone else's return</label>
+                                        <label class="checkbox ">
+                                            <input id="chkdeparted" type="checkbox" name="terms" value="4">
+                                            Departed this Life before filing the return for **Current Year**
+                                        </label>
+
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                        <label for="dtDateOfBirth" class="right">Date Of Birth</label>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="divDateOfBirth" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                       <input type="date" id="dtDateOfBirth" placeholder="DD/MM/YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <label class="checkbox ">
+                                            <input id="chkStudentFirstname" type="checkbox" name="terms" value="5">
+                                            First Name  was a student</label>
+
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                        <label for="lblFullTimeStudent" class="right">Are you a full time student</label>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="divStudent" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <ul class="list-group">
+                                                        <li>
+                                                             <label>
+                                                                 <input type="radio" name="radYes">
+                                                        Yes
+                                                                  </label>
+
+                                                        </li>
+                                                        <li>
+
+                                                            <label>
+                                                                <input type="radio" name="radNo">
+                                                        No
+                                                            </label>
+
+                                                        </li>
+                                                    </ul>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <label class="checkbox ">
+                                            <input id="chkNon" type="checkbox" name="terms" value="6">
+                                            None of the Above</label>
+                                    </div>
+
+                                    <div class="">
+                                        <button type="submit" class="btn btn-primary">Back</button>
+                                        <button type="submit" class="btn btn-success">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+            <footer role="contentinfo">
+
+                <nav>
+                    <a href="#" class="comodo"></a><a href="#" class="mcafee">
+                        <img alt="" src="../images/mcafee.gif" /></a><a href="#" class="bbb"></a><a href="#" class="irs"></a>
+                </nav>
+                <div class="copy">
+                    &copy; Copyright 2014 by Think Trade Inc.  | <a href="#">Privacy</a>  |  <a href="#">Terms of Service </a>
+                </div>
+
+            </footer>
+
+
+        </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script type="text/javascript">
+        function InsertAddresest() {
+            debugger
+            var serviceUrl = 'http://localhost:9797/';
+            var ForeignCountryId = $("#txtcountryid").val()
+            var ForeignProvince= $("#txtforeignstate").val
+            $.ajax({
+                url: serviceUrl + 'user/addresscreate',
+                async: false,
+                dataType: "json",
+                type: "POST",
+                data: JSON.stringify({
+                    "AddressId": $("#txtaddressid").val(),
+                   
+                            "PersonId": $("#txtpersonalinfoid").val(),
+                       
+                    "PersonalAddress":
+                        {
+                            "AddressLine1": $("#txtaddressline1").val(),
+                            "AddressLine2": $("#txtaddressline2").val(),
+                            "City": $("#txtcity").val(),
+                            "StateId": $("#txtstateid").val(),
+                            "ZipCode": $("#txtzipcode").val(),
+                            "Phone": $("#txtphone").val(),
+                        },
+                    "ForeignAddress":
+                        {
+                            "ForeignCountryId ":$("#txtcountryid").val(),
+                            "ForeignProvince": $("#txtforeignstate").val(),
+                            "ForeignPostalCode":null,
+                            "ForeignPhone": null,
+                            "personalInfoId": $("#txtpersonalinfoid").val(),
+                            "AddressId": $("#txtaddressid").val()
+                        },
+                    //"single":$("#").val,
+                    
+                }),
+            contentType: "application/json; charset=utf-8",
+            error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+            },
+            success: function (data, textStatus) {
+
+                alert('success');
+            }
+        });
+        }
+    </script>
+</head>
+<body>
+    address_id
+    <input type="text" id="txtaddressid" /><br />
+    @personal_info_id
+    <input type="text" id="txtpersonalinfoid" /><br />
+    is_Address_Modifie
+    <input type="text" id="txtisAddressModifie" /><br />
+    address_line1
+    <input type="text" id="txtaddressline1" /><br />
+    address_line2
+    <input type="text" id="txtaddressline2" /><br />
+    city
+    <input type="text" id="txtcity" /><br />
+    state_id
+    <input type="text" id="txtstateid" /><br />
+    zip_code
+    <input type="text" id="txtzipcode" /><br />
+    phone
+    <input type="text" id="txtphone" /><br />
+    foreign_state
+    <input type="text" id="txtforeignstate" /><br />
+    country_id
+    <input type="text" id="txtcountryid" /><br />
+    <button id="btnsubmit" onclick="InsertAddresest()"></button>
+</body>
+</html>

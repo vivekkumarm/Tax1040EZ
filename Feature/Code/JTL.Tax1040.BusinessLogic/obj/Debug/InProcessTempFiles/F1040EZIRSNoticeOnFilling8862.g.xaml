@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<local:F1040EZIRSNoticeOnFilling8862 xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:local="clr-namespace:Tax1040WorkFlow.WorkFlow.Activities;assembly=JTL.Tax1040.BusinessLogic" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <local:F1040EZIRSNoticeOnFilling8862.Implementation>
+    <Sequence DisplayName="Filing8862Claim">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Boolean" Default="True" Name="From8862Information" />
+      </Sequence.Variables>
+      <Sequence DisplayName="IRSNoticeOnFiling8862">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="jtb:Form8862" Name="Form8862" />
+        </Sequence.Variables>
+        <If DisplayName="If Tax1040Object">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object != null) &amp;&amp; (Tax1040Object.Credits != null))</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <If DisplayName="If EICCheck">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits.EIC != null</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <If DisplayName="Filing8862ClaimCheck">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Credits.EIC.HasReceivedIRSNoticeOnFiling8862.HasValue) &amp;&amp; (Tax1040Object.Credits.EIC.HasReceivedIRSNoticeOnFiling8862.Value))</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <Sequence DisplayName="F8862FilingCheck">
+                      <local:F8862BusinessRuleValidation>
+                        <local:F8862BusinessRuleValidation.ErrorMessages>
+                          <InArgument x:TypeArguments="jtco:ErrorMessages">
+                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessages">ErrorMessages</mca:CSharpValue>
+                          </InArgument>
+                        </local:F8862BusinessRuleValidation.ErrorMessages>
+                        <local:F8862BusinessRuleValidation.Tax1040Object>
+                          <InOutArgument x:TypeArguments="jtb:Tax1040">
+                            <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                          </InOutArgument>
+                        </local:F8862BusinessRuleValidation.Tax1040Object>
+                      </local:F8862BusinessRuleValidation>
+                      <Sequence DisplayName="Fromm 8862">
+                        <If DisplayName="If IncomeCheck">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income !=null</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <If DisplayName="If F8862Check">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.Income.Form8862 !=null)</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Sequence DisplayName="F8862">
+                                  <Assign DisplayName="TPLivedInUS">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Int32">
+                                        <mca:CSharpReference x:TypeArguments="x:Int32">Tax1040Object.OutputForms.Tax8862Page1.DaysTaxPayerLivedInUS</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Int32">
+                                        <mca:CSharpValue x:TypeArguments="x:Int32">Tax1040Object.Income.Form8862.DaysLivedInUS</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign DisplayName="SpouseLivedInUS">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Int32">
+                                        <mca:CSharpReference x:TypeArguments="x:Int32">Tax1040Object.OutputForms.Tax8862Page1.DaysSpouseLivedInUS</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Int32">
+                                        <mca:CSharpValue x:TypeArguments="x:Int32">Tax1040Object.Income.Form8862.DaysSpouseLivedInUS</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <If DisplayName="If ClaimedAsQualifyingChild Check">
+                                    <If.Condition>
+                                      <InArgument x:TypeArguments="x:Boolean">
+                                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.Form8862.HasClaimedAsQualifyingChild.HasValue</mca:CSharpValue>
+                                      </InArgument>
+                                    </If.Condition>
+                                    <If.Then>
+                                      <Assign DisplayName="HasClaimedAsQualifyingChild">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Boolean">
+                                            <mca:CSharpReference x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax8862Page1.HasClaimedAsQualifyingChild</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Boolean">
+                                            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.Form8862.HasClaimedAsQualifyingChild.Value</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                  </If>
+                                  <If DisplayName="If ReportedIncorrectIncome Check">
+                                    <If.Condition>
+                                      <InArgument x:TypeArguments="x:Boolean">
+                                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.Form8862.HasReportedIncorrectIncome.HasValue</mca:CSharpValue>
+                                      </InArgument>
+                                    </If.Condition>
+                                    <If.Then>
+                                      <Assign DisplayName="HasClaimedAsQualifyingChild">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Boolean">
+                                            <mca:CSharpReference x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax8862Page1.HasReportedIncorrectIncome</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Boolean">
+                                            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.Form8862.HasReportedIncorrectIncome.Value</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                  </If>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                          </If.Then>
+                        </If>
+                      </Sequence>
+                    </Sequence>
+                  </If.Then>
+                </If>
+              </If.Then>
+            </If>
+          </If.Then>
+        </If>
+      </Sequence>
+      <sads:DebugSymbol.Symbol>d2tGOlxKZWV2YW4xMDQwXEZlYXR1cmVcQ29kZVxKVEwuVGF4MTA0MC5CdXNpbmVzc0xvZ2ljXFdvcmtGbG93XEFjdGl2aXRpZXNcRjEwNDBFWklSU05vdGljZU9uRmlsbGluZzg4NjIueGFtbCM8A8sBDgIBAT41PjsCAQJABckBEAIBA0QHyAEMAgEERw1HkAECAQVLC8YBEAIBCk4RTnECAQtSD8QBFAIBEFUVVekBAgERWRPCAR4CARZaFWU5AgFdZhXBASACARdiG2JxAgFjXRtdcAIBXmcXwAEcAgEYah1qdwIBGW4bvgEgAgEecSFxhgECAR91H7wBKgIBJHYhgQEqAgFSggEhjQEqAgFHjgEhpAEmAgE2pQEhuwEmAgElfid+jwECAVh5J3moAQIBU4oBJ4oBlQECAU2FASeFAaYBAgFIkQEnkQGoAQIBN5UBJaEBLgIBPKgBJ6gBpwECASasASW4AS4CASudASudAakBAgFCmAErmAG0AQIBPbQBK7QBqAECATGvASuvAbMBAgEs</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </local:F1040EZIRSNoticeOnFilling8862.Implementation>
+</local:F1040EZIRSNoticeOnFilling8862>

@@ -1,0 +1,36 @@
+﻿** Warnings
+     Procedure: [dbo].[usp_get_federal_return_sku] has an unresolved reference to object [dbo].[federal_sku].
+     Procedure: [dbo].[usp_get_federal_return_sku] has an unresolved reference to object
+       [dbo].[federal_sku].[federal_sku_id].
+     Procedure: [dbo].[usp_get_federal_return_sku] has an unresolved reference to object
+       [dbo].[federal_sku].[federal_sku_name].
+     Procedure: [dbo].[usp_get_federal_return_sku] has an unresolved reference to object [dbo].[federal_sku].[description].
+     Procedure: [dbo].[usp_get_federal_return_sku] has an unresolved reference to object [dbo].[federal_sku].[price].
+     Procedure: [dbo].[usp_get_federal_return_sku] has an unresolved reference to object [dbo].[federal_sku].[is_active].
+     Procedure: [dbo].[usp_get_federal_return_sku] has an unresolved reference to object [dbo].[federal_sku].[is_deleted].
+     The object reference [dbo].[user].[Update_datetime] differs only by case from the object definition
+       [dbo].[user].[update_datetime].
+     The object reference [dbo].[ez_eligibility].[has_claimed_as_Debtor] differs only by case from the object definition
+       [dbo].[ez_eligibility].[has_claimed_as_debtor].
+     The object reference [dbo].[ez_eligibility].[has_claimed_as_Debtor] differs only by case from the object definition
+       [dbo].[ez_eligibility].[has_claimed_as_debtor].
+     The object reference [dbo].[email_template].[template_name] differs only by case from the object definition
+       [dbo].[email_template].[template_Name].
+     The object reference [dbo].[SplitString].[Items] differs only by case from the object definition
+       [dbo].[SplitString].[items].
+     The object reference [dbo].[SplitString].[Items] differs only by case from the object definition
+       [dbo].[SplitString].[items].
+
+** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+
+** Supporting actions

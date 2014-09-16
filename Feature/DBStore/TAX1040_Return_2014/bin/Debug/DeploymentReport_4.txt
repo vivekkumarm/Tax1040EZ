@@ -1,0 +1,223 @@
+﻿** Warnings
+     Procedure: [dbo].[usp_persist_user_feature] has an unresolved reference to object [dbo].[federal_feature_sku].
+     Procedure: [dbo].[usp_persist_user_feature] has an unresolved reference to object
+       [dbo].[federal_feature_sku].[federal_feature_sku_id].
+     Procedure: [dbo].[usp_persist_user_feature] has an unresolved reference to object
+       [dbo].[federal_feature_sku].[product_id].
+     Procedure: [dbo].[usp_persist_user_feature] has an unresolved reference to object [dbo].[state_feature_sku].
+     Procedure: [dbo].[usp_persist_user_feature] has an unresolved reference to object
+       [dbo].[state_feature_sku].[state_feature_sku_id].
+     Procedure: [dbo].[usp_persist_user_feature] has an unresolved reference to object
+       [dbo].[state_feature_sku].[product_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] has an unresolved reference to object [dbo].[federal_feature_sku].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[federal_feature_sku].[feature_id], [dbo].[federal_feature_sku].[ff]::[feature_id] or
+       [dbo].[user_feature].[ff]::[feature_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] has an unresolved reference to object [dbo].[feature].
+     Procedure: [dbo].[usp_get_user_feature_sku] has an unresolved reference to object [dbo].[feature].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[f]::[feature_id], [dbo].[feature].[feature_id], [dbo].[federal_feature_sku].[f]::[feature_id] or
+       [dbo].[user_feature].[f]::[feature_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[ff]::[federal_feature_sku_id], [dbo].[federal_feature_sku].[federal_feature_sku_id],
+       [dbo].[federal_feature_sku].[ff]::[federal_feature_sku_id] or [dbo].[user_feature].[ff]::[federal_feature_sku_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[f]::[feature_name], [dbo].[feature].[feature_name], [dbo].[federal_feature_sku].[f]::[feature_name] or
+       [dbo].[user_feature].[f]::[feature_name].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[description], [dbo].[feature].[f]::[description], [dbo].[federal_feature_sku].[f]::[description] or
+       [dbo].[user_feature].[f]::[description].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[ff]::[federal_price], [dbo].[federal_feature_sku].[federal_price],
+       [dbo].[federal_feature_sku].[ff]::[federal_price] or [dbo].[user_feature].[ff]::[federal_price].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[ff]::[product_id], [dbo].[federal_feature_sku].[ff]::[product_id],
+       [dbo].[federal_feature_sku].[product_id] or [dbo].[user_feature].[ff]::[product_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[ff]::[federal_price], [dbo].[federal_feature_sku].[federal_price],
+       [dbo].[federal_feature_sku].[ff]::[federal_price] or [dbo].[user_feature].[ff]::[federal_price].
+     Procedure: [dbo].[usp_get_user_feature_sku] has an unresolved reference to object [dbo].[state_feature_sku].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[state_feature_sku].[sf]::[state_feature_sku_id], [dbo].[state_feature_sku].[state_feature_sku_id] or
+       [dbo].[user_feature].[sf]::[state_feature_sku_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[f]::[feature_id], [dbo].[feature].[feature_id], [dbo].[state_feature_sku].[f]::[feature_id] or
+       [dbo].[user_feature].[f]::[feature_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[feature_id], [dbo].[state_feature_sku].[feature_id], [dbo].[state_feature_sku].[sf]::[feature_id]
+       or [dbo].[user_feature].[sf]::[feature_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[f]::[feature_name], [dbo].[feature].[feature_name], [dbo].[state_feature_sku].[f]::[feature_name] or
+       [dbo].[user_feature].[f]::[feature_name].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[description], [dbo].[feature].[f]::[description], [dbo].[state_feature_sku].[f]::[description] or
+       [dbo].[user_feature].[f]::[description].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[state_id], [dbo].[state_feature_sku].[sf]::[state_id], [dbo].[state_feature_sku].[state_id] or
+       [dbo].[user_feature].[sf]::[state_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[state_price], [dbo].[state_feature_sku].[sf]::[state_price],
+       [dbo].[state_feature_sku].[state_price] or [dbo].[user_feature].[sf]::[state_price].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[product_id], [dbo].[state_feature_sku].[product_id], [dbo].[state_feature_sku].[sf]::[product_id]
+       or [dbo].[user_feature].[sf]::[product_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] has an unresolved reference to object [dbo].[state].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[state].[s]::[state_id] or [dbo].[state].[state_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[state_id], [dbo].[state].[state_feature]::[state_id], [dbo].[state_feature_sku].[sf]::[state_id],
+       [dbo].[state_feature_sku].[state_id] or [dbo].[user_feature].[sf]::[state_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[state_id], [dbo].[state].[state_feature]::[state_id], [dbo].[state_feature_sku].[sf]::[state_id],
+       [dbo].[state_feature_sku].[state_id] or [dbo].[user_feature].[sf]::[state_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[state_id], [dbo].[state].[state_feature]::[state_id], [dbo].[state_feature_sku].[sf]::[state_id],
+       [dbo].[state_feature_sku].[state_id] or [dbo].[user_feature].[sf]::[state_id].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[state].[s]::[state_name] or [dbo].[state].[state_name].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[state].[s]::[state_name] or [dbo].[state].[state_name].
+     Procedure: [dbo].[usp_get_user_feature_sku] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[state_price], [dbo].[state].[state_feature]::[state_price],
+       [dbo].[state_feature_sku].[sf]::[state_price], [dbo].[state_feature_sku].[state_price] or
+       [dbo].[user_feature].[sf]::[state_price].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] has an unresolved reference to object
+       [dbo].[federal_feature_sku].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] contains an unresolved reference to an object. Either the
+       object does not exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[federal_feature_sku].[feature_id], [dbo].[federal_feature_sku].[ff]::[feature_id] or
+       [dbo].[user_feature].[ff]::[feature_id].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] has an unresolved reference to object [dbo].[feature].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] has an unresolved reference to object [dbo].[feature].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] contains an unresolved reference to an object. Either the
+       object does not exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[f]::[feature_id], [dbo].[feature].[feature_id], [dbo].[federal_feature_sku].[f]::[feature_id] or
+       [dbo].[user_feature].[f]::[feature_id].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] contains an unresolved reference to an object. Either the
+       object does not exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[ff]::[federal_feature_sku_id], [dbo].[federal_feature_sku].[federal_feature_sku_id],
+       [dbo].[federal_feature_sku].[ff]::[federal_feature_sku_id] or [dbo].[user_feature].[ff]::[federal_feature_sku_id].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] contains an unresolved reference to an object. Either the
+       object does not exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[ff]::[federal_price], [dbo].[federal_feature_sku].[federal_price],
+       [dbo].[federal_feature_sku].[ff]::[federal_price] or [dbo].[user_feature].[ff]::[federal_price].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] contains an unresolved reference to an object. Either the
+       object does not exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[ff]::[product_id], [dbo].[federal_feature_sku].[ff]::[product_id],
+       [dbo].[federal_feature_sku].[product_id] or [dbo].[user_feature].[ff]::[product_id].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] has an unresolved reference to object
+       [dbo].[state_feature_sku].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] contains an unresolved reference to an object. Either the
+       object does not exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[state_feature_sku].[sf]::[state_feature_sku_id], [dbo].[state_feature_sku].[state_feature_sku_id] or
+       [dbo].[user_feature].[sf]::[state_feature_sku_id].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] contains an unresolved reference to an object. Either the
+       object does not exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[f]::[feature_id], [dbo].[feature].[feature_id], [dbo].[state_feature_sku].[f]::[feature_id] or
+       [dbo].[user_feature].[f]::[feature_id].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] contains an unresolved reference to an object. Either the
+       object does not exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[feature_id], [dbo].[state_feature_sku].[feature_id], [dbo].[state_feature_sku].[sf]::[feature_id]
+       or [dbo].[user_feature].[sf]::[feature_id].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] contains an unresolved reference to an object. Either the
+       object does not exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[state_price], [dbo].[state_feature_sku].[sf]::[state_price],
+       [dbo].[state_feature_sku].[state_price] or [dbo].[user_feature].[sf]::[state_price].
+     Procedure: [dbo].[usp_get_order_amount_by_shopping_cart_id] contains an unresolved reference to an object. Either the
+       object does not exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[feature].[sf]::[product_id], [dbo].[state_feature_sku].[product_id], [dbo].[state_feature_sku].[sf]::[product_id]
+       or [dbo].[user_feature].[sf]::[product_id].
+     Procedure: [dbo].[usp_order_get_by_order_id] has an unresolved reference to object [dbo].[product_sku].
+     Procedure: [dbo].[usp_order_get_by_order_id] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[order].[ps]::[sku_id], [dbo].[order_detail_mapper].[ps]::[sku_id], [dbo].[product_sku].[ps]::[sku_id],
+       [dbo].[product_sku].[sku_id] or [dbo].[shopping_cart].[ps]::[sku_id].
+     Procedure: [dbo].[usp_order_get_by_order_id] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[order].[ps]::[sku_name], [dbo].[order_detail_mapper].[ps]::[sku_name], [dbo].[product_sku].[ps]::[sku_name],
+       [dbo].[product_sku].[sku_name] or [dbo].[shopping_cart].[ps]::[sku_name].
+     Procedure: [dbo].[usp_order_get_by_order_id] contains an unresolved reference to an object. Either the object does not
+       exist or the reference is ambiguous because it could refer to any of the following objects:
+       [dbo].[order].[ps]::[sku_description], [dbo].[order_detail_mapper].[ps]::[sku_description],
+       [dbo].[product_sku].[ps]::[sku_description], [dbo].[product_sku].[sku_description] or
+       [dbo].[shopping_cart].[ps]::[sku_description].
+
+** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[order] (Table)
+       [dbo].[order_billing_address] (Table)
+       [dbo].[order_detail_mapper] (Table)
+       [dbo].[shopping_cart] (Table)
+       [dbo].[user_data] (Table)
+       [dbo].[user_feature] (Table)
+       Default Constraint on [dbo].[order].[processed] (Default Constraint)
+       Default Constraint on [dbo].[order].[is_deleted] (Default Constraint)
+       Default Constraint on [dbo].[order].[create_timestamp] (Default Constraint)
+       Default Constraint on [dbo].[order].[update_timestamp] (Default Constraint)
+       Default Constraint on [dbo].[order_billing_address].[is_deleted] (Default Constraint)
+       Default Constraint on [dbo].[order_billing_address].[create_datetime] (Default Constraint)
+       Default Constraint on [dbo].[order_billing_address].[update_datetime] (Default Constraint)
+       Default Constraint on [dbo].[order_detail_mapper].[is_deleted] (Default Constraint)
+       Default Constraint on [dbo].[order_detail_mapper].[create_timestamp] (Default Constraint)
+       Default Constraint on [dbo].[order_detail_mapper].[update_timestamp] (Default Constraint)
+       Default Constraint on [dbo].[shopping_cart].[is_deleted] (Default Constraint)
+       Default Constraint on [dbo].[shopping_cart].[create_timestamp] (Default Constraint)
+       Default Constraint on [dbo].[shopping_cart].[update_timestamp] (Default Constraint)
+       [dbo].[DF_user_data_create_datetime] (Default Constraint)
+       [dbo].[DF_user_data_upate_datetime] (Default Constraint)
+       [dbo].[DF_user_data_is_deleted] (Default Constraint)
+       Default Constraint on [dbo].[user_feature].[is_deleted] (Default Constraint)
+       Default Constraint on [dbo].[user_feature].[create_timestamp] (Default Constraint)
+       Default Constraint on [dbo].[user_feature].[update_timestamp] (Default Constraint)
+       [dbo].[fk_order_shopping_cart] (Foreign Key)
+       [dbo].[fk_order_user_data] (Foreign Key)
+       [dbo].[fk_order_billing_address_order] (Foreign Key)
+       [dbo].[FK_order_detail_mapper_shopping_cart] (Foreign Key)
+       [dbo].[FK_shopping_cart_user_data] (Foreign Key)
+       [dbo].[fk_federal_user_data_id] (Foreign Key)
+       [dbo].[usp_get_order_amount_by_shopping_cart_id] (Procedure)
+       [dbo].[usp_get_user_data_id_by_user_id] (Procedure)
+       [dbo].[usp_get_user_feature_sku] (Procedure)
+       [dbo].[usp_is_order_exist_by_user_data_id] (Procedure)
+       [dbo].[usp_order_and_order_billing_address_persist] (Procedure)
+       [dbo].[usp_order_get_by_order_id] (Procedure)
+       [dbo].[usp_persist_user_feature] (Procedure)
+       [dbo].[usp_session_data_persist] (Procedure)
+       [dbo].[usp_shopping_cart_and_order_detail_mapper_persist] (Procedure)
+       [dbo].[usp_user_data_get_by_user_data_id] (Procedure)
+       [dbo].[usp_user_data_persist] (Procedure)
+
+** Supporting actions

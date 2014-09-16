@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<jtbwa:OtherIncomeBusinessRuleValidation xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtbwa="clr-namespace:JTL.Tax1040.BusinessLogic.WorkFlow.Activities;assembly=JTL.Tax1040.BusinessLogic" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.TAX1040.PaymentLibrary</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <jtbwa:OtherIncomeBusinessRuleValidation.Implementation>
+    <Sequence DisplayName="OtherIncome BussinessRule Check">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="jtco:ErrorMessage" Name="ErrorMessage" />
+        <Variable x:TypeArguments="scg:List(jtco:ErrorMessage)" Name="ErrorMessageList">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+      </Sequence.Variables>
+      <If DisplayName="If Tax1040ObjectCheck">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object != null) &amp;&amp; (Tax1040Object.Income != null) &amp;&amp; (Tax1040Object.Income.OtherIncome != null))</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <Sequence>
+            <If DisplayName="If Tax Payer SSB FederalTaxWithholding">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">((Tax1040Object.Income.OtherIncome.SSB != null) &amp;&amp; ((Tax1040Object.Income.OtherIncome.SSB.TaxPayerFederalTaxWithheld.HasValue?Tax1040Object.Income.OtherIncome.SSB.TaxPayerFederalTaxWithheld.Value:0) &gt;
+                (Tax1040Object.Income.OtherIncome.SSB.TaxpayerNetBenefits.HasValue ? Tax1040Object.Income.OtherIncome.SSB.TaxpayerNetBenefits.Value:0)))</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="Error Message">
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_FEDERAL_TAX_WITHHELD_NOT_GREATER_THAN_NET_BENEFIT]</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="ErrorMessageList.Add(ErrorMessage)">
+                    <AddToCollection.Item>
+                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection.Item>
+                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection>
+                </Sequence>
+              </If.Then>
+            </If>
+            <If DisplayName="If Spouse SSB FederalTaxWithheld">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">((Tax1040Object.Income.OtherIncome.SSB != null) &amp;&amp; 
+                ((Tax1040Object.Income.OtherIncome.SSB.SpouseFederalTaxWithheld.HasValue ? Tax1040Object.Income.OtherIncome.SSB.SpouseFederalTaxWithheld.Value:0) &gt; (Tax1040Object.Income.OtherIncome.SSB.SpouseNetBenefits.HasValue ? Tax1040Object.Income.OtherIncome.SSB.SpouseNetBenefits.Value:0)))</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="Error Message">
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_SSB_SPOUSE_FEDERAL_WITHHOLDING]</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="ErrorMessageList.Add(ErrorMessage)">
+                    <AddToCollection.Item>
+                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection.Item>
+                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection>
+                </Sequence>
+              </If.Then>
+            </If>
+            <If DisplayName="If Tax Payer RRB FederalTaxWithheld">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">((Tax1040Object.Income.OtherIncome.RRB != null) &amp;&amp; ((Tax1040Object.Income.OtherIncome.RRB.TaxPayerFederalTaxWithheld.HasValue ? Tax1040Object.Income.OtherIncome.RRB.TaxPayerFederalTaxWithheld.Value:0) &gt; 
+                (Tax1040Object.Income.OtherIncome.RRB.TaxpayerNetBenefits.HasValue ? Tax1040Object.Income.OtherIncome.RRB.TaxpayerNetBenefits.Value:0)))</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="Error Message">
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_FEDERAL_TAX_WITHHELD_NOT_GREATER_THAN_NET_TIER_BENEFIT]</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="ErrorMessageList.Add(ErrorMessage)">
+                    <AddToCollection.Item>
+                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection.Item>
+                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection>
+                </Sequence>
+              </If.Then>
+            </If>
+            <If DisplayName="If Spouse RRB FederalTaxWithheld">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">((Tax1040Object.Income.OtherIncome.RRB != null) &amp;&amp; ((Tax1040Object.Income.OtherIncome.RRB.SpouseFederalTaxWithheld.HasValue ? Tax1040Object.Income.OtherIncome.RRB.SpouseFederalTaxWithheld.Value:0) &gt; 
+                (Tax1040Object.Income.OtherIncome.RRB.SpouseNetBenefits.HasValue ? Tax1040Object.Income.OtherIncome.RRB.SpouseNetBenefits.Value:0)))</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="Error Message">
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_RRB_SPOUSE_FEDERAL_WITHHOLDING]</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="ErrorMessageList.Add(ErrorMessage)">
+                    <AddToCollection.Item>
+                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection.Item>
+                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection>
+                </Sequence>
+              </If.Then>
+            </If>
+            <If DisplayName="If StateOrLocal Tax Eligibility Rule">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.OtherIncome.StateOrLocalIncomeTaxRefunds != null) &amp;&amp; (Tax1040Object.Income.OtherIncome.StateOrLocalIncomeTaxRefunds.HasStateAndLocalTaxDeductionPriorYear.HasValue &amp;&amp; Tax1040Object.Income.OtherIncome.StateOrLocalIncomeTaxRefunds.HasStateAndLocalTaxDeductionPriorYear.Value))</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="Error Message">
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_STATE_TAX_REFUND]</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="ErrorMessageList.Add(ErrorMessage)">
+                    <AddToCollection.Item>
+                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection.Item>
+                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+        </If.Then>
+      </If>
+      <sads:DebugSymbol.Symbol>9xD4ddJsxWmhr8KaljnmL5wLhwFFOlxUYXgxMDQwRVpcVGF4MTA0MExhdGVzdFxKZWV2YW4xMDQwXEZlYXR1cmVcQ29kZVxKVEwuVGF4MTA0MC5CdXNpbmVzc0xvZ2ljXFdvcmtGbG93XEFjdGl2aXRpZXNcT3RoZXJJbmNvbWVCdXNpbmVzc1J1bGVWYWxpZGF0aW9uLnhhbWwyPAP6AQ4CAQFBC0F3AgECRQX4AQoCAQdIC0jDAQIBCEwJ9gEUAgENTQtuEAMBggFvC5ABEAIBZZEBC7IBEAIBSLMBC9QBEAIBK9UBC/UBEAIBDlARUasBAwGDAVUPbBoDAYgBchFzvgICAWZ3D44BGgIBa5QBEZUBqwECAUmZAQ+wARoCAU62ARG3AacBAgEsuwEP0gEaAgEx2AER2AGIAwIBD9wBD/MBGgIBFFYRYRoDAZQBYhFrIwMBiQF4EYMBGgIBd4QBEY0BIwIBbJoBEaUBGgIBWqYBEa8BIwIBT7wBEccBGgIBPcgBEdEBIwIBMt0BEegBGgIBIOkBEfIBIwIBFV4XXrQBAwGaAVkXWXIDAZUBaRVpfQMBjwFlF2VqAwGKAYABF4ABoQECAX17F3tyAgF4iwEViwF9AgFyhwEXhwFqAgFtogEXogG5AQIBYJ0BF50BcgIBW60BFa0BfQIBVakBF6kBagIBUMQBF8QBoQECAUO/ARe/AXICAT7PARXPAX0CATjLARfLAWoCATPlARflAZMBAgEm4AEX4AFyAgEh8AEV8AF9AgEb7AEX7AFqAgEW</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </jtbwa:OtherIncomeBusinessRuleValidation.Implementation>
+</jtbwa:OtherIncomeBusinessRuleValidation>

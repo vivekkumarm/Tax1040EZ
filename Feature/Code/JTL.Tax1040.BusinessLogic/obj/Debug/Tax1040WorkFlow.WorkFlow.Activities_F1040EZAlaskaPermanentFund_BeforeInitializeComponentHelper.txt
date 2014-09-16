@@ -1,0 +1,2 @@
+F1040EZAlaskaPermanentFund.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

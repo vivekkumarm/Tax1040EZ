@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>TAX1040_Efile_2014</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{aeb98e02-5757-49fa-87d0-a4eb2486c676}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>TAX1040_Efile_2014</RootNamespace>
+    <AssemblyName>TAX1040_Efile_2014</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Schema" />
+    <Folder Include="Schema\dbo" />
+    <Folder Include="Schema\dbo\Table" />
+    <Folder Include="Schema\dbo\StoredProcedure" />
+    <Folder Include="Schema\dbo\View" />
+    <Folder Include="Script" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script\Script.PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema\dbo\Table\efile_current_status.sql" />
+    <Build Include="Schema\dbo\Table\efile_error.sql" />
+    <Build Include="Schema\dbo\Table\efile_hold_attachment.sql" />
+    <Build Include="Schema\dbo\Table\efile_irs_request_response.sql" />
+    <Build Include="Schema\dbo\Table\efile_irs_schema.sql" />
+    <Build Include="Schema\dbo\Table\efile_progress.sql" />
+    <Build Include="Schema\dbo\Table\efile_receiver.sql" />
+    <Build Include="Schema\dbo\Table\efile_return_data.sql" />
+    <Build Include="Schema\dbo\Table\efile_sender.sql" />
+    <Build Include="Schema\dbo\Table\efile_stage.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_return_data_persist.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_return_status_update.sql" />
+    <Build Include="Schema\dbo\Table\error_log.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_error_log_persist.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_return_data_records_on_status.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_irs_schema_get_on_efile_return_data_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_sender_persist.sql" />
+  </ItemGroup>
+</Project>

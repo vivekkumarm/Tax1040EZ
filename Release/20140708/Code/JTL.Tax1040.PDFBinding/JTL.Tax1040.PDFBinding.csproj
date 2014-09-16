@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{098A6583-D6BB-46D9-BE1C-26B2CC45F9C1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JTL.Tax1040.PDFBinding</RootNamespace>
+    <AssemblyName>JTL.Tax1040.PDFBinding</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\ThirdPartyBinaries\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="F1040EZPDFBinding.cs" />
+    <Compile Include="F1040VPDFBinding.cs" />
+    <Compile Include="F8862PDFBinding.cs" />
+    <Compile Include="F8879PDFBinding.cs" />
+    <Compile Include="PDFTemplates.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PDFTemplates.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PDFUtilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PDFTemplates.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PDFTemplates.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EICWorkSheetOutputForm.pdf" />
+    <None Include="Resources\F1040EZOutputForm.pdf" />
+    <None Include="Resources\F1040VOutPutForm.pdf" />
+    <None Include="Resources\F8862OutPutForm.pdf" />
+    <None Include="Resources\F8879OutPutForm.pdf" />
+    <None Include="Resources\FW2OutputForm.pdf" />
+    <None Include="Resources\SSBWorksheetOutputform.pdf" />
+    <None Include="Resources\StandardDeductionWorksheetOutputform.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JTL.Tax1040.BusinessObject\JTL.Tax1040.BusinessObject.csproj">
+      <Project>{f69e72cd-6cc2-4b32-afcf-7e531b7b2452}</Project>
+      <Name>JTL.Tax1040.BusinessObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JTL.Tax1040.Core.Object\JTL.Tax1040.Core.Object.csproj">
+      <Project>{841d591b-c677-497c-90cb-bd736f87ddc7}</Project>
+      <Name>JTL.Tax1040.Core.Object</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PdfXmlMappers\F1040EZPdfSchema.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PdfXmlMappers\EICWorkSheetPdfSchema.xml" />
+    <EmbeddedResource Include="PdfXmlMappers\SSBWorkSheetPdfSchema.xml" />
+    <EmbeddedResource Include="PdfXmlMappers\StandardDeductionWorkSheetPdfSchema.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PdfXmlMappers\F1040VPdfSchema.xml" />
+    <EmbeddedResource Include="PdfXmlMappers\F8862PdfSchema.xml" />
+    <EmbeddedResource Include="PdfXmlMappers\F8879PdfSchema.xml" />
+    <EmbeddedResource Include="PdfXmlMappers\FW2PdfSchema.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

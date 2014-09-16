@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/Payment/checkoutsummary.js"></script>
+
+</head>
+<body>
+    <form id="checkoutsummary">
+        <div class="container">
+            
+            <!--Slide Menu-->
+
+            <script src="../lib/slidemenu.js"></script>
+
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+                    <div class="innerform">
+                       
+                        <!-- Center form area -->
+                        <div id="content">
+                                <div class="title">
+                                    <h2>Check Out Summary</h2>
+                                </div>
+                                <div class="panel-group" id="accordion">
+
+                                    <div class="panel panel-blue in">
+                                        <div class="panel-heading1">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Tax Garden Service Charges for 1040EZ</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse in">
+                                            <div class="panel-body ">
+                                                <div class="panel-body ">
+                                                    <h4>Federal tax preparation is absolutely FREE! For the State tax preparation, we charge you with a minimal fee.</h4>
+                                                    <div class="div8-4" id="divFederal">
+                                                    </div>
+                                                    <div class="div8-4" id="divState">
+
+                                                    </div>
+                                                    <p class="text-warning"><strong>Note:</strong>You have reported income for the above states.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" onclick="GoToPreviousPage();return false;">
+                                    Back</button>
+                                <button type="submit" id="btnCheckOutSummaryContinue" class="btn btn-success" onclick="checkOutSummaryPersist(); return false;">Continue</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+</body>
+
+</html>
+
+

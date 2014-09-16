@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+    <script src="Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-2.1.0.js"></script>
+    <script src="Scripts/custom.js"></script>
+    <script src="Scripts/jquery.validate.js"></script>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    <script src="lib/Config.js"></script>
+    <script src="Scripts/Pages/PreLogin/login.js"></script>
+    <script src="lib/browsercompatibility.js"></script>
+
+</head>
+
+<body>
+
+    <form id="PreLogin">
+        <div class="container">
+            <!--Header-->
+
+            <script type="text/javascript" src="lib/header.js"></script>
+
+            <div class="loginbx" id="signin">
+                <div role="form" class="container-fluid">
+                    <div class="title">
+                        <h2>Sign In</h2>
+                        <h5>Welcome to <span class="Title">Taxgarden</span> Online </h5>
+                    </div>
+
+                    <div class="row">
+                        <div id="divSignInError" style="display: none" class="error-alert">error message</div>
+                    </div>
+
+                    <!-- Login Form Area -->
+                    <div class="col-md-6 col-sm-6">
+                        <div>
+                            <h3>Sign In to access your Account</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtSignInUserName" id="lblSignInUserName">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                <input type="text" name="txtSignInUserName" onkeyup="SignInError(event)" onblur="SignInUserName()" id="txtSignInUserName" class="form-control" maxlength="100" />
+
+                            </div>
+                            <div class="error" id="divMissingUsername">
+                                <label class="error">Missing Username</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtSignInPassword" id="lblSignInPassword">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i>
+                                </span>
+                                <input type="password" id="txtSignInPassword" onkeyup="SignInError(event)" name="txtSignInPassword" class="form-control" maxlength="15" />
+
+                            </div>
+                            <div class="error" id="divMissingPassword">
+                                <label class="error">Missing Password</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="left"></div>
+                            <div class="right1">
+                                <label class="btn btn-default">
+
+                                    <input id="chkRememberMe" type="checkbox" onclick="rememberme()" name="chkRememberMe" />
+                                    &nbsp;  Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="c8">
+                                <button type="submit" id="btnSubmit" class="btn btn-success btn-block" onclick="SignInUser();return false;"><i class="glyphicon glyphicon-ok"></i>Sign in</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Login Form Area -->
+                    <div class="col-md-5 col-sm-5 ">
+                        <h3>New User</h3>
+                        <a href="PreLogin/registration.html" class="btn btn-primary">Create an Account</a>
+
+                        <div class="support">
+                            Need Live Support? 
+       <div class="toll">
+           Toll Free 
+       <h4>1-866-245-3918</h4>
+       </div>
+                            <div class="chat">
+                                Live Chat
+       <h4><a href="#" class="actv">Online</a> </h4>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row col-sm-12 col-lg-11">
+                        <p class="recover"><a href="PreLogin/recovery.html">Unable to access your Account?</a></p>
+                    </div>
+
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="lib/footer.js"></script>
+        </div>
+    </form>
+
+
+</body>
+
+</html>

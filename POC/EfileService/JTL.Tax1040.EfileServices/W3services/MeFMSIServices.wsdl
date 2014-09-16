@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                             -->
+<!-- REVISION HISTORY:           -->
+<!-- Initial Version  08/09/2005 -->
+<!-- 09/23/2005 -->
+<!-- Updated MeFFaultMessage to use MeFException to match the updated schema-->
+<!-- 09/26/2005 -->
+<!-- Updated to remove the slash "/" from the end of soap:address in wsdl:service definitions -->
+<!-- and from the end of soap:operation in wsdl:binding definitions -->
+<!-- 09/27/2005 -->
+<!-- Removed wsdl:annotation because it was causing WSI validation problems -->
+<!-- 10/30/2008 -->
+<!-- Deleted InitialLogin and ChangePassword services -->
+<!-- 10/07/09 -->
+<!-- Restored InitialLogin and ChangePassword services -->
+<!-- at the direction of the IRS and project management -->
+<!-- 05/01/2012  -->
+<!-- Changed file name to MeFMSIServices.wsdl -->
+<!-- Updated MeFFaultMessage to use MeFException from the updated MeFHeader.xsd schema-->
+<!--                             -->
+<wsdl:definitions name="MeFMSIServices" 
+			targetNamespace="http://www.irs.gov/a2a/mef/MeFMSIServices"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+			xmlns:mef="http://www.irs.gov/a2a/mef/MeFMSIServices.xsd" 
+			xmlns:mefhdr="http://www.irs.gov/a2a/mef/MeFHeader.xsd" 
+			xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+			xmlns:tns="http://www.irs.gov/a2a/mef/MeFMSIServices" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.irs.gov/a2a/mef/MeFMSIServices">
+			<xs:import namespace="http://www.irs.gov/a2a/mef/MeFMSIServices.xsd" schemaLocation="MeFMSIServices.xsd" />
+			<xs:import namespace="http://www.irs.gov/a2a/mef/MeFHeader.xsd" schemaLocation="MeFHeader.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+
+	<wsdl:message name="MeFFaultMessage">
+		<wsdl:part name="MeFFault" element="mefhdr:MeFException"/>
+	</wsdl:message>
+
+	<wsdl:message name="InitialLoginRequestMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="InitialLogin" element="mef:InitialLoginRequest"/>
+	</wsdl:message>
+	<wsdl:message name="InitialLoginResponseMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="InitialLoginResponse" element="mef:InitialLoginResponse"/>
+	</wsdl:message>
+	<wsdl:message name="LoginRequestMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="Login" element="mef:LoginRequest"/>
+	</wsdl:message>
+	<wsdl:message name="LoginResponseMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="LoginResponse" element="mef:LoginResponse"/>
+	</wsdl:message>
+	<wsdl:message name="LogoutRequestMessage">
+        <wsdl:part name="MeFHeader" element="mefhdr:MeF" />
+		<wsdl:part name="Logout" element="mef:LogoutRequest"/>
+    </wsdl:message>
+	<wsdl:message name="LogoutResponseMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="LogoutResponse" element="mef:LogoutResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ChangePasswordRequestMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="ChangePassword" element="mef:ChangePasswordRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ChangePasswordResponseMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="ChangePasswordResponse" element="mef:ChangePasswordResponse"/>
+	</wsdl:message>
+	<wsdl:message name="EtinRetrievalRequestMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="EtinRetrieval" element="mef:EtinRetrievalRequest"/>
+	</wsdl:message>
+	<wsdl:message name="EtinRetrievalResponseMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="EtinRetrievalResponse" element="mef:EtinRetrievalResponse"/>
+	</wsdl:message>
+	<wsdl:message name="EtinStatusRequestMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="EtinStatus" element="mef:EtinStatusRequest"/>
+	</wsdl:message>
+	<wsdl:message name="EtinStatusResponseMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="EtinStatusResponse" element="mef:EtinStatusResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetStateParticipantsListRequestMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="GetStateParticipantsList" element="mef:GetStateParticipantsListRequest"/>
+	</wsdl:message>
+	<wsdl:message name="GetStateParticipantsListResponseMessage">
+		<wsdl:part name="MeFHeader" element="mefhdr:MeF"/>
+		<wsdl:part name="GetStateParticipantsListResponse" element="mef:GetStateParticipantsListResponse"/>
+	</wsdl:message>
+
+	<wsdl:portType name="ChangePassword">
+		<wsdl:operation name="ChangePassword">
+			<wsdl:input message="tns:ChangePasswordRequestMessage"/>
+			<wsdl:output message="tns:ChangePasswordResponseMessage"/>
+			<wsdl:fault name="fault" message="tns:MeFFaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="EtinRetrieval">
+		<wsdl:operation name="EtinRetrieval">
+			<wsdl:input message="tns:EtinRetrievalRequestMessage"/>
+			<wsdl:output message="tns:EtinRetrievalResponseMessage"/>
+			<wsdl:fault name="fault" message="tns:MeFFaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="EtinStatus">
+		<wsdl:operation name="EtinStatus">
+			<wsdl:input message="tns:EtinStatusRequestMessage"/>
+			<wsdl:output message="tns:EtinStatusResponseMessage"/>
+			<wsdl:fault name="fault" message="tns:MeFFaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="GetStateParticipantsList">
+		<wsdl:operation name="GetStateParticipantsList">
+			<wsdl:input message="tns:GetStateParticipantsListRequestMessage"/>
+			<wsdl:output message="tns:GetStateParticipantsListResponseMessage"/>
+			<wsdl:fault name="fault" message="tns:MeFFaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="InitialLogin">
+		<wsdl:operation name="InitialLogin">
+			<wsdl:input message="tns:InitialLoginRequestMessage"/>
+			<wsdl:output message="tns:InitialLoginResponseMessage"/>
+			<wsdl:fault name="fault" message="tns:MeFFaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="Logout">
+		<wsdl:operation name="Logout">
+			<wsdl:input message="tns:LogoutRequestMessage"/>
+			<wsdl:output message="tns:LogoutResponseMessage"/>
+			<wsdl:fault name="fault" message="tns:MeFFaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="Login">
+		<wsdl:operation name="Login">
+			<wsdl:input message="tns:LoginRequestMessage"/>
+			<wsdl:output message="tns:LoginResponseMessage"/>
+			<wsdl:fault name="fault" message="tns:MeFFaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ChangePassword" type="tns:ChangePassword">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="ChangePassword">
+			<soap:operation soapAction="http://www.irs.gov/a2a/mef/ChangePassword"/>
+			<wsdl:input>
+				<soap:body parts="ChangePassword" use="literal"/>
+				<soap:header message="tns:ChangePasswordRequestMessage" part="MeFHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="ChangePasswordResponse" use="literal"/>
+				<soap:header message="tns:ChangePasswordResponseMessage" part="MeFHeader" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="EtinRetrieval" type="tns:EtinRetrieval">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="EtinRetrieval">
+			<soap:operation soapAction="http://www.irs.gov/a2a/mef/EtinRetrieval"/>
+			<wsdl:input>
+				<soap:body parts="EtinRetrieval" use="literal"/>
+				<soap:header message="tns:EtinRetrievalRequestMessage" part="MeFHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="EtinRetrievalResponse" use="literal"/>
+				<soap:header message="tns:EtinRetrievalResponseMessage" part="MeFHeader" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="EtinStatus" type="tns:EtinStatus">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="EtinStatus">
+			<soap:operation soapAction="http://www.irs.gov/a2a/mef/EtinStatus"/>
+			<wsdl:input>
+				<soap:body parts="EtinStatus" use="literal"/>
+				<soap:header message="tns:EtinStatusRequestMessage" part="MeFHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="EtinStatusResponse" use="literal"/>
+				<soap:header message="tns:EtinStatusResponseMessage" part="MeFHeader" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="GetStateParticipantsList" type="tns:GetStateParticipantsList">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetStateParticipantsList">
+			<soap:operation soapAction="http://www.irs.gov/a2a/mef/GetStateParticipantsList"/>
+			<wsdl:input>
+				<soap:body parts="GetStateParticipantsList" use="literal"/>
+				<soap:header message="tns:GetStateParticipantsListRequestMessage" part="MeFHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="GetStateParticipantsListResponse" use="literal"/>
+				<soap:header message="tns:GetStateParticipantsListResponseMessage" part="MeFHeader" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="InitialLogin" type="tns:InitialLogin">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="InitialLogin">
+			<soap:operation soapAction="http://www.irs.gov/a2a/mef/InitialLogin"/>
+			<wsdl:input>
+				<soap:body parts="InitialLogin" use="literal"/>
+				<soap:header message="tns:InitialLoginRequestMessage" part="MeFHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="InitialLoginResponse" use="literal"/>
+				<soap:header message="tns:InitialLoginResponseMessage" part="MeFHeader" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="Logout" type="tns:Logout">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="Logout">
+			<soap:operation soapAction="http://www.irs.gov/a2a/mef/Logout"/>
+			<wsdl:input>
+				<soap:body parts="Logout" use="literal"/>
+				<soap:header message="tns:LogoutRequestMessage" part="MeFHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="LogoutResponse" use="literal"/>
+				<soap:header message="tns:LogoutResponseMessage" part="MeFHeader" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="Login" type="tns:Login">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="Login">
+			<soap:operation soapAction="http://www.irs.gov/a2a/mef/Login"/>
+			<wsdl:input>
+				<soap:body parts="Login" use="literal"/>
+				<soap:header message="tns:LoginRequestMessage" part="MeFHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="LoginResponse" use="literal"/>
+				<soap:header message="tns:LoginResponseMessage" part="MeFHeader" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="ChangePassword">
+		<wsdl:port name="ChangePassword" binding="tns:ChangePassword">
+			<soap:address location="http://www.irs.gov/a2a/mef/ChangePassword"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="EtinRetrieval">
+		<wsdl:port name="EtinRetrieval" binding="tns:EtinRetrieval">
+			<soap:address location="http://www.irs.gov/a2a/mef/EtinRetrieval"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="EtinStatus">
+		<wsdl:port name="EtinStatus" binding="tns:EtinStatus">
+			<soap:address location="http://www.irs.gov/a2a/mef/EtinStatus"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="GetStateParticipantsList">
+		<wsdl:port name="GetStateParticipantsList" binding="tns:GetStateParticipantsList">
+			<soap:address location="http://www.irs.gov/a2a/mef/GetStateParticipantsList"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="InitialLogin">
+		<wsdl:port name="InitialLogin" binding="tns:InitialLogin">
+			<soap:address location="http://www.irs.gov/a2a/mef/InitialLogin"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="Logout">
+		<wsdl:port name="Logout" binding="tns:Logout">
+			<soap:address location="http://www.irs.gov/a2a/mef/Logout"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="Login">
+		<wsdl:port name="Login" binding="tns:Login">
+			<soap:address location="http://www.irs.gov/a2a/mef/Login"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

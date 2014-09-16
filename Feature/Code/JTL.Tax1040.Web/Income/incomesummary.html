@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald|Open Sans' rel='stylesheet' type='text/css' />
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/Income/incomesummary.js"></script>
+
+
+</head>
+<body>
+
+
+    <div class="container">
+
+        <!--Slide Menu-->
+
+        <script src="../lib/slidemenu.js"></script>
+
+        <!--Header-->
+
+        <script type="text/javascript" src="../lib/header.js"></script>
+
+        <div class="whtwell" id="signin">
+            <div role="form" class="container-fluid">
+
+                <!--Bread Crum-->
+
+                <script type="text/javascript" src="../lib/breadcrum.js"></script>
+
+                <div class="innerform">
+
+                    <!-- Left menu -->
+                    <div class="lftarea">
+
+                        <script src="../lib/refundowemeter.js"></script>
+
+                        <script type="text/javascript" src="../lib/incomeleftmenu.js"></script>
+
+                    </div>
+
+                    <div class="formfull">
+
+                        <!-- Center form area -->
+                        <form id="InterestIncome">
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Income Summary</h2>
+                                    </div>
+
+                                    <h4><strong class="spanNickName"></strong>, Want to know about your <span id="spCurrentYear"></span> taxable Income?</h4>
+                                    <p>It's time to double check your Taxable Income details so that you don’t miss a thing! If you want to change any information, click on Edit. Else, move on to the next section.</p>
+
+
+                                    <div class="panel-group clearfix" id="accordion">
+                                        <div id="div1" class="panel panel-blue">
+                                            <div class="panel-heading1">
+
+                                                <div class="panel-title">
+                                                    <div class="row">
+                                                        <a class="toggle " data-toggle="collapse" data-parent="#accordion" href="#collpseone">Income Summary <sup id="sup1" class="badge tip" data-toggle="tooltip" data-placement="top"></sup></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="collpseone" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <div class="div8-4">
+                                                        <div class="row" id="divWages">
+                                                            <div class="col-md-8">Wages</div>
+                                                            <div class="col-md-4"><span id="lblWagesAmount"></span><a href="../Income/w2summary.html" class="edit tip" data-toggle="tooltip" data-placement=" right" title="Edit" data-trigger="hover"><i></i></a></div>
+                                                        </div>
+
+                                                        <div class="row" id="divIntrestIncome">
+                                                            <div class="col-md-8">Interest Income </div>
+                                                            <div class="col-md-4"><span id="lblInterestIncome"></span><a href="../Income/interestincomesummary.html" class="edit tip" data-toggle="tooltip" data-placement=" right" title="Edit" data-trigger="hover"><i></i></a></div>
+                                                        </div>
+
+                                                        <div class="row" id="divUnemploymentCompensaiton">
+                                                            <div class="col-md-8">Unemployment Compensation </div>
+                                                            <div class="col-md-4"><span id="lblF1099G"></span><a href="../Income/unemploymentsummary.html" class="edit tip" data-toggle="tooltip" data-placement=" right" title="Edit" data-trigger="hover"><i></i></a></div>
+                                                        </div>
+
+                                                        <div class="row" id="divOtherIncome">
+                                                            <div class="col-md-8">
+                                                                Other Income
+                                                                <br />
+                                                                <small>(SSA & RRB Benefits, Alaska Dividend, State Tax Refunds)</small>
+                                                            </div>
+                                                            <div class="col-md-4"><span id="lblOtherIncome"></span><a href="../Income/otherincomesummary.html" class="edit tip" data-toggle="tooltip" data-placement="right" title="Edit" data-trigger="hover"><i></i></a></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!--Diagnostics-->
+                                        <div id="divDiagnosticsParent" class="panel panel-blue">
+                                            <div class="panel-heading1">
+
+                                                <div class="panel-title">
+                                                    <div class="row">
+                                                        <a class="toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#divDiagnostics">Diagnostics <sup id="supErrorCount" class="badge tip" data-toggle="tooltip" data-placement="top"></sup></a>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div id="divDiagnostics" class="panel-collapse collapse">
+                                                <div class="panel-body">
+
+                                                    <h4>Error Message</h4>
+                                                    <div id="dvDiagnostics" class="clearfix">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <!--<div class="c4c8">-->
+
+
+                                    <!-- <div class="c4c8">
+                                             <div class="right">
+                                                 <label id="lblWages">Wages</label>
+                                                    
+                                             </div>
+
+                                             <div class="left">
+                                                 <label id="lblWagesAmount"></label>
+                                                 <a href="../Income/w2summary.html" class='WagesSelected rvw' >Edit</a>
+                                             </div>
+                                         </div>-->
+                                    <!--  </div>-->
+
+
+
+                                    <!--<div class="c4c8">
+                                            <div class="right">
+                                                <label id="Label1">Interest Income</label>
+
+                                                   
+                                            </div>
+
+                                            <div class="left"> <label id="lblInterestIncome"></label>
+                                                <a href="../Income/interestincomesummary.html" class="InterestIncomeSelected rvw">Edit</a>
+                                            </div>
+                                        </div>
+                                          
+
+                                        <div class="c4c8">
+                                            <div class="right">
+                                                <label id="Label3">Unemployment Compensation</label>
+
+                                                   
+                                            </div>
+
+                                            <div class="left"> <label id="lblF1099G"></label>
+                                                <a href="../Income/unemploymentsummary.html" class="UnemploymentCompensationSelected rvw">Edit</a>
+                                            </div>
+                                        </div>
+                               
+                                    
+
+                                        <div class="c4c8">
+                                            <div class="right">
+                                                <label id="Label5">Other Income</label>
+
+                                                    
+                                            </div>
+
+                                            <div class="left"><label id="lblOtherIncome"></label>
+                                                <a href="../Income/otherincomesummary.html" class="OtherIncomeSelected rvw">Edit</a>
+                                            </div>
+                                        </div>-->
+
+
+
+                                    <!--<button type="submit" class="btn btn-primary" onclick="window.location.href = '../Income/incomegateway.html';return false;">Back</button>-->
+                                    <button type="submit" id="btnContinue" onclick="window.location.href = '../Deduction/deductiongateway.html';return false;" class="btn btn-success pull-right">Continue</button>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--//Footer-->
+        <script type="text/javascript" src="../lib/footer.js"></script>
+    </div>
+</body>
+
+</html>
+
+

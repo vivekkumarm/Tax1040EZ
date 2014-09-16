@@ -1,0 +1,2 @@
+F1099GWithNoValidation.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

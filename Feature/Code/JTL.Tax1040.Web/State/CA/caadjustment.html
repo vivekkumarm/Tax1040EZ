@@ -1,0 +1,434 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css" />
+    <script src="../../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery-2.1.0.js"></script>
+    <script src="../../Scripts/jquery.validate.js"></script>
+    <!--<script src="../../Scripts/Pages/PreLogin/welcomepage.js"></script>-->
+    <script src="../../Scripts/jquery.validate.js"></script>
+    <script src="../../Scripts/custom.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
+    <script src="../../Scripts/tooltip.js"></script>
+    <script src="../../Scripts/popover.js"></script>
+    <!--<script src="../../lib/config.js"></script>-->
+    <script src="../../Scripts/Pages/State/CA/caadjustment.js"></script>
+</head>
+<body>
+    <form id="cainfo">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <!--<script type="text/javascript" src="../../lib/breadcrum.js"></script>-->
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <!-- <script type="text/javascript" src="../../lib/leftmenu.js"></script>-->
+                        <div class="formfull">
+
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>California Adjustments</h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue ">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                                        id="aCAAdjustment">California Adjustment</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <h4>California tax law is different from your  Federal tax law therefore some adjustment is required to determine California  taxable Income.  Most of the adjustments we have already made for your.
+                                                    </h4>
+                                                    <br />
+                                                    <h4>We would like to confirm with you, if there are any other adjustment are needed.</h4>
+
+                                                    <div class="field-group">
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radadjustment" id="radAdjustmentYes" tabindex="19" />
+                                                            Yes
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radadjustment" checked="checked" id="radAdjustmentNo" tabindex="20" />
+                                                            No
+                                                        </label>
+                                                    </div>
+
+                                                    <p class="text-warning">
+                                                        <strong>Note:</strong>  Certain type of Income, Adjustments and Credits are not applicable for 1040EZ tax filers.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue" id="divCAAdjustmentWagesDetails">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseTwo" id="aCAAdjustmentWages">California Adjustment - Wages
+                                                    </a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>Enter the amount of California Adjustment for your Wages, Salaries and  Tips.</h4>
+
+                                                    <div id="divCaAddition" class="panel panel-success">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title">
+                                                                California Addiitons
+                                                                     
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <ul>
+                                                                <li> Income exempted by U.S treaties</li>
+                                                                <li>Housing exclustion for state employed Clergy</li>
+                                                                <li>Income exclustion for Employer provided adoption benefit</li>
+                                                                <li>Employee Health saving account (H S A) contribution</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                     <div id="divCaSubtractions" class="panel panel-warning">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title">
+                                                                California Subtractions
+                                                                     
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <ul>
+                                                                <li>Active Duty Military pay</li>
+                                                                <li>Ride Sharing benefit differences</li>
+                                                                <li>Sick Pay received under Federal insurance Contributions and Railroad RetirementActs</li>
+                                                                <li>Compensation received from the exercise of a California Qualified stock Option</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="panel panel-primary">
+
+                                                        <div class="panel-heading">
+                                                            <h3>Wages, Salaries, Tips and Commission</h3>
+                                                        </div>
+                                                        <div class="panel-body-grid">
+
+                                                            <div id="divFederalWagesDetails">
+                                                                <div class="pangird head">
+                                                                    <label class="col-md-4" id="lblFederalWages">Federal Wages</label>
+                                                                    <label class="col-md-4" id="lblCaAddtion">CA Addition</label>
+                                                                    <label class="col-md-4" id="lblCASubraction">CA Subtraction</label>
+                                                                </div>
+
+                                                                <div id="">
+                                                                    <div class="pangird itm" id="divWagesCADetails">
+                                                                        <label class="col-md-4">
+                                                                            <label id="lblFederalWagesAmount"></label>
+                                                                        </label>
+                                                                        <label class="col-md-4">
+                                                                            <input type="text" id="txtWagesAddition" placeholder=""
+                                                                                class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                                title="Enter Wages Additional amount" data-trigger="focus" tabindex="13"
+                                                                                maxlength="9" onkeyup="extractNumber(this,event,0,false,false);" />
+                                                                            
+                                                                        </label>
+                                                                        <label class="col-md-4">
+                                                                            <input type="text" id="txtWagesSubtraction"
+                                                                                placeholder=""
+                                                                                class="form-control tip amountField" data-toggle="tooltip" data-placement="right"
+                                                                                title="Enter Subtraction Additional Amount" data-trigger="focus" tabindex="14"  maxlength="9"
+                                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);" />
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue" id="divCAAdjustmentInterestDetails">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseThree" id="aCAAdjustmentIntrest">California Adjustment - Interest
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse">
+                                                 <div class="panel-body">
+                                                    <h4>Enter the amount of any California Adjustment for your Interest income.</h4>
+
+                                                    <div id="div1" class="panel panel-success">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title">
+                                                                California Addiitons
+                                                                     
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <ul>
+                                                                <li>Federally exempted Interest from other states.or other Muncipal obligation or from Mutual bonds that do not meet 50% rule.</li>
+                                                                <li>Non California Muncipal bond issued by a country, City, town or other local Government Unit.</li>
+                                                                <li>Non California State Bonds</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                     <div id="div2" class="panel panel-warning">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title">
+                                                                California Subtractions
+                                                                     
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <ul>
+                                                                <li>U.S Treasury bills, notes and Bonds</li>
+                                                                <li>Any other bonds or obligations of the United States and its  territories</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="panel panel-primary">
+
+                                                        <div class="panel-heading">
+                                                            <h3>Interest Income</h3>
+                                                        </div>
+                                                        <div class="panel-body-grid">
+
+                                                            <div id="divFerderalInterestDetails">
+                                                                <div class="pangird head">
+                                                                    <label class="col-md-4" id="lblFederalInterest">Federal Interest</label>
+                                                                    <label class="col-md-4" id="lblInterestAddition">CA Addition</label>
+                                                                    <label class="col-md-4" id="lblInterestSubraction">CA Subtraction</label>
+                                                                </div>
+
+                                                                <div id="">
+                                                                    <div class="pangird itm" id="divInterestCaDetails">
+                                                                        <label class="col-md-4">
+                                                                            <label id="lblFederalInterestAmount"></label>
+                                                                        </label>
+                                                                        <label class="col-md-4">
+                                                                            <input type="text" id="txtInterestAddition" placeholder=""
+                                                                                class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                                title="Enter Interest Additional amount" data-trigger="focus" tabindex="13"
+                                                                                maxlength="9" onkeyup="extractNumber(this,event,0,false,false);" />
+                                                                            
+                                                                        </label>
+                                                                        <label class="col-md-4">
+                                                                            <input type="text" id="txtInterestsubtraction"
+                                                                                placeholder=""
+                                                                                class="form-control tip amountField" data-toggle="tooltip" data-placement="right"
+                                                                                title="Enter Interest Subtraction Amount" data-trigger="focus" tabindex="14"  maxlength="9"
+                                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);" />
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="panel panel-blue" id="divCAAdjustmentUnemploymentDetails">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseFour" id="aCAAdjustmentUnEmploymentCompensation">California Adjustment - Unemployment Compensation
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour" class="panel-collapse collapse">
+                                                 <div class="panel-body">
+                                                    <h4>Your unemployment compensation income received from Government is exclude from your california taxable Income.</h4>
+
+                                                    <div id="div3" class="panel panel-success">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title">
+                                                                California Addiitons
+                                                                     
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <ul>
+                                                                <li>Federally exempted Interest from other states.or other Muncipal obligation or from Mutual bonds that do not meet 50% rule.</li>
+                                                                <li>Non California Muncipal bond issued by a country, City, town or other local Government Unit.</li>
+                                                                <li>Non California State Bonds</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                     <div id="div4" class="panel panel-warning">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title">
+                                                                California Subtractions
+                                                                     
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <ul>
+                                                                <li>Unemployment compensation benefits reported on Form 1099G</li>
+                                                                <li>Paid Family Leave Insurance benefits reported on Form 1099 G</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="panel panel-primary">
+
+                                                        <div class="panel-heading">
+                                                            <h3>Unemployment Compensation</h3>
+                                                        </div>
+                                                        <div class="panel-body-grid">
+
+                                                            <div id="divUnemployementDetails">
+                                                                <div class="pangird head">
+                                                                    <label class="col-md-4" id="Label1">Federal Unemployment</label>
+                                                                    <label class="col-md-4" id="Label2">CA Addition</label>
+                                                                    <label class="col-md-4" id="Label3">CA Subtraction</label>
+                                                                </div>
+
+                                                                <div id="">
+                                                                    <div class="pangird itm" id="divFederalUnemploymentInfo">
+                                                                        <label class="col-md-4">
+                                                                            <label id="lblFederalUnemployment"></label>
+                                                                        </label>
+                                                                        <label class="col-md-4">
+                                                                            <input type="text" id="txtUnemploymentAddition" placeholder=""
+                                                                                class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                                title="Enter Unemployment Additional amount" data-trigger="focus" tabindex="13"
+                                                                                maxlength="9" onkeyup="extractNumber(this,event,0,false,false);" />
+                                                                            
+                                                                        </label>
+                                                                        <label class="col-md-4">
+                                                                            <input type="text" id="txtUnemploymentSubtraction"
+                                                                                placeholder=""
+                                                                                class="form-control tip amountField" data-toggle="tooltip" data-placement="right"
+                                                                                title="Enter Unemployment subraction Amount" data-trigger="focus" tabindex="14"  maxlength="9"
+                                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);" />
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue" id="divOtherCAInformationDetails">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseFive" id="aCAAdjustmentFederalIncome">Other California Adjustments to Federal Income
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFive" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>Provide us any other California Adjustments to Federal Income</h4>
+
+                                                     <div class="panel panel-primary">
+
+                                                        <div class="panel-heading">
+                                                            <h3>Other California Adjustments Information
+                                                                <a class="btn btn-default btn-xs pull-right" id="aOtherAdjustment" href="#" tabindex="43"><i class="fa fa-plus "></i>Add New</a>
+                                                            </h3>
+                                                        </div>
+                                                        <div class="panel-body-grid">
+
+                                                            <div id="divOtherInformationDetail">
+                                                                <div class="pangird head">
+                                                                    <label class="col-md-3" id="Label8">Description</label>
+                                                                    <label class="col-md-3" id="Label4">Federal Amount</label>
+                                                                    <label class="col-md-3" id="Label5">CA Addition</label>
+                                                                    <label class="col-md-3" id="Label6">CA Subtraction</label>
+                                                                </div>
+
+                                                                <div id="divOtherInformationInfo">
+                                                                    <div class="pangird itm" id="divOtherInformationInf0)">
+                                                                        <label class="col-md-3">
+                                                                            <input type="text" id="txtOtherDescription" placeholder=""
+                                                                                class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                                title="Enter Description " data-trigger="focus" tabindex="13"
+                                                                                maxlength="9" onkeyup="extractNumber(this,event,0,false,false);" />
+                                                                            
+                                                                        </label>
+                                                                        <label class="col-md-3">
+                                                                            <label id="lblOtherFederalAmount">0</label>
+                                                                        </label>
+                                                                        <label class="col-md-3">
+                                                                            <input type="text" id="txtOtherAddition" placeholder=""
+                                                                                class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                                title="Enter other Additional amount" data-trigger="focus" tabindex="13"
+                                                                                maxlength="9" onkeyup="extractNumber(this,event,0,false,false);" />
+                                                                            
+                                                                        </label>
+                                                                        <label class="col-md-3">
+                                                                            <input type="text" id="txtOtherSubtraction"
+                                                                                placeholder=""
+                                                                                class="form-control tip amountField" data-toggle="tooltip" data-placement="right"
+                                                                                title="Enter Other subtraction Amount" data-trigger="focus" tabindex="14"  maxlength="9"
+                                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);" />
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary" onclick="GoToPreviousPage();return false;">
+                                        Back</button>
+                                    <button type="submit" id="btnPrimaryFilerInfo" class="btn btn-success" tabindex="37">
+                                        Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!--//Footer-->
+            <script type="text/javascript" src="../../lib/footer.js"></script>
+        </div>
+    </form>
+
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,206 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Tax1040WorkFlow.WorkFlow.Activities.F1040EZNonTaxableCombatPay"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject"
+ xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Tax1040Object" Type="InOutArgument(jtb:Tax1040)" />
+    <x:Property Name="TotalNonTaxableCombatPayElection" Type="OutArgument(x:Double)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap2010:WorkflowViewState.IdRef>Tax1040WorkFlow.WorkFlow.Activities.F1040EZNonTaxableCombatPay_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="NonTaxableCombatPay" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="jtco:EmployerCode" Name="W2EmployerCode" />
+    </Sequence.Variables>
+    <If DisplayName="If Tax1040ObjectCheck" sap2010:WorkflowViewState.IdRef="If_5">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object != null) &amp;&amp; (Tax1040Object.Income != null))</mca:CSharpValue>
+        </InArgument>
+      </If.Condition>
+      <If.Then>
+        <If DisplayName="If W2Wages" sap2010:WorkflowViewState.IdRef="If_3">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.W2Wages != null) &amp;&amp; (Tax1040Object.Income.W2Wages.Any()))</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence DisplayName="W2WagesCheck" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <ForEach x:TypeArguments="jtb:W2" DisplayName="ForEach&lt;W2&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_2">
+                <ForEach.Values>
+                  <InArgument x:TypeArguments="scg:IEnumerable(jtb:W2)">
+                    <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:W2)">Tax1040Object.Income.W2Wages</mca:CSharpValue>
+                  </InArgument>
+                </ForEach.Values>
+                <ActivityAction x:TypeArguments="jtb:W2">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="jtb:W2" Name="W2" />
+                  </ActivityAction.Argument>
+                  <If DisplayName="If EmployerCodeCheck " sap2010:WorkflowViewState.IdRef="If_2">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">((W2.W2EmployerCodes != null) &amp;&amp; (W2.W2EmployerCodes.Any()))</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <ForEach x:TypeArguments="jtb:W2EmployerCode" DisplayName="ForEach&lt;W2EmployerCode&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_1">
+                        <ForEach.Values>
+                          <InArgument x:TypeArguments="scg:IEnumerable(jtb:W2EmployerCode)">
+                            <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:W2EmployerCode)">W2.W2EmployerCodes</mca:CSharpValue>
+                          </InArgument>
+                        </ForEach.Values>
+                        <ActivityAction x:TypeArguments="jtb:W2EmployerCode">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="jtb:W2EmployerCode" Name="W2EmployerCode" />
+                          </ActivityAction.Argument>
+                          <If DisplayName="If Q NonTaxableCombatPayCheck" sap2010:WorkflowViewState.IdRef="If_1">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.QNonTaxableCombatPay</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">TotalNonTaxableCombatPayElection</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">W2EmployerCode.Amount + TotalNonTaxableCombatPayElection</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Then>
+                          </If>
+                        </ActivityAction>
+                      </ForEach>
+                    </If.Then>
+                  </If>
+                </ActivityAction>
+              </ForEach>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Double">
+                    <mca:CSharpReference x:TypeArguments="x:Double">TotalNonTaxableCombatPayElection</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Double">
+                    <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(TotalNonTaxableCombatPayElection,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </If.Then>
+        </If>
+      </If.Then>
+    </If>
+    <sads:DebugSymbol.Symbol>d4UBRjpcSmVldmFuMTA0MFxQT0NcV29ya0Zsb3dcVGF4MTA0MFdGUnVsZXNhbmRDYWxjdWxhdGlvblxKVEwuVGF4MTA0MC5CdXNpbmVzc0xvZ2ljXFdvcmtGbG93XEFjdGl2aXRpZXNcRjEwNDBFWk5vblRheGFibGVDb21iYXRQYXkueGFtbBQ6A5UBDgIBAT4FkwEKAgECQQtBjQECAQNFCZEBDgIBB0gPSKYBAgEITA2PARgCAQxND4IBGQIBFoMBD44BGAIBDVAVUH4CATdXE4ABGAIBF4sBFYsBnQECARKGARWGAXsCAQ5aGVqcAQIBGF4XfiECAR1hHWGIAQIBMmgbfCACAR5rIWugAQIBH28feigCASV3JXebAQIBLHIlcosBAgEm</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,212" />
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="494,362">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="619,512">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="649,662">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="649,62" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="671,888">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="796,1038">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="921,1188" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="943,1312">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Tax1040WorkFlow.WorkFlow.Activities.F1040EZNonTaxableCombatPay_1" sap:VirtualizedContainerService.HintSize="983,1392" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

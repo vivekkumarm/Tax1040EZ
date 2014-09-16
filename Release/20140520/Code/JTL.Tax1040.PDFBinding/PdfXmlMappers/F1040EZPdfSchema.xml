@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OutputForm String= "1040EZ">
+  <Mapping>
+    <PDFField>txtF1040EZPrimaryTaxPayerFirstName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.FirstName</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZPrimaryTaxPayerLastName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.LastName</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZSpouseFirstName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.Spouse.Person.FirstName</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZSpouseLastName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.Spouse.Person.LastName</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZPrimaryTaxPayerSSNPart</PDFField>
+    <TROField Type="SSN">tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.SSN</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZSpouseSSNPart</PDFField>
+    <TROField Type="SSN">tax1040Object.PersonalDetails.Spouse.Person.SSN</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZAddress1</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.PersonalAddress.Street</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZApartmentNumber</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.PersonalAddress.Apartment</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkF1040EZPresidentialElectionPrimaryTaxPayer</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZAddress2</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.PersonalAddress.City</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZForeignCountryName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.ForeignAddress.ForeignCountryId</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZForeignProvince</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.ForeignAddress.ForeignProvince</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZForeignPostalCode</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.ForeignAddress.ForeignPostalCode</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine1TotalWages</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TotalWages</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine1TotalWagesDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.TotalWages</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine2TaxableInterest</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TaxableInterest</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine2TaxableInterestDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.TaxableInterest</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine3UnemploymentCompensation</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.UnemploymentCompensation</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine3UnemploymentCompensationDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.UnemploymentCompensation</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine4AdjustedGrossIncome</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.AdjustedGrossIncome</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine4AdjustedGrossIncomeDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.AdjustedGrossIncome</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine5StandardDeduction</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.StandardDeduction</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine5StandardDeductionDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.StandardDeduction</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkF1040EZLine5ClaimAsDependentPrimaryTaxPayer</PDFField>
+    <TROField Type="Bool">tax1040.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkF1040EZLine5ClaimAsDependentSpouse</PDFField>
+    <TROField Type="Bool">tax1040.PersonalDetails.Spouse.Person.HasClaimedAsDependent</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine6TaxableIncome</PDFField>
+    <TROField Type="Integer">tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine6TaxableIncomeDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.TaxableIncome</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine7FederalTaxWithholdingAmount</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.FederalTaxWithholdingAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine7FederalTaxWithholdingAmountDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.FederalTaxWithholdingAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine8aEarnedIncomeCredit</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.EarnedIncomeCredit</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine8aEarnedIncomeCreditDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.EarnedIncomeCredit</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine8bNonTaxableCombatPayElection</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.NonTaxableCombatPayElection</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine8bNonTaxableCombatPayElectionDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.NonTaxableCombatPayElection</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine9TotalPaymentsAndCredits</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine9TotalPaymentsAndCreditsDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine10TaxAmount</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TaxAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine10TaxAmountDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.TaxAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine11aRefundAmount</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.RefundAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine11aRefundAmountDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.RefundAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine12TaxOweAmount</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TaxOweAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine12TaxOweAmountDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.TaxOweAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine11bRoutingTransitNumber</PDFField>
+    <TROField Type="RTN">tax1040.Settlement.IRS.BankDetails.RoutingTransitNumber</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZLine11dAccountNumberPart</PDFField>
+    <TROField Type="AccountNumber">tax1040.Settlement.IRS.BankDetails.AccountNumber</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040EZThirdPartyPinPart</PDFField>
+    <TROField Type="PIN">tax1040.ThirdPartyDesignee.PIN</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>ListCode</PDFField>
+    <TROField Type="List">tax1040.ErrorMessages.Code</TROField>
+  </Mapping>
+<Mapping>
+    <PDFField>ListMessage</PDFField>
+    <TROField Type="List">tax1040.ErrorMessages.Message</TROField>
+  </Mapping>
+<Mapping>
+    <PDFField>ListType</PDFField>
+    <TROField Type="List">tax1040.ErrorMessages.Type</TROField>
+  </Mapping>
+</OutputForm>
+

@@ -1,0 +1,515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="bcf32f2b-b7a7-4252-98b3-12c4213e4ea8" name="EFileTaxObject" linkedPackageId="ad912d13-58ec-4c12-bf67-cb2bda212b0e" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <appliedStereotypesInternal>
+    <stereotypeInstance Id="40ccdb58-c87e-4711-bca5-46a82c92eeb7" name="namespace" profile="CSharpProfile">
+      <elementDefinition Id="9cd5df44-b8b6-4a82-b6e8-945363f049d1" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="fc840ad1-ec64-4e10-8412-ebbf9f6590d9">
+          <propertyInstance Id="18f3c487-ca6d-4465-8c7e-30441572a007" name="BaseName">
+            <elementDefinition Id="8a6b5e9e-9506-417c-b0ed-1992dbd6f4f8" />
+          </propertyInstance>
+          <elementDefinition Id="25ce8360-3ca8-4a41-ae8e-2c575c7b16fb" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="ee1b7ecc-f6a5-4d71-bc89-8c49e5de130e">
+          <propertyInstance Id="ac464af4-a52d-439d-858f-f1893d8e4a9b" name="ClrAttributes">
+            <elementDefinition Id="0b19b9ba-6835-467d-92a5-c9faab76fea2" />
+          </propertyInstance>
+          <elementDefinition Id="cfac62a6-24bc-4f95-b98c-0004273af9e1" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="69371fed-5aa7-4611-bbe3-356d51431745">
+          <propertyInstance Id="7702c53b-729b-442f-b977-23cc43f645db" name="Usings">
+            <elementDefinition Id="db795b59-530c-4345-b118-7ed6889d9ca3" />
+          </propertyInstance>
+          <elementDefinition Id="79568c5d-e12d-4de5-8b31-8414a9ed98b0" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance Id="85fbfd48-bd96-478c-86d0-816b21a21798" name="TextTemplateBindings" profile="TextTemplateBindings">
+      <elementDefinition Id="6150a987-46d3-436e-8c0e-13be53af17e5" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="85d6c206-2786-44b4-89af-b4dc1eb3ec34">
+          <propertyInstance Id="5320f6be-2f92-4da2-ae0f-7d63fb3879b7" name="Alias" value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate">
+            <elementDefinition Id="c5ac356e-a190-4dd5-8020-692bd1108626" />
+          </propertyInstance>
+          <elementDefinition Id="ddcbcb60-73d8-4d36-8eea-16f993ba46ff" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="6cabab56-14a0-4046-bd8d-b782615a3ea4">
+          <propertyInstance Id="55a54d6a-8b42-492b-8471-c8f3213dc1bb" name="TemplateFilePath" value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4">
+            <elementDefinition Id="26558106-fb63-40ec-82f5-a2960bac4e36" />
+          </propertyInstance>
+          <elementDefinition Id="a2f9b466-70c8-49c0-871c-cc24b190857f" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="0fed8a10-289f-48ad-9026-b6c9f0eaad13">
+          <propertyInstance Id="d0c4a61f-6d3d-4cb5-8274-fb27f5c1abda" name="ProjectPath" value="ClassTemplate=..\TaxObjectLib\TaxObjectLib.csproj|EnumTemplate=..\TaxObjectLib\TaxObjectLib.csproj|InterfaceTemplate=..\TaxObjectLib\TaxObjectLib.csproj|StructTemplate=..\TaxObjectLib\TaxObjectLib.csproj">
+            <elementDefinition Id="04f5264f-83dd-4c6e-9200-6dcb8a310172" />
+          </propertyInstance>
+          <elementDefinition Id="fbe26574-ef82-4763-a0f6-601ac66f7e7f" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="ed04f484-3974-4e09-911b-a7ac107eda9e">
+          <propertyInstance Id="329e8892-8bfa-4e82-bda8-69d909ba63ec" name="TargetDirectory" value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}">
+            <elementDefinition Id="ff231cff-2059-4eb6-b8ca-074dc29a9638" />
+          </propertyInstance>
+          <elementDefinition Id="50f68369-3d7e-4841-8978-964edfd81572" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="0cd261d5-4fad-4665-9fb6-5c6dad9fde94">
+          <propertyInstance Id="2b31f09a-0cf6-4039-8800-d00c1ed1dc39" name="TargetName" value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}">
+            <elementDefinition Id="1119ea39-027f-4dc0-9a06-eb08ebaeee76" />
+          </propertyInstance>
+          <elementDefinition Id="deeeecd1-8332-4b4a-a34d-bd486898dae7" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="8d35c0b6-496f-47f3-a25c-0cec9177c46d">
+          <propertyInstance Id="fd905690-abcb-4962-b57e-41cb11bc1b08" name="Overwrite" value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True">
+            <elementDefinition Id="2f60d332-11fb-4331-b180-058b6bb3ee0b" />
+          </propertyInstance>
+          <elementDefinition Id="fc66de0d-b884-4b93-b660-b24ba3a5a00e" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="34a4e6ef-aebc-4c52-95f5-b9bbd270cbae">
+          <propertyInstance Id="1b56aae2-2264-4611-83e0-84402bf9cbde" name="Parameters">
+            <elementDefinition Id="fb53aa84-2cc5-4a8c-9076-84ed4a601833" />
+          </propertyInstance>
+          <elementDefinition Id="bb943114-3b5d-431b-a892-eff98587f351" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="1ff07f83-3de1-47ff-bbb0-7949169a7d05">
+      <profileInstance Id="c56330bd-b278-40ec-8922-baf424cddcf6" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="92f78ec3-1b8b-4d72-921b-cdc877c0cdfd">
+      <profileInstance Id="a08f2e76-137d-4c5b-8136-d367784d5449" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="8ed487a1-cafd-404b-a941-98770b6b4c82">
+      <profileInstance Id="02cbbd36-c5cc-47d9-aaa9-a8e2af90973d" name="CSharpProfile">
+        <elementDefinition Id="f1a0d55f-2802-4574-a264-33946daf4af5" />
+      </profileInstance>
+      <elementDefinition Id="91e6ed23-af4a-4b68-856b-16c1f4b10b0e" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="be8fc968-f6c1-4ad4-bda3-7bd4a1af2dea">
+      <profileInstance Id="c3a0a940-d185-42bd-b941-a014d49b35b3" name="TextTemplateBindings">
+        <elementDefinition Id="24765773-fb3a-49b8-8094-369b4d8956bb" />
+      </profileInstance>
+      <elementDefinition Id="ee53962d-f55c-4ba2-966b-51ed855e171a" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b7f9d8b8-700c-47d9-a9c1-cd1add45ca49" name="EFile" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a9b6701d-a97b-4e3b-a29e-801512c86061" />
+        <targetEnds>
+          <association Id="9ea6e2b1-3d6a-44ca-ac56-0d1c4abfeb53" isDerived="false" sourceEndRoleName="EFile" targetEndRoleName="EfileTransmit" isLeaf="false" isAbstract="false">
+            <classMoniker Id="cdf7b762-18a5-4c15-bed7-4bb15df47283" LastKnownName="EfileTransmit" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="57e3e4c8-8ae1-4d7e-90bd-a6d3207b700c" name="EFile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0a472289-d322-414e-a74e-132a55f38402" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="63cdc8f5-1e5b-469d-b36c-5f2e8ce81747" name="EfileTransmit" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="72b985b9-e963-49f9-b82e-3c7e2dbb8364" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="368b88ad-947a-49a7-b595-2c0efdc4d6ac" />
+          </association>
+          <association Id="35e3f181-b359-4f34-a623-67ca6243d647" isDerived="false" sourceEndRoleName="EFile" targetEndRoleName="EFileError" isLeaf="false" isAbstract="false">
+            <classMoniker Id="b7f4600f-1a47-4434-996f-9118adba4bed" LastKnownName="EFileError" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cc219d7c-b10b-49f4-a27f-d6a756bb6e93" name="EFile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f59e48b9-24b8-4fa4-ba90-fdd73a39223b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c36931bd-6c7a-41fc-b243-63e94074f579" name="EFileError" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="44e24c4c-b3ed-406e-805e-af8f437d1811" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="25957663-7560-4bd1-beb8-8bf48ea99727" />
+          </association>
+          <association Id="2732ee7c-326b-4779-97e4-5cce30cb0d8a" isDerived="false" sourceEndRoleName="EFile" targetEndRoleName="EFileHold" isLeaf="false" isAbstract="false">
+            <classMoniker Id="94c581db-a74a-41c0-99e4-6f138e15ff7b" LastKnownName="EFileHold" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="bc45b9b7-e6af-427c-9b47-41d99323f9e9" name="EFile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="4d726b5d-8f78-4e1f-86c7-03f63118d842" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1a9d4844-6709-488c-94fc-b8cf84edb593" name="EFileHold" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="38779151-e565-4ed7-ae8b-45ae259cde0e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="95c8b030-98a7-4847-8208-7bdb1314d536" />
+          </association>
+          <association Id="664303f9-9e0b-492e-a6a5-656085931526" isDerived="false" sourceEndRoleName="EFile" targetEndRoleName="EFileHoldAttachment" isLeaf="false" isAbstract="false">
+            <classMoniker Id="890ac0c4-277e-47ac-b31c-e00cc2c02ba8" LastKnownName="EFileHoldAttachment" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="92c58bfa-f57c-40ae-afd9-7775aab88280" name="EFile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="5066c662-1bfb-4ce7-9538-3e2504f2b75f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d1a8f070-b71d-4fc3-b60d-a8c440b4c1e5" name="EFileHoldAttachment" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="2343747f-9cbe-44cf-a2e3-37e50430713f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e275b7ca-4802-4d3b-86eb-41f3b08e06da" />
+          </association>
+          <association Id="b647a452-8bcc-4389-8607-e79a255ea37a" isDerived="false" sourceEndRoleName="EFile" targetEndRoleName="EFileIRSSchema" isLeaf="false" isAbstract="false">
+            <classMoniker Id="dd814fbb-948e-4c3a-ab03-3cc7ec052384" LastKnownName="EFileIRSSchema" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ff7fd4e1-a622-45f7-bc56-8fcfc7161471" name="EFile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="82d69cf7-7752-4c92-887b-76fffc83005f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="056f2178-f9d5-40d1-8857-2cc0f2589027" name="EFileIRSSchema" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="4ae88c53-c1b9-4374-a5dd-8d148ba7e66c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b965332e-8166-42c7-95b6-56e21811e571" />
+          </association>
+          <association Id="e6ce76d8-4eca-4ffe-9c40-5165192a008a" isDerived="false" sourceEndRoleName="EFile" targetEndRoleName="EFileLastStatus" isLeaf="false" isAbstract="false">
+            <classMoniker Id="4da5e663-aac0-400d-9d62-979d0fcbeae5" LastKnownName="EFileLastStatus" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1c3ef001-6592-4785-a9c9-7402d85301fc" name="EFile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="427199f9-607b-4afe-a7a1-515f22f2f83b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7a127cc1-26a2-4711-8527-5871c06ae52e" name="EFileLastStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="ce72e999-8d3c-4714-9ce9-d92564a93db7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c0dafaab-503a-499f-b4a7-c0c19ce72dff" />
+          </association>
+          <association Id="18f83170-f9c2-40ba-a191-b84c5e25e636" isDerived="false" sourceEndRoleName="EFile" targetEndRoleName="EFileProgressStatus" isLeaf="false" isAbstract="false">
+            <classMoniker Id="42eb9cf6-f435-4ec3-87ed-39a45599d26d" LastKnownName="EFileProgressStatus" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="896dbba2-4dee-4daa-8cb4-010ad5e14a25" name="EFile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e97d8e62-8dfa-488e-b8b3-25d63273ba99" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5184a7f1-1268-48b1-ac02-de08f392f2cc" name="EFileProgressStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="3c2997de-17d4-4384-a2b8-21fc2e6a0add" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="7024b507-a142-4762-b64c-83ffcfa41171" />
+          </association>
+          <association Id="f2ad7597-da71-47bb-9345-d7477eb3696b" isDerived="false" sourceEndRoleName="EFile" targetEndRoleName="EFileReceiver" isLeaf="false" isAbstract="false">
+            <classMoniker Id="ee7b68b5-0246-46ba-9110-67810cc85ae3" LastKnownName="EFileReceiver" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="48a37e50-1664-4d13-815b-1ea257306b8e" name="EFile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="5615c338-db83-454f-ab19-8b590070b7a1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="682bab31-4d1a-42e3-84d3-94e85e18f285" name="EFileReceiver" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="c25309c5-f404-42bc-939b-01375d0768f3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="00d0a3fb-73e5-4393-853b-d46f04c51c79" />
+          </association>
+          <association Id="a5e919f3-5964-4544-8dfb-2347a1656a28" isDerived="false" sourceEndRoleName="EFile" targetEndRoleName="EFileRequestResponse" isLeaf="false" isAbstract="false">
+            <classMoniker Id="9ecea126-ec47-4ad9-98ea-afa89eda281b" LastKnownName="EFileRequestResponse" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="37f57430-35d6-4c9d-b25b-c89d5b8633dc" name="EFile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="36e141c1-3ee2-4b89-b01b-1a206ac09ad7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="84334653-0c2f-400f-bd13-e8d1a693d388" name="EFileRequestResponse" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="6fe1ac4c-45c9-4134-8c86-b05476c2bb9c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8ddcef7b-159f-442d-bae4-fe0c479dbdd4" />
+          </association>
+          <association Id="902abff7-3c7a-4904-89c4-d24d4051694c" isDerived="false" sourceEndRoleName="EFile" targetEndRoleName="EFileSender" isLeaf="false" isAbstract="false">
+            <classMoniker Id="63eab192-3a96-4b67-836d-628c0ea7da99" LastKnownName="EFileSender" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="77de804f-ac17-4bc5-bddf-f395654f5562" name="EFile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="c2fb7b24-01ec-4a1d-bef1-651cd0f59324" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7fb655ed-a102-4528-971a-09c8d58ce45e" name="EFileSender" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="b1efd4ea-fa00-4b7d-83c6-d01dbd23f171" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6f2ea8b5-da84-4c0a-b821-320a4217ff74" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="21f758ed-e3d7-4df7-9448-6b2409bf320c" name="EFileError" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="01fd81aa-be11-485d-b1b2-b7485ce9b66d" />
+          </property>
+          <property Id="61acc398-6170-4263-bb77-8503ee3f1f23" name="EFileHold" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ab64f3b2-f8d0-4fff-b6b9-d658c72e442d" />
+          </property>
+          <property Id="b7369206-7f12-4f05-a63f-ba27ec8f3e4a" name="EFileHoldAttachment" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="99cc2f66-c4d8-463c-bf1e-c0f0faf07c7a" />
+          </property>
+          <property Id="466cb904-10a4-41e9-81ff-44e3e74f2ded" name="EFileIRSSchema" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="9191979e-217f-48a1-a768-ebb32396edc7" />
+          </property>
+          <property Id="cf1c1849-c767-4261-8ffc-0cfd157d499a" name="EFileLastStatus" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="8647bb2a-19cd-464e-9844-d0acdceb7886" />
+          </property>
+          <property Id="959532b5-3936-42b3-8cb2-b71f2ecdee9d" name="EFileProgressStatus" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="49051ec8-9b63-4b8d-98d6-3fdb92bfffac" />
+          </property>
+          <property Id="212df75f-6229-42ea-8d20-1dab13134d83" name="EFileReceiver" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f3f68fd8-514d-417a-9cd7-b045796c6342" />
+          </property>
+          <property Id="d57ba27d-f7a6-4fa7-80f8-c0acf95993cc" name="EFileRequestResponse" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="c757d0ea-6b69-4cf4-86e9-25bb03922768" />
+          </property>
+          <property Id="42f69da8-4fff-4a70-86f2-d3a66e39ce7b" name="EFileSender" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f68d91f2-93da-475e-87c8-6d414c7ce92e" />
+          </property>
+          <property Id="ade922a5-0383-481c-bda3-1b7c0b725233" name="EFileTransmit" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="615a2dda-09f6-4e9d-9c60-d48241509810" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="cdf7b762-18a5-4c15-bed7-4bb15df47283" name="EfileTransmit" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0ee87468-ab42-4eda-9865-35fbb753e2ed" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b7f4600f-1a47-4434-996f-9118adba4bed" name="EFileError" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="451d5681-414b-4e4e-97ca-10e1915bc81c" />
+        <ownedAttributesInternal>
+          <property Id="da2dab4a-0918-4c6c-8dd8-fe18a8280d5c" name="Action" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="e564a182-5899-4889-adaa-95d126d3854d" />
+          </property>
+          <property Id="1868bc78-6431-4118-92b5-85b25ed3ada1" name="ErrorClassification" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="bfc1fa61-b629-4fe8-a692-5edbe106c45f" />
+          </property>
+          <property Id="1c7121a2-25c2-489a-aeb9-1c33251b11e7" name="ErrorCode" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b99dc617-32c4-40b1-ad0d-d123b7e59dc4" />
+          </property>
+          <property Id="df373a0f-d9c7-4d6e-8c1d-293a3c773071" name="ErrorFixed" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="c8ab0f5a-dc22-4526-9184-f2900d9d964c" />
+          </property>
+          <property Id="93f88116-0d74-41c0-b2b4-d50dfcc50fa0" name="ErrorMessage" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="0ae7cf09-024c-4e57-a523-93eece0e4b0c" />
+          </property>
+          <property Id="4daa2245-3261-4af7-a8bc-e2af33ccf451" name="ErrorPickedUp" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="069c3eca-5647-4cba-a473-5c3f6a70edc4" />
+          </property>
+          <property Id="9ababadd-e8ed-42a0-951c-6cdd95195a67" name="SubmissionId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="2fa218e7-a388-4ef3-9a1c-7e691ac2b355" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="94c581db-a74a-41c0-99e4-6f138e15ff7b" name="EFileHold" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f7500713-089d-4796-8603-3888ef633215" />
+        <ownedAttributesInternal>
+          <property Id="d91f3cc6-5a93-453f-8d0f-1c71825a8d34" name="EFileTransactionId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="cd5d091f-aaa3-4c6a-9c7d-bef0e71742d7" />
+          </property>
+          <property Id="7e05dd2d-f898-4ca5-b21b-67963cc4c883" name="EnvIndicator" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a334620f-f9c8-4b3e-ba8b-efbf676d43af" />
+          </property>
+          <property Id="fb350a46-5392-4980-99e4-0b6edba6e33c" name="IRSSystemId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="0d94a34b-a89a-4d15-afef-1464dfbddef7" />
+          </property>
+          <property Id="b9bb439a-fcf1-43e3-b273-177a7cf11537" name="NumberOfAttachments" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ac8010d5-603b-4f58-9492-cb8aacf6b007" />
+          </property>
+          <property Id="72bf86e3-6ae6-460f-aa45-dc4bfd29dc48" name="ReturnId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="97e50a13-3f4b-4cfe-a7f8-aca12028d465" />
+          </property>
+          <property Id="dd2b49f2-946b-4dc1-ad4a-81f66f05d953" name="SenderId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="808c7080-020e-43db-ae07-837c1677743c" />
+          </property>
+          <property Id="f8240722-2f27-4a7f-b57b-52de1802bf59" name="TaxObject" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="cc0492d8-5887-4ae7-b908-a1aa3a4aedf5" />
+          </property>
+          <property Id="77c35bb1-97bc-4e07-a518-e7e106ff618b" name="TaxPeriod" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="762e6e49-5710-45a8-81f9-69e16f84c5c2" />
+          </property>
+          <property Id="5d7d195c-2035-4002-b8ee-c25daaeed091" name="TaxReturnTypeId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ca982bbd-6298-4b2a-8d85-13aea621f437" />
+          </property>
+          <property Id="38b9eb49-f7b2-42fa-b50d-46392ad77c91" name="TaxYear" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="0dc9091c-ddc4-408d-a4e4-9830ffc0519e" />
+          </property>
+          <property Id="d882db92-616f-4124-b364-8f469f6b9af5" name="UserEmail" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="da7ad01e-6a8c-485a-9adf-f7681970f5e2" />
+          </property>
+          <property Id="234701f2-eb62-4620-94a8-b5fa3b6343ab" name="UserId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="8179ffb2-1703-4c4e-a263-e5474e22af9f" />
+          </property>
+          <property Id="e0182e2d-1318-44a9-b947-9377631f2028" name="Username" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="2d15cab8-a04d-4175-81d6-3e034b39e1b1" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="890ac0c4-277e-47ac-b31c-e00cc2c02ba8" name="EFileHoldAttachment" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c5d64576-9b5b-4def-be22-04d7acf7ddc0" />
+        <ownedAttributesInternal>
+          <property Id="cc875b1b-f42b-4741-b01e-12db69470b5f" name="AttachmentName" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b4775997-0bf6-4ff8-af55-e56faee1bb6c" />
+          </property>
+          <property Id="9e460944-02a1-439a-b41f-fc885b5ff711" name="EFileAttachment" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="c540f6e1-6c70-4f2c-8cb0-7d6511eb577e" />
+          </property>
+          <property Id="9cf12fd8-4b08-4d20-b7d2-2a51131b2228" name="EFileHoldId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="3ed15413-ec08-4835-8852-7e66ce89cb57" />
+          </property>
+          <property Id="315c8ac3-23ea-40a8-9366-6c057d6cd65b" name="Type" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b02e179e-8558-4dc1-87f0-070a41b7a2fb" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="dd814fbb-948e-4c3a-ab03-3cc7ec052384" name="EFileIRSSchema" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="002e347a-c89d-49c2-9b3e-a6a354a6c4d5" />
+        <ownedAttributesInternal>
+          <property Id="5e41a839-88f9-4e0d-b38d-3fcff499244a" name="EFileHoldId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1c8b3291-acac-4207-9cee-c6bfb09f5098" />
+          </property>
+          <property Id="5805197c-945c-4dd1-8161-2237c4363f71" name="EFileIRSSchema" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b7abc97f-a193-49fe-81b6-0cb99c0cc183" />
+          </property>
+          <property Id="1dfff438-7758-4e06-8a6f-5356a1a16564" name="ManifestXML" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="4fb070d4-c8d7-4e59-a422-3442be8c79d1" />
+          </property>
+          <property Id="a260936b-5630-4a85-a1af-a111d294cbb7" name="SubmissionId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="2ce6aea9-054d-4daf-8de2-df3f39ce3a1d" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="4da5e663-aac0-400d-9d62-979d0fcbeae5" name="EFileLastStatus" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c07968fb-6fe8-4aaa-b08a-a160f0af5c43" />
+        <ownedAttributesInternal>
+          <property Id="a597402a-9ad7-4e7b-8852-5bd046c75fd0" name="EFileHoldId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="452a5a1f-a3df-4e42-a2ba-b1d99e70cab6" />
+          </property>
+          <property Id="9d532e5a-0107-49b7-a92d-a24a72316897" name="Stage" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ee6f48f2-7cad-482f-8524-59b613bdc37c" />
+          </property>
+          <property Id="ba608b05-583f-466d-b668-606725c694e0" name="State" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a74b53fb-3d25-43ba-883a-bd55db6469bf" />
+          </property>
+          <property Id="2d9de68a-6784-4b9c-ab71-af05e6ae311d" name="StatusId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b4d2e85f-f1d1-47bc-9408-b6abbf77b761" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="42eb9cf6-f435-4ec3-87ed-39a45599d26d" name="EFileProgressStatus" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="91468a1b-a9c1-4e34-a110-fab6863a5328" />
+        <ownedAttributesInternal>
+          <property Id="05be0bb0-81ba-4af7-aab1-9e2e53136169" name="EFileHoldId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="eb46577a-f6a9-4ee8-ac32-0b3f5e8e0bf7" />
+          </property>
+          <property Id="0b12071d-d993-43ad-ab2c-1be2ac8bbb30" name="ProgressStatus" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="2f1d835e-7d2a-48ad-ab86-e9a233d9c9ed" />
+          </property>
+          <property Id="459695f9-8330-4f6e-84d5-a6ea9cf32e01" name="Stage" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="c86525d4-0c70-4135-aecc-5965f15f0fbe" />
+          </property>
+          <property Id="89f0425d-0f62-447d-a46c-e97be6fb0bfd" name="State" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="3337b285-d122-49a8-9f23-745d8346bc8e" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ee7b68b5-0246-46ba-9110-67810cc85ae3" name="EFileReceiver" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8134d2fd-f04d-4c6d-b12f-904ec8b335da" />
+        <ownedAttributesInternal>
+          <property Id="d7482d33-2c48-4b88-9d9a-7b38b7bcae71" name="AcknowledgeXML" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="531084bf-c811-4bec-960f-c5c51148b81a" />
+          </property>
+          <property Id="50bd8474-bcbe-4d8b-ba61-9404f3716ecc" name="GetAcknowledgement" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="75063079-500d-4f32-9d8e-f3cdb24c5cd0" />
+          </property>
+          <property Id="977c4110-e99b-4496-bc1a-51869d5affcb" name="Schedule1" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="e5799083-ca3c-4e9e-b256-d4cf9903e74c" />
+          </property>
+          <property Id="425ca8a1-80fd-48ed-ab3b-ada5ab2d561e" name="SendSubmissionStatus" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="30be9fc6-3d66-45bc-add1-d323bfb37d41" />
+          </property>
+          <property Id="844980c3-d96c-4d57-b0aa-cf53b9bd5196" name="SubmissionId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="211ecb3e-3bb3-4bc9-a2b9-90646824c9cc" />
+          </property>
+          <property Id="3d05dc1f-61e6-4f75-8c6f-ae6616eee4d5" name="SubmissionStatus" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="09b7a7d7-d67c-47db-b042-e83d7e181487" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9ecea126-ec47-4ad9-98ea-afa89eda281b" name="EFileRequestResponse" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="82dce84e-dbf6-4af2-a3be-623e3b1cbd82" />
+        <ownedAttributesInternal>
+          <property Id="bfb77569-6a81-4d0b-8410-99e31096b592" name="Action" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="811cb704-b06e-4265-8fd2-834fdde8c5b7" />
+          </property>
+          <property Id="77c898c3-beac-4862-b09f-abeb4b3a61e3" name="MessageId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="10fdc1e1-de75-44b0-b68e-f248f011e482" />
+          </property>
+          <property Id="8b8041cc-e677-45c7-b178-357633f54389" name="Request" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="91844667-c16c-4ca9-bc66-1862000d3256" />
+          </property>
+          <property Id="0e2bfa50-f077-4cd9-a2c9-40f47d5df6d4" name="Response" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6df553f9-a250-4635-a76f-17ca2c6051fb" />
+          </property>
+          <property Id="3aa80cca-4769-4089-b596-f711750dbe39" name="StatusId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="62ee0f70-76ed-4ac4-86a6-34ec2d5eb7f9" />
+          </property>
+          <property Id="768c38d9-81bd-44c9-a289-4f5ecc6cb4cb" name="SubmissionId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="21f0f34f-97dd-4578-b8d8-bf11933598e1" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="63eab192-3a96-4b67-836d-628c0ea7da99" name="EFileSender" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="544bc5d1-bdaf-454a-9a7b-52b32a9f5d81" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="ad912d13-58ec-4c12-bf67-cb2bda212b0e" name="TaxObject">
+    <elementDefinition Id="3bbff867-ea3e-449d-b008-b6a839c326d0" />
+  </package>
+</logicalClassDesignerModel>

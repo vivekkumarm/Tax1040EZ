@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6D266FFD-166C-470F-994F-E6F856876E84}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JTL.Tax1040.EfileServices.DataAccess</RootNamespace>
+    <AssemblyName>JTL.Tax1040.EfileServices.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="efile_comment.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_email_log.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_error.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_hold.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_hold_attachment.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_irs_schema.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_last_status.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_log.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_name_control.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_progress.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_receiver.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_request_response.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_sender.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="efile_transmit.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fax_log.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sms_log.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StcErrorCode.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tax1040_Efile.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tax1040_Efile.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tax1040_Efile.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tax1040_Efile.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tax1040_Efile.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="usp_efile_hold_attachment_get_on_efile_hold_id_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_efile_hold_get_by_id_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_efile_hold_get_on_id_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_efile_irs_schema_get_on_efile_hold_id_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_efile_schema_get_by_id_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_efile_transmit_get_all_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_efile_acknowledge_on_status_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_efile_attachement_and_xml_by_efile_trans_id_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_efile_error_on_submission_id_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_efile_error_on_transmission_id_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_efile_hold_records_on_status_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_efile_info_on_stage_status_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_efile_name_control_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_efile_sender_on_status_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_submissions_for_sender_channel_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_submissions_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_submission_id_for_acknowledgement_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_rejected_efile_get_on_id_Result.cs">
+      <DependentUpon>Tax1040_Efile.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Tax1040_Efile.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Tax1040_Efile.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="Tax1040_Efile.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Tax1040_Efile.edmx</DependentUpon>
+      <LastGenOutput>Tax1040_Efile.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Tax1040_Efile.edmx.diagram">
+      <DependentUpon>Tax1040_Efile.edmx</DependentUpon>
+    </None>
+    <None Include="Tax1040_Efile.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Tax1040_Efile.edmx</DependentUpon>
+      <LastGenOutput>Tax1040_Efile.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

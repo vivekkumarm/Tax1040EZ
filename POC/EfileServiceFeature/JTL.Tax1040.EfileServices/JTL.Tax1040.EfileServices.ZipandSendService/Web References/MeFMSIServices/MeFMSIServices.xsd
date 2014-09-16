@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:mef="http://www.irs.gov/a2a/mef/MeFMSIServices.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.irs.gov/a2a/mef/MeFMSIServices.xsd" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="InitialLoginRequest" type="mef:InitialLoginRequestType" />
+  <xs:element name="InitialLoginResponse" type="mef:InitialLoginResponseType" />
+  <xs:element name="LoginRequest" type="mef:LoginRequestType" />
+  <xs:element name="LoginResponse" type="mef:LoginResponseType" />
+  <xs:element name="LogoutRequest" type="mef:LogoutRequestType" />
+  <xs:element name="LogoutResponse" type="mef:LogoutResponseType" />
+  <xs:element name="ChangePasswordRequest" type="mef:ChangePasswordRequestType" />
+  <xs:element name="ChangePasswordResponse" type="mef:ChangePasswordResponseType" />
+  <xs:element name="EtinRetrievalRequest" type="mef:EtinRetrievalRequestType" />
+  <xs:element name="EtinRetrievalResponse" type="mef:EtinRetrievalResponseType" />
+  <xs:element name="EtinStatusRequest" type="mef:EtinStatusRequestType" />
+  <xs:element name="EtinStatusResponse" type="mef:EtinStatusResponseType" />
+  <xs:element name="GetStateParticipantsListRequest" type="mef:GetStateParticipantsListRequestType" />
+  <xs:element name="GetStateParticipantsListResponse" type="mef:GetStateParticipantsListResponseType" />
+  <xs:complexType name="InitialLoginRequestType">
+    <xs:sequence>
+      <xs:element name="Password" type="xs:string" />
+      <xs:element name="NewPassword" type="xs:string" />
+      <xs:element name="ConfirmationToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InitialLoginResponseType">
+    <xs:sequence>
+      <xs:element name="Status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LoginRequestType">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="LoginResponseType">
+    <xs:sequence>
+      <xs:element name="Status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LogoutRequestType">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="LogoutResponseType">
+    <xs:sequence>
+      <xs:element name="Status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChangePasswordRequestType">
+    <xs:sequence>
+      <xs:element name="Password" type="xs:string" />
+      <xs:element name="NewPassword" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChangePasswordResponseType">
+    <xs:sequence>
+      <xs:element name="Status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TestIndicatorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="T" />
+      <xs:enumeration value="P" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="EtinRetrievalRequestType">
+    <xs:sequence>
+      <xs:element name="TestIndicator" type="mef:TestIndicatorType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EtinRetrievalResponseType">
+    <xs:sequence>
+      <xs:element default="0" name="count" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ETINStatus" type="mef:ETINStatusType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EtinStatusRequestType">
+    <xs:sequence>
+      <xs:element name="ETIN" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EtinStatusResponseType">
+    <xs:sequence>
+      <xs:element name="ETIN" type="xs:string" />
+      <xs:element name="status" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="form" type="mef:ETINFormStatusType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetStateParticipantsListRequestType">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="GetStateParticipantsListResponseType">
+    <xs:sequence>
+      <xs:element default="0" name="count" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StateParticipant" type="mef:StateParticipantType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ETINFormStatusType">
+    <xs:sequence>
+      <xs:element name="formName" type="xs:string" />
+      <xs:element name="formStatus" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ETINStatusType">
+    <xs:sequence>
+      <xs:sequence>
+        <xs:element name="ETIN" type="xs:string" />
+        <xs:element name="status" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="form" type="mef:ETINFormStatusType" />
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StateParticipantType">
+    <xs:sequence>
+      <xs:element name="state" type="xs:string" />
+      <xs:element name="participantPrograms" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

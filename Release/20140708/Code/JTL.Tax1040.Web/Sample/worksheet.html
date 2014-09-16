@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../lib/config.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/jquery.base64.js"></script>
+
+    <script type="text/javascript">
+        //Added by Praveen T on 29 May 2014
+        $('.Title').html(TITLE);
+
+        $(document).ready(function () {
+
+            var worksheet = serviceUrl + 'taxreturn/getworksheet/' + userId + '/' + userDataId;
+
+            $('#btnEICWorkSheet').click(function () {
+                window.location.href = worksheet + '/EICWorkSheetBinding';
+                return false;
+            });
+
+            $('#btnStandardDeductionWorkSheet').click(function () {
+                window.location.href = worksheet + '/StandardDeductionWorkSheetBinding';
+                return false;
+            });
+
+            $('#btnSSBAndRRBWorkSheet').click(function () {
+                window.location.href = worksheet + '/SSBWorkSheetBinding';
+                return false;
+            });
+
+            //Yogalakshmi - 26th June 2014 - Button click to show the Form8879 Binding
+            $('#btnForm8879Worksheet').click(function () {
+                window.location.href = worksheet + '/Form8879Binding';
+                return false;
+            });
+
+            //Yogalakshmi - 30th June 2014 - Button click to show the Form8862 Binding
+            $('#bthForm8862').click(function () {
+                window.location.href = worksheet + '/F8862Binding';
+                return false;
+            });
+
+            //Yogalakshmi - 26th June 2014 - Button click to show the Form1040V Binding
+            $('#btnForm1040V').click(function () {
+                window.location.href = worksheet + '/Form1040VBinding';
+                return false;
+            });
+
+            //Saravanan N - 23rd June, 2014 - W2 Binding added.
+            $('#btnW2WorkSheet').click(function () {
+                window.location.href = worksheet + '/FW2Binding';
+                return false;
+            });
+
+            //Yogalakshmi - 25th June 2014 - Navigation for continue button
+            $('#btnContinue').click(function () {
+                window.location.href = '../State/stategateway.html';
+                return false;
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+    <form id="form1">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+
+                    <!-- BreadCrum Menu  -->
+
+                    <script type="text/javascript" src="../lib/BreadCrum.js"></script>
+
+                    <!-- Left menu -->
+                    <div class="innerform">
+
+                        <!-- Right Help area -->
+
+                        <div id="riht">
+                            <script src="../lib/rightmenu.js"></script>
+                        </div>
+
+                        <!-- Center form area -->
+
+                        <div id="content">
+                            <div class="c4c8">
+                                <div class="title">
+                                    <h2>WorkSheet
+                                            <!-- Right side collapse area menu  -->
+                                        <a id="changeSidebarPos" data-original-title="Show / Hide Sidebar" data-toggle="tooltip"
+                                            class="hidden-xs open pull-right" href="#"><i class="transfer"></i></a>
+
+                                        <!-- Left Responsive action Menu   -->
+                                        <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#lftmenu">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="glyphicon glyphicon-th-list"></span>
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <p>Click here to view EIC WorkSheet</p>
+                                <button type="submit" id="btnEICWorkSheet" class="btn  btn-success">EIC Worksheet</button>
+                                <h5>Click here to view StandardDeduction WorkSheet</h5>
+                                <button type="submit" id="btnStandardDeductionWorkSheet" class="btn btn-success">Standard Deduction Worksheet</button>
+                                <h5>Click here to view SSBAndRRB WorkSheet</h5>
+                                <button type="submit" id="btnSSBAndRRBWorkSheet" class="btn btn-success">SSB And RRB Worksheet</button>
+                                <h5>Click here to view 8879 Worksheet</h5>
+                 <!--               <button type="submit" id="btnW2WorkSheet" class="btn btn-success">W2 Worksheet</button>
+                                <h5>Click here to view Form8879 WorkSheet</h5>-->
+                                <button type="submit" id="btnForm8879Worksheet" class="btn btn-success">Form8879 Worksheet</button>
+                                <h5>Click here to view Form8862 WorkSheet</h5>
+                                <button type="submit" id="bthForm8862" class="btn btn-success">Form8862 Worksheet</button>
+                                <h5>Click here to view Form1040V WorkSheet</h5>
+                                <button type="submit" id="btnForm1040V" class="btn btn-success">Form1040V Worksheet</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <div class="left-lbl"></div>
+                    <div class="right">
+                        <button id="btnContinue" type="submit" class="btn btn-success">Continue</button>
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+</body>
+</html>
+

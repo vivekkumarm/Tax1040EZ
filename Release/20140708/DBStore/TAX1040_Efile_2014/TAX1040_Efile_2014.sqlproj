@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>TAX1040_Efile_2014</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{aeb98e02-5757-49fa-87d0-a4eb2486c676}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>TAX1040_Efile_2014</RootNamespace>
+    <AssemblyName>TAX1040_Efile_2014</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Schema" />
+    <Folder Include="Schema\dbo" />
+    <Folder Include="Schema\dbo\View" />
+    <Folder Include="Script" />
+    <Folder Include="Schema\dbo\StoredProcedure" />
+    <Folder Include="Schema\dbo\Table" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script\Script.PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema\dbo\StoredProcedure\usp_admin_efile_last_status_update.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_admin_find_name_control.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_admin_get_efile_status_report.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_comment_get.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_comment_insert.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_error_insert.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_error_irs_schema_create.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_error_picked_up_update.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_hold_attachment_get_on_efile_hold_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_hold_attachment_insert.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_hold_get_by_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_hold_get_irs_schema_count.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_hold_get_on_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_hold_persist.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_irs_schema_get_on_efile_hold_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_irs_schema_get_today_count.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_irs_schema_insert.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_irs_schema_persist.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_name_control_persist.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_receiver_insert.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_receiver_update.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_request_response_create.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_schema_get_by_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_search.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_sender_persist.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_transmit_get_all.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_transmit_persist.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efile_transmit_update.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efiled_users.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_efiled_users_by_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_admin_efile_count.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_admin_efile_status.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_acknowledge_on_status.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_attachement_and_xml_by_efile_trans_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_error_from_error_code.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_error_on_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_error_on_submission_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_error_on_transmission_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_hold_records_on_acknowledgement.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_hold_records_on_status.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_hold_sender_count.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_info_on_stage_status.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_irs_schema_on_status.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_name_control.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_name_control_on_efile_hold_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_req_res_by_action_and_time.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_efile_sender_on_status.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_latest_efile_status.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_rejected_efile.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_rpt_payment_and_efile_count.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_schedule1.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_submission_id_for_acknowledgement.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_submissions.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_get_submissions_for_sender_channel.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_rejected_efile_get_on_id.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_rpt_get_payment_and_efile_count_old.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_status_update.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_update_system_status.sql" />
+    <Build Include="Schema\dbo\StoredProcedure\usp_upload_files.sql" />
+    <Build Include="Schema\dbo\Table\efile_comment.sql" />
+    <Build Include="Schema\dbo\Table\efile_email_log.sql" />
+    <Build Include="Schema\dbo\Table\efile_error.sql" />
+    <Build Include="Schema\dbo\Table\efile_hold.sql" />
+    <Build Include="Schema\dbo\Table\efile_hold_attachment.sql" />
+    <Build Include="Schema\dbo\Table\efile_irs_schema.sql" />
+    <Build Include="Schema\dbo\Table\efile_last_status.sql" />
+    <Build Include="Schema\dbo\Table\efile_log.sql" />
+    <Build Include="Schema\dbo\Table\efile_name_control.sql" />
+    <Build Include="Schema\dbo\Table\efile_progress.sql" />
+    <Build Include="Schema\dbo\Table\efile_receiver.sql" />
+    <Build Include="Schema\dbo\Table\efile_request_response.sql" />
+    <Build Include="Schema\dbo\Table\efile_sender.sql" />
+    <Build Include="Schema\dbo\Table\efile_stc_error_code.sql" />
+    <Build Include="Schema\dbo\Table\efile_transmit.sql" />
+    <Build Include="Schema\dbo\Table\fax_log.sql" />
+    <Build Include="Schema\dbo\Table\sms_log.sql" />
+  </ItemGroup>
+</Project>

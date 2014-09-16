@@ -1,0 +1,9 @@
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Return_2014\bin\Debug\TAX1040_Return_2014.dacpac
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Return_2014\bin\Debug\TAX1040_Return_2014.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Return_2014\bin\Debug\TAX1040_Return_2014.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Return_2014\obj\Debug\TAX1040_Return_2014.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Return_2014\obj\Debug\TAX1040_Return_2014.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Return_2014\obj\Debug\Model.xml
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Return_2014\obj\Debug\refactor.xml
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Return_2014\obj\Debug\postdeploy.sql
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Return_2014\obj\Debug\predeploy.sql

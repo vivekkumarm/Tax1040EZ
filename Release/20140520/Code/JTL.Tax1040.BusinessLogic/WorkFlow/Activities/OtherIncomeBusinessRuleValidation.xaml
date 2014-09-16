@@ -1,0 +1,328 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="JTL.Tax1040.BusinessLogic.WorkFlow.Activities.OtherIncomeBusinessRuleValidation"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject"
+ xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Tax1040Object" Type="InOutArgument(jtb:Tax1040)" />
+    <x:Property Name="ErrorMessages" Type="InArgument(jtco:ErrorMessages)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap2010:WorkflowViewState.IdRef>JTL.Tax1040.BusinessLogic.WorkFlow.Activities.OtherIncomeBusinessRuleValidation_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="OtherIncome BussinessRule Check" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="jtco:ErrorMessage" Name="ErrorMessage" />
+      <Variable x:TypeArguments="scg:List(jtco:ErrorMessage)" Name="ErrorMessageList">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
+    <If DisplayName="If Tax1040ObjectCheck" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object != null) &amp;&amp; (Tax1040Object.Income != null) &amp;&amp; (Tax1040Object.Income.OtherIncome != null))</mca:CSharpValue>
+        </InArgument>
+      </If.Condition>
+      <If.Then>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <If DisplayName="If Tax Payer SSB FederalTaxWithholding" sap2010:WorkflowViewState.IdRef="If_4">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">((Tax1040Object.Income.OtherIncome.SSB != null) &amp;&amp; (Tax1040Object.Income.OtherIncome.SSB.TaxPayerFederalTaxWithheld &gt;
+                Tax1040Object.Income.OtherIncome.SSB.TaxpayerNetBenefits))</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence DisplayName="Error Message" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_FEDERAL_TAX_WITHHELD_NOT_GREATER_THAN_NET_BENEFIT]</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="ErrorMessageList.Add(ErrorMessage)" sap2010:WorkflowViewState.IdRef="AddToCollection`1_2">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+              </Sequence>
+            </If.Then>
+          </If>
+          <If DisplayName="If Spouse SSB FederalTaxWithheld" sap2010:WorkflowViewState.IdRef="If_5">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.OtherIncome.SSB != null) &amp;&amp; (Tax1040Object.Income.OtherIncome.SSB.SpouseFederalTaxWithheld&gt;Tax1040Object.Income.OtherIncome.SSB.SpouseNetBenefits))</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence DisplayName="Error Message" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_FEDERAL_TAX_WITHHELD_NOT_GREATER_THAN_NET_BENEFIT]</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="ErrorMessageList.Add(ErrorMessage)" sap2010:WorkflowViewState.IdRef="AddToCollection`1_3">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+              </Sequence>
+            </If.Then>
+          </If>
+          <If DisplayName="If Tax Payer RRB FederalTaxWithheld" sap2010:WorkflowViewState.IdRef="If_6">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.OtherIncome.RRB != null) &amp;&amp; (Tax1040Object.Income.OtherIncome.RRB.TaxPayerFederalTaxWithheld&gt;Tax1040Object.Income.OtherIncome.RRB.TaxpayerNetBenefits))</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence DisplayName="Error Message" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_FEDERAL_TAX_WITHHELD_NOT_GREATER_THAN_NET_TIER_BENEFIT]</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="ErrorMessageList.Add(ErrorMessage)" sap2010:WorkflowViewState.IdRef="AddToCollection`1_4">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+              </Sequence>
+            </If.Then>
+          </If>
+          <If DisplayName="If Spouse RRB FederalTaxWithheld" sap2010:WorkflowViewState.IdRef="If_7">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.OtherIncome.RRB != null) &amp;&amp; (Tax1040Object.Income.OtherIncome.RRB.SpouseFederalTaxWithheld &gt; Tax1040Object.Income.OtherIncome.RRB.SpouseNetBenefits))</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence DisplayName="Error Message" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_FEDERAL_TAX_WITHHELD_NOT_GREATER_THAN_NET_TIER_BENEFIT]</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="ErrorMessageList.Add(ErrorMessage)" sap2010:WorkflowViewState.IdRef="AddToCollection`1_5">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+              </Sequence>
+            </If.Then>
+          </If>
+          <If DisplayName="If StateOrLocal Tax Eligibility Rule" sap2010:WorkflowViewState.IdRef="If_8">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.OtherIncome.StateOrLocalIncomeTaxRefunds != null) &amp;&amp; (Tax1040Object.Income.OtherIncome.StateOrLocalIncomeTaxRefunds.HasStateAndLocalTaxDeductionPriorYear.HasValue &amp;&amp; Tax1040Object.Income.OtherIncome.StateOrLocalIncomeTaxRefunds.HasStateAndLocalTaxDeductionPriorYear.Value))</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence DisplayName="Error Message" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_STATE_TAX_REFUND]</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="ErrorMessageList.Add(ErrorMessage)" sap2010:WorkflowViewState.IdRef="AddToCollection`1_6">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+      </If.Then>
+    </If>
+    <sads:DebugSymbol.Symbol>d5gBRTpcRGV2XFRheDEwNDBcSmVldmFuMTA0MFxQT0NcV29ya0Zsb3dcVGF4MTA0MFdGUnVsZXNhbmRDYWxjdWxhdGlvblxKVEwuVGF4MTA0MC5CdXNpbmVzc0xvZ2ljXFdvcmtGbG93XEFjdGl2aXRpZXNcT3RoZXJJbmNvbWVCdXNpbmVzc1J1bGVWYWxpZGF0aW9uLnhhbWwyOgP1AQ4CAQE/Cz93AgECQwXzAQoCAQdGC0bDAQIBCEoJ8QEUAgENSwtsEAMBggFtC40BEAIBZY4BC64BEAIBSK8BC88BEAIBK9ABC/ABEAIBDk4RT10DAYMBUw9qGgMBiAFwEXCFAgIBZnQPiwEaAgFrkQERkQGJAgIBSZUBD6wBGgIBTrIBEbIBhwICASy2AQ/NARoCATHTARHTAYgDAgEP1wEP7gEaAgEUVBFfGgMBlAFgEWkjAwGJAXURgAEaAgF3gQERigEjAgFslgERoQEaAgFaogERqwEjAgFPtwERwgEaAgE9wwERzAEjAgEy2AER4wEaAgEg5AER7QEjAgEVXBdctAEDAZoBVxdXcgMBlQFnFWd9AwGPAWMXY2oDAYoBfRd9tAECAX14F3hyAgF4iAEViAF9AgFyhAEXhAFqAgFtngEXngG5AQIBYJkBF5kBcgIBW6kBFakBfQIBVaUBF6UBagIBUL8BF78BuQECAUO6ARe6AXICAT7KARXKAX0CATjGARfGAWoCATPgARfgAZMBAgEm2wEX2wFyAgEh6wEV6wF9AgEb5wEX5wFqAgEW</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="AddToCollection`1_2" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="264,248">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,398">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="AddToCollection`1_3" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="264,248">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="464,398" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="AddToCollection`1_4" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="264,248">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="464,398" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="AddToCollection`1_5" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="264,248">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="464,398" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="AddToCollection`1_6" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="264,248">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="464,398" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="486,2274">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="611,2424" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="633,2548">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="JTL.Tax1040.BusinessLogic.WorkFlow.Activities.OtherIncomeBusinessRuleValidation_1" sap:VirtualizedContainerService.HintSize="673,2628" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

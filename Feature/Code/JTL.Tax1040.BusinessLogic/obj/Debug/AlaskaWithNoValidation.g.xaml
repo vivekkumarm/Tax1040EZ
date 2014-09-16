@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<jtbwac:AlaskaWithNoValidation xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtbwac="clr-namespace:JTL.Tax1040.BusinessLogic.WorkFlow.Activities.CalculationWithNoValidation;assembly=JTL.Tax1040.BusinessLogic" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <jtbwac:AlaskaWithNoValidation.Implementation>
+    <Sequence DisplayName="AlaskaPermanantFund Calculation">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="jtb:Form1099G" Name="Form1099G" />
+      </Sequence.Variables>
+      <If DisplayName="If Tax1040ObjectCheck">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object !=null) &amp;&amp; (Tax1040Object.Income !=null))</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <If DisplayName="If OtherIncomeCheck">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.OtherIncome !=null</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <If DisplayName="If HasAlaskaPermanantFundCheck">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.OtherIncome.HasAlaskaPermanantFund.HasValue &amp;&amp; Tax1040Object.Income.OtherIncome.HasAlaskaPermanantFund.Value</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Sequence DisplayName="Alaska Fund">
+                    <If DisplayName="If PrImary TaxPayer  &amp; Alaska Check">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.PersonalDetails !=null) &amp;&amp; (Tax1040Object.PersonalDetails.PrimaryTaxPayer !=null)) &amp;&amp; (Tax1040Object.Income.OtherIncome.AlaskaPermanentFundDividend !=null)</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <Sequence DisplayName="Alask Permanent Fund">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Double" Name="PrimaryTaxpayerAlaskaFundDividend">
+                              <Variable.Default>
+                                <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.Income.OtherIncome.AlaskaPermanentFundDividend.PrimaryTaxpayerAlaskaFundDividend.HasValue?Tax1040Object.Income.OtherIncome.AlaskaPermanentFundDividend.PrimaryTaxpayerAlaskaFundDividend.Value:0</mca:CSharpValue>
+                              </Variable.Default>
+                            </Variable>
+                            <Variable x:TypeArguments="x:Double" Name="SpouseAlaskaFundDividend">
+                              <Variable.Default>
+                                <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.Income.OtherIncome.AlaskaPermanentFundDividend.SpouseAlaskaFundDividend.HasValue ? Tax1040Object.Income.OtherIncome.AlaskaPermanentFundDividend.SpouseAlaskaFundDividend.Value : 0</mca:CSharpValue>
+                              </Variable.Default>
+                            </Variable>
+                          </Sequence.Variables>
+                          <Switch x:TypeArguments="jtco:FilingStatus">
+                            <Switch.Expression>
+                              <InArgument x:TypeArguments="jtco:FilingStatus">
+                                <mca:CSharpValue x:TypeArguments="jtco:FilingStatus">Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus</mca:CSharpValue>
+                              </InArgument>
+                            </Switch.Expression>
+                            <Sequence x:Key="Single" DisplayName="Alaska Permanent Fund Check">
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">AlaskaPermanentFund</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">PrimaryTaxpayerAlaskaFundDividend</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                            <Assign x:Key="MarriedFilingJointly">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">AlaskaPermanentFund</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">PrimaryTaxpayerAlaskaFundDividend +SpouseAlaskaFundDividend</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <Assign>
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">AlaskaPermanentFund</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(AlaskaPermanentFund, MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                    </If>
+                  </Sequence>
+                </If.Then>
+              </If>
+            </If.Then>
+          </If>
+        </If.Then>
+      </If>
+      <sads:DebugSymbol.Symbol>9xDivAUt8NAl3uIGaRRaJQ1ZmAFFOlxUYXgxMDQwRVpcVGF4MTA0MExhdGVzdFxKZWV2YW4xMDQwXEZlYXR1cmVcQ29kZVxKVEwuVGF4MTA0MC5CdXNpbmVzc0xvZ2ljXFdvcmtGbG93XEFjdGl2aXRpZXNcQ2FsY3VsYXRpb25XaXRoTm9WYWxpZGF0aW9uXEFsYXNrYVdpdGhOb1ZhbGlkYXRpb24ueGFtbBk6A6ABDgIBAT4FngEKAgECQQtBiwECAQNFCZwBDgIBB0gPSHUCAQhMDZoBEgIBDE8TT9sBAgENUxGYARwCARFUE5cBGAIBElcZV5MCAgETWxeVASICARdfH1+rAgIBHmQfZJ0CAgEYaBmIASICATGJARmUASICASRrH2ugAQIBMm4beyYCAUV8G4cBJAIBOJEBH5EBmwECASuMAR+MAXgCASVvHXomAgFGhAEhhAGaAQIBP38hf3oCATl3I3eCAQIBTXIjcnwCAUc=</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </jtbwac:AlaskaWithNoValidation.Implementation>
+</jtbwac:AlaskaWithNoValidation>

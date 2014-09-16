@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "EICWorkSheet">
+  <Mapping>
+    <PDFField>txtWKTEICStep2</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.EICWorkSheet.Line1Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTEICCreditAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.EICWorkSheet.Line2Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTEICLine4Amount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.EICWorkSheet.Line3Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTEICFilingStatusCreditAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.EICWorkSheet.Line5Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTEICLine8aCreditAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.EICWorkSheet.Line6Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkEICFilingStatusYes</PDFField>
+    <TROField Type="Bool">Tax1040.F1040EZ.F1040EZWorkSheets.EICWorkSheet.IsLine4AmountsSame</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkEICFilingStatusNo</PDFField>
+    <TROField Type="Bool">Tax1040.F1040EZ.F1040EZWorkSheets.EICWorkSheet.IsLine4AmountsSame</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkEICLine5Yes</PDFField>
+    <TROField Type="Bool">Tax1040.F1040EZ.F1040EZWorkSheets.EICWorkSheet.IsLine5Blank</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkEICLine5No</PDFField>
+    <TROField Type="Bool">Tax1040.F1040EZ.F1040EZWorkSheets.EICWorkSheet.IsLine5Blank</TROField>
+  </Mapping>
+</OutputForm>
+
+
+
+
+
+
+
+
+
+
+
+
+

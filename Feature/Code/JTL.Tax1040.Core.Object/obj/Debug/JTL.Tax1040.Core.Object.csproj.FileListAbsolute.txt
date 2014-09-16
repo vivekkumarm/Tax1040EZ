@@ -1,0 +1,5 @@
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.Core.Object\bin\Debug\JTL.Tax1040.Core.Object.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.Core.Object\bin\Debug\JTL.Tax1040.Core.Object.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.Core.Object\bin\Debug\Newtonsoft.Json.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.Core.Object\obj\Debug\JTL.Tax1040.Core.Object.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.Core.Object\obj\Debug\JTL.Tax1040.Core.Object.pdb

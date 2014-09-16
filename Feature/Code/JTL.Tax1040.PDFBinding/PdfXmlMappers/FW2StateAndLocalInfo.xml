@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "FW2PdfSchema">
+  <Mapping>
+    <PDFField>txtFW2StateCode</PDFField>
+    <TROField Type="ListType">W2StateLocalTaxInfo.State.StateCode</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2StateIDNumber</PDFField>
+    <TROField Type="ListType">W2StateLocalTaxInfo.StateIdNumber</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2StateWages</PDFField>
+    <TROField Type="ListType">W2StateLocalTaxInfo.StateWagesAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2StateIncomeTax</PDFField>
+    <TROField Type="ListType">W2StateLocalTaxInfo.StateTaxWithholdingAmount</TROField>
+  </Mapping>
+</OutputForm>

@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/jquery-2.1.0.min.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../lib/Config.js"></script>
+    <script src="../Scripts/Pages/Credits/creditsummary.js"></script>
+</head>
+<body>
+
+    <form id="frmDeductionSummary">
+        <div class="container">
+            <!--Header-->
+
+            <script type="text/javascript" src="../lib/header.js"></script>
+
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+
+                    <!--Bread Crum-->
+
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+
+                    <!-- Left menu -->
+                    <div class="innerform">
+
+                        <!-- Left menu -->
+                        <script type="text/javascript" src="../lib/creditleftmenu.js"></script>
+
+                        <div class="formfull">
+                            <!-- Right Help area -->
+                            <div id="riht">
+                                <script type="text/javascript" src="../lib/rightmenu.js"></script>
+                            </div>
+
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Credit Summary
+                                             <!-- Right side collapse area menu  -->
+                                            <a id="changeSidebarPos" data-original-title="Show / Hide Sidebar" data-toggle="tooltip" class="hidden-xs open pull-right" href="#"><i class="transfer"></i></a>
+                                        </h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Credit Summary</a><!--Amount : <span class="spanEICWorksheetValue">0</span>-->
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <div id="divQualifiedForEIC">
+                                                        <h3>Hi, <span class="spanTaxPayer"></span>,You are qualified to claim Earned Income Credit for <span class="spanCurrentTaxyear"></span>.
+                                                            This Credit will reduce Your tax liability. 
+                                                            To know more about EIC Credits, Click here.
+                                                        </h3>
+
+                                                        <div class="c4c8">
+                                                            <div class="left">
+                                                                <span class="spanCurrentTaxyear"></span>
+                                                                Earned Income Credit
+                                                            </div>
+                                                            <div class="right">
+                                                                <span class="spanEICWorksheetValue"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="divNotQualifiedForEIC">
+                                                        <div>
+                                                            <h4>
+                                                                <span class="spanTaxPayer"></span>, You are not qualified for Earned Income Credit for any of the following reasons.
+                                                            </h4>
+                                                            <ul class="list-group">
+                                                                <li>
+                                                                    <p>ToYou & Your Spouse(MFJ) not have a Valid SSN that allows You to work.</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p>You & Your Spouse (MFJ) not Lived in United States for more than half of the year(<span class="spanCurrentTaxyear"></span>).</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p>You & Your Spouse(MFJ) Claimed as Qualified Child on another Person tax return.</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p>You received Notice from IRS as not to Claim EIC</p>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 </div>
+                                            </div>
+                                         
+                                       <!-- <div class="panel panel-primary">-->
+                                            <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Diagnostics</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body-grid">
+                                                    <div class="pangird head">
+                                                        <label class="col-md-12">Error Message</label>
+                                                    </div>
+
+                                                    <div id="dvDiagnostics" class="pangird itm">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                             <!--</div>-->
+                                         </div>
+                                </div>
+                                <div class="c12">
+                                    <button type="submit" class="btn btn-success" id="btnContinue">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+    <script>
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.TAX1040.PaymentLibrary\bin\Debug\JTL.TAX1040.PaymentLibrary.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.TAX1040.PaymentLibrary\bin\Debug\JTL.TAX1040.PaymentLibrary.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.TAX1040.PaymentLibrary\obj\Debug\JTL.TAX1040.PaymentLibrary.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.TAX1040.PaymentLibrary\obj\Debug\JTL.TAX1040.PaymentLibrary.pdb

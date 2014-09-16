@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F69E72CD-6CC2-4B32-AFCF-7E531B7B2452}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JTL.Tax1040.BusinessObject</RootNamespace>
+    <AssemblyName>JTL.Tax1040.BusinessObject</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Address.cs" />
+    <Compile Include="AddressBase.cs" />
+    <Compile Include="AlaskaPermanentFundDividend.cs" />
+    <Compile Include="BankDetails.cs" />
+    <Compile Include="BankProduct.cs" />
+    <Compile Include="BillingAddress.cs" />
+    <Compile Include="BillingDetails.cs" />
+    <Compile Include="CA5402EZPage1.cs" />
+    <Compile Include="CA5402EZPage2.cs" />
+    <Compile Include="CA5402EZPage3.cs" />
+    <Compile Include="CA5402EZPage4.cs" />
+    <Compile Include="CA540Page1.cs" />
+    <Compile Include="CA540Page2.cs" />
+    <Compile Include="CA540Page3.cs" />
+    <Compile Include="CA540Page4.cs" />
+    <Compile Include="CA540Page5.cs" />
+    <Compile Include="CAOutputForms.cs" />
+    <Compile Include="CommonEligibility.cs" />
+    <Compile Include="CompanyAddress.cs" />
+    <Compile Include="Country.cs" />
+    <Compile Include="CreditCard.cs" />
+    <Compile Include="CreditCardType.cs" />
+    <Compile Include="Credits.cs" />
+    <Compile Include="Deductions.cs" />
+    <Compile Include="DeductionsWorkSheet.cs" />
+    <Compile Include="Dependent.cs" />
+    <Compile Include="EIC.cs" />
+    <Compile Include="EICWorkSheet.cs" />
+    <Compile Include="EmailData.cs" />
+    <Compile Include="Employer.cs" />
+    <Compile Include="F1040EZ.cs" />
+    <Compile Include="F1040EZEligibility.cs" />
+    <Compile Include="F1040EZWorkSheets.cs" />
+    <Compile Include="FederalFiling.cs" />
+    <Compile Include="Filing.cs" />
+    <Compile Include="Feature.cs" />
+    <Compile Include="FederalFeature.cs" />
+    <Compile Include="FederalFeatureSKU.cs" />
+    <Compile Include="ForeignAddress.cs" />
+    <Compile Include="Form1099G.cs" />
+    <Compile Include="Form1099INT.cs" />
+    <Compile Include="Form1099OID.cs" />
+    <Compile Include="Form1099StateInformation.cs" />
+    <Compile Include="Form8862.cs" />
+    <Compile Include="Form8879.cs" />
+    <Compile Include="Income.cs" />
+    <Compile Include="IncomeDTO.cs" />
+    <Compile Include="InterestIncomeEligibility.cs" />
+    <Compile Include="InterestOnUnpaidDue.cs" />
+    <Compile Include="IRS.cs" />
+    <Compile Include="IRSTransmission.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="Organization.cs" />
+    <Compile Include="OtherDeductsBenefits.cs" />
+    <Compile Include="OtherIncome.cs" />
+    <Compile Include="OutputForms.cs" />
+    <Compile Include="PaidTaxReturnPreparers.cs" />
+    <Compile Include="Payer.cs" />
+    <Compile Include="PayerAddress.cs" />
+    <Compile Include="PaymentDTO.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="PersonalAddress.cs" />
+    <Compile Include="PersonalDetails.cs" />
+    <Compile Include="PrimaryTaxPayer.cs" />
+    <Compile Include="ProductSKU.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QualifyingChild.cs" />
+    <Compile Include="RailroadRetirementIncome.cs" />
+    <Compile Include="StateCA.cs" />
+    <Compile Include="StateDTO.cs" />
+    <Compile Include="StateTransmission.cs" />
+    <Compile Include="UserRating.cs" />
+    <Compile Include="UserReferral.cs" />
+    <Compile Include="ReferralRating.cs" />
+    <Compile Include="Settlement.cs" />
+    <Compile Include="ShoppingCart.cs" />
+    <Compile Include="SocialSecurityBenefits.cs" />
+    <Compile Include="Spouse.cs" />
+    <Compile Include="SSBWorkSheet.cs" />
+    <Compile Include="State.cs" />
+    <Compile Include="StateBO.cs" />
+    <Compile Include="StateForms.cs" />
+    <Compile Include="StateFiling.cs" />
+    <Compile Include="StateFeature.cs" />
+    <Compile Include="StateFeatureSKU.cs" />
+    <Compile Include="StateOrLocalIncomeTaxRefunds.cs" />
+    <Compile Include="Tax1040.cs" />
+    <Compile Include="Tax1040EZPage1.cs" />
+    <Compile Include="Tax8862Page1.cs" />
+    <Compile Include="Tax8879Page1.cs" />
+    <Compile Include="FilerState.cs" />
+    <Compile Include="TaxesAndPenalties.cs" />
+    <Compile Include="TaxReturnData.cs" />
+    <Compile Include="ThirdPartyDesignee.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserDTO.cs" />
+    <Compile Include="W2.cs" />
+    <Compile Include="W2EmployeeAddress.cs" />
+    <Compile Include="W2EmployerCode.cs" />
+    <Compile Include="W2LocalTaxInfo.cs" />
+    <Compile Include="W2StateLocalTaxInfo.cs" />
+    <Compile Include="WrapUp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JTL.Tax1040.Core.Object\JTL.Tax1040.Core.Object.csproj">
+      <Project>{841d591b-c677-497c-90cb-bd736f87ddc7}</Project>
+      <Name>JTL.Tax1040.Core.Object</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "FW2PdfSchema">
+  <Mapping>
+    <PDFField>txtFW2WagesAmount</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.WagesAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2FederalTaxWithheld</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.FederalTaxWithholdingAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2SocialSecurityWages</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.SocialSecurityWagesAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2SocialSecurityTaxWithheld</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.SocialSecurityTaxWithholdingAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2MedicareWages</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.MedicareWagesAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2MedicareTaxWithheld</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.MedicareTaxWithholdingAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2SocialSecurityTips</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.SocialSecurityTipsAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2AllocatedTips</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.AllocatedTipsAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2DependentCareBenefits</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.DependentCareBenefitsAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2NonqualifiedPlans</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.NonQualifiedPlansAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployerCompanyName</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.Employer.Organization.Name</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployerIdentificationNumber</PDFField>
+    <TROField Type="String">Tax1040.Income.W2.Employer.Organization.EIN</TROField>
+  </Mapping>
+  
+  <Mapping>
+    <PDFField>txtFW2EmployeeStreetAddress</PDFField>
+    <TROField Type="string">Tax1040.Income.W2.Employer.Organization.Address.PersonalAddress.StreetAddress</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployeeApartmentNo</PDFField>
+    <TROField Type="string">Tax1040.Income.W2.Employer.Organization.Address.PersonalAddress.ApartmentNumber</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployeeStateCode</PDFField>
+    <TROField Type="string">Tax1040.Income.W2.Employer.Organization.Address.PersonalAddress.StateCode</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployeeZipCode</PDFField>
+    <TROField Type="string">Tax1040.Income.W2.Employer.Organization.Address.PersonalAddress.ZipCode</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployerStreetAddress</PDFField>
+    <TROField Type="string">Tax1040.Income.W2.Employer.Organization.Address.CompanyAddress.StreetAddress</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployerStateCode</PDFField>
+    <TROField Type="string">Tax1040.Income.W2.Employer.Organization.Address.CompanyAddress.StateId</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployerZipCode</PDFField>
+    <TROField Type="string">Tax1040.Income.W2.Employer.Organization.Address.CompanyAddress.Zip</TROField>
+  </Mapping>
+
+
+  <Mapping>
+    <PDFField>txtFW2EmployeeFirstName</PDFField>
+    <TROField Type="string">Tax1040.PersonalDetails.Spouse.Person.FirstName</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtFW2EmployeeLastName</PDFField>
+    <TROField Type="string">Tax1040.PersonalDetails.Spouse.Person.LastName</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtFW2EmployeeInitial</PDFField>
+    <TROField Type="string">Tax1040.PersonalDetails.Spouse.Person.MiddleInitial</TROField>
+  </Mapping>
+  
+  <Mapping>
+    <PDFField>txtFW2StateIDNumber</PDFField>
+    <TROField Type="List">Tax1040.Income.W2.W2StateLocalTaxInfo.StateId</TROField>
+  </Mapping>
+  
+  <Mapping>
+    <PDFField>txtFW2StateCode</PDFField>
+    <TROField Type="List">Tax1040.Income.W2.W2StateLocalTaxInfo.StateCode</TROField>
+  </Mapping>
+  
+  
+  <Mapping>
+    <PDFField>txtFW2StateWages</PDFField>
+    <TROField Type="List">Tax1040.Income.W2.W2StateLocalTaxInfo.StateWagesAmount</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtFW2StateIncomeTax</PDFField>
+    <TROField Type="List">Tax1040.Income.W2.W2StateLocalTaxInfo.StateTaxWithholdingAmount</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtFW2LocalityName</PDFField>
+    <TROField Type="List">Tax1040.Income.W2.W2StateLocalTaxInfo.W2LocalTaxInfo.LocalityName</TROField>
+  </Mapping>
+
+  
+  <Mapping>
+    <PDFField>txtFW2LocalWages</PDFField>
+    <TROField Type="List">Tax1040.Income.W2.W2StateLocalTaxInfo.W2LocalTaxInfo.LocalWagesAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2LocalincomeTax</PDFField>
+    <TROField Type="List">Tax1040.Income.W2.W2StateLocalTaxInfo.W2LocalTaxInfo.LocalTaxWithholdingAmount</TROField>
+  </Mapping>
+  
+  <Mapping>
+    <PDFField>txtFW2Other</PDFField>
+    <TROField Type="List">Tax1040.Income.W2.OtherDeductsBenefits.Amount</TROField>
+  </Mapping>
+  
+  <Mapping>
+    <PDFField>txtFW2Other</PDFField>
+    <TROField Type="List">Tax1040.Income.W2.OtherDeductsBenefits.Description</TROField>
+  </Mapping>
+  
+  <!--//TODO:have to implementd for Enum value. -->
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.NoneSelected</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.AUncollectedSocSecOrRRTATaxOnTips</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.BUncollectedMedicareTaxOnTips</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.CTaxableCostofgroupTermLifeInsurance</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.DElectiveDeferralsToSection401k</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.EElectiveDeferralsToSection403b</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.FElectiveDeferralsToSection408k6</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.GElectiveDeferralsToSection457bPlan</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.HElectiveDeferralsToSection501c18DPlan</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.JNonTaxableSickPay</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.KExciseTaxOnExcessGoldenParachutePayments</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.LSubstantiatedEmployeeBusinessReimbursement</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.MUncollectedSocSecOrRRTATaxOnGrpTermsLifeIns</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.NUncollectedMedicareTaxOnGroupTermLifeInsurance</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.PExcludableMovingExpenseReimbursements</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.QNonTaxableCombatPay</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.REmployeeContributionsToAnArcherMSA</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.SEmployeeSalaryReductionUnderSection408pSIMPLE</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.TAdoptionBenefits</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.VIncomeFromExerciseOfNonstatutoryStockOptions</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.WEmployerAndEmployeeContributionsToAHealthSavingsAccount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.YNonQualifiedDefferredCompensationPlan</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.ZIncomeReceivedUnder409ANonQualifiedDeferredCompensationPlan</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.AATaxContributionToRoth401RetirementPlan</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.BBTaxContributionToRoth402RetirementPlan</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.DDReportCostOfNonTaxableHealthInsurance</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField></PDFField>
+    <TROField Type="">Tax1040.Income.W2.W2EmployerCodes.EmployerCode.EETaxContributionToRoth457RetirementPlanByGovernment</TROField>
+  </Mapping>
+  
+  <Mapping>
+    <PDFField>chkFW2StatutoryEmployee</PDFField>
+    <TROField Type="bool">Tax1040.Income.W2.IsStatutoryEmployee</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkFW2RetirementPlan</PDFField>
+    <TROField Type="bool">Tax1040.Income.W2.HasRetirementPlan</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkFW2ThirdPartySickPay</PDFField>
+    <TROField Type="bool">Tax1040.Income.W2.HasThirdPartySickPay</TROField>
+  </Mapping>
+  
+</OutputForm>
+
+
+
+
+
+
+
+
+
+
+
+
+

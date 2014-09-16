@@ -1,0 +1,586 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
+    <script src="../../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <!--<script src="../../lib/config.js"></script>-->
+    <script src="../../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../../Scripts/jquery.validate.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
+    <script src="../../Scripts/tooltip.js"></script>
+    <script src="../../Scripts/custom.js"></script>
+    <script src="../../Scripts/popover.js"></script>
+    <script src="../../Scripts/bootstrap-datepicker.js"></script>
+    <script src="../../lib/controlconfig.js"></script>
+    <script src="../../Scripts/Pages/State/CA/cacredits.js"></script>
+</head>
+<body>
+    <form id="frmcredits">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../../lib/breadcrum.js"></script>
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <!--  <script type="text/javascript" src="../../lib/leftmenu.js"></script>-->
+                        <div class="">
+
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>California Credits</h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue ">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                                        id="aCACredits">Credits</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+
+                                                    <h4>To reduce your California tax liability, Check here if any of the credits applies to you.</h4>
+
+                                                    <h4>California Credits:</h4>
+
+                                                    <ul class="list-group">
+                                                        <li>
+                                                            <label>
+                                                                <input type="checkbox" id="chknonRefundableRentersCredit" value="1" tabindex="1" />
+                                                                Non Refundable Renters Credit
+                                                            </label>
+
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                <input type="checkbox" id="chkotherStateTaxCredits" tabindex="2" />Other state tax Credits
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                <input type="checkbox" id="chkotherCaliforniaCredits" value="3" tabindex="3" />
+                                                                Other California Credits
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                <input type="checkbox" id="chkPoliticalContributionCredit" value="4" tabindex="4" />
+                                                                Carryover of Prior year tax credits ( Political Contribution Credit)
+                                                            </label>
+
+                                                        </li>
+
+                                                    </ul>
+
+
+
+                                                    <button type="submit" id="btncollapseOneNext" class="btn btn-success" tabindex="37">
+                                                        Next</button>
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+                                        <!--   <div id="divnonRefundableRenterCredit">-->
+                                        <div class="panel panel-blue divnonRefundableRenterCredit" id="divRenterCredit">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseTwo" id="aCARefundableRenterCredit">Non Refundable Renter's Credit
+                                                    </a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>To qualify for this credit, you have to provide the below information and check if you are eligible for it.</h4>
+                                                    <label class="right">
+                                                        Did you pay rent, for at least half of 2014, on property (including a mobile home that you owned or rented land) in California, which was your principal residence.</label>
+                                                    <div class="field-group">
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radpayrent" id="Radio1" tabindex="19" />
+                                                            Yes
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radpayrent" id="Radio2" tabindex="20" />
+                                                            No
+                                                        </label>
+                                                    </div>
+
+                                                    <label class="right">Did you live in the home of the person who can claim you as a Dependent for more than half of the year in <span class="SpanCurrentTaxYear"></span>?  </label>
+                                                    <div class="field-group">
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radpayrent" id="Radio3" tabindex="19" />
+                                                            Yes
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radpayrent" id="Radio4" tabindex="20" />
+                                                            No
+                                                        </label>
+                                                    </div>
+
+                                                    <label class="right">Was the property you rented exempt from property tax in  <span class="SpanCurrentTaxYear"></span>?  </label>
+                                                    <div class="field-group">
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radpayrent" id="Radio5" tabindex="19" />
+                                                            Yes
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radpayrent" id="Radio6" tabindex="20" />
+                                                            No
+                                                        </label>
+                                                    </div>
+
+                                                    <label class="right">Did you claim any Homeowner's Property Tax Exemption anytime during  <span class="SpanCurrentTaxYear"></span>? </label>
+                                                    <div class="field-group">
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radpayrent" id="Radio7" tabindex="19" />
+                                                            Yes
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radpayrent" id="Radio8" tabindex="20" />
+                                                            No
+                                                        </label>
+                                                    </div>
+
+                                                    <label class="right">Did your Spouse/RDP claim the Homeowner's Property Tax Exemption anytime during <span class="SpanCurrentTaxYear"></span>?  </label>
+                                                    <div class="field-group">
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radpayrent" id="Radio9" tabindex="19" />
+                                                            Yes
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radpayrent" id="Radio10" tabindex="20" />
+                                                            No
+                                                        </label>
+                                                    </div>
+
+                                                    <label class="right">Did you or your Spouse (MFJ) maintain Separate Residence for the entire tax year in <span class="SpanCurrentTaxYear"></span>?  </label>
+                                                    <div class="field-group">
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radentiretaxyear" id="Radio11" tabindex="19" />
+                                                            Yes
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radentiretaxyear" checked="checked" id="Radio12" tabindex="20" />
+                                                            No
+                                                        </label>
+                                                    </div>
+                                                    <p>You do not qualify for Non-refundable Renter's Credit for the below reason:</p>
+                                                    <p>Your California Adjusted Gross Income for the year 2014 is greater than  </p>
+                                                    <p>$36,955 for Single.</p>
+                                                    <p>$73,910 for MFJ(Married Filing Jointly).</p>
+                                                    <button type="submit" id="btn" class="btn btn-success" tabindex="37">
+                                                        Next</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue divnonRefundableRenterCredit">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseThree" id="aCACreditRefundableRenter">Non Refundable Renter's Credit
+                                                    </a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapseThree" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>Good News, you are qualified to Claim Non-refundable Tax Credit of $<label id="lblCredits"></label>
+                                                        for the year 2014.
+                                                    </h4>
+                                                    <h4>TaxGarden supports you to file your tax return accurately and enjoy more tax credits.   
+                                                    </h4>
+                                                    <p>
+                                                        You do not qualified for Non-refundable Renter's Credit for the below reason:
+                                                    </p>
+                                                    <ul class="list-group">
+                                                        <li>
+                                                            <label>
+                                                                Your California Tax Liability is Zero.
+
+                                                            </label>
+
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                You were claimed as Dependent of someone else tax return.
+
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                You didn't rent your California Principal Residence for at least 6 months in 2014.
+ 
+                                                               
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                You are claiming the Homeowner Property Tax Exemption in 2014.
+
+                                                               
+                                                            </label>
+
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                Your principal California Residence Exempt from property tax
+
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                Your Income is more than 
+                                                                <div class="field-group">
+                                                                    <p>$36,955 for Single</p>
+                                                                    <p>$73,910 for MFJ(Married Filing Jointly)</p>
+                                                                </div>
+                                                            </label>
+                                                        </li>
+                                                    </ul>
+                                                    <button type="submit" id="Button1" class="btn btn-success" tabindex="37">
+                                                        Next</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- </div>-->
+
+
+                                        <!-- <div id="divotherStateTaxCredits">-->
+                                        <div class="panel panel-blue divotherStateTaxCredits">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseFour" id="aCACreditsOtherStateTax">Other State Tax Credits
+
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour" class="panel-collapse collapse">
+                                                <div class="panel-body">
+
+                                                    <h4>If you were California resident in 2014, and received any other source of Income from Non-resident State 
+                                                      and paid taxes to your Non-resident State, then you can claim Credit on your Resident Tax Return
+                                                       for taxes paid to Non-resident State.
+                                                    </h4>
+
+                                                    <p>
+                                                        To Claim other State Tax Credit, you need to complete all your Non-resident Tax Return.                                          
+                                                    </p>
+                                                    <div id="divp7" class="panel panel-primary">
+                                                        <!--  <div class="panel-heading">-->
+                                                        <h3>Taxes paid to another State</h3>
+                                                        <!--  </div>-->
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="pull-right">
+                                                            <span id="divp10">
+                                                                <a class="btn btn-default btn-xs " id="btnaddNewState" href="#"><i class="fa fa-plus "></i>Add State</a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="divO1">
+
+                                                        <div class="panel panel-primary">
+                                                            <div class="panel-heading">
+                                                                <h3>Add State</h3>
+
+                                                            </div>
+                                                            <div class="panel-body">
+                                                                <br />
+                                                                <div class="field-group" id="divStateCode">
+                                                                    <p>Select the State that you paid taxes to, and is not your Resident State?</p>
+                                                                    <div class="left-lbl">
+                                                                        <label for="lblTaxespaidtoanotherstate">Select State</label>
+                                                                    </div>
+                                                                    <div class="right">
+                                                                        <select name="ddlTaxespaidtoanotherstate" id="ddlTaxespaidtoanotherstate">
+                                                                        </select>
+                                                                    </div>
+                                                                    <a id="popStateOfResidence" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                                </div>
+
+
+
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl"></div>
+                                                                    <div class="right">
+                                                                        <button type="submit" id="btncancel" class="btn btn-primary">Okay</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <br />
+
+                                                    </div>
+                                                    <div id="divaddstate" class="panel panel-primary">
+                                                        <div class="panel-heading">
+                                                            <h3>Select the State that you paid taxes, which is not your resident State?</h3>
+                                                        </div>
+                                                        <div class="panel-body-grid">
+                                                            <div class="pangird head" id="divResidentstate">
+                                                                <label class="col-md-4" id="lbl_stateNamestatic">
+                                                                    &nbsp;State Name
+                                                                </label>
+
+                                                                <label class="col-md-4">Action&nbsp;</label>
+                                                            </div>
+                                                            <div id="divAddingEmptyRecord">
+                                                                <div class="pangird itm" id="divoriginalresident">
+                                                                    <input type="hidden" id="hdnstaticstate" />
+                                                                    <label class="col-md-4">
+                                                                        <label id="lblNameOfState"></label>
+                                                                    </label>
+
+                                                                    <label class="col-md-4">
+                                                                        <a href="#" title="Review" id="reviewTaxespaidtoanotherState" onclick="ReviewStates();return false;">Review</a>
+                                                                        <a href="#" title="Delete" id="deleteTaxespaidtoanotherState" onclick="DeleteState();return false;">Delete</a>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div id="divdynamicList"></div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <h4>Enter the Part-year or  Non-resident  State Information for taxes paid to other State below:
+                                                    </h4>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtAGI">Adjusted Gross Income</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtAGI" name="txtAGI" maxlength="11" placeholder="Adjusted Gross Income"
+                                                                class="form-control tip"
+                                                                onkeyup="javascript:return maskInput(this.value,this,'3,6',event);"
+                                                                tabindex="8" data-toggle="tooltip" data-placement="right" title="Adjusted Gross Income" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popAdjustedGrossIncome" data-toggle="popover" class="help" rel="popover"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtAGI">
+                                                                Taxes paid
+                                                            </label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtTaxespaid" name="txtTaxespaid
+"
+                                                                maxlength="11" placeholder="Taxes paid"
+                                                                class="form-control tip"
+                                                                onkeyup="javascript:return maskInput(this.value,this,'3,6',event);"
+                                                                tabindex="8" data-toggle="tooltip" data-placement="right" title="Taxespaid" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="A4" data-toggle="popover" class="help" rel="popover"></a>
+                                                    </div>
+
+                                                    <p>Tell us about Income taxed by more than one State below:</p>
+
+                                                    <div class="table-responsive table-bordered">
+                                                        <table class="table table-hover " style="margin-bottom: 0;">
+                                                            <thead>
+                                                                <tr class="active">
+                                                                    <th>Description of Income</th>
+                                                                    <th>Income taxable by California</th>
+                                                                    <th>Income Taxable by other State</th>
+                                                                    <th>&nbsp;</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="text" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                            tabindex="1" id="txtDescriptionofIncome1" name="txtDescriptionofIncome1" placeholder="" class="form-control tip amountField"
+                                                                            data-toggle="tooltip" data-placement="right" title="Check for this in Box 5 of Form SSA-1099" data-trigger="focus" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                            tabindex="1" id="txtIncometaxablebyCalifornia1" name="txtIncometaxablebyCalifornia1" placeholder="" class="form-control tip amountField"
+                                                                            data-toggle="tooltip" data-placement="right" title="Check for this in Box 5 of Form SSA-1099" data-trigger="focus" />
+                                                                    </td>
+                                                                    <!-- <td>
+
+
+                                                                            <a id="popTaxPayerNetBenefitSSB" data-toggle="popover" class="help qik " rel="popover"></a>
+                                                                        </td>-->
+                                                                    <td id="txtSpouseNetBenefitSSBtd">
+                                                                        <input type="text" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                            tabindex="2" id="txtIncomeTaxablebyotherState1" name="txtIncomeTaxablebyotherState1" placeholder="" class="form-control tip amountField"
+                                                                            data-toggle="tooltip" data-placement="right" title="Check for this in Box 5 of Form SSA-1099" data-trigger="focus" />
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a id="popTaxPayerNetBenefitSSB" data-toggle="popover" class="help qik " rel="popover"></a>
+                                                                        <!--<a id="popSpouseNetBenefitSSB" data-toggle="popover" class="help qik " rel="popover"></a>-->
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="text" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                            tabindex="1" id="txtDescriptionofIncome2" name="txtDescriptionofIncome2" placeholder="" class="form-control tip amountField"
+                                                                            data-toggle="tooltip" data-placement="right" title="Check for this in Box 5 of Form SSA-1099" data-trigger="focus" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                            tabindex="3" id="txtIncometaxablebyCalifornia2" name="txtIncometaxablebyCalifornia2" placeholder="" class="form-control tip amountField"
+                                                                            data-toggle="tooltip" data-placement="right" title="Check for this in Box 6 of Form SSA-1099" data-trigger="focus" />
+                                                                    </td>
+                                                                    <!--  <td>
+
+                                                                            <a id="popTaxPayerFederalTaxSSB" data-toggle="popover" class="help qik " rel="popover"></a>
+                                                                        </td>-->
+                                                                    <td id="txtSpouseFederalTaxSSBtd">
+                                                                        <input type="text" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                            tabindex="4" id="txtIncomeTaxablebyotherState2" name="txtIncomeTaxablebyotherState2" placeholder="" class="form-control tip amountField"
+                                                                            data-toggle="tooltip" data-placement="right" title="Check for this in Box 6 of Form SSA-1099" data-trigger="focus" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <a id="popTaxPayerFederalTaxSSB" data-toggle="popover" class="help qik " rel="popover"></a>
+                                                                        <!--<a id="popSpouseFederalTaxSSB" data-toggle="popover" class="help qik" rel="popover"></a>-->
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="text" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                            tabindex="1" id="txtDescriptionofIncome3" name="txtDescriptionofIncome3" placeholder="" class="form-control tip amountField"
+                                                                            data-toggle="tooltip" data-placement="right" title="Check for this in Box 5 of Form SSA-1099" data-trigger="focus" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                            tabindex="5" id="txtIncometaxablebyCalifornia3" name="txtIncometaxablebyCalifornia3" placeholder="" class="form-control tip amountField"
+                                                                            data-toggle="tooltip" data-placement="right" title="Check for this in Box 5 of Form 1099 RRB" data-trigger="focus" />
+                                                                    </td>
+                                                                    <!-- <td>
+                                                                            <a id="popTaxPayerBenefitsRRB" data-toggle="popover" class="help qik " rel="popover"></a>
+                                                                        </td>-->
+                                                                    <td id="txtSpouseNetBenefitsRRBtd">
+                                                                        <input type="text" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                            tabindex="6" id="txtIncomeTaxablebyotherState3" name="txtIncomeTaxablebyotherState3" placeholder="" class="form-control tip amountField"
+                                                                            data-toggle="tooltip" data-placement="right" title="Check for this in Box 5 of Form 1099 RRB" data-trigger="focus" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <a id="popTaxPayerBenefitsRRB" data-toggle="popover" class="help qik " rel="popover"></a>
+                                                                        <!--<a id="popSpouseBenefitsRRB" data-toggle="popover" class="help qik " rel="popover"></a>-->
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div id="divotherCaliforniaCredits">-->
+                                        <div class="panel panel-blue" id="divotherCaliforniaCredits">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseFive" id="aCAotherCaliforniaCredits">Other California Credits
+
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFive" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>You can claim different type of Tax Credits on your Tax return. Tax Garden Supports only Non-refundable Renters Credit and other State Tax Credits.</h4>
+                                                    <p>
+                                                        Click here , to know more about Credits.
+                                                    </p>
+
+                                                    <button type="submit" id="Button5" class="btn btn-success" tabindex="37">
+                                                        Next</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!--    <div id="divPoliticalContributionCredit">-->
+                                        <div class="panel panel-blue" id="divPoliticalContributionCredit">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseseven" id="aPoliticalContributionCredit">Political Contribution Credit
+
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseseven" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>Enter your Political Contribution Credit for prior year made before January 1, 1992. (Only if a carryover is available from tax year 1987 through 1991).</h4>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtssn">Political Contribution Credit Carryover</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtContributionCredit" name="txtContributionCredit" placeholder="Political Contribution  Credit"
+                                                                class="form-control tip"
+                                                                onkeyup="javascript:return maskInput(this.value,this,'3,6',event);"
+                                                                tabindex="8" data-toggle="tooltip" data-placement="right" title="Political Contribution  Credit" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popPoliticalContributionCredit" data-toggle="popover" class="help" rel="popover"></a>
+                                                    </div>
+
+                                                    <button type="submit" id="btncollapseFiveNext" class="btn btn-primary" onclick="GoToPreviousPage();return false;">
+                                                        Back</button>
+                                                    <button type="submit" id="btncollapseFiveContinue" class="btn btn-success" tabindex="37">
+                                                        Continue</button>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- </div>-->
+                                        <!-- </div>-->
+                                    </div>
+                                    <button type="submit" id="Button3" class="btn btn-primary" onclick="GoToPreviousPage();return false;">
+                                        Back</button>
+                                    <button type="submit" id="Button4" class="btn btn-success" tabindex="37">
+                                        Continue</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--//Footer-->
+                <script type="text/javascript" src="../../lib/footer.js"></script>
+            </div>
+    </form>
+
+
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.TAX1040.Admin.BusinessObject", "JTL.TAX1040.Admin.BusinessObject\JTL.TAX1040.Admin.BusinessObject.csproj", "{AC45EE8F-762A-4DEC-8BDF-B24B1878E3C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.TAX1040.Admin.BusinessLogic", "JTL.TAX1040.Admin.BusinessLogic\JTL.TAX1040.Admin.BusinessLogic.csproj", "{EF54636D-BB2A-4490-9AA5-272C315885F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.TAX1040.Admin.DataAccess", "JTL.TAX1040.Admin.DataAccess\JTL.TAX1040.Admin.DataAccess.csproj", "{962F12D6-B5F9-4072-94BA-2BC0595B692E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAX1040.Admin.Web.UI", "TAX1040.Admin.Web.UI\TAX1040.Admin.Web.UI.csproj", "{A7B54CE7-ED32-44A1-8165-D0C53F902E5A}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.168.1.10:8080/tfs/jeevantax
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = JTL.TAX1040.Admin.BusinessLogic\\JTL.TAX1040.Admin.BusinessLogic.csproj
+		SccProjectName1 = JTL.TAX1040.Admin.BusinessLogic
+		SccLocalPath1 = JTL.TAX1040.Admin.BusinessLogic
+		SccProjectUniqueName2 = JTL.TAX1040.Admin.BusinessObject\\JTL.TAX1040.Admin.BusinessObject.csproj
+		SccProjectName2 = JTL.TAX1040.Admin.BusinessObject
+		SccLocalPath2 = JTL.TAX1040.Admin.BusinessObject
+		SccProjectUniqueName3 = JTL.TAX1040.Admin.DataAccess\\JTL.TAX1040.Admin.DataAccess.csproj
+		SccProjectName3 = JTL.TAX1040.Admin.DataAccess
+		SccLocalPath3 = JTL.TAX1040.Admin.DataAccess
+		SccProjectUniqueName4 = TAX1040.Admin.Web.UI\\TAX1040.Admin.Web.UI.csproj
+		SccProjectName4 = TAX1040.Admin.Web.UI
+		SccLocalPath4 = TAX1040.Admin.Web.UI
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC45EE8F-762A-4DEC-8BDF-B24B1878E3C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC45EE8F-762A-4DEC-8BDF-B24B1878E3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC45EE8F-762A-4DEC-8BDF-B24B1878E3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC45EE8F-762A-4DEC-8BDF-B24B1878E3C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF54636D-BB2A-4490-9AA5-272C315885F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF54636D-BB2A-4490-9AA5-272C315885F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF54636D-BB2A-4490-9AA5-272C315885F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF54636D-BB2A-4490-9AA5-272C315885F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{962F12D6-B5F9-4072-94BA-2BC0595B692E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{962F12D6-B5F9-4072-94BA-2BC0595B692E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{962F12D6-B5F9-4072-94BA-2BC0595B692E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{962F12D6-B5F9-4072-94BA-2BC0595B692E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B54CE7-ED32-44A1-8165-D0C53F902E5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B54CE7-ED32-44A1-8165-D0C53F902E5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B54CE7-ED32-44A1-8165-D0C53F902E5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B54CE7-ED32-44A1-8165-D0C53F902E5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

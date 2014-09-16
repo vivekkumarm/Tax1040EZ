@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "1040V">
+  <Mapping>
+    <PDFField>txtF1040VPrimaryTaxpayerSSN</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.SSN</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040VSpouseTaxpayerSSN</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.Spouse.Person.SSN</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040VAmountToPay</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TaxOweAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040VAmountToPayDecimal</PDFField>
+    <TROField Type="Decimal">tax1040.OutputForms.Tax1040EZPage1.TaxOweAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040VPrimaryTaxpayerFirstName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.FirstName</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtF1040VPrimaryTaxpayerLastName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.LastName</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF1040VSpouseFirstName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.Spouse.Person.FirstName</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF1040VSpouseLastName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.Spouse.Person.LastName</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF1040VHomeAddress</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.StreetAddressForPdfOutput</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF1040VForeignAddress</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.AddressForPdfOutput</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF1040VApartmentNumber</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.ApartmentNumberForPdfOutput</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF1040VForeignCountryName</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.CountryCode</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF1040VForeignProvince</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.ForeignAddress.StateOrProvince</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtF1040VForeignPostalCode</PDFField>
+    <TROField Type="String">tax1040.PersonalDetails.PrimaryTaxPayer.Person.Address.ForeignAddress.PostalCode</TROField>
+  </Mapping>
+
+</OutputForm>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

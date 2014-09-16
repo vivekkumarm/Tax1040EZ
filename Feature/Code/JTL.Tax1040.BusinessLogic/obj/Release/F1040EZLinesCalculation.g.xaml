@@ -1,0 +1,1961 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<local1:F1040EZLinesCalculation xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:local="clr-namespace:Tax1040WorkFlow.WorkFlow.Activities;assembly=JTL.Tax1040.BusinessLogic" xmlns:local1="clr-namespace:;assembly=JTL.Tax1040.BusinessLogic" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scc="clr-namespace:System.Collections.Concurrent;assembly=mscorlib" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+      <x:String>System.Collections.Concurrent</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <local1:F1040EZLinesCalculation.Implementation>
+    <Sequence DisplayName="F1040EZCalculations">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Double" Name="W2FederalTaxWithholdTotal" />
+        <Variable x:TypeArguments="x:Double" Name="Form1099INTFederalTaxWithholdTotal" />
+        <Variable x:TypeArguments="x:Double" Name="Form1099OIDFederalTaxWithholdTotal" />
+        <Variable x:TypeArguments="x:Double" Name="Form1099GFederalTaxWithholdTotal" />
+        <Variable x:TypeArguments="scc:ConcurrentDictionary(x:Int32, x:Int32)" Name="Form1040ezEICCollection">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="scc:ConcurrentDictionary(x:Int32, x:Int32)" xml:space="preserve">new ConcurrentDictionary&lt;int, int&gt;(
+       new Dictionary&lt;int, int&gt;
+       {
+ {1,2},{50,6},{100,10},{150,13},{200,17},{250,21},{300,25},{350,29},{400,33},{450,36},{500,40},{550,44},{600,48},{650,52},{700,55},{750,59},{800,63},
+{850,67},{900,71},{950,75},{1000,78},{1050,82},{1100,86},{1150,90},{1200,94},{1250,98},{1300,101},{1350,105},{1400,109},{1450,113},{1500,117},{1550,120},
+{1600,124},{1650,128},{1700,132},{1750,136},{1800,140},{1850,143},{1900,147},{1950,151},{2000,155},{2050,159},{2100,163},{2150,166},{2200,170},{2250,174},
+{2300,178},{2350,182},{2400,186},{2450,189},{2500,193},{2550,197},{2600,201},{2650,205},{2700,208},{2750,212},{2800,216},{2850,220},{2900,224},{2950,228},
+{3000,231},{3050,235},{3100,239},{3150,243},{3200,247},{3250,251},{3300,254},{3350,258},{3400,262},{3450,266},{3500,270},{3550,273},{3600,277},{3650,281},
+{3700,285},{3750,289},{3800,293},{3850,296},{3900,300},{3950,304},{4000,308},{4050,312},{4100,316},{4150,319},{4200,323},{4250,327},{4300,331},{4350,335},
+{4400,339},{4450,342},{4500,346},{4550,350},{4600,354},{4650,358},{4700,361},{4750,365},{4800,369},{4850,373},{4900,377},{4950,381},{5000,384},{5050,388},
+{5100,392},{5150,396},{5200,400},{5250,404},{5300,407},{5350,411},{5400,415},{5450,419},{5500,423},{5550,426},{5600,430},{5650,434},{5700,438},{5750,442},
+{5800,446},{5850,449},{5900,453},{5950,457},{6000,461},{6050,465},{6100,469},{6150,472},{6200,476},{6250,480},{6300,484},{6350,487},{6400,487},{6450,487},
+{6500,487},{6550,487},{6600,487},{6650,487},{6700,487},{6750,487},{6800,487},{6850,487},{6900,487},{6950,487},{7000,487},{7050,487},{7100,487},{7150,487},
+{7200,487},{7250,487},{7300,487},{7350,487},{7400,487},{7450,487},{7500,487},{7550,487},{7600,487},{7650,487},{7700,487},{7750,487},{7800,487},{7850,487},
+{7900,487},{7950,487},{8000,483},{8050,479},{8100,475},{8150,472},{8200,468},{8250,464},{8300,460},{8350,456},{8400,452},{8450,449},{8500,445},{8550,441},
+{8600,437},{8650,433},{8700,430},{8750,426},{8800,422},{8850,418},{8900,414},{8950,410},{9000,407},{9050,403},{9100,399},{9150,395},{9200,391},{9250,387},
+{9300,384},{9350,380},{9400,376},{9450,372},{9500,368},{9550,365},{9600,361},{9650,357},{9700,353},{9750,349},{9800,345},{9850,342},{9900,338},{9950,334},
+{10000,330},{10050,326},{10100,322},{10150,319},{10200,315},{10250,311},{10300,307},{10350,303},{10400,299},{10450,296},{10500,292},{10550,288},{10600,284},
+{10650,280},{10700,277},{10750,273},{10800,269},{10850,265},{10900,261},{10950,257},{11000,254},{11050,250},{11100,246},{11150,242},{11200,238},{11250,234},
+{11300,231},{11350,227},{11400,223},{11450,219},{11500,215},{11550,212},{11600,208},{11650,204},{11700,200},{11750,196},{11800,192},{11850,189},{11900,185},
+{11950,181},{12000,177},{12050,173},{12100,169},{12150,166},{12200,162},{12250,158},{12300,154},{12350,150},{12400,146},{12450,143},{12500,139},{12550,135},
+{12600,131},{12650,127},{12700,124},{12750,120},{12800,116},{12850,112},{12900,108},{12950,104},{13000,101},{13050,97},{13100,93},{13150,89},{13200,85},{13250,81},
+{13300,78},{13350,74},{13400,70},{13450,66},{13500,62},{13550,59},{13600,55},{13650,51},{13700,47},{13750,43},{13800,39},{13850,36},{13900,32},{13950,28},{14000,24},
+{14050,20},{14100,16},{14150,13},{14200,9},{14250,5},{14300,0},{14350,0},{14400,0},{14450,0},{14500,0},{14550,0},{14600,0},{14650,0},{14700,0},{14750,0},{14800,0},
+{14850,0},{14900,0},{14950,0},{15000,0},{15050,0},{15100,0},{15150,0},{15200,0},{15250,0},{15300,0},{15350,0},{15400,0},{15450,0},{15500,0},{15550,0},{15600,0},
+{15650,0},{15700,0},{15750,0},{15800,0},{15850,0},{15900,0},{15950,0},{16000,0},{16050,0},{16100,0},{16150,0},{16200,0},{16250,0},{16300,0},{16350,0},{16400,0},
+{16450,0},{16500,0},{16550,0},{16600,0},{16650,0},{16700,0},{16750,0},{16800,0},{16850,0},{16900,0},{16950,0},{17000,0},{17050,0},{17100,0},{17150,0},{17200,0},
+{17250,0},{17300,0},{17350,0},{17400,0},{17450,0},{17500,0},{17550,0},{17600,0},{17650,0},{17700,0},{17750,0},{17800,0},{17850,0},{17900,0},{17950,0},{18000,0},
+{18050,0},{18100,0},{18150,0},{18200,0},{18250,0},{18300,0},{18350,0},{18400,0},{18450,0},{18500,0},{18550,0},{18600,0},{18650,0},{18700,0},{18750,0},{18800,0},
+{18850,0},{18900,0},{18950,0},{19000,0},{19050,0},{19100,0},{19150,0},{19200,0},{19250,0},{19300,0},{19350,0},{19400,0},{19450,0},{19500,0},{19550,0},{19600,0},
+{19650,0},{19680,0}
+       }
+    );</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="x:Double" Default="0.1" Name="Range1TaxRate" />
+      </Sequence.Variables>
+      <Sequence DisplayName="Initialization">
+        <Assign>
+          <Assign.To>
+            <OutArgument x:TypeArguments="jtb:OutputForms">
+              <mca:CSharpReference x:TypeArguments="jtb:OutputForms">Tax1040Object.OutputForms</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="jtb:OutputForms">
+              <mca:CSharpValue x:TypeArguments="jtb:OutputForms">new OutputForms()</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign>
+          <Assign.To>
+            <OutArgument x:TypeArguments="jtb:Tax1040EZPage1">
+              <mca:CSharpReference x:TypeArguments="jtb:Tax1040EZPage1">Tax1040Object.OutputForms.Tax1040EZPage1</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="jtb:Tax1040EZPage1">
+              <mca:CSharpValue x:TypeArguments="jtb:Tax1040EZPage1">new Tax1040EZPage1()</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <Sequence DisplayName="F1040EZLine1 - TotalWages">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="jtb:W2" Name="W2" />
+        </Sequence.Variables>
+        <If DisplayName="F1040EZ Line1 Calculation">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.Income.W2Wages != null) &amp;&amp; (Tax1040Object.Income.W2Wages.Count&gt;0)</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <ForEach x:TypeArguments="jtb:W2" DisplayName="ForEach&lt;W2&gt;">
+                <ForEach.Values>
+                  <InArgument x:TypeArguments="scg:IEnumerable(jtb:W2)">
+                    <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:W2)">Tax1040Object.Income.W2Wages</mca:CSharpValue>
+                  </InArgument>
+                </ForEach.Values>
+                <ActivityAction x:TypeArguments="jtb:W2">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="jtb:W2" Name="W2" />
+                  </ActivityAction.Argument>
+                  <Sequence>
+                    <Assign>
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalWages</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">(W2.WagesAmount.HasValue?W2.WagesAmount.Value : 0) + Tax1040Object.OutputForms.Tax1040EZPage1.TotalWages</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <If DisplayName="W2FederalTaxWithholdingAmountTotal for Line#7">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">W2.FederalTaxWithholdingAmount.HasValue &amp;&amp; W2.FederalTaxWithholdingAmount.Value != 0.0D</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">W2FederalTaxWithholdTotal</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">W2.FederalTaxWithholdingAmount.Value + W2FederalTaxWithholdTotal</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </If.Then>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </ForEach>
+            </Sequence>
+          </If.Then>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="F1040EZLine2 - TaxableInterest">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="jtb:Form1099OID" Name="Form1099OID" />
+          <Variable x:TypeArguments="jtb:Form1099INT" Name="Form1099INT" />
+        </Sequence.Variables>
+        <If DisplayName="F1040EZ Line2 1099INT Calculation">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.Income.Form1099INT != null) &amp;&amp; (Tax1040Object.Income.Form1099INT.Count &gt; 0)</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <ForEach x:TypeArguments="jtb:Form1099INT" DisplayName="ForEach&lt;Form1099INTList&gt;">
+              <ForEach.Values>
+                <InArgument x:TypeArguments="scg:IEnumerable(jtb:Form1099INT)">
+                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:Form1099INT)">Tax1040Object.Income.Form1099INT</mca:CSharpValue>
+                </InArgument>
+              </ForEach.Values>
+              <ActivityAction x:TypeArguments="jtb:Form1099INT">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="jtb:Form1099INT" Name="Form1099INT" />
+                </ActivityAction.Argument>
+                <Sequence>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableInterest</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableInterest + (Form1099INT.InterestIncome.HasValue?Form1099INT.InterestIncome.Value:0) + (Form1099INT.USBondsTreasury.HasValue?Form1099INT.USBondsTreasury.Value:0)</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <If DisplayName="Form1099INTFederalTaxWithholdTotal for Line#7">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Form1099INT.FederalTaxWithHoldingAmount.HasValue &amp;&amp; Form1099INT.FederalTaxWithHoldingAmount.Value != 0.0D</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Form1099INTFederalTaxWithholdTotal</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Form1099INT.FederalTaxWithHoldingAmount.Value + Form1099INTFederalTaxWithholdTotal</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ForEach>
+          </If.Then>
+        </If>
+        <If DisplayName="F1040EZ Line2 1099OID Calculation">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.Income.Form1099OID != null) &amp;&amp; (Tax1040Object.Income.Form1099OID.Count &gt; 0)</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <ForEach x:TypeArguments="jtb:Form1099OID" DisplayName="ForEach&lt;Form1099OIDList&gt;">
+              <ForEach.Values>
+                <InArgument x:TypeArguments="scg:IEnumerable(jtb:Form1099OID)">
+                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:Form1099OID)">Tax1040Object.Income.Form1099OID</mca:CSharpValue>
+                </InArgument>
+              </ForEach.Values>
+              <ActivityAction x:TypeArguments="jtb:Form1099OID">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="jtb:Form1099OID" Name="Form1099OID" />
+                </ActivityAction.Argument>
+                <Sequence>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableInterest</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableInterest + (Form1099OID.OriginalIssueDiscount.HasValue?Form1099OID.OriginalIssueDiscount.Value : 0)+(Form1099OID.OtherPeriodicInterest.HasValue?Form1099OID.OtherPeriodicInterest.Value:0)</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <If DisplayName="Form1099OIDFederalTaxWithholdTotal for Line#7">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Form1099OID.FederalTaxWithHoldingAmount.HasValue &amp;&amp; Form1099OID.FederalTaxWithHoldingAmount.Value != 0.0D</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Form1099OIDFederalTaxWithholdTotal</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Form1099OID.FederalTaxWithHoldingAmount.Value + Form1099OIDFederalTaxWithholdTotal</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ForEach>
+          </If.Then>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="F1040EZLine3 - UnemploymentCompensation">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="jtb:Form1099G" Name="Form1099G" />
+          <Variable x:TypeArguments="x:Double" Name="UnEmployment" />
+          <Variable x:TypeArguments="x:Double" Name="AlaskaPermanantFundAmount" />
+        </Sequence.Variables>
+        <If DisplayName="F1040EZ Line3 1099G Calculation">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.Income.Form1099G != null) &amp;&amp; (Tax1040Object.Income.Form1099G.Count &gt; 0)</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <ForEach x:TypeArguments="jtb:Form1099G" DisplayName="ForEach&lt;Form1099G&gt;">
+              <ForEach.Values>
+                <InArgument x:TypeArguments="scg:IEnumerable(jtb:Form1099G)">
+                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:Form1099G)">Tax1040Object.Income.Form1099G</mca:CSharpValue>
+                </InArgument>
+              </ForEach.Values>
+              <ActivityAction x:TypeArguments="jtb:Form1099G">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="jtb:Form1099G" Name="Form1099G" />
+                </ActivityAction.Argument>
+                <Sequence>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">UnEmployment</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">UnEmployment + (Form1099G.UnEmploymentCompensation.HasValue?Form1099G.UnEmploymentCompensation.Value : 0)</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <If DisplayName="Form1099GFederalTaxWithholdTotal for Line#7">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Form1099G.FederalTaxWithHoldingAmount.HasValue &amp;&amp; Form1099G.FederalTaxWithHoldingAmount.Value != 0.0D</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Form1099GFederalTaxWithholdTotal</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Form1099G.FederalTaxWithHoldingAmount.Value + Form1099GFederalTaxWithholdTotal</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ForEach>
+          </If.Then>
+        </If>
+        <If DisplayName="Alaska Permanent Fund">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.OtherIncome !=null</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <If DisplayName="If Alaska Check">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.OtherIncome.HasAlaskaPermanantFund.HasValue &amp;&amp; Tax1040Object.Income.OtherIncome.HasAlaskaPermanantFund.Value</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="AlaskaPermanantFund">
+                  <local:F1040EZAlaskaPermanentFund>
+                    <local:F1040EZAlaskaPermanentFund.AlaskaPermanantFund>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">AlaskaPermanantFundAmount</mca:CSharpReference>
+                      </OutArgument>
+                    </local:F1040EZAlaskaPermanentFund.AlaskaPermanantFund>
+                    <local:F1040EZAlaskaPermanentFund.Tax1040Object>
+                      <InOutArgument x:TypeArguments="jtb:Tax1040">
+                        <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                      </InOutArgument>
+                    </local:F1040EZAlaskaPermanentFund.Tax1040Object>
+                  </local:F1040EZAlaskaPermanentFund>
+                </Sequence>
+              </If.Then>
+            </If>
+          </If.Then>
+        </If>
+        <Assign>
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Double">
+              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.UnemploymentCompensation</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Double">
+              <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.UnemploymentCompensation + UnEmployment + AlaskaPermanantFundAmount</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <Sequence DisplayName="F1040EZLine4 - AdjustedGrossIncome">
+        <Sequence DisplayName="AdjustedGrossIncome Calculation">
+          <Assign>
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Double">
+                <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome</mca:CSharpReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Double">
+                <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalWages + Tax1040Object.OutputForms.Tax1040EZPage1.TaxableInterest + Tax1040Object.OutputForms.Tax1040EZPage1.UnemploymentCompensation</mca:CSharpValue>
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </Sequence>
+      <Sequence DisplayName="TODO F1040EZLine5 - Personal Exemptions &amp; Standard Deduction">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Double" Name="DeductionWorkSheetAmountA" />
+          <Variable x:TypeArguments="x:Double" Name="DeductionWorkSheetAmountB" />
+          <Variable x:TypeArguments="x:Double" Name="DeductionWorkSheetAmountC" />
+          <Variable x:TypeArguments="x:Double" Name="DeductionWorkSheetAmountD" />
+          <Variable x:TypeArguments="x:Double" Name="DeductionWorkSheetAmountE" />
+          <Variable x:TypeArguments="x:Double" Name="DeductionWorkSheetAmountF" />
+          <Variable x:TypeArguments="x:Double" Name="DeductionWorkSheetAmountG" />
+          <Variable x:TypeArguments="x:Double" Default="6100" Name="DeductionWorkSheetSingleStandardDeduction" />
+          <Variable x:TypeArguments="x:Double" Default="12200" Name="DeductionWorkSheetMFJStandardDeduction" />
+          <Variable x:TypeArguments="x:Double" Default="3900" Name="DeductionWorkSheetMFJExemption" />
+          <Variable x:TypeArguments="x:Double" Default="0" Name="DeductionWorkSheetDefaultExemption" />
+          <Variable x:TypeArguments="x:Double" Default="10000" Name="DeductionWorksheetSingleDefaultStandardDeduction" />
+          <Variable x:TypeArguments="x:Double" Default="20000" Name="DeductionWorksheetMFJDefaultStandardDeduction" />
+          <Variable x:TypeArguments="x:Double" Default="1000" Name="DeductionWorksheetMinimunStandardDeduction" />
+        </Sequence.Variables>
+        <Switch x:TypeArguments="jtco:FilingStatus">
+          <Switch.Expression>
+            <InArgument x:TypeArguments="jtco:FilingStatus">
+              <mca:CSharpValue x:TypeArguments="jtco:FilingStatus">Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus</mca:CSharpValue>
+            </InArgument>
+          </Switch.Expression>
+          <If x:Key="Single" DisplayName="SingleCheck">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">((!Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue || !Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value) &amp;&amp; (!Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue || !Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value))</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Assign>
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Double">
+                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.StandardDeduction</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Double">
+                    <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorksheetSingleDefaultStandardDeduction</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Then>
+            <If.Else>
+              <If DisplayName="TaxPayerHasClaimedAsDependent&amp;NotSpouseHasClaimedAsDependentCheck">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue &amp;&amp; Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value) &amp;&amp; (!Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue || !Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value))</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Sequence DisplayName="Line 5 WorkSheet">
+                    <Assign DisplayName="Line 5 Worksheet A">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountA</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalWages + 350</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Line 5 Worksheet B">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountB</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorksheetMinimunStandardDeduction</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Line 5 Worksheet C">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountC</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">Math.Max(DeductionWorkSheetAmountA, DeductionWorkSheetAmountB)</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Line 5 Worksheet D">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountD</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetSingleStandardDeduction</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Line 5 Worksheet E">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountE</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(DeductionWorkSheetAmountC, DeductionWorkSheetAmountD)</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Line 5 Worksheet F">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountF</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetDefaultExemption</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Line 5 Worksheet G">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountG</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetAmountE + DeductionWorkSheetAmountF</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign>
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.StandardDeduction</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetAmountG</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Then>
+              </If>
+            </If.Else>
+          </If>
+          <If x:Key="MarriedFilingJointly" DisplayName="MFJCheck">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">((!Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue &amp;&amp; !Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value) &amp;&amp; (!Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue &amp;&amp; !Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value))</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Assign>
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Double">
+                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.StandardDeduction</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Double">
+                    <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorksheetMFJDefaultStandardDeduction</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="TaxPayer&amp;SpouseStatus">
+                <If DisplayName="TaxPayerHasClaimedAsDependent&amp;NotSpouseHasClaimedAsDependentCheck">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue &amp;&amp; Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value) &amp;&amp; (!Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue || !Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value))</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <Sequence DisplayName="Line 5 WorkSheet">
+                      <Assign DisplayName="Line 5 Worksheet A">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountA</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalWages + 350</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet B">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountB</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorksheetMinimunStandardDeduction</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet C">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountC</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Math.Max(DeductionWorkSheetAmountA, DeductionWorkSheetAmountB)</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet D">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountD</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetMFJStandardDeduction</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet E">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountE</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(DeductionWorkSheetAmountC, DeductionWorkSheetAmountD)</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet F">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountF</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetMFJExemption</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet G">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountG</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetAmountE + DeductionWorkSheetAmountF</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.StandardDeduction</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetAmountG</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Then>
+                </If>
+                <If DisplayName="TaxPayerHasClaimedAsDependent&amp;SpouseHasClaimedAsDependentCheck">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue &amp;&amp; Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value) &amp;&amp; (Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue &amp;&amp; Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value))</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <Sequence DisplayName="Line 5 WorkSheet">
+                      <Assign DisplayName="Line 5 Worksheet A">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountA</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalWages + 350</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet B">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountB</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorksheetMinimunStandardDeduction</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet C">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountC</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Math.Max(DeductionWorkSheetAmountA, DeductionWorkSheetAmountB)</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet D">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountD</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetMFJStandardDeduction</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet E">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountE</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(DeductionWorkSheetAmountC, DeductionWorkSheetAmountD)</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet F">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountF</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetDefaultExemption</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Line 5 Worksheet G">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">DeductionWorkSheetAmountG</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetAmountE + DeductionWorkSheetAmountF</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.StandardDeduction</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetAmountG</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Then>
+                </If>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Switch>
+      </Sequence>
+      <Sequence DisplayName="F1040EZLine6 - TaxableIncome">
+        <If DisplayName="TaxableIncome Calculation">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome &gt; Tax1040Object.OutputForms.Tax1040EZPage1.StandardDeduction</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Double">
+                  <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Double">
+                  <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome - Tax1040Object.OutputForms.Tax1040EZPage1.StandardDeduction</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </If.Then>
+          <If.Else>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Double">
+                  <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Double">0</InArgument>
+              </Assign.Value>
+            </Assign>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="F1040EZLine7 - FederalTaxWithholdingAmount">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="jtb:W2" Name="W2" />
+          <Variable x:TypeArguments="jtb:Form1099INT" Name="Form1099INT" />
+          <Variable x:TypeArguments="jtb:Form1099OID" Name="Form1099OID" />
+          <Variable x:TypeArguments="jtb:Form1099G" Name="Form1099G" />
+        </Sequence.Variables>
+        <Sequence>
+          <Assign>
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Double">
+                <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.FederalTaxWithholdingAmount</mca:CSharpReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Double">
+                <mca:CSharpValue x:TypeArguments="x:Double">W2FederalTaxWithholdTotal+ Form1099INTFederalTaxWithholdTotal+ Form1099OIDFederalTaxWithholdTotal + Form1099GFederalTaxWithholdTotal</mca:CSharpValue>
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </Sequence>
+      <Sequence DisplayName="F1040EZLine8a - EIC(EarnedIncomeCredit)">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="s:DateTime" Name="TodaysDate">
+            <Variable.Default>
+              <mca:CSharpValue x:TypeArguments="s:DateTime">DateTime.Now</mca:CSharpValue>
+            </Variable.Default>
+          </Variable>
+          <Variable x:TypeArguments="x:TimeSpan" Name="TaxPayerTimeZone">
+            <Variable.Default>
+              <mca:CSharpValue x:TypeArguments="x:TimeSpan">TodaysDate - Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth</mca:CSharpValue>
+            </Variable.Default>
+          </Variable>
+          <Variable x:TypeArguments="s:DateTime" Name="PersonAge">
+            <Variable.Default>
+              <mca:CSharpValue x:TypeArguments="s:DateTime">DateTime.MinValue + TaxPayerTimeZone</mca:CSharpValue>
+            </Variable.Default>
+          </Variable>
+          <Variable x:TypeArguments="x:Int32" Name="PersonAgeCompleted">
+            <Variable.Default>
+              <mca:CSharpValue x:TypeArguments="x:Int32">PersonAge.Year - 1</mca:CSharpValue>
+            </Variable.Default>
+          </Variable>
+          <Variable x:TypeArguments="x:TimeSpan" Name="SpouseTimeZone">
+            <Variable.Default>
+              <mca:CSharpValue x:TypeArguments="x:TimeSpan">TodaysDate - Tax1040Object.PersonalDetails.Spouse.Person.DateOfBirth</mca:CSharpValue>
+            </Variable.Default>
+          </Variable>
+          <Variable x:TypeArguments="s:DateTime" Name="SpouseAge">
+            <Variable.Default>
+              <mca:CSharpValue x:TypeArguments="s:DateTime">DateTime.MinValue + SpouseTimeZone</mca:CSharpValue>
+            </Variable.Default>
+          </Variable>
+          <Variable x:TypeArguments="x:Int32" Name="SpouseAgeCompleted">
+            <Variable.Default>
+              <mca:CSharpValue x:TypeArguments="x:Int32">SpouseAge.Year - 1</mca:CSharpValue>
+            </Variable.Default>
+          </Variable>
+          <Variable x:TypeArguments="x:Int32" Default="25" Name="MinAge" />
+          <Variable x:TypeArguments="x:Int32" Default="65" Name="MaxAge" />
+          <Variable x:TypeArguments="x:Double" Default="19190" Name="MFJAdjustedGrossIncome" />
+          <Variable x:TypeArguments="x:Double" Default="13980" Name="SingleAdjustedGrossIncome" />
+        </Sequence.Variables>
+        <Sequence DisplayName="EICCheck">
+          <If DisplayName="EICRuleCheck">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">((Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus == FilingStatus.Single)
+ &amp;&amp; (Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome &lt; SingleAdjustedGrossIncome) &amp;&amp; (!Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue || !Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value))
+ || ((Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus == FilingStatus.MarriedFilingJointly) &amp;&amp; (Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome &lt; MFJAdjustedGrossIncome)
+  &amp;&amp; ((!Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue || !Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value) || (!Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue || !Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value)))
+ &amp;&amp; ((PersonAgeCompleted &gt;= MinAge &amp;&amp; PersonAgeCompleted &lt;= MaxAge) &amp;&amp; (SpouseAgeCompleted &gt;= MinAge &amp;&amp; SpouseAgeCompleted &lt;= MaxAge))</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence DisplayName="EIC Step 2">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Double" Name="Line8Step2EarnedIncome" />
+                  <Variable x:TypeArguments="x:Double" Name="Line8Step2W2NonQualifiedPlans" />
+                  <Variable x:TypeArguments="x:Double" Name="Line8Step2W2NonTaxableCombatPay" />
+                </Sequence.Variables>
+                <If DisplayName="W2 Non qualified Plans">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.Income.W2Wages != null) &amp;&amp; (Tax1040Object.Income.W2Wages.Count&gt;0)</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <ForEach x:TypeArguments="jtb:W2" DisplayName="ForEach&lt;W2&gt;">
+                      <ForEach.Values>
+                        <InArgument x:TypeArguments="scg:IEnumerable(jtb:W2)">
+                          <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:W2)">Tax1040Object.Income.W2Wages</mca:CSharpValue>
+                        </InArgument>
+                      </ForEach.Values>
+                      <ActivityAction x:TypeArguments="jtb:W2">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="jtb:W2" Name="W2" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="EIC Step 2 Calculations - Earned Income">
+                          <Assign>
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">Line8Step2W2NonQualifiedPlans</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Line8Step2W2NonQualifiedPlans + (W2.NonQualifiedPlansAmount.HasValue ? W2.NonQualifiedPlansAmount.Value : 0)</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="TODO">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">Line8Step2W2NonTaxableCombatPay</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Line8Step2W2NonTaxableCombatPay</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </ForEach>
+                  </If.Then>
+                </If>
+                <Assign>
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Double">
+                      <mca:CSharpReference x:TypeArguments="x:Double">Line8Step2EarnedIncome</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Double">
+                      <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalWages - Line8Step2W2NonQualifiedPlans + Line8Step2W2NonTaxableCombatPay</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Sequence DisplayName="EIC Worksheet">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Int32" Name="Line8EICWorkSheetLine1" />
+                    <Variable x:TypeArguments="x:Double" Name="Line8EICWorkSheetLine2" />
+                    <Variable x:TypeArguments="x:Double" Name="Line8EICWorkSheetLine6" />
+                    <Variable x:TypeArguments="x:Double" Name="Line8EICWorkSheetLine3" />
+                    <Variable x:TypeArguments="x:Double" Name="Line8EICWorkSheetLine5" />
+                    <Variable x:TypeArguments="x:Int32" Default="0" Name="EICStartingValue" />
+                    <Variable x:TypeArguments="x:Int32" Default="50" Name="EICModuleValue" />
+                    <Variable x:TypeArguments="x:Int32" Default="1" Name="EICInitialRangeStartValue" />
+                    <Variable x:TypeArguments="x:Int32" Default="49" Name="EICInitialRangeEndValue" />
+                    <Variable x:TypeArguments="x:Int32" Default="2" Name="EICRateInitialValue" />
+                    <Variable x:TypeArguments="x:Int32" Name="EICModuleDifference" />
+                  </Sequence.Variables>
+                  <Assign DisplayName="Line8EICWorkSheetLine1Assign">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">
+                        <mca:CSharpReference x:TypeArguments="x:Int32">Line8EICWorkSheetLine1</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">
+                        <mca:CSharpValue x:TypeArguments="x:Int32">(int)Line8Step2EarnedIncome</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <If DisplayName="EICInitialRangeCheck">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Line8EICWorkSheetLine1 &gt; EICInitialRangeStartValue &amp;&amp; Line8EICWorkSheetLine1 &lt;= EICInitialRangeEndValue</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Assign DisplayName="EICRateInitialValue">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Line8EICWorkSheetLine2</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">EICRateInitialValue</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="EICSlabRangeCalculation">
+                        <Assign DisplayName="EICModuleDifferenceValue">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpReference x:TypeArguments="x:Int32">EICModuleDifference</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpValue x:TypeArguments="x:Int32">Line8EICWorkSheetLine1 % EICModuleValue;</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="EICStartingRangeValue">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpReference x:TypeArguments="x:Int32">EICStartingValue</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpValue x:TypeArguments="x:Int32">Line8EICWorkSheetLine1 != EICModuleDifference ? Line8EICWorkSheetLine1 - EICModuleDifference : Line8EICWorkSheetLine1</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <If DisplayName="Form1040ezEICCollectionCheck">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">(Form1040ezEICCollection != null &amp;&amp; !Form1040ezEICCollection.IsEmpty)</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Sequence DisplayName="GetEICSlabValue">
+                              <maes:GetFromDictionary x:TypeArguments="x:Int32, x:Int32">
+                                <maes:GetFromDictionary.Dictionary>
+                                  <InArgument x:TypeArguments="scg:IDictionary(x:Int32, x:Int32)">
+                                    <mca:CSharpValue x:TypeArguments="scg:IDictionary(x:Int32, x:Int32)">Form1040ezEICCollection</mca:CSharpValue>
+                                  </InArgument>
+                                </maes:GetFromDictionary.Dictionary>
+                                <maes:GetFromDictionary.Key>
+                                  <InArgument x:TypeArguments="x:Int32">
+                                    <mca:CSharpValue x:TypeArguments="x:Int32">EICStartingValue</mca:CSharpValue>
+                                  </InArgument>
+                                </maes:GetFromDictionary.Key>
+                                <maes:GetFromDictionary.Value>
+                                  <OutArgument x:TypeArguments="x:Int32">
+                                    <mca:CSharpReference x:TypeArguments="x:Int32">EICOut</mca:CSharpReference>
+                                  </OutArgument>
+                                </maes:GetFromDictionary.Value>
+                              </maes:GetFromDictionary>
+                              <Assign DisplayName="EICWorkSheetLine2Value">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">Line8EICWorkSheetLine2</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">EICOut</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <If DisplayName="EIC Check in Worksheet">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Line8EICWorkSheetLine2 == 0</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Line8EICWorkSheetLine6</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">0</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Line8EICWorkSheetLine3</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <If>
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">Line8EICWorkSheetLine3 == Line8EICWorkSheetLine1</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">Line8EICWorkSheetLine6</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Line8EICWorkSheetLine2</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Then>
+                          <If.Else>
+                            <If>
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">(((Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus == FilingStatus.Single) &amp;&amp; (Line8EICWorkSheetLine3 &lt; 7800)) 
+            || ((Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus == FilingStatus.MarriedFilingJointly) &amp;&amp;(Line8EICWorkSheetLine3 &lt; 13000)))</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">Line8EICWorkSheetLine6</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">Line8EICWorkSheetLine2</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence>
+                                  <Assign DisplayName="TODO - Tax Rate">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Double">
+                                        <mca:CSharpReference x:TypeArguments="x:Double">Line8EICWorkSheetLine5</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Double">
+                                        <mca:CSharpValue x:TypeArguments="x:Double">Line8EICWorkSheetLine5</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Double">
+                                        <mca:CSharpReference x:TypeArguments="x:Double">Line8EICWorkSheetLine6</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Double">
+                                        <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(Line8EICWorkSheetLine2,Line8EICWorkSheetLine5)</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <Assign DisplayName="Final EIC Worksheet Amount">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.EarnedIncomeCredit</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">Line8EICWorkSheetLine6</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+      </Sequence>
+      <Sequence DisplayName="F1040EZLine8b - NonTaxableCombatPay">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="jtb:W2" Name="W2" />
+          <Variable x:TypeArguments="jtco:EmployerCode" Name="W2EmployerCode" />
+        </Sequence.Variables>
+        <If DisplayName="If W2  Wages Check">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.Income.W2Wages != null) &amp;&amp; (Tax1040Object.Income.W2Wages.Count &gt; 0)</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <ForEach x:TypeArguments="jtb:W2" DisplayName="ForEach&lt;W2&gt;">
+              <ForEach.Values>
+                <InArgument x:TypeArguments="scg:IEnumerable(jtb:W2)">
+                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:W2)">Tax1040Object.Income.W2Wages</mca:CSharpValue>
+                </InArgument>
+              </ForEach.Values>
+              <ActivityAction x:TypeArguments="jtb:W2">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="jtb:W2" Name="W2" />
+                </ActivityAction.Argument>
+                <If DisplayName="If Employer Code Check ">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">W2.W2EmployerCodes != null &amp;&amp; W2.W2EmployerCodes.Count&gt;0</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <ForEach x:TypeArguments="jtb:W2EmployerCode" DisplayName="ForEach&lt;W2EmployerCode&gt;">
+                      <ForEach.Values>
+                        <InArgument x:TypeArguments="scg:IEnumerable(jtb:W2EmployerCode)">
+                          <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:W2EmployerCode)">W2.W2EmployerCodes</mca:CSharpValue>
+                        </InArgument>
+                      </ForEach.Values>
+                      <ActivityAction x:TypeArguments="jtb:W2EmployerCode">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="jtb:W2EmployerCode" Name="W2EmployerCode" />
+                        </ActivityAction.Argument>
+                        <If DisplayName="If Q NonTaxableCombatPay Check">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.QNonTaxableCombatPay</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.NonTaxableCombatPayElection</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">W2EmployerCode.Amount.HasValue ? W2EmployerCode.Amount.Value : 0 + Tax1040Object.OutputForms.Tax1040EZPage1.NonTaxableCombatPayElection</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Then>
+                        </If>
+                      </ActivityAction>
+                    </ForEach>
+                  </If.Then>
+                </If>
+              </ActivityAction>
+            </ForEach>
+          </If.Then>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="F1040EZLine9- TotalPaymentsAndCredits">
+        <Assign>
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Double">
+              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Double">
+              <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.FederalTaxWithholdingAmount + Tax1040Object.OutputForms.Tax1040EZPage1.EarnedIncomeCredit</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <Sequence DisplayName="TODO F1040EZLine10- TaxAmount">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Double" Name="ProcessingIncome">
+            <Variable.Default>
+              <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome</mca:CSharpValue>
+            </Variable.Default>
+          </Variable>
+          <Variable x:TypeArguments="x:Double" Name="Tax" />
+          <Variable x:TypeArguments="x:Double" Default="0.15" Name="Range2TaxRate" />
+          <Variable x:TypeArguments="x:Double" Default="0.25" Name="Range3TaxRate" />
+          <Variable x:TypeArguments="x:Double" Default="0.25" Name="Range4TaxRate" />
+          <Variable x:TypeArguments="x:Double" Default="0.33" Name="Range5TaxRate" />
+          <Variable x:TypeArguments="x:Double" Default="0.35" Name="Range6TaxRate" />
+          <Variable x:TypeArguments="x:Boolean" Default="True" Name="IsCaseContinue" />
+          <Variable x:TypeArguments="x:Double" Default="0.396" Name="Range7TaxRate" />
+        </Sequence.Variables>
+        <Switch x:TypeArguments="jtco:FilingStatus">
+          <Switch.Expression>
+            <InArgument x:TypeArguments="jtco:FilingStatus">
+              <mca:CSharpValue x:TypeArguments="jtco:FilingStatus">Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus</mca:CSharpValue>
+            </InArgument>
+          </Switch.Expression>
+          <Sequence x:Key="Single" DisplayName="Filing Single">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:Double" Default="0" Name="SingleRange1Start" />
+              <Variable x:TypeArguments="x:Double" Default="400000" Name="SingleRange7Start" />
+              <Variable x:TypeArguments="x:Double" Default="399999" Name="SingleRange6End" />
+              <Variable x:TypeArguments="x:Double" Default="398350" Name="SingleRange6Start" />
+              <Variable x:TypeArguments="x:Double" Default="398349" Name="SingleRange5End" />
+              <Variable x:TypeArguments="x:Double" Default="183250" Name="SingleRange5Start" />
+              <Variable x:TypeArguments="x:Double" Default="87850" Name="SingleRange4Start" />
+              <Variable x:TypeArguments="x:Double" Default="183249" Name="SingleRange4End" />
+              <Variable x:TypeArguments="x:Double" Default="8924" Name="SingleRange1End" />
+              <Variable x:TypeArguments="x:Double" Default="8925" Name="SingleRange2Start" />
+              <Variable x:TypeArguments="x:Double" Default="36250" Name="SingleRange3Start" />
+              <Variable x:TypeArguments="x:Double" Default="87849" Name="SingleRange3End" />
+              <Variable x:TypeArguments="x:Double" Default="36249" Name="SingleRange2End" />
+            </Sequence.Variables>
+            <If>
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome&gt;0.0</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence>
+                  <If DisplayName="If - Slab1  10%">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &gt; SingleRange1End</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">SingleRange1End - SingleRange1Start</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range1TaxRate)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <If>
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &lt;= SingleRange1End</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range1TaxRate)</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpReference x:TypeArguments="x:Boolean">IsCaseContinue</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </If.Else>
+                  </If>
+                  <If DisplayName="If - Slab2  15%">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &gt; SingleRange2End</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">SingleRange2End - SingleRange1End</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range2TaxRate)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <If>
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &lt;= SingleRange2End &amp;&amp; IsCaseContinue</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome - SingleRange1End</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range2TaxRate)</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpReference x:TypeArguments="x:Boolean">IsCaseContinue</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </If.Else>
+                  </If>
+                  <If DisplayName="If - Slab3  25%">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &gt; SingleRange3End</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="Processing Income">
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">SingleRange3End - SingleRange2End</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range3TaxRate)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <If>
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &lt;= SingleRange3End &amp;&amp; IsCaseContinue</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome - SingleRange2End</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range3TaxRate)</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpReference x:TypeArguments="x:Boolean">IsCaseContinue</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </If.Else>
+                  </If>
+                  <If DisplayName="If - Slab4  28%">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &gt; SingleRange4End</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="Processing Income">
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">SingleRange4End - SingleRange3End</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range4TaxRate)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <If DisplayName="If Taxable Income Check">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &lt;= SingleRange4End &amp;&amp; IsCaseContinue</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome - SingleRange3End</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range4TaxRate)</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpReference x:TypeArguments="x:Boolean">IsCaseContinue</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </If.Else>
+                  </If>
+                  <If DisplayName="If - Slab5  33%">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &gt; SingleRange5End</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">SingleRange5End - SingleRange4End</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range5TaxRate)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <If>
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &lt;= SingleRange5End &amp;&amp; IsCaseContinue</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome - SingleRange4End</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range5TaxRate)</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpReference x:TypeArguments="x:Boolean">IsCaseContinue</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </If.Else>
+                  </If>
+                  <If DisplayName="If - Slab6  35%">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &gt; SingleRange6End</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">SingleRange6End - SingleRange5End</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range6TaxRate)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <If>
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &lt;= SingleRange6End &amp;&amp; IsCaseContinue</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome - SingleRange5End</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range6TaxRate)</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpReference x:TypeArguments="x:Boolean">IsCaseContinue</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </If.Else>
+                  </If>
+                  <If DisplayName="If - Slab7  39.6%">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome &gt;= SingleRange7Start</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">ProcessingIncome</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome - SingleRange6End</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax + (ProcessingIncome * Range7TaxRate)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+          <x:Null x:Key="MarriedFilingJointly" />
+          <x:Null x:Key="HeadofHousehold" />
+          <x:Null x:Key="MarriedFilingSeperately" />
+          <x:Null x:Key="Widower" />
+        </Switch>
+        <Assign>
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Double">
+              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxAmount</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Double">
+              <mca:CSharpValue x:TypeArguments="x:Double">Tax</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <Sequence DisplayName="F1040EZLine11- RefundAmount &amp;&amp; F1040EZLine12- TaxOweAmount">
+        <If DisplayName="Refund Calculations">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits &gt; Tax1040Object.OutputForms.Tax1040EZPage1.TaxAmount</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <Assign>
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Double">
+                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.RefundAmount</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Double">
+                    <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits - Tax1040Object.OutputForms.Tax1040EZPage1.TaxAmount</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign>
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Double">
+                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxOweAmount</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Double">0</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence>
+              <Assign>
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Double">
+                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxOweAmount</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Double">
+                    <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxAmount - Tax1040Object.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign>
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Double">
+                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.RefundAmount</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Double">0</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </If.Else>
+        </If>
+      </Sequence>
+      <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </local1:F1040EZLinesCalculation.Implementation>
+</local1:F1040EZLinesCalculation>

@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>TAX1040_Master_DB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{8d8279e8-ae61-44f1-bbd5-d155babee4e0}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>TAX1040_Master_DB</RootNamespace>
+    <AssemblyName>TAX1040_Master_DB</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <GenerateCreateScript>True</GenerateCreateScript>
+    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatTSqlWarningsAsErrors>False</TreatTSqlWarningsAsErrors>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Schema" />
+    <Folder Include="Schema\dbo" />
+    <Folder Include="Schema\dbo\Stored Procedure" />
+    <Folder Include="Schema\dbo\Table" />
+    <Folder Include="Schema\dbo\View" />
+    <Folder Include="Script" />
+    <Folder Include="Schema\dbo\Functions" />
+    <Folder Include="Schema\dbo\Functions\Table-valued Functions" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script\Script.PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema\dbo\Table\state.sql" />
+    <Build Include="Schema\dbo\Table\personal_info.sql" />
+    <Build Include="Schema\dbo\Table\address.sql" />
+    <Build Include="Schema\dbo\Table\address_history.sql" />
+    <Build Include="Schema\dbo\Table\country.sql" />
+    <Build Include="Schema\dbo\Table\filing_status.sql" />
+    <Build Include="Schema\dbo\Table\person_type.sql" />
+    <Build Include="Schema\dbo\Table\user.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_personal_info_persist.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_check_user_by_user_id_and_security_question.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_user_authentication.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_username_by_email.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_username_by_personal_details.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_is_user_exists.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_reset_password_by_username.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_user_email_update.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_user_password_reset_code_update.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_address_and_address_history_persist.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_personal_info_get_by_personal_info_id.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_user_persist.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_security_question.sql" />
+    <Build Include="Schema\dbo\Table\security_question.sql" />
+    <Build Include="Schema\dbo\Table\email_template.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_email_template_by_id.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_user_id_by_personal_details.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_security_question_by_user_id.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_all_country.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_all_state.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_validate_user_password_reset_code.sql" />
+    <Build Include="Schema\dbo\Table\error_message.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_error_message.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_ez_eligibility_persist.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_ez_eligibility_by_personal_info_id.sql" />
+    <Build Include="Schema\dbo\Table\ez_eligibility.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_username_email_by_user_id.sql" />
+    <Build Include="Schema\dbo\Table\state_zip_code_conditions.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_validate_zip_code_by_state_id.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_user_authentication_by_user_id.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_update_user_details_by_user_id.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_user_details_by_user_id.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_validate_user_id.sql" />
+    <Build Include="Schema\dbo\Table\error_log.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_all_productsku_by_product_id.sql" />
+    <Build Include="Schema\dbo\Table\product.sql" />
+    <Build Include="Schema\dbo\Table\product_sku.sql" />
+    <Build Include="Schema\dbo\Table\credit_card_type.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_all_credit_card_type.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_get_all_productsku_by_product_id_and_state_ids.sql" />
+    <Build Include="Schema\dbo\Functions\Table-valued Functions\SplitString.sql" />
+	<Build Include="Schema\dbo\Stored Procedure\usp_error_log_persist.sql" />
+    <Build Include="Schema\dbo\Stored Procedure\usp_delete_spouse_by_person_id.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="TAX1040_Master_DB.refactorlog" />
+  </ItemGroup>  
+</Project>

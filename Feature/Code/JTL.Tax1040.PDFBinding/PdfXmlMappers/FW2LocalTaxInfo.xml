@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "FW2PdfSchema">
+  <Mapping>
+    <PDFField>txtFW2LocalWages</PDFField>
+    <TROField Type="ListType">W2LocalTaxInfo.LocalWagesAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2LocalincomeTax</PDFField>
+    <TROField Type="ListType">W2LocalTaxInfo.LocalTaxWithholdingAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2LocalityName</PDFField>
+    <TROField Type="ListType">W2LocalTaxInfo.LocalityName</TROField>
+  </Mapping>
+</OutputForm>

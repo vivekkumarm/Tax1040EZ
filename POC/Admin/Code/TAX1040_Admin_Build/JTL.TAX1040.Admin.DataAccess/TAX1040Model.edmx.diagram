@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e67292079abb4294959372969493eb8d" Name="Diagram1">
+        <EntityTypeShape EntityType="Tax1040Model.address" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040Model.country" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040Model.filing_status" Width="1.5" PointX="3.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040Model.person_type" Width="1.5" PointX="3.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040Model.personal_info" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040Model.state" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040Model.state_feature_sku" Width="1.5" PointX="3" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040Model.state_zip_code_conditions" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tax1040Model.user" Width="1.5" PointX="3.75" PointY="19.75" IsExpanded="true" />
+        <AssociationConnector Association="Tax1040Model.fk_address_country" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fk_address_earned_income_from_non_lived_state" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fK_address_lived_in_another_state" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fk_address_personal_address_state" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fk_address_personal_info" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fK_address_state_residence_state_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fk_personal_info_filing_status" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fk_personal_info_person_type" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fK_personal_info_state" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fk_personal_info_user" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fk_feature_state_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Tax1040Model.fk_state_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

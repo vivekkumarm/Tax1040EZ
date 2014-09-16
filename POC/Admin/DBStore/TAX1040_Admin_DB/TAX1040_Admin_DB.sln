@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TAX1040_Admin_DB", "TAX1040_Admin_DB\TAX1040_Admin_DB.sqlproj", "{17CA4B24-0F3F-4B93-A0C2-CD6A56EB3B9B}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.168.1.10:8080/tfs/jeevantax
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TAX1040_Admin_DB\\TAX1040_Admin_DB.sqlproj
+		SccProjectName1 = TAX1040_Admin_DB
+		SccLocalPath1 = TAX1040_Admin_DB
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17CA4B24-0F3F-4B93-A0C2-CD6A56EB3B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CA4B24-0F3F-4B93-A0C2-CD6A56EB3B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CA4B24-0F3F-4B93-A0C2-CD6A56EB3B9B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{17CA4B24-0F3F-4B93-A0C2-CD6A56EB3B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CA4B24-0F3F-4B93-A0C2-CD6A56EB3B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17CA4B24-0F3F-4B93-A0C2-CD6A56EB3B9B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

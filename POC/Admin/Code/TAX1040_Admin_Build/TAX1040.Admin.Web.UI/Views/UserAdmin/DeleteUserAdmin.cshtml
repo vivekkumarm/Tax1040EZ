@@ -1,0 +1,46 @@
+﻿@model JTL.TAX1040.Admin.BusinessObject.UserAdmin
+
+@{
+    ViewBag.Title = "DeleteUserAdmin";
+}
+
+<h2>DeleteUserAdmin</h2>
+
+
+@using (@Html.BeginForm())
+{
+    <fieldset>
+           <legend>Update User Admin</legend>
+    <ol>
+    <li>
+    @Html.LabelFor(sm=>sm.UserName) 
+    @Html.TextBoxFor(sm => sm.UserName)                        
+    @Html.ValidationMessageFor(m => m.UserName)
+    </li>
+    <li>
+    @Html.LabelFor(sm => sm.Password) 
+    @Html.TextBoxFor(sm => sm.Password)              
+    @Html.ValidationMessageFor(m => m.Password)
+    </li>
+  
+    <li>
+    @Html.LabelFor(sm => sm.ConfirmPassword) 
+    @Html.TextBoxFor(sm => sm.ConfirmPassword)  
+    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+    </li>
+   
+    <li>
+    @Html.LabelFor(sm => sm.Email) 
+    @Html.TextBoxFor(sm => sm.Email)    
+    @Html.ValidationMessageFor(m => m.Email)   
+   </li>
+   @* <li>
+    @Html.CheckBoxFor(sm => sm.IsActive) 
+    @Html.LabelFor(m => m.IsActive,new { @class = "checkbox" })
+    @Html.ValidationMessageFor(m => m.IsActive)
+    </li>*@
+    </ol>
+   <input type="submit" value="Delete"/>
+        </fieldset>
+
+}

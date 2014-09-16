@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "FW2PdfSchema">
+  <Mapping>
+    <PDFField>txtFW2Line12Code</PDFField>
+    <TROField Type="ListType">W2EmployerCode.EmployerCode</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFw2line12Amount</PDFField>
+    <TROField Type="ListType">W2EmployerCode.Amount</TROField>
+  </Mapping>
+</OutputForm>

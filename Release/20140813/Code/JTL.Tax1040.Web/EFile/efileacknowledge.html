@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaxGarden.com</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/EFile/efileacknowledge.js"></script>
+    <style type="text/css">
+        .wrap-txt {
+            word-wrap: break-word;
+            width: 95%;
+        }
+    </style>
+</head>
+<body>
+    <form id="federalefileacknowledge">
+        <div class="container">
+            
+            <!--Slide Menu-->
+
+            <script src="../lib/slidemenu.js"></script>
+
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <script type="text/javascript" src="../lib/fileleftmenu.js"></script>
+                        <div class="formfull">
+                           
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Acknowledge your E-File Information</h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+
+                                        <div class="panel panel-blue in">
+                                            <div id="divAcknowledgeEfileInfo" class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Signing Return</a>
+                                                </h4>
+                                                   
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+                                                  
+                                                    <div class="alert alert-info">
+                                                        <div class="c4c8" style="word-wrap:break-word">
+                                                            <div class="left" >
+                                                                <label for="lblEmailId">Email Id</label>
+                                                            </div>
+                                                            <div class="right" >
+                                                                <label id="lblEmailId" class="wrap-txt" ></label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c4c8">
+                                                            <div class="left">
+                                                                <label for="lblPhoneNumber">Phone Number</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <label id="lblPhoneNumber"></label>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="c4c8">
+                                                            <div class="left">
+                                                                <label for="lblTaxpayerDOB">Taxpayer DOB</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <label id="lblTaxpayerDOB"></label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c4c8" id="divSpouse">
+
+                                                            <div class="left">
+                                                                <label for="lblSpouseDOB">Spouse DOB</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <label id="lblSpouseDOB"></label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c4c8">
+                                                            <div class="left">
+                                                                <label for="lblTodayDate">Today's Date</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <label id="lblTodayDate"></label>
+                                                            </div>
+                                                        </div>
+
+                                                           
+
+                                                    </div>
+                                                    <h4>Verify your E-Filing Information before submitting:</h4>
+                                                   
+
+                                                    <div id="divFederalFilingInfo">
+
+                                                        <p>Federal Filing Information</p>
+                                                        <div class="alert alert-info">
+                                                            <div class="c4c8">
+                                                                <div class="left">
+                                                                    <label for="lblTaxpayerPINFederal">Taxpayer PIN</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblTaxpayerPINFederal"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="c4c8" id="divSpouseFilingInfoFederal">
+                                                                <div class="left">
+                                                                    <label for="lblSpousePINFederal">Spouse PIN</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblSpousePINFederal"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div id="divStateFilingInfo" style="display:none">
+                                                        <p>State Filing Information</p>
+                                                        <div class="alert alert-info">
+                                                            <div class="c4c8">
+                                                                <div class="left">
+                                                                    <label for="lblTaxpayerPINState">Taxpayer PIN</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblTaxpayerPINState"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="c4c8" id="divSpouseFilingInfoFederalState">
+                                                                <div class="left">
+                                                                    <label for="lblSpousePINState">Spouse PIN</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblSpousePINState"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <p>Before proceeding  with E-filing, IRS and State Authorities wants the Taxpayers to read and accept the following statement.</p>
+
+                                                    <p>Under Penalties of perjury, I declare that I have examined this return and accompanying schedules and statements for the tax year ending <strong>December 31st, 2014</strong> and to the best of my knowledge and belief that it is true and correct.</p>
+
+                                                    <p>I consent to allow my Intermediate service provider, transmitter or<strong> Electronic Return Originator (ERO)</strong> to send my return to the IRS and to receive from the IRS.</p>
+                                                    <ul class="list-group">
+                                                        <li>(a) An acknowledgement  of receipt or reason for rejection of the transmission.</li>
+                                                        <li>(b) The reason for any delay in processing  the return or refund.</li>
+                                                        <li>(c) Date of my refund.</li>
+                                                    </ul> </div>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="btnCancelEfile" class="btn btn-primary">Cancel E-File</button>
+                                    <button type="submit" id="btnContinue" class="btn btn-success pull-right">I Agree</button>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title class="Title"></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet'
+        type='text/css' />
+    <script src="../Scripts/custom.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/Income/unemploymentsummary.js"></script>
+
+</head>
+
+<body>
+    <form id="frmUnemploymentSummary">
+        <div class="container">
+            
+            <!--Slide Menu-->
+
+            <script src="../lib/slidemenu.js"></script>
+
+            <!--Header-->
+
+            <script type="text/javascript" src="../lib/header.js"></script>
+
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+                    <div class="innerform">
+
+                        <!-- Left menu -->
+                        <div class="lftarea">
+                            
+                            <script src="../lib/refundowemeter.js"></script>
+                            <script type="text/javascript" src="../lib/incomeleftmenu.js"></script>
+
+                        </div>
+                       
+
+                        <div class="formfull">
+                           
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Unemployment Compensations</h2>
+                                         </div>
+                                        <h4>Your total Unemployment Compensation from Federal  or  State Government  after reducing  your repayment for the year  <span id="spCurrentYear"></span> is 
+                                                <span id="spanTotalUnempReceived" class="wag">$00.00</span>.  </h4>
+                                              <!--  <br />
+                                                <br />-->
+                                               <!-- If you want to add another Form 1099G ,  click Add new &nbsp; <i class="fa fa-plus"></i>
+                                                &nbsp; to enter Unemployment compensation. To edit any information on Form 1099G, click edit &nbsp; 
+                                                <i class="fa fa-edit"></i>&nbsp; to modify  your Unemployment Compensation. -->
+                                                <!--<br />
+                                                <br />-->
+                                    <p>Click <a id="lnkF1040EZ" href="#"
+                                                         style="text-decoration: underline; color: #ed710d">Output Form </a>to display 1040EZ Form.</p>
+                                                <br />
+                                               <!-- Click on "Continue" button to proceed with next section.	-->			
+                                            
+                                       
+                                   
+
+                                    <div class="panel panel-primary animated fadeInDown">
+                                        <div class="panel-heading"><h3>Unemployment Compensation <a href="#dvunemploymentsummary" id="aAddNew" class="btn btn-default btn-xs pull-right" tabindex="1"><i class="fa fa-plus "></i> Add New</a></h3></div>
+                                        <!-- <div class="panel panel-blue">-->
+                                        <!--  <div class="panel-heading1">
+                                              <!--<div class="panel-title">
+                                                      <div class="row">
+                                                          <a class="toggle" data-toggle="collapse" data-parent="#accordion"
+                                                             href="#dvunemploymentsummary">Unemployment Compensation</a><a id="aAddNew"
+                                                                                                                           class="add" tabindex="1"><i class="fa fa-plus "></i>Add New</a>
+                                                      </div>
+                                                  </div>-->
+                                    <!--</div>-->
+                                            <div id="dvunemploymentsummary" class="panel-collapse collapse in">
+                                               <!-- <div class="panel-body">-->
+                                                    <div class="panel-body-grid">
+                                                        <div class="pangird head">
+                                                            <label class="col-md-4 ">Payer Name</label>
+                                                            <label class="col-md-3 ">Recipient's Name</label>
+                                                            <label class="col-md-3 ">Amount</label>
+                                                            <label class="col-md-2 ">Action</label>
+                                                        </div>
+                                                        <div id="dvUnemploymentSummary">
+                                                        </div>
+                                                    </div>
+                                               <!-- </div>-->
+                                            </div>
+                                       <!-- </div>-->
+
+                                        <!--Diagnostics-->
+                                        <!--   <div id='divDiagnosticsParent' class="panel panel-blue">
+                                                   <div class="panel-heading1">
+                                                       <div class="panel-title">
+                                                           <div class="row">
+                                                               <a class="toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                                  href="#divDiagnostics">Diagnostics
+                                                                   <sup id="supErrorCount" class="badge tip" data-toggle="tooltip" data-placement="top"></sup></a>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                   <div id="divDiagnostics" class="panel-collapse collapse">
+                                                       <div class="panel-body">
+                                                           <h4>Error Message</h4>
+                                                           <div id="dvDiagnostics">
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>-->
+                                    </div>
+                                    <button id='btnContinue' type="submit" class="btn btn-success pull-right">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+</body>
+</html>

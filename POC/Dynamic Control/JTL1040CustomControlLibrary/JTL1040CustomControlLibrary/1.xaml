@@ -1,0 +1,19 @@
+﻿<Window x:Class="JTL1040CustomControlLibrary._1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:local="clr-namespace:JTL1040CustomControlLibrary"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="_1" Height="300" Width="300">
+    <Window.Resources>
+        <local:JTLObjectCollection x:Key="objectCollection">
+            <sys:Int32 x:Key="One">1</sys:Int32>
+            <sys:Int32 x:Key="Two">2</sys:Int32>
+            <sys:Int32 x:Key="Three">3</sys:Int32>
+        </local:JTLObjectCollection>
+    </Window.Resources>
+    <local:JTLGrid x:Name="JTlGrd" >
+        <local:JTLTextbox Caption= "sadsad" Format="SSN" Margin="10,12,225,232" x:Name="txtFirst"  />
+        <local:JTLCheckBox Caption="My CheckBox" Margin="10,85,248,164" x:Name="chkCheck"></local:JTLCheckBox>
+        <local:JTLDropDownList Model="{StaticResource objectCollection}" Margin="10,105,198,135" />
+    </local:JTLGrid>
+</Window>

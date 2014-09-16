@@ -1,0 +1,1582 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="JTL.Tax1040.BusinessLogic.WorkFlow.Activities.F1040EZTaxesAndPenalties"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Tax1040Object" Type="InOutArgument(jtb:Tax1040)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap2010:WorkflowViewState.IdRef>WorkFlow.Penality_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Penality Calculation" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Double" Name="taxdueamount" />
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="latefilingavailable" />
+      <Variable x:TypeArguments="x:Double" Default="3" Name="interestAmount" />
+      <Variable x:TypeArguments="s:DateTime" Name="dueDate">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(DateTime.Today.Year+1, 4, 15);</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
+    <If sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object != null) &amp;&amp; (Tax1040Object.OutputForms != null) &amp;&amp; (Tax1040Object.OutputForms.Tax1040EZPage1 !=null) )</mca:CSharpValue>
+        </InArgument>
+      </If.Condition>
+      <If.Then>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Double" Name="fivepercentpenality" />
+            <Variable x:TypeArguments="x:Double" Name="twentyfivepercentpenality" />
+            <Variable x:TypeArguments="x:Double" Name="LateFilingPenalty" />
+            <Variable x:TypeArguments="x:Double" Name="interest" />
+            <Variable x:TypeArguments="x:Double" Name="LatePayingPenalty" />
+            <Variable x:TypeArguments="x:Boolean" Default="False" Name="hasExtended" />
+            <Variable x:TypeArguments="s:DateTime" Name="filingDate">
+              <Variable.Default>
+                <mca:CSharpValue x:TypeArguments="s:DateTime">Tax1040Object.TaxesAndPenalties.FilingDate.HasValue ? Tax1040Object.TaxesAndPenalties.FilingDate.Value : new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day)</mca:CSharpValue>
+              </Variable.Default>
+            </Variable>
+          </Sequence.Variables>
+          <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Double">
+                <mca:CSharpReference x:TypeArguments="x:Double">taxdueamount</mca:CSharpReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Double">
+                <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxAmount - Tax1040Object.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits</mca:CSharpValue>
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <If sap2010:WorkflowViewState.IdRef="If_3">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">(taxdueamount &gt;= 0 &amp;&amp; (filingDate &gt; dueDate))</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Int32" Default="4" Name="staticmonth" />
+                    <Variable x:TypeArguments="x:Double" Name="datedifference">
+                      <Variable.Default>
+                        <mca:CSharpValue x:TypeArguments="x:Double">(filingDate - dueDate).Days</mca:CSharpValue>
+                      </Variable.Default>
+                    </Variable>
+                    <Variable x:TypeArguments="x:Double" Name="monthdifference">
+                      <Variable.Default>
+                        <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30)</mca:CSharpValue>
+                      </Variable.Default>
+                    </Variable>
+                    <Variable x:TypeArguments="x:TimeSpan" Name="datedifferentmonth">
+                      <Variable.Default>
+                        <mca:CSharpValue x:TypeArguments="x:TimeSpan">filingDate - dueDate</mca:CSharpValue>
+                      </Variable.Default>
+                    </Variable>
+                    <Variable x:TypeArguments="x:Int32" Default="0" Name="month" />
+                    <Variable x:TypeArguments="x:Boolean" Default="False" Name="latefilingorpayingPenality" />
+                    <Variable x:TypeArguments="x:Double" Name="InterestonUnpaidtaxdue">
+                      <Variable.Default>
+                        <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(taxdueamount * ((double)interestAmount / 100) * ((double)datedifference / 365), 2)</mca:CSharpValue>
+                      </Variable.Default>
+                    </Variable>
+                    <Variable x:TypeArguments="x:Double" Default="0" Name="LatePaymentPenaltybeforeduedate" />
+                    <Variable x:TypeArguments="x:Double" Default="0" Name="LatePaymentPenaltyafterduedate" />
+                    <Variable x:TypeArguments="x:Double" Default="0" Name="LateFilingPenaltyforInterest" />
+                    <Variable x:TypeArguments="x:Double" Default="0" Name="InterestonLateFilingPenalty" />
+                    <Variable x:TypeArguments="x:Double" Default="0" Name="totalinterest" />
+                  </Sequence.Variables>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="scg:List(jtb:InterestOnUnpaidDue)">
+                        <mca:CSharpReference x:TypeArguments="scg:List(jtb:InterestOnUnpaidDue)">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="scg:List(jtb:InterestOnUnpaidDue)">
+                        <mca:CSharpValue x:TypeArguments="scg:List(jtb:InterestOnUnpaidDue)">new List&lt;InterestOnUnpaidDue&gt;()</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <If DisplayName="If HasFiledForm4868" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.TaxesAndPenalties !=null &amp;&amp; Tax1040Object.TaxesAndPenalties.HasFiledForm4868.HasValue ? Tax1040Object.TaxesAndPenalties.HasFiledForm4868.Value : false</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_27">
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpReference x:TypeArguments="x:Boolean">hasExtended</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                  <If DisplayName="datedifferentmonth" sap2010:WorkflowViewState.IdRef="If_7">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">datedifferentmonth.Days &gt; 0</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Int32" Name="monthbetweenfilingdateAndduedate">
+                            <Variable.Default>
+                              <mca:CSharpValue x:TypeArguments="x:Int32">month</mca:CSharpValue>
+                            </Variable.Default>
+                          </Variable>
+                          <Variable x:TypeArguments="x:Double" Default="0" Name="runningCalculation" />
+                          <Variable x:TypeArguments="s:DateTime" Name="currentQuater">
+                            <Variable.Default>
+                              <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate</mca:CSharpValue>
+                            </Variable.Default>
+                          </Variable>
+                        </Sequence.Variables>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_63">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpReference x:TypeArguments="x:Int32">month</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpValue x:TypeArguments="x:Int32">((filingDate.Year - dueDate.Year) * 12) + filingDate.Month - dueDate.Month</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <If DisplayName="runningtotal" sap2010:WorkflowViewState.IdRef="If_6">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">month &gt; 2</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_17">
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_64">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">runningCalculation</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">taxdueamount</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_65">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="s:DateTime">
+                                    <mca:CSharpReference x:TypeArguments="s:DateTime">currentQuater</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="s:DateTime">
+                                    <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_66">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">
+                                    <mca:CSharpReference x:TypeArguments="x:Int32">monthbetweenfilingdateAndduedate</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">
+                                    <mca:CSharpValue x:TypeArguments="x:Int32">month</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Sequence DisplayName="PenalityListCalculation" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="x:Int32" Default="1" Name="iteration" />
+                                </Sequence.Variables>
+                                <DoWhile DisplayName="Calculate Quaterly Based interest and Add to list" sap2010:WorkflowViewState.IdRef="DoWhile_1">
+                                  <DoWhile.Variables>
+                                    <Variable x:TypeArguments="x:String" Name="variable2" />
+                                  </DoWhile.Variables>
+                                  <DoWhile.Condition>
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">iteration &lt;= monthbetweenfilingdateAndduedate</mca:CSharpValue>
+                                  </DoWhile.Condition>
+                                  <Sequence DisplayName="Sequence1" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="jtb:InterestOnUnpaidDue" Name="interestOnUnpaidDue">
+                                        <Variable.Default>
+                                          <mca:CSharpValue x:TypeArguments="jtb:InterestOnUnpaidDue">new InterestOnUnpaidDue()</mca:CSharpValue>
+                                        </Variable.Default>
+                                      </Variable>
+                                    </Sequence.Variables>
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="s:DateTime">
+                                          <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterStartDate</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="s:DateTime">
+                                          <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <If sap2010:WorkflowViewState.IdRef="If_9">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">currentQuater.Month == staticmonth</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="s:DateTime">
+                                                <mca:CSharpReference x:TypeArguments="s:DateTime">currentQuater</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="s:DateTime">
+                                                <mca:CSharpValue x:TypeArguments="s:DateTime">currentQuater.AddMonths(2)</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="s:DateTime">
+                                                <mca:CSharpReference x:TypeArguments="s:DateTime">currentQuater</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="s:DateTime">
+                                                <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(currentQuater.Year, currentQuater.Month, 1)</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="s:DateTime">
+                                                <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterStartDate</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="s:DateTime">
+                                                <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="s:DateTime">
+                                                <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterEndDate</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="s:DateTime">
+                                                <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(dueDate.Year, currentQuater.Month, DateTime.DaysInMonth(currentQuater.Year, currentQuater.Month))</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.interestRate</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">interestAmount</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">(interestOnUnpaidDue.QuarterEndDate - interestOnUnpaidDue.QuarterStartDate).Days;</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30, 2)</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.NumberOfDays</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">datedifference</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.InterestAmount</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(taxdueamount * ((double)interestAmount / 100) * ((double)datedifference / 365), 2)</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Amount</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_18">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">runningCalculation</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation + interestOnUnpaidDue.InterestAmount</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_19">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Balance</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <AddToCollection x:TypeArguments="jtb:InterestOnUnpaidDue" DisplayName="AddToCollection&lt;InterestOnUnpaidDue&gt;" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1">
+                                            <AddToCollection.Item>
+                                              <InArgument x:TypeArguments="jtb:InterestOnUnpaidDue">
+                                                <mca:CSharpValue x:TypeArguments="jtb:InterestOnUnpaidDue">interestOnUnpaidDue</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection.Item>
+                                            <InArgument x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">
+                                              <mca:CSharpValue x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue</mca:CSharpValue>
+                                            </InArgument>
+                                          </AddToCollection>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="s:DateTime">
+                                                <mca:CSharpReference x:TypeArguments="s:DateTime">currentQuater</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="s:DateTime">
+                                                <mca:CSharpValue x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterEndDate</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Int32">
+                                                <mca:CSharpReference x:TypeArguments="x:Int32">iteration</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Int32">
+                                                <mca:CSharpValue x:TypeArguments="x:Int32">iteration+2</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Int32">
+                                                <mca:CSharpReference x:TypeArguments="x:Int32">month</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Int32">
+                                                <mca:CSharpValue x:TypeArguments="x:Int32">((filingDate.Year - currentQuater.Year) * 12) + filingDate.Month - currentQuater.Month</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <If sap2010:WorkflowViewState.IdRef="If_8">
+                                            <If.Condition>
+                                              <InArgument x:TypeArguments="x:Boolean">
+                                                <mca:CSharpValue x:TypeArguments="x:Boolean">month &gt; 3</mca:CSharpValue>
+                                              </InArgument>
+                                            </If.Condition>
+                                            <If.Then>
+                                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_23">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="s:DateTime">
+                                                      <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterStartDate</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="s:DateTime">
+                                                      <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(currentQuater.Year, currentQuater.AddMonths(1).Month, 1)</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="s:DateTime">
+                                                      <mca:CSharpReference x:TypeArguments="s:DateTime">currentQuater</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="s:DateTime">
+                                                      <mca:CSharpValue x:TypeArguments="s:DateTime">currentQuater.AddMonths(3)</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign DisplayName="QuarterEndDate" sap2010:WorkflowViewState.IdRef="Assign_25">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="s:DateTime">
+                                                      <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterEndDate</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="s:DateTime">
+                                                      <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(currentQuater.Year, currentQuater.Month, DateTime.DaysInMonth(currentQuater.Year, currentQuater.Month))</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign DisplayName="InterestRate" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.interestRate</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">interestAmount</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_27">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">(interestOnUnpaidDue.QuarterEndDate - interestOnUnpaidDue.QuarterStartDate).Days</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_28">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30, 2)</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign DisplayName="NumberOfDays" sap2010:WorkflowViewState.IdRef="Assign_29">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.NumberOfDays</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">datedifference</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign DisplayName="InterestAmount" sap2010:WorkflowViewState.IdRef="Assign_30">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.InterestAmount</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(taxdueamount * ((double)interestAmount / 100) * ((double)datedifference / 365), 2)</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_31">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Amount</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_32">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">runningCalculation</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation + interestOnUnpaidDue.InterestAmount</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_33">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Balance</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_34">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Int32">
+                                                      <mca:CSharpReference x:TypeArguments="x:Int32">iteration</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Int32">
+                                                      <mca:CSharpValue x:TypeArguments="x:Int32">iteration+3</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                              </Sequence>
+                                            </If.Then>
+                                            <If.Else>
+                                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_35">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="s:DateTime">
+                                                      <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterStartDate</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="s:DateTime">
+                                                      <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(currentQuater.Year, currentQuater.AddMonths(1).Month, 1)</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_36">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="s:DateTime">
+                                                      <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterEndDate</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="s:DateTime">
+                                                      <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(filingDate.Year, filingDate.Month, filingDate.Day)</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_37">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.interestRate</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">interestAmount</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_38">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">(interestOnUnpaidDue.QuarterEndDate - interestOnUnpaidDue.QuarterStartDate).Days</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_39">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30, 2)</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_40">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.NumberOfDays</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">datedifference</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_41">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.InterestAmount</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(taxdueamount * ((double)interestAmount / 100) * ((double)datedifference / 365), 2)</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_42">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Amount</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_43">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">runningCalculation</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation + interestOnUnpaidDue.InterestAmount</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_44">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Balance</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Double">
+                                                      <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_45">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Int32">
+                                                      <mca:CSharpReference x:TypeArguments="x:Int32">iteration</mca:CSharpReference>
+                                                    </OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Int32">
+                                                      <mca:CSharpValue x:TypeArguments="x:Int32">iteration+month</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                              </Sequence>
+                                            </If.Else>
+                                          </If>
+                                          <AddToCollection x:TypeArguments="jtb:InterestOnUnpaidDue" DisplayName="AddToCollection&lt;InterestOnUnpaidDue&gt;" sap2010:WorkflowViewState.IdRef="AddToCollection`1_2">
+                                            <AddToCollection.Item>
+                                              <InArgument x:TypeArguments="jtb:InterestOnUnpaidDue">
+                                                <mca:CSharpValue x:TypeArguments="jtb:InterestOnUnpaidDue">interestOnUnpaidDue</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection.Item>
+                                            <InArgument x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">
+                                              <mca:CSharpValue x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue</mca:CSharpValue>
+                                            </InArgument>
+                                          </AddToCollection>
+                                        </Sequence>
+                                      </If.Else>
+                                    </If>
+                                  </Sequence>
+                                </DoWhile>
+                              </Sequence>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_15">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="jtb:InterestOnUnpaidDue" Name="interestOnUnpaidDuenormal">
+                                  <Variable.Default>
+                                    <mca:CSharpValue x:TypeArguments="jtb:InterestOnUnpaidDue">new InterestOnUnpaidDue ()</mca:CSharpValue>
+                                  </Variable.Default>
+                                </Variable>
+                              </Sequence.Variables>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_46">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="s:DateTime">
+                                    <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDuenormal.QuarterStartDate</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="s:DateTime">
+                                    <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_47">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="s:DateTime">
+                                    <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDuenormal.QuarterEndDate</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="s:DateTime">
+                                    <mca:CSharpValue x:TypeArguments="s:DateTime">filingDate</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_67">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDuenormal.interestRate</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">interestAmount</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_48">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDuenormal.Amount</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">taxdueamount</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_49">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">(interestOnUnpaidDuenormal.QuarterEndDate - interestOnUnpaidDuenormal.QuarterStartDate).Days</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_68">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDuenormal.NumberOfDays</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">datedifference</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_50">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDuenormal.InterestAmount</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(taxdueamount * ((double)interestAmount / 100) * ((double)datedifference / 365), 2)</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_51">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDuenormal.Balance</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">taxdueamount + interestOnUnpaidDuenormal.InterestAmount</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <AddToCollection x:TypeArguments="jtb:InterestOnUnpaidDue" DisplayName="AddToCollection&lt;InterestOnUnpaidDue&gt;" sap2010:WorkflowViewState.IdRef="AddToCollection`1_3">
+                                <AddToCollection.Item>
+                                  <InArgument x:TypeArguments="jtb:InterestOnUnpaidDue">
+                                    <mca:CSharpValue x:TypeArguments="jtb:InterestOnUnpaidDue">interestOnUnpaidDuenormal</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection.Item>
+                                <InArgument x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">
+                                  <mca:CSharpValue x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue</mca:CSharpValue>
+                                </InArgument>
+                              </AddToCollection>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_52">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="s:Nullable(x:Double)">
+                            <mca:CSharpReference x:TypeArguments="s:Nullable(x:Double)">Tax1040Object.TaxesAndPenalties.PenaltiesAndInterest</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="s:Nullable(x:Double)">
+                            <mca:CSharpValue x:TypeArguments="s:Nullable(x:Double)">0</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Else>
+                  </If>
+                  <If sap2010:WorkflowViewState.IdRef="If_16">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">hasExtended</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="Extended file Calculation" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                        <Assign DisplayName="Adding 6 month if etension made" sap2010:WorkflowViewState.IdRef="Assign_78">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:DateTime">
+                              <mca:CSharpReference x:TypeArguments="s:DateTime">dueDate</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:DateTime">
+                              <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate.AddMonths(6)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Datedifference between filing date and Due Date" sap2010:WorkflowViewState.IdRef="Assign_79">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">(filingDate - dueDate).Days</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_80">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <If sap2010:WorkflowViewState.IdRef="If_15">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">(filingDate - dueDate).Days &lt; 0</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_23">
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_81">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="s:DateTime">
+                                    <mca:CSharpReference x:TypeArguments="s:DateTime">dueDate</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="s:DateTime">
+                                    <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate.AddMonths(-6)</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="datedifference" sap2010:WorkflowViewState.IdRef="Assign_82">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">(filingDate - dueDate).Days</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="monthdifference" sap2010:WorkflowViewState.IdRef="Assign_83">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30, 2)</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Late Payment Penaltybeforeduedate" sap2010:WorkflowViewState.IdRef="Assign_84">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">LatePaymentPenaltybeforeduedate</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Math.Min((((double)0.5 / 100) * monthdifference * taxdueamount), (((double)25 / 100) * taxdueamount))</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_85">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">0</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_86">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">LateFilingPenaltyforInterest</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">LateFilingPenalty + LatePaymentPenaltybeforeduedate</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_24">
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_87">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">fivepercentpenality</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">((double)5 / 100) * taxdueamount * monthdifference</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="twentyfivepercentpenality" sap2010:WorkflowViewState.IdRef="Assign_88">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">twentyfivepercentpenality</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">((double)25 / 100) * taxdueamount</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Late filing Penality Calculation" sap2010:WorkflowViewState.IdRef="Assign_89">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">LateFilingPenalty</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(fivepercentpenality, twentyfivepercentpenality)</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Late Payment Penality before Due" sap2010:WorkflowViewState.IdRef="Assign_90">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">LatePaymentPenaltybeforeduedate</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Math.Min((((double)0.5 / 100) * 6 * taxdueamount), (((double)25 / 100) * taxdueamount))</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_91">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">LatePaymentPenaltyafterduedate</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Math.Min((((double)0.5 / 100) * monthdifference * taxdueamount), (((double)25 / 100) * taxdueamount))</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_92">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">LateFilingPenaltyforInterest</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">LateFilingPenalty - LatePaymentPenaltyafterduedate</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                        <Assign DisplayName="Interest on Late Filing Penalty" sap2010:WorkflowViewState.IdRef="Assign_93">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">InterestonLateFilingPenalty</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">LateFilingPenaltyforInterest * ((double)3 / 100) * ((double)datedifference / 365)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="total Interest" sap2010:WorkflowViewState.IdRef="Assign_94">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">totalinterest</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue.Select(a =&gt; a.InterestAmount).Sum() + InterestonLateFilingPenalty</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Penalties And Interest" sap2010:WorkflowViewState.IdRef="Assign_95">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:Nullable(x:Double)">
+                              <mca:CSharpReference x:TypeArguments="s:Nullable(x:Double)">Tax1040Object.TaxesAndPenalties.PenaltiesAndInterest</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Round((LateFilingPenalty + Math.Max(LatePaymentPenaltybeforeduedate, LatePaymentPenaltyafterduedate)) + totalinterest)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Not extended file calculation" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                        <Assign DisplayName="Datedifference between filing date" sap2010:WorkflowViewState.IdRef="Assign_96">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">(filingDate - dueDate).Days</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="MonthDifference" sap2010:WorkflowViewState.IdRef="Assign_97">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Five percentage calculation" sap2010:WorkflowViewState.IdRef="Assign_98">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">fivepercentpenality</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">((double)5 / 100) * taxdueamount * monthdifference</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Twenty Five percentage calculation" sap2010:WorkflowViewState.IdRef="Assign_99">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">twentyfivepercentpenality</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">((double)25 / 100) * taxdueamount</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Late filing Penality Calculation" sap2010:WorkflowViewState.IdRef="Assign_100">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">LateFilingPenalty</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(fivepercentpenality, twentyfivepercentpenality)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="LatePaymentPenaltyafterduedate" sap2010:WorkflowViewState.IdRef="Assign_101">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">LatePaymentPenaltyafterduedate</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Min((((double)0.5 / 100) * monthdifference * taxdueamount), (((double)25 / 100) * taxdueamount))</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Late Filing Penalty for Interest" sap2010:WorkflowViewState.IdRef="Assign_102">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">LateFilingPenaltyforInterest</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">LateFilingPenalty - LatePaymentPenaltyafterduedate</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Intereston Late Filing Penalty" sap2010:WorkflowViewState.IdRef="Assign_103">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">InterestonLateFilingPenalty</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">LateFilingPenaltyforInterest * ((double)3 / 100) * ((double)datedifference / 365)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="total interest" sap2010:WorkflowViewState.IdRef="Assign_104">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">totalinterest</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue.Select(a =&gt; a.InterestAmount).Sum() + InterestonLateFilingPenalty</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Penalties And Interest" sap2010:WorkflowViewState.IdRef="Assign_105">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:Nullable(x:Double)">
+                              <mca:CSharpReference x:TypeArguments="s:Nullable(x:Double)">Tax1040Object.TaxesAndPenalties.PenaltiesAndInterest</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(Math.Max(LateFilingPenalty, Math.Max(LatePaymentPenaltybeforeduedate, LatePaymentPenaltyafterduedate)) + totalinterest)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <If sap2010:WorkflowViewState.IdRef="If_17">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">taxdueamount &lt; 0</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_28">
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_106">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.RefundAmount</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(Math.Abs(taxdueamount),2)</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_29">
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_107">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.RefundAmount</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">0</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </If.Else>
+            </If>
+          </Sequence>
+        </Sequence>
+      </If.Then>
+    </If>
+    <sads:DebugSymbol.Symbol>d2ZEOlxKZWV2YW4xMDQwXEZlYXR1cmVcQ29kZVxKVEwuVGF4MTA0MC5CdXNpbmVzc0xvZ2ljXFdvcmtGbG93XEFjdGl2aXRpZXNcRjEwNDBFWlRheGVzQW5kUGVuYWx0aWVzLnhhbWzJAjgDuQoOAgEBOzU7PAIBCTw0PDcCAQg/Cz92AgECQwW3CgoCAQpGC0bQAQIBC0oJtQoUAgERUTtRQgIBH1QRVIUCAgESWAtjFAMBySpkC7QKFgIBIGARYMQBAwHXKlsRW2MDAcoqZQ2zChICASFoE2iNAQIBImwRigocAgFpjQoRsQoWAgEvbkFuRAMB1QFxGXFyAwG8AXYZdnYDAaMBexl7bQMBigF+QX5EAwGJAX9Df0oDAYgBggEZggG0AQIBb4UBQoUBRQIBboYBQoYBRQIBbYcBQocBRQIBbIgBQogBRQIBa4kBQokBRQIBaosBE5YBHAMBliqXAROrARgDAeAprAETnQcYAwGKDZ4HE4kKGAMB1gGQCheQCmkCATCUChWhCiACAU2kChWvCiACAT2TARmTAZUBAwGwKo4BGY4BqwEDAZcqmgEZmgGEAgMB4SmeARepASIDAfoprwEZrwF2AwGLDbMBF40HIgMB1w2QBxebByADAaQNoQcZoQdjAwHXAaUHF4sJIgMB7wWOCReHCiIDAfABlQoXoAogAgFOpQoXrgogAgE+nwEZqAEiAwH7KbcBH7cBYQMB9Q26AUi6AUsDAfQNvQEfvQFmAwHYDcEBGcwBIgMBpynNARmMBx4DAZEOmAcdmAdoAwG+DZMHHZMHowEDAaUNpgcZsQciAwHXDLIHGb0HIgMBpAy+BxnJByIDAfELygcZ5ggeAwGJB+cIGfIIIgMB1gbzCBn+CCIDAaMG/wgZigkiAwHwBY8JGZoJIgMBvAWbCRmmCSIDAYkFpwkZsgkiAwHWBLMJGb4JIgMBowS/CRnKCSIDAfADywkZ1gkiAwG9A9cJGeIJIgMBigPjCRnuCSIDAdcC7wkZ+gkiAwGkAvsJGYYKIgMB8QGdCh2dCn8CAVyYCh2YCpgBAgFPrApCrApDAgFMqAodqAqYAQIBP6YBRaYBSQMBlSqiAR+iAXEDAfwpyQEfyQGmAQMBxCnEAR/EAWkDAagp0AEf0AFqAwGSDtQBHZUGKAMB3xKYBh2KBygDAa4OrgcfrgdzAwHxDKkHH6kHbgMB2Ay6Bx+6B3gDAb4MtQcftQdzAwGlDMYHH8YHfAMBiwzBBx/BB3QDAfILzQcfzQeAAQMBigfRBx2YCCgDAdYJmwgd5AgoAwGjB+8IH+8IrgEDAfAG6ggf6giAAQMB1wb7CB/7CNUBAwG9BvYIH/YIcgMBpAaHCR+HCdgBAwGKBoIJH4IJpQEDAfEFlwkflwl4AwHWBZIJH5IJcwMBvQWjCR+jCXwDAaMFngkfngl0AwGKBa8JH68JjwEDAfAEqgkfqgl4AwHXBLsJH7sJfgMBvQS2CR+2CX4DAaQExwkfxwmVAQMBigTCCR/CCXYDAfED0wkf0wnCAQMB1wPOCR/OCYMBAwG+A98JH98JjwEDAaQD2gkf2gmBAQMBiwPrCR/rCa4BAwHxAuYJH+YJgAEDAdgC9wkf9wnVAQMBvgLyCR/yCXIDAaUCgwofgwrfAQMBiwL+CR/+CaUBAwHyAdUBH+ABKAMB7ijhAR/sASgDAbUo7QEf+AEoAwH8J/kBH5QGKgMB4BKcBiWcBowBAwGvDqAGH6sGKAMBpBKsBh+3BigDAekRuAYfwwYoAwGuEcQGH88GKAMB8xDQBh/bBigDAbgQ3AYf5wYoAwH9D+gGH/MGKAMBwg/0Bh//BigDAYcPgAcfiQcxAwHMDtIHH90HKAMBvgveBx/pBygDAYsL6gcf9QcoAwHYCvYHH4EIKAMBpQqCCB+LCCgDAYoKjAgflwgoAwHXCZwIH6cIKAMBowmoCB+zCCgDAfAItAgfvwgoAwG9CMAIH8sIKAMBigjMCB/XCCgDAdcH2Agf4wgoAwGkB90BJd0BbwMBiynYASXYAX0DAe8o6QEl6QFsAwHSKOQBJeQBegMBtij1ASX1AWcDAZko8AEl8AGKAQMB/Sf7AU/7AVIDAeES/QEhkwYrAwHiEqgGJagGbAMBwhKjBiWjBpcBAwGlErQGJbQGbwMBhxKvBiWvBpUBAwHqEcAGJcAGcQMBzBG7BiW7BpEBAwGvEcwGJcwGbwMBkRHHBiXHBosBAwH0ENgGJdgGvwEDAdYQ0wYl0wZ5AwG5EOQGJeQGcQMBmxDfBiXfBpEBAwH+D/AGJfAGwAEDAeAP6wYl6waTAQMBww/8BiX8BpoBAwGlD/cGJfcGjAEDAYgPhwcjhwe0AQMB6g6DByWDB4sBAwHNDtoHJdoHegMB2AvVByXVB3QDAb8L5gcl5gd+AwGlC+EHJeEHeQMBjAvyByXyB4UBAwHyCu0HJe0HegMB2Qr+ByX+B8gBAwG/CvkHJfkHigEDAaYKiQhKiQhLAwGkCoUIJYUIegMBiwqUCCWUCJYBAwHxCY8IJY8IhwEDAdgJpAglpAiVAQMBvQmfCCWfCH4DAaQJsAglsAiEAQMBigmrCCWrCIQBAwHxCLwIJbwImwEDAdcItwgltwh8AwG+CMgIJcgIugEDAaQIwwglwwiKAQMBiwjUCCXUCMgBAwHxB88IJc8IiQEDAdgH4Agl4AiVAQMBvgfbCCXbCIcBAwGlB4ICJYIClAEDAd4nhAIjkgYuAwHjEogCK4gCkQEDAeQSjAIllwIuAwGfJ5gCJZEGKgMBgxOUAiuUAnIDAb8njwIrjwKXAQMBoCebAiubAowBAwGEE58CKdIDNAMB7R/VAymPBjQDAaMToAIrqwI0AwHgJqwCK7cCNAMBoSa4AivDAjQDAeIlxAIrzwI0AwGjJdACK9sCNAMB5CTcAivnAjQDAaUk6AIr8wI0AwHmI/QCK/8CNAMBpyOAAyuLAzQDAegijAMrlwM0AwGpIpgDK6MDNAMB6iGkAyuvAzQDAashsAMruQM9AwHsILoDK8UDNAMBrSDGAyvRAzQDAe4f1gMr4QM0AwGuH+IDK4QGMAMB4xOFBiuOBj0DAaQTqAIxqAKLAQMBgCejAjGjAoYBAwHhJrQCMbQCqQEDAcEmrwIxrwKGAQMBoibAAjHAAngDAYImuwIxuwKdAQMB4yXMAjHMAt8BAwHDJccCMccCmwEDAaQl2AIx2AJ9AwGEJdMCMdMClwEDAeUk5AIx5ALAAQMBxSTfAjHfAoUBAwGmJPACMfACkQEDAYYk6wIx6wKGAQMB5yP8AjH8An0DAccj9wIx9wKXAQMBqCOIAzGIA8wBAwGII4MDMYMDmQEDAekilAMxlAOBAQMBySKPAzGPA5EBAwGqIqADMaADpgEDAYoimwMxmwOJAQMB6yGsAzGsA4EBAwHLIacDMacDkgEDAawhtwMvtwPAAQMBjCGzAzGzA5EBAwHtIMIDMcIDkwEDAc0gvQMxvQOGAQMBriDOAzHOA3kDAY4gyQMxyQN/AwHvH94DMd4DxAEDAc4f2QMx2QN7AwGvH+UDMeUDfAMB5BPpAy/6BDoDAbkZ/QQvggY6AwGDFIwGL4wGwAEDAcQTiAYxiAaRAQMBpRPqAzH1AzoDAe8e9gMxgQQ6AwGwHoIEMY0EOgMB8R2OBDGZBDoDAbIdmgQxpQQ6AwHzHKYEMbEEOgMBtByyBDG9BDoDAfUbvgQxyQQ6AwG2G8oEMdUEOgMB9xrWBDHhBDoDAbga4gQx7QQ6AwH5Ge4EMfkEOgMBuhn+BDGJBToDAfoYigUxlQU6AwG7GJYFMaEFOgMB/BeiBTGtBToDAb0XrgUxuQU6AwH+FroFMcUFOgMBvxbGBTHRBToDAYAW0gUx3QU6AwHBFd4FMekFOgMBghXqBTH1BToDAcMU9gUxgQY6AwGEFPIDN/IDvAEDAY8f7QM37QOjAQMB8B7+Azf+A5EBAwHQHvkDN/kDjAEDAbEeigQ3igTrAQMBkR6FBDeFBKEBAwHyHZYEN5YEgwEDAdIdkQQ3kQSdAQMBsx2iBDeiBMUBAwGTHZ0EN50EiwEDAfQcrgQ3rgSXAQMB1BypBDepBIwBAwG1HLoEN7oEgwEDAZUctQQ3tQSdAQMB9hvGBDfGBNIBAwHWG8EEN8EEnwEDAbcb0gQ30gSHAQMBlxvNBDfNBJcBAwH4Gt4EN94ErAEDAdga2QQ32QSPAQMBuRrqBDfqBIcBAwGZGuUEN+UEmAEDAfoZ9gQ39gR/AwHaGfEEN/EEhQEDAbsZhgU3hgW8AQMBmhmBBTeBBaMBAwH7GJIFN5IFtgEDAdsYjQU3jQWhAQMBvBieBTeeBYMBAwGcGJkFN5kFnQEDAf0XqgU3qgXFAQMB3RelBTelBYsBAwG+F7YFN7YFlwEDAZ4XsQU3sQWMAQMB/xbCBTfCBYMBAwHfFr0FN70FnQEDAcAWzgU3zgXSAQMBoBbJBTfJBZ8BAwGBFtoFN9oFhwEDAeEV1QU31QWXAQMBwhXmBTfmBawBAwGiFeEFN+EFjwEDAYMV8gU38gWHAQMB4xTtBTftBZgBAwHEFP4FN/4FgwEDAaQU+QU3+QWFAQMBhRQ=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="2156,62" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="1534,62" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_27" sap:VirtualizedContainerService.HintSize="264,186">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="1534,336" />
+      <sap2010:ViewStateData Id="Assign_63" sap:VirtualizedContainerService.HintSize="1245,62" />
+      <sap2010:ViewStateData Id="Assign_64" sap:VirtualizedContainerService.HintSize="934,62" />
+      <sap2010:ViewStateData Id="Assign_65" sap:VirtualizedContainerService.HintSize="934,62" />
+      <sap2010:ViewStateData Id="Assign_66" sap:VirtualizedContainerService.HintSize="934,62" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="864,62" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_18" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_19" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="AddToCollection`1_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_21" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="264,1574">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="553,62" />
+      <sap2010:ViewStateData Id="Assign_23" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_24" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_25" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_26" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_27" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_28" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_29" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_30" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_31" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_32" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_33" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_34" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="264,1308">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_35" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_36" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_37" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_38" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_39" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_40" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_41" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_42" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_43" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_44" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_45" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_13" sap:VirtualizedContainerService.HintSize="264,1206">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="553,1458" />
+      <sap2010:ViewStateData Id="AddToCollection`1_2" sap:VirtualizedContainerService.HintSize="553,22" />
+      <sap2010:ViewStateData Id="Sequence_14" sap:VirtualizedContainerService.HintSize="575,1746">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_9" sap:VirtualizedContainerService.HintSize="864,1896" />
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="886,2122">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DoWhile_1" sap:VirtualizedContainerService.HintSize="912,2286" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="934,2410">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_17" sap:VirtualizedContainerService.HintSize="956,2840">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_46" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_47" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_67" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_48" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_49" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_68" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_50" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_51" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="AddToCollection`1_3" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_15" sap:VirtualizedContainerService.HintSize="264,962">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="1245,2990" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="1267,3216">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_52" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="1534,3366" />
+      <sap2010:ViewStateData Id="Assign_78" sap:VirtualizedContainerService.HintSize="553,62" />
+      <sap2010:ViewStateData Id="Assign_79" sap:VirtualizedContainerService.HintSize="553,62" />
+      <sap2010:ViewStateData Id="Assign_80" sap:VirtualizedContainerService.HintSize="553,62" />
+      <sap2010:ViewStateData Id="Assign_81" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_82" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_83" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_84" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_85" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_86" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_23" sap:VirtualizedContainerService.HintSize="264,696">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_87" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_88" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_89" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_90" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_91" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_92" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="264,696">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_15" sap:VirtualizedContainerService.HintSize="553,846" />
+      <sap2010:ViewStateData Id="Assign_93" sap:VirtualizedContainerService.HintSize="553,62" />
+      <sap2010:ViewStateData Id="Assign_94" sap:VirtualizedContainerService.HintSize="553,62" />
+      <sap2010:ViewStateData Id="Assign_95" sap:VirtualizedContainerService.HintSize="553,62" />
+      <sap2010:ViewStateData Id="Sequence_25" sap:VirtualizedContainerService.HintSize="575,1582">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_96" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_97" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_98" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_99" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_100" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_101" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_102" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_103" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_104" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_105" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="264,1104">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_16" sap:VirtualizedContainerService.HintSize="1534,1732" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="1556,5740">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_106" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="264,186">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_107" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_29" sap:VirtualizedContainerService.HintSize="264,186">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_17" sap:VirtualizedContainerService.HintSize="553,336" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="2134,5890" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="2156,6014">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="2178,6240">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="2303,6390" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="2325,6514">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WorkFlow.Penality_1" sap:VirtualizedContainerService.HintSize="2365,6594" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/TaxesAndWrapUp/taxesandwrapupinfo.js"></script>
+    <script src="../Scripts/bootstrap-datepicker.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+
+</head>
+<body>
+    <form id="taxesandwrapupinfo">
+        <div class="container">
+
+            <!--Slide Menu-->
+
+            <script src="../lib/slidemenu.js"></script>
+
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+
+                <div role="form" class="container-fluid">
+
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <script type="text/javascript" src="../lib/taxesandwrapupleftmenu.js"></script>
+                        <div class="formfull">
+
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Taxes & Payments</h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue in">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="collapselinkOne">Additional Payment Information</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+                                                    <div class="right1">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input id="chkFiledForm4868" type="checkbox" name="terms" value="1" tabindex="1" />
+                                                                Filed Form 4868 for Federal extension</label>
+                                                        </div>
+
+                                                        <div class="field-group" id="divFiledForm4868ForFederalExtension" style="display: none">
+                                                            <div class="left-lbl">
+                                                                <label for="txtFederalExtensionFiledDate">Date Filed for Extension</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <div class="input-group date" id="divExtensionFiledDate">
+                                                                    <input type="text" id="txtFederalExtensionFiledDate" name="txtFederalExtensionFiledDate" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Date on which Federal extension  was filed with Form 4868" data-trigger="focus" tabindex="2" readonly="true" />
+                                                                    <span class="input-group-addon"><span class="cal"></span>
+                                                                    </span>
+                                                                </div>
+                                                                <div id="divFederalExtensionFiledDate" style="display: block; color: #cf1c16">
+                                                                </div>
+                                                            </div>
+                                                            <a id="DateFiledForExtension" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+
+                                                        <label class="checkbox">
+                                                            <input id="chkFederalExtensionPaid" type="checkbox" name="terms" value="2" tabindex="3" />
+                                                            Federal extension paid along with Form 4868 or EFTPS or Electronic Fund Withdrawal
+                                                        </label>
+                                                        <div id="divFederalExtensionPaidShow" style="display: none">
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label for="txtFederalExtensionAmount">Federal Extension Amount</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <input type="text" id="txtFederalExtensionAmount" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);" name="txtFederalExtensionAmount" placeholder="" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Federal Extension Amount Paid" data-trigger="focus" tabindex="4" maxlength="12" />
+                                                                </div>
+                                                                <a id="FederalExtensionAmount" data-toggle="popover" class="help" rel="popover"></a>
+                                                            </div>
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label for="txtDatePaid">Date Paid</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <div class="input-group date" id="divAmountPaidDate">
+                                                                        <input type="text" id="txtDatePaid" name="txtDatePaid" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Payment date of estimated total tax liability" data-trigger="focus" tabindex="5" readonly="true" />
+                                                                        <span class="input-group-addon"><span class="cal"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div id="divDatePaid" style="display: block; color: #cf1c16">
+                                                                    </div>
+                                                                </div>
+                                                                <a id="DatePaid" data-toggle="popover" class="help" rel="popover"></a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input id="chklateFiling" type="checkbox" name="terms" value="3" tabindex="6" />
+                                                                Filing your tax return after the due date, <span class="spanFillingYear"></span>
+                                                            </label>
+                                                        </div>
+
+                                                        <div id="divLateFilingShow" class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtDateOfFiling">Date of Filing Your Tax return</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <div class="input-group date" id="divFilingDate">
+                                                                    <input type="text" id="txtDateOfFiling" name="txtDateOfFiling" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Select the Filing Date of your tax return" data-trigger="focus" tabindex="7" readonly="true" />
+
+                                                                    <span class="input-group-addon">
+                                                                        <span class="cal"></span>
+                                                                    </span>
+                                                                </div>
+                                                                <div id="divDateOfFiling" style="display: block; color: #cf1c16">
+                                                                </div>
+                                                            </div>
+                                                            <a id="DateOfFiling" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <button type="submit" id="btnSubmitOne" class="btn btn-success" onclick="PersistTaxAndwrapup(false)" tabindex="8">Next</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="collapselinktwo">Bank and Miscellaneous Information
+                                                    </a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>Direct Deposit of Federal Tax Refund</h4>
+                                                    <div id="divDirectDepositofFederal">
+                                                        <label class="right">Do you want to deposit your tax refunds directly to your bank account?</label>
+                                                        <div class="c4c8">
+                                                            <div id="divDirectDeposityYes" class="checkbox-inline">
+                                                                <label>
+                                                                    <input type="radio" name="radIsDirectDeposit" id="radIsDirectDepositYes" tabindex="9" />
+                                                                    Yes
+                                                                </label>
+                                                            </div>
+                                                            <div id="divDirectDepositNo" class="checkbox-inline">
+                                                                <label>
+                                                                    <input type="radio" name="radIsDirectDeposit" id="radIsDirectDepositNo" tabindex="10" />
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="divDirectDepositofFederalTaxRefund" style="display: none">
+
+
+                                                        <h4>Enter Your Bank Account Information</h4>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label>Bank Information</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <img src="../Images/BankAccoutInfo.png" alt="bank account info" class="img-responsive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="field-group">
+
+                                                            <div class="left-lbl">
+                                                                <label for="txtBankName">Bank Name</label>
+
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtBankName" name="txtBankName" placeholder="" maxlength="30" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Name of your Bank" data-trigger="focus" tabindex="11" />
+                                                            </div>
+                                                            <a id="BankName" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtBankRoutingNumber">Bank Routing Number</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtBankRoutingNumber" name="txtBankRoutingNumber" maxlength="9" placeholder="" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Routing Number of your bank" data-trigger="focus" tabindex="12" />
+                                                            </div>
+                                                            <a id="BankRoutingNumber" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtBankAccountNumber">Bank Account Number</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtBankAccountNumber" name="txtBankAccountNumber" maxlength="17" placeholder="" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Your Bank Account Number" data-trigger="focus" tabindex="13" />
+                                                            </div>
+                                                            <a id="BankAccountNumber" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="radAcNo">Type Of Account</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <label>
+                                                                    <input id="radChecked" name="radAcNo" type="radio" value="Checking" tabindex="14" />
+                                                                    Checking
+                                                                </label>
+                                                                <label>
+                                                                    <input id="radSaved" name="radAcNo" type="radio" value="Saving" tabindex="15" />
+                                                                    Saving
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <p>Note:   This bank information is reportable only if you have tax refund on your Federal or State tax  returns.</p>
+                                                    </div>
+                                                    <h4>Third Party Designee</h4>
+                                                    <div id="divAllowOtherstoDiscussWithIRS">
+                                                        <label for="radIsAllowOtherPerson" class="right">
+                                                            Do you want to allow another person to discuss this return with IRS?</label>
+                                                        <div class="field-group">
+                                                            <div class="checkbox-inline" id="divAllowOtherPersonYes">
+                                                                <label>
+                                                                    <input type="radio" name="radIsAllowOtherPerson" id="radIsAllowOtherPersonYes" tabindex="16" />
+                                                                    Yes
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="checkbox-inline" id="divAllowOtherPersonNo">
+                                                                <label>
+                                                                    <input type="radio" name="radIsAllowOtherPerson" id="radIsAllowOtherPersonNo" tabindex="17" />
+                                                                    No
+                                                                </label>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div id="divOtherPerson" style="display: none">
+                                                        <h4>Enter Your Designee Name, Phone Number and Personal Identification Number</h4>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblDesignName">Designee's Name</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtDesignName" placeholder="" maxlength="30" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Name of your Designee" tabindex="18" />
+                                                            </div>
+                                                            <a id="DesignName" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblPhoneNo">Phone No</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtPhoneno" name="txtPhoneno" placeholder="XXX-XXX-XXXX" maxlength="12" class="form-control tip" data-toggle="tooltip" onkeyup="javascript:return maskInput(this.value,this,'3,7',event,false,true);" data-placement="right" title="Phone Number of your Designee" tabindex="19" />
+                                                            </div>
+                                                            <a id="Phoneno" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblPersonalIdentificationNumber">Personal Identification No</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtPersonalIdentificationNumber" maxlength="5" placeholder="" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Personal Identification Number of your Designee" tabindex="20" />
+                                                            </div>
+                                                            <a id="PersonalIdentificationNumber" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div id="divIncareInfo">
+                                                        <h4>In Care Of Information:</h4>
+                                                        <h4>Enter the In Care Information of  a person who maintain your books (Attorney's, Executor 
+                                                            or Personal representative  etc.)</h4>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtIncareof">In Care of</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtIncareof" name="txtIncareof" maxlength="64" placeholder="" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Name of your attorney, executor or personal assistant." tabindex="21" />
+                                                            </div>
+                                                            <a id="Incareof" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtPhoneNumber">Phone Number</label>
+
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtPhoneNumber" maxlength="12" name="txtPhoneNumber" placeholder="XXX-XXX-XXXX" class="form-control tip" data-toggle="tooltip" data-placement="right" onkeyup="javascript:return maskInput(this.value,this,'3,7',event,false,true);" title="Daytime Phone Number of your attorney, executor or personal assistant" tabindex="22" />
+                                                            </div>
+                                                            <a id="PhoneNumber" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" onclick="GoToPreviousPage();return false;">Back</button>
+                                    <button type="submit" id="btnPrimaryFilerInfo" class="btn btn-success" onclick="PersistTaxAndwrapup(true);return false;" tabindex="23">
+                                        Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--//Footer-->
+    <script type="text/javascript" src="../lib/footer.js"></script>
+</body>
+</html>

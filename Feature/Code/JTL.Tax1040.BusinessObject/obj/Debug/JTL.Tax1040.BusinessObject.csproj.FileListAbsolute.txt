@@ -1,0 +1,8 @@
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.BusinessObject\bin\Debug\JTL.Tax1040.BusinessObject.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.BusinessObject\bin\Debug\JTL.Tax1040.BusinessObject.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.BusinessObject\bin\Debug\JTL.Tax1040.Core.Object.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.BusinessObject\bin\Debug\Newtonsoft.Json.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.BusinessObject\bin\Debug\JTL.Tax1040.Core.Object.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.BusinessObject\obj\Debug\JTL.Tax1040.BusinessObject.csprojResolveAssemblyReference.cache
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.BusinessObject\obj\Debug\JTL.Tax1040.BusinessObject.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.BusinessObject\obj\Debug\JTL.Tax1040.BusinessObject.pdb

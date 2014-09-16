@@ -1,0 +1,43 @@
+﻿@model JTL.TAX1040.Admin.BusinessObject.UserAdmin
+
+@{
+    ViewBag.Title = "UserAdmin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User Admin</h2>
+ 
+<div>
+    @{
+        //ViewBag.Title = Model.UserAdminId;
+    }
+
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Admin Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </li>
+            
+             <li>
+                 @Html.LabelFor(m => m.IsActive)
+                @Html.CheckBoxFor(m => m.IsActive)
+            </li>
+        </ol>
+        <input type="submit" value="Register" />
+    </fieldset>
+}

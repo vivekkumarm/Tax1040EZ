@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/Pages/PersonalInfo/spouseinfo.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/bootstrap-datepicker.js"></script>
+
+
+</head>
+<body>
+
+    <form id="spouseinfo">
+        <div class="container">
+            <!--Header-->
+
+            <script type="text/javascript" src="../lib/header.js"></script>
+
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+
+                    <div class="innerform">
+
+                        <!-- Left menu -->
+
+                        <script type="text/javascript" src="../lib/leftmenu.js"></script>
+
+                        <div class="formfull">
+
+                            <!-- Right Help area -->
+                            <div id="riht">
+                                <script src="../lib/rightmenu.js"></script>
+                            </div>
+
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Spouse<a href="#" class="hidden-xs open pull-right" data-toggle="tooltip" data-original-title="Show / Hide Sidebar"
+                                            id="changeSidebarPos">
+                                            <i class="transfer"></i>
+                                        </a></h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="collpselinkone">Spouse Info</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+
+
+                                                    <h4>We would like to know about your Spouse</h4>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtfirstname">First Name</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" maxlength="30" tabindex="1" name="txtvalidationfirstname" placeholder="Enter the First Name"
+                                                                id="txtfirstname" class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                title="Enter the First Name" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popFirstName" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtmiddleinitial">Middle Initial</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtmiddleinitial" tabindex="2" name="txtmiddleinitial" maxlength="1"
+                                                                placeholder="Enter the Middle Initial"
+                                                                class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter the Initial"
+                                                                data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popMiddleName" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtlastname">Last Name</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" maxlength="30" tabindex="3" name="txtValidationLastName" id="txtlastname" placeholder="Enter the Last Name"
+                                                                class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter the Last Name"
+                                                                data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popLastName" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+
+                                                        <div class="left-lbl">
+                                                            <label for="dtdateofbirth">Date of Birth</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="input-group date" id="divDateOfBirth">
+                                                                <input type="text" maxlength="100" id="dtdateofbirth" tabindex="4"
+                                                                    name="dtdateofbirth" placeholder="MM/DD/YYYY"
+                                                                    class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter the Date Of Birth"
+                                                                    data-trigger="focus" readonly="true" />
+                                                                <span class="input-group-addon"><span class="cal"></span>
+                                                                </span>
+                                                            </div>
+                                                            <div id="divDOBErrorMsg" style="display: block; color: #cf1c16">
+                                                            </div>
+                                                        </div>
+                                                        <a id="popDateOfBirth" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtSSN">SSN/ITIN</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtSSN" name="txtSSN" tabindex="5" placeholder="Enter the Social Security Number"
+                                                                maxlength="11" onkeyup="javascript:return maskInput(this.value,this,'3,6',event);"
+                                                                class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter the Social Security Number"
+                                                                data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popSSN" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtoccupation">Occupation</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" maxlength="30" id="txtoccupation" name="txtoccupation" tabindex="6" placeholder="Enter the Occupation"
+                                                                class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter the Occupation"
+                                                                data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popOccupation" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                    </div>
+
+
+                                                    <label class="checkbox ">
+                                                        <input id="chkspouselived" type="checkbox" tabindex="7" name="chkValidationSpouselived" />
+                                                        Did your Spouse lived in another State in  <span class="spanCurrentYear"></span>
+                                                    </label>
+
+
+                                                    <div class="field-group" id="divState">
+                                                        <div class="left-lbl">
+                                                            <label for="ddlStateCode" id="ddlValidationStateCode">State Name</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <select name="ddlStateCode" id="ddlStateCode" tabindex="8">
+                                                            </select>
+                                                        </div>
+                                                        <a id="popStateCode" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="field-group">
+                                                    <div class="left-lbl"></div>
+                                                    <div class="right">
+                                                        <button type="submit" id="btnSubmitOne" tabindex="9" class="btn btn-success" onclick="PersistSpouseInfo(false)">
+                                                            Next</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"  id="collpselinktwo">Spouse Other Information
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+
+                                                    <h4>Confirm that any applies to  your Spouse</h4>
+
+                                                    <label class="checkbox ">
+                                                        <input id="chkSpouseBlind" type="checkbox" name="chkValidationSpousrBlind" value="1"
+                                                            tabindex="10" />
+                                                        <label id="lblSpouseNameIsBlind"></label>
+                                                        was legally Blind in the <span class="spanCurrentYear"></span>
+                                                    </label>
+                                                    <label class="checkbox ">
+                                                        <input id="chkSpouseDisablie" type="checkbox" name="chkValidationSpouseDisablie"
+                                                            value="1" tabindex="11" />
+                                                        <label id="lblSpouseNameIsDisabled"></label>
+                                                        was permanently and totally Disabled in the year <span class="spanCurrentYear"></span>
+                                                    </label>
+
+                                                    <label class="checkbox ">
+                                                        <input id="chkClaimed" type="checkbox" name="chkValidationClaimed" value="1" tabindex="12" />
+                                                        Can be claimed as a dependent on someone else's return</label>
+
+                                                    <label class="checkbox ">
+                                                        <input id="chkIsDied" type="checkbox" name="terms" value="1" tabindex="13" />
+                                                        Departed this Life before filing the return for <span class="spanCurrentYear"></span>
+                                                    </label>
+
+
+                                                    <div id="divDataofdeath" class="field-group">
+                                                        <!--<ul class="list-group">
+                                                                <li>-->
+                                                        <div class="left-lbl">
+                                                            <label for="dtDOD">Date of Death</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="input-group date" id="divDateOfDeath">
+                                                                <input type="text" id="dtDOD" name="dtDOD" tabindex="14"
+                                                                    placeholder="MM/DD/YYYY" class="form-control tip"
+                                                                    data-toggle="tooltip" data-placement="right" title="Enter the Date Of Death"
+                                                                    data-trigger="focus" readonly="true" />
+                                                                <span class="input-group-addon"><span class="cal"></span>
+                                                                </span>
+                                                            </div>
+                                                            <div id="divDOBErrorMsg1" style="display: block; color: #cf1c16">
+                                                            </div>
+                                                        </div>
+                                                        <a id="popDateOfDeath" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        <!-- </li>
+                                                            </ul>-->
+                                                    </div>
+
+                                                    <label class="checkbox ">
+                                                        <input id="chkstudent" type="checkbox" name="terms" value="1" tabindex="15" />
+                                                        <label id="lblSpouseNameWasStuedent"></label>
+                                                        was a Student</label>
+
+                                                    <div id="divStudent" class="">
+                                                        <label class="right" id="lblWasStuedent">Are you a full time Student?</label>
+                                                                <label class="checkbox">
+                                                                    <input type="radio" name="radWasStudent" id="radWasStudentYes" tabindex="16" />
+                                                                    Yes
+                                                                </label>
+                                                      
+                                                                <label class="checkbox">
+                                                                    <input type="radio" name="radWasStudent" id="radWasStudentNo" checked="checked" tabindex="17" />
+                                                                    No
+                                                                </label>
+                                                    </div>
+
+                                                     <label class="checkbox ">
+                                                        <input id="chkservedinMilitary" type="checkbox" name="terms" tabindex="15" value="3" />
+                                                     <label id="lblServedinmilitary"></label> served in Military</label>
+                                                    <div id="divServedinMilitary" style="display: none;">
+                                                        <label class="right">
+                                                            <label id="lblServedinmilitaryduring"></label> Served in Military during
+                                                            <span class="spanservedinmilitary"></span>.</label>
+                                                        <h4>Let us know your Combat Zone or Hazards duty you served in.</h4>
+                                                     
+                                                        <ul class="list-group">
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="1" tabindex="19" />
+                                                                    Not Applicable
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="2" tabindex="20" />
+                                                                    Operation  Iraqi Freedom
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="3" tabindex="20" />
+                                                                    Kosovo Operation
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="4" tabindex="20" />
+                                                                    Afghanistan/Enduring Freedom
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="5" tabindex="20" />
+                                                                    Desert Storm
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="6" tabindex="20" />
+                                                                    Haiti
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="7" tabindex="20" />
+                                                                    Farmer Yugoslavia
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="8" tabindex="20" />
+                                                                    UN Operation
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="9" tabindex="20" />
+                                                                    Operation Joint Forge
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="10" tabindex="20" />
+                                                                    Northern Watch
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="11" tabindex="20" />
+                                                                    Operation Allied Force
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="12" tabindex="20" />
+                                                                    Northern Forge
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label id="dvother">
+                                                                    <input type="radio" name="radservedinmilitary" id="radOtherCombat" value="13" tabindex="20" />
+                                                                    Other Combat Zone
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="14" tabindex="20" />
+                                                                    Joint Guard
+                                                                </label>
+                                                            </li>
+                                                              
+                                                        </ul>
+                                                         <div id="divradError" style="display: block; color: #cf1c16"></div>
+                                                        <div id="divOtherCombatZone" style="display:none">
+                                                    <h4>Tell us, When  <span class="spanFillerName"></span>deployed to their Combat Zone
+                                                    </h4>
+
+
+
+                                                    <div class="field-group" >
+                                                        <div class="left-lbl">
+                                                            <label for="lbldtdatedeployed">Date Deployed</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="input-group date" id="divdatedeployed">
+                                                                <input type="text" id="dtdatedeployed" name="dtdatedeployed"
+                                                                    tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                    data-placement="right" title="Enter Date Of Deployed" data-trigger="focus"
+                                                                    readonly="true" />
+                                                                <span class="input-group-addon"><span class="cal"></span>
+                                                                </span>
+                                                            </div>
+                                                            <label id="Label1" class="error"></label>
+                                                            <div id="divdatedeployedError" style="display: block; color: #cf1c16">
+                                                            </div>
+                                                        </div>
+
+                                                        <a id="A2" class="help" rel="popover"></a>
+                                                    </div>
+                                                </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <button type="submit" id="btnBackSpouseInfo" class="btn btn-primary">
+                                        Back</button>
+                                    <button type="submit" class="btn btn-success" id="btnPersistSpouseInfo" tabindex="19">
+                                        Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+</body>
+
+</html>
+
+

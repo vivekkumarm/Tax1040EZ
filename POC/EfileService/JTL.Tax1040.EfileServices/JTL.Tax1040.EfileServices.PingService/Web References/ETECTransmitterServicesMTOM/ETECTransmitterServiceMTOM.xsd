@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://www.irs.gov/a2a/mef/ETECTransmitterServiceMTOM.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.irs.gov/a2a/mef/ETECTransmitterServiceMTOM.xsd" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="xmime.xsd" namespace="http://www.w3.org/2005/05/xmlmime" />
+  <xsd:annotation>
+    <xsd:documentation>ETEC Trading Partner Transmitter Web Services' MTOM Element Definitions</xsd:documentation>
+  </xsd:annotation>
+  <xsd:element name="GetNew2290Schedule1sRequest" type="GetNew2290Schedule1sRequestType" />
+  <xsd:element name="GetNew2290Schedule1sResponse" type="GetNew2290Schedule1sResponseType" />
+  <xsd:element name="Get2290Schedule1sRequest" type="Get2290Schedule1sRequestType" />
+  <xsd:element name="Get2290Schedule1sResponse" type="Get2290Schedule1sResponseType" />
+  <xsd:element name="Get2290Schedule1Request" type="Get2290Schedule1RequestType" />
+  <xsd:element name="Get2290Schedule1Response" type="Get2290Schedule1ResponseType" />
+  <xsd:element name="Get2290Schedule1sByMsgIDRequest" type="Get2290Schedule1sByMsgIDRequestType" />
+  <xsd:element name="Get2290Schedule1sByMsgIDResponse" type="Get2290Schedule1sByMsgIDResponseType" />
+  <xsd:complexType name="GetNew2290Schedule1sRequestType">
+    <xsd:sequence>
+      <xsd:element name="MaxResults" type="xsd:positiveInteger" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetNew2290Schedule1sResponseType">
+    <xsd:sequence>
+      <xsd:element name="Count" type="xsd:nonNegativeInteger" />
+      <xsd:element name="MoreAvailable" type="xsd:boolean" />
+      <xsd:element name="Schedule1AttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Get2290Schedule1sRequestType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionIdList" type="SubmissionIdListType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Get2290Schedule1sResponseType">
+    <xsd:sequence>
+      <xsd:element name="Count" type="xsd:nonNegativeInteger" />
+      <xsd:element name="ListOfSubmissionError" type="ListOfSubmissionErrorType" />
+      <xsd:element name="Schedule1AttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Get2290Schedule1RequestType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionId" type="SubmissionIdType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Get2290Schedule1ResponseType">
+    <xsd:sequence>
+      <xsd:element name="Schedule1AttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Get2290Schedule1sByMsgIDRequestType">
+    <xsd:sequence>
+      <xsd:element name="MessageID" type="MessageIdType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Get2290Schedule1sByMsgIDResponseType">
+    <xsd:sequence>
+      <xsd:element name="Count" type="xsd:nonNegativeInteger" />
+      <xsd:element name="MoreAvailable" type="xsd:boolean" />
+      <xsd:element name="Schedule1AttachmentMTOM" type="xmime:base64Binary" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="ErrorClassificationType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="SYSTEM_ERROR" />
+      <xsd:enumeration value="RESOURCE_UNAVAILABLE" />
+      <xsd:enumeration value="MESSAGE_FORMAT_ERROR" />
+      <xsd:enumeration value="SECURITY_ERROR" />
+      <xsd:enumeration value="REQUEST_ERROR" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="SubmissionIdListType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="SubmissionId" type="SubmissionIdType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="SubmissionIdType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9]{13}[a-z0-9]{7}" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MessageIdType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9]{12}[a-z0-9]{8}" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="ListOfSubmissionErrorType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="SubmissionError" type="SubmissionErrorType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubmissionErrorType">
+    <xsd:sequence>
+      <xsd:element name="SubmissionId" type="SubmissionIdType" />
+      <xsd:element name="Error" type="MeFErrorType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="MeFErrorType">
+    <xsd:sequence>
+      <xsd:element name="ErrorMessage" type="xsd:string" />
+      <xsd:element name="ErrorClassification" type="ErrorClassificationType" />
+      <xsd:element minOccurs="0" name="ErrorCode" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

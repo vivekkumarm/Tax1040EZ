@@ -1,0 +1,569 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/EFile/efileoption.js"></script>
+    <script src="../Scripts/bootstrap-datepicker.js"></script>
+</head>
+<body>
+    <form id="irsEfileOption">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <!--   <script type="text/javascript" src="../lib/default.js"></script>-->
+                        <div class="">
+                            <!-- Right Help area -->
+                            <div id="riht">
+                                <script src="../lib/rightmenu.js"></script>
+                            </div>
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c4c8">
+                                    <div class="title">
+                                        <h2>Prior Year AGI and PIN<a href="#" class="hidden-xs open pull-right" data-toggle="tooltip" data-original-title="Show / Hide Sidebar" id="changeSidebarPos">
+                                            <i class="transfer"></i>
+                                        </a></h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+
+                                        <div class="panel panel-blue in">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">E-File Information</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+                                                   
+                                                        
+
+                                                    <div id="divFiledTaxElectronically">
+                                                        <h4>To File your tax return electronically, the IRS requires taxpayer to verify their identity by entering information from their prior year tax return.</h4>
+
+
+                                                        <h4>Enter your Prior Year AGI or Personal PIN  from your prior year tax return & Select your Filing date</h4>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" id="radHavePriorYearPIN" name="radEfileOption" value="1" />
+                                                                <span class="spanTaxPayer"></span> Know  prior Year personal Identification number
+                                                            </label>
+                                                        </div>
+                                                        <div id="divHavePriorYearPIN" class="alert alert-info" style="display: none">
+                                                            <h4>Taxpayer</h4>
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label for="txtAccountNumber" id="lblTaxPayerPIN">2013 Personal Identification Number</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <input type="text" id="txtTaxpayerPIN" name="txtTaxpayerPIN" placeholder="Personal Identification Number" maxlength="6" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Personal Identification Number" data-trigger="focus" />
+                                                                </div>
+                                                                <a id="popTaxpayerPIN" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                            </div>
+
+                                                            <div id="divSpousePriorYearPIN" class="alert alert-info" style="display: none">
+                                                                <h3>Spouse</h3>
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                        <label for="txtAccountNumber" id="lblSpousePIN">2013 Personal Identification Number</label>
+                                                                    </div>
+                                                                    <div class="right">
+                                                                        <input type="text" id="txtSpousePIN" name="txtSpousePIN" placeholder="Personal Identification Number"  maxlength="6" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Personal Identification Number" data-trigger="focus" />
+                                                                    </div>
+                                                                    <a id="popSpousePIN" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" id="radHavePriorYearAGI" name="radEfileOption" value="2" />
+                                                                <span class="spanTaxPayer"></span> Know prior year Adjusted Gross Income but  don't have Prior year personal Identification number.
+                                                            </label>
+                                                        </div>
+                                                        <div id="divHavePriorYearAGI" class="alert alert-info" style="display: none">
+                                                            <h4 id="lblAGITaxpayer">Taxpayer</h4>
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label id="lblAGITaxpayerName">Prior year (2013) Adjusted Gross Income</label>
+
+                                                                </div>
+                                                                <div class="right">
+                                                                    <input type="text" id="txtAGITaxpayer" name="txtAGITaxpayer" placeholder="Adjusted Gross Income"  maxlength="20" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Adjusted Gross Income" data-trigger="focus" />
+
+                                                                </div>
+                                                                <a id="popAGITaxpayer" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                            </div>
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+
+                                                                    <label id="lblAGIPinNumberTaxpayer">Enter any 5 digit  Self select PIN Number</label>
+
+                                                                </div>
+                                                                <div class="right">
+                                                                    <input type="text" id="txtAGISTaxpayerPIN" name="txtAGISTaxpayerPIN" maxlength="5" placeholder="Enter any 5 digit  Self select PIN Number" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter any 5 digit  Self select PIN Number" data-trigger="focus" />
+
+                                                                </div>
+                                                                <a id="popAGISTaxpayerPIN" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+
+                                                            </div>
+                                                            <div id="divSpouseDontHavePriorYearPIN" class="alert alert-info" style="display: none">
+                                                                <h4 id="lblAGISpouse">Spouse</h4>
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                        <label id="lblAGISpousename">Prior year (2013) Adjusted Gross Income</label>
+
+                                                                    </div>
+                                                                    <div class="right">
+                                                                        <input type="text" id="txtAGISpouse" name="txtAGISpouse" placeholder="Adjusted Gross Income" maxlength="20" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Adjusted Gross Income" data-trigger="focus" />
+                                                                    </div>
+                                                                    <a id="popAGISpouse" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                                </div>
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                        <label id="lblAGIPinNumberSpouse">Enter any 5 digit  Self select PIN Number</label>
+                                                                    </div>
+                                                                    <div class="right">
+                                                                        <input type="text" id="txtAGISpousePIN" name="txtAGISpousePIN" maxlength="5" placeholder="Enter any 5 digit  Self select PIN Number" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter any 5 digit  Self select PIN Number" data-trigger="focus" />
+
+                                                                    </div>
+                                                                    <a id="popAGISpousePIN" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" id="radHavePriorYearAGIAndPIN" name="radEfileOption" value="3" />
+                                                                <span class="spanTaxPayer"></span> don't have my Prior year Adjusted Gross Income and E-filing  Personal identification Number
+                                                            </label>
+                                                        </div>
+                                                        <div id="divHavePriorYearAGIAndPIN" class="alert alert-info" style="display: none">
+                                                            <h4>Taxpayer</h4>
+
+                                                            <h4>You can get your 5 digits Electronic Filing PIN from IRS,  To receive Efiling PIN number go to the IRS Electronic Filing PIN tool or touch tone Self service by calling 1-866-704-7388.
+                                                                <br />
+                                                                <br />
+                                                                To get Efiling PIN number, you need to provide social security number ( or individual taxpayer Identifications number) First and Last name, date of birth, Filing status and complete mailing address </h4>
+
+
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label>Name</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblTaxpayerName"></label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label>Social Security Number</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblTaxpayerSocialSecurityNumber"></label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label>Date of Birth</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblTaxpayerDateofBirth"></label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label for="txt" id="lblTaxpayerEFINIssuedbyIRS">EFIN Issued by IRS</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <input type="text" id="txtTaxpayerEFINIssuedbyIRS" maxlength="5" name="txtTaxpayerEFINIssuedbyIRS" placeholder="EFIN Issued by IRS" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter EFIN Issued by IRS" data-trigger="focus" />
+                                                                </div>
+                                                                <a id="popTaxpayerEFINIssuedbyIRS" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label for="txt" id="lblTaxpayerTodaysDate">Today's Date</label>
+                                                                </div>
+
+                                                                <div class="right">
+                                                                    <div class="input-group date" id="divTaxpayerTodaysDate">
+
+                                                                        <input type="text" id="dtTaxpayerTodaysDate" name="dtTaxpayerTodaysDate"
+                                                                               tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                               data-placement="right" title="Enter Today's Date" data-trigger="focus"
+                                                                               readonly="true" />
+                                                                        <span class="input-group-addon"><span class="cal"></span>
+                                                                        </span>
+
+                                                                    </div>
+
+                                                                    <!-- <label id="lblTaxpayerTDErrorMsg" style="display:none" class="error"></label>-->
+                                                                    <div class="error" id="divTaxpayerTDErrorMsg" style="display: block; color: #cf1c16"></div>
+                                                                    <!--<div id="divTaxpayerTDErrorMsg"  class="alert-danger">
+                                                                                
+                                                                    </div>-->
+                                                                </div>
+                                                                <a id="popTaxpayerTodaysDate" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                            </div>
+
+                                                            <div id="divEfileOptionSpouse" style="display: none">
+                                                                <h4>Spouse</h4>
+
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                        <label>Name</label>
+                                                                    </div>
+                                                                    <div class="right">
+                                                                        <label id="lblSpouseName"></label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                        <label>Social Security Number</label>
+                                                                    </div>
+                                                                    <div class="right">
+                                                                        <label id="lblSpouseSocialSecurityNumber"></label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                        <label>Date of Birth</label>
+                                                                    </div>
+                                                                    <div class="right">
+                                                                        <label id="lblSpouseDateofBirth"></label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                        <label for="txt" id="lblSpouseEFINIssuedbyIRS">EFIN Issued by IRS</label>
+                                                                    </div>
+                                                                    <div class="right">
+                                                                        <input type="text" id="txtSpouseEFINIssuedbyIRS" maxlength="5" name="txtSpouseEFINIssuedbyIRS" placeholder="EFIN Issued by IRS" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter EFIN Issued by IRS" data-trigger="focus" />
+                                                                    </div>
+                                                                    <a id="popSpouseEFINIssuedbyIRS" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                                </div>
+
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                        <label for="txtSpouseTodaysDate" id="lblSpouseTodaysDate">Today's Date</label>
+                                                                    </div>
+
+
+
+                                                                    <div class="right">
+                                                                        <div class="input-group date" id="divSpouseTodaysDate">
+
+                                                                            <input type="text" id="dtSpouseTodaysDate" name="dtSpouseTodaysDate"
+                                                                                   tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                                   data-placement="right" title="Enter Today's Date" data-trigger="focus"
+                                                                                   readonly="true" />
+                                                                            <span class="input-group-addon"><span class="cal"></span>
+                                                                            </span>
+
+                                                                        </div>
+
+                                                                        <label id="lblSpouseTodayDate" class="error"></label>
+                                                                        <div class="error" id="divSpouseTodayDateErrorMessg" style="display: block; color: #cf1c16"></div>
+                                                                    </div>
+                                                                    <a id="popSpouseTodaysDate" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!--<label>Select your Filing date:</label>-->
+
+                                                        <div class="field-group" id="divFilingTodaydate">
+                                                            <div class="left-lbl">
+                                                                <label for="txtFillingDate" id="lblFillingDate">Today's Date</label>
+                                                            </div>
+
+                                                            <div class="right">
+                                                                <div class="input-group date" id="divFilingDate">
+                                                                    <input type="text" id="dtFillingDate" name="dtFillingDate"
+                                                                           tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                           data-placement="right" title="Enter Today's Date" data-trigger="focus"
+                                                                           readonly="true" />
+                                                                    <span class="input-group-addon"><span class="cal"></span>
+                                                                    </span>
+                                                                </div>
+                                                                <label id="lblFilingTDErrorMsg" class="error"></label>
+                                                                <div id="divFilingTDErrorMsg" style="display: block; color: #cf1c16">
+                                                                </div>
+
+                                                            </div>
+                                                            <a id="popFillingDate" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="" id="lblIdentityProtectionPINFromIRS">Did you receive any Identity Protection PIN  number from IRS?</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <div class="radio-inline">
+                                                                    <label>
+                                                                        <input type="radio" name="radIdentityProtectionPINFromIRS" id="radIdentityProtectionPINFromIRSYes" value="1"/>
+                                                                        Yes</label>
+                                                                </div>
+                                                                <div class="radio-inline">
+                                                                    <label>
+                                                                        <input type="radio" name="radIdentityProtectionPINFromIRS" id="radIdentityProtectionPINFromIRSNo" value="2" />
+                                                                        No</label>
+                                                                </div>
+                                                                <div id="divIdentityProtectionPINFromIRSError"  class="error">
+                                                                </div>
+                                                            </div>
+                                                                     
+                                                        </div>
+
+
+                                                        <div id="divRecivedPINFromIRS">
+                                                            <h4>Taxpayer</h4>
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label for="txtTaxPayerRecivedPINFromIRS" id="lblTaxPayerRecivedPINFromIRS">Identity Protection PIN</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <input type="text" id="txtTaxPayerRecivedPINFromIRS" maxlength="6" name="txtTaxPayerRecivedPINFromIRS" placeholder="Personal Identification Number" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Personal Identification Number" data-trigger="focus" />
+                                                                </div>
+                                                                <a id="popTaxPayerRecivedPINFromIRS" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                            </div>
+
+                                                            <div id="divSpouseRecivedPINFromIRS" style="display: none">
+                                                                <h3>Spouse</h3>
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                        <label for="txtSpouseRecivedPINFromIRS" id="lblSpouseRecivedPINFromIRS">Identity Protection PIN</label>
+                                                                    </div>
+                                                                    <div class="right">
+                                                                        <input type="text" id="txtSpouseRecivedPINFromIRS" maxlength="6" name="txtSpouseRecivedPINFromIRS" placeholder="Personal Identification Number" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Personal Identification Number" data-trigger="focus" />
+                                                                    </div>
+                                                                    <a id="popSpouseRecivedPINFromIRS" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                            
+                                                    <div id="divFirstTimeFiledElectronically"  style="display: none">
+
+                                                        <label>To File your tax return electronically, the IRS requires EFIN ( Electronic Federal Identification Number)  to verify your identity.</label>
+
+                                                        <h4>Enter your Self Select PIN Number Information:</h4>
+
+                                                        
+                                                        <h4>Taxpayer Details</h4>
+                                                        <div class="alert alert-info">
+                                                        <div class="table-condensed">
+                                                            <div class="field-group ">
+                                                                <div class="left-lbl">
+                                                                    <label>Taxpayer Name</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblFirstTimeFillerTaxpayerName"></label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label>Social Security Number</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblFirstTimeFillerTaxpayerSSN"></label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="field-group ">
+                                                                <div class="left-lbl">
+                                                                    <label>Date of Birth</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblFirstTimeFillerTaxpayerDOB"></label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label for="txtFirstTimeFillerTaxpayerEFINIssuedbyIRS" id="lblFirstTimeFillerTaxpayerEFINIssuedbyIRS"><span class="spanTaxYear"></span>2014 PIN  ( any 5 digit PIN)</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <input type="text" id="txtFirstTimeFillerTaxpayerEFINIssuedbyIRS" maxlength="5" name="txtFirstTimeFillerTaxpayerEFINIssuedbyIRS" placeholder="EFIN Issued by IRS" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter EFIN Issued by IRS" data-trigger="focus" />
+                                                                </div>
+                                                                <a id="popFirstTimeFillerTaxpayerEFINIssuedbyIRS" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                            </div>
+
+                                                            <div class="field-group ">
+                                                                <div class="left-lbl">
+                                                                    <label for="txtFirstTimeFillerTaxpayerTodayDate" id="lblFirstTimeFillerTaxpayerTodaysDate">Today's Date</label>
+                                                                </div>
+
+                                                                <div class="right">
+                                                                    <div class="input-group date" id="divFirstTimeFillerTaxpayerTodayDate">
+                                                                        <input type="text" id="dtFirstTimeFillerTaxpayerTodayDate" name="dtFirstTimeFillerTaxpayerTodayDate"
+                                                                               tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                               data-placement="right" title="Enter Today's Date" data-trigger="focus"
+                                                                               readonly="true" />
+                                                                        <span class="input-group-addon"><span class="cal"></span>
+                                                                        </span>
+
+                                                                    </div>
+                                                                    <label id="lblFillerTDErrorMssg" class="error"></label>
+                                                                    <div id="divFillerTDErrorMssg" style="display: block; color: #cf1c16">
+                                                                    </div>
+                                                                </div>
+                                                                <a id="popFirstTimeFillerTaxpayerTodayDate" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                            </div></div>
+
+                                                        </div>
+
+                                                        <div id="divFirstTimeFillerSpouse" style="display: none">
+                                                            <h4>Spouse Details</h4>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label>Spouse Name</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblFirstTimeFillerSpouseName"></label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label>Social Security Number</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblFirstTimeFillerSpouseSSN"></label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label>Date of Birth</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblFirstTimeFillerSpouseDOB"></label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label for="txtFirstTimeFillerSpouseEFINIssuedbyIRS" id="lblPINNumberInfoSpouseEFINIssuedbyIRS"><span class="spanTaxYear"></span>2014 PIN  ( any 5 digit PIN)</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <input type="text" id="txtFirstTimeFillerSpouseEFINIssuedbyIRS" maxlength="5" name="txtFirstTimeFillerSpouseEFINIssuedbyIRS" placeholder="EFIN Issued by IRS" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter EFIN Issued by IRS" data-trigger="focus" />
+                                                                </div>
+                                                                <a id="popFirstTimeFillerSpouseEFINIssuedbyIRS" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label for="txtFirstTimeFillerSpouseTodaysDate" id="lblPINNumberInfoSpouseTodaysDate">Today's Date</label>
+                                                                </div>
+
+                                                                <div class="right">
+                                                                    <div class="input-group date" id="divFirstTimeFillerSpouseTodaysDate">
+                                                                        <input type="text" id="dtFirstTimeFillerSpouseTodaysDate" name="dtFirstTimeFillerSpouseTodaysDate"
+                                                                               tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                               data-placement="right" title="Enter Today's Date" data-trigger="focus"
+                                                                               readonly="true" />
+                                                                        <span class="input-group-addon"><span class="cal"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <label id="lblSpouseFillerErrorMssg" class="error"></label>
+                                                                    <div id="divSpouseFillerErrorMssg" style="display: block; color: #cf1c16">
+                                                                    </div>
+                                                                </div>
+                                                                <a id="popFirstTimeFillerSpouseTodaysDate" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div id="divPrintTaxReturn" class="clearfix" style="display: none" >
+                                                        <h4 class="text-success">Print Your Tax Returns:</h4>
+                                                        <p>Tax Garden  Federal and State returns can be directly Filed to IRS or state authorities.  These are the forms approved for filing.  Simply print your return and mail it in. Please review your printed return(s) carefully before filing. It's also a very good idea to retain a copy of your tax returns for your records.</p>
+                                                        <h4 class="text-success">Refer your Filing Instructions attached with your tax return:</h4>
+                                                        <p>
+                                                            The Filing Instruction report will provide you detail information on where to file.<br /> Kindly check your Federal and state Filing instruction before send a return copy mail to IRS and state.
+                                                                    
+                                                            <a href="#" class="btn btn-warning pull-right"><i class="fa fa-print"></i> print</a>
+                                                            <!--img src not given here.TODo-->
+                                                                   
+                                                        </p>
+                                                        <p>If you want to file your state return along with Federal, then click on " Continue with State Filing Info" button. To proceed with</p>
+                                                        <p>Federal return filing , then click on " File Federal return" button.</p>
+                                                        <p>To Go back your Filing Option Gateway page the, Click on "Replan" button</p>
+                                                    </div><br />
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                     <button type="submit" id="btnReplan" class="btn btn-primary">
+                                                                Replan</button>
+                                                            <button type="submit" id="btnStateFilingInfo" style="display: none" class="btn btn-success">Continue With State Filing Info</button>
+
+                                                            <button type="submit" id="btnFederalReturn" class="btn btn-success">File Fereral Return</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,1544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<jtbwa:F1040EZTaxesAndPenalties xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtbwa="clr-namespace:JTL.Tax1040.BusinessLogic.WorkFlow.Activities;assembly=JTL.Tax1040.BusinessLogic" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <jtbwa:F1040EZTaxesAndPenalties.Implementation>
+    <Sequence DisplayName="Penality Calculation">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Double" Name="taxdueamount" />
+        <Variable x:TypeArguments="x:Boolean" Default="False" Name="latefilingavailable" />
+        <Variable x:TypeArguments="x:Double" Default="3" Name="interestAmount" />
+        <Variable x:TypeArguments="s:DateTime" Name="dueDate">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(DateTime.Today.Year+1, 4, 15);</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+      </Sequence.Variables>
+      <If>
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object != null) &amp;&amp; (Tax1040Object.OutputForms != null) &amp;&amp; (Tax1040Object.OutputForms.Tax1040EZPage1 !=null) )</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <Sequence>
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:Double" Name="fivepercentpenality" />
+              <Variable x:TypeArguments="x:Double" Name="twentyfivepercentpenality" />
+              <Variable x:TypeArguments="x:Double" Name="LateFilingPenalty" />
+              <Variable x:TypeArguments="x:Double" Name="interest" />
+              <Variable x:TypeArguments="x:Double" Name="LatePayingPenalty" />
+              <Variable x:TypeArguments="x:Boolean" Default="False" Name="hasExtended" />
+              <Variable x:TypeArguments="s:DateTime" Name="filingDate">
+                <Variable.Default>
+                  <mca:CSharpValue x:TypeArguments="s:DateTime">Tax1040Object.TaxesAndPenalties.FilingDate.HasValue ? Tax1040Object.TaxesAndPenalties.FilingDate.Value : new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day)</mca:CSharpValue>
+                </Variable.Default>
+              </Variable>
+            </Sequence.Variables>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Double">
+                  <mca:CSharpReference x:TypeArguments="x:Double">taxdueamount</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Double">
+                  <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxAmount - Tax1040Object.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Sequence>
+              <If>
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">(taxdueamount &gt;= 0 &amp;&amp; (filingDate &gt; dueDate))</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Sequence>
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Int32" Default="4" Name="staticmonth" />
+                      <Variable x:TypeArguments="x:Double" Name="datedifference">
+                        <Variable.Default>
+                          <mca:CSharpValue x:TypeArguments="x:Double">(filingDate - dueDate).Days</mca:CSharpValue>
+                        </Variable.Default>
+                      </Variable>
+                      <Variable x:TypeArguments="x:Double" Name="monthdifference">
+                        <Variable.Default>
+                          <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30)</mca:CSharpValue>
+                        </Variable.Default>
+                      </Variable>
+                      <Variable x:TypeArguments="x:TimeSpan" Name="datedifferentmonth">
+                        <Variable.Default>
+                          <mca:CSharpValue x:TypeArguments="x:TimeSpan">filingDate - dueDate</mca:CSharpValue>
+                        </Variable.Default>
+                      </Variable>
+                      <Variable x:TypeArguments="x:Int32" Default="0" Name="month" />
+                      <Variable x:TypeArguments="x:Boolean" Default="False" Name="latefilingorpayingPenality" />
+                      <Variable x:TypeArguments="x:Double" Name="InterestonUnpaidtaxdue">
+                        <Variable.Default>
+                          <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(taxdueamount * ((double)interestAmount / 100) * ((double)datedifference / 365), 2)</mca:CSharpValue>
+                        </Variable.Default>
+                      </Variable>
+                      <Variable x:TypeArguments="x:Double" Default="0" Name="LatePaymentPenaltybeforeduedate" />
+                      <Variable x:TypeArguments="x:Double" Default="0" Name="LatePaymentPenaltyafterduedate" />
+                      <Variable x:TypeArguments="x:Double" Default="0" Name="LateFilingPenaltyforInterest" />
+                      <Variable x:TypeArguments="x:Double" Default="0" Name="InterestonLateFilingPenalty" />
+                      <Variable x:TypeArguments="x:Double" Default="0" Name="totalinterest" />
+                    </Sequence.Variables>
+                    <Assign>
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="scg:List(jtb:InterestOnUnpaidDue)">
+                          <mca:CSharpReference x:TypeArguments="scg:List(jtb:InterestOnUnpaidDue)">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="scg:List(jtb:InterestOnUnpaidDue)">
+                          <mca:CSharpValue x:TypeArguments="scg:List(jtb:InterestOnUnpaidDue)">new List&lt;InterestOnUnpaidDue&gt;()</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <If DisplayName="If HasFiledForm4868">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.TaxesAndPenalties !=null &amp;&amp; Tax1040Object.TaxesAndPenalties.HasFiledForm4868.HasValue ? Tax1040Object.TaxesAndPenalties.HasFiledForm4868.Value : false</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <Sequence>
+                          <Assign>
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpReference x:TypeArguments="x:Boolean">hasExtended</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                    </If>
+                    <If DisplayName="datedifferentmonth">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">datedifferentmonth.Days &gt; 0</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <Sequence>
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Int32" Name="monthbetweenfilingdateAndduedate">
+                              <Variable.Default>
+                                <mca:CSharpValue x:TypeArguments="x:Int32">month</mca:CSharpValue>
+                              </Variable.Default>
+                            </Variable>
+                            <Variable x:TypeArguments="x:Double" Default="0" Name="runningCalculation" />
+                            <Variable x:TypeArguments="s:DateTime" Name="currentQuater">
+                              <Variable.Default>
+                                <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate</mca:CSharpValue>
+                              </Variable.Default>
+                            </Variable>
+                          </Sequence.Variables>
+                          <Assign>
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">
+                                <mca:CSharpReference x:TypeArguments="x:Int32">month</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">
+                                <mca:CSharpValue x:TypeArguments="x:Int32">((filingDate.Year - dueDate.Year) * 12) + filingDate.Month - dueDate.Month</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <If DisplayName="runningtotal">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">month &gt; 2</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">runningCalculation</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">taxdueamount</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="s:DateTime">
+                                      <mca:CSharpReference x:TypeArguments="s:DateTime">currentQuater</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="s:DateTime">
+                                      <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int32">
+                                      <mca:CSharpReference x:TypeArguments="x:Int32">monthbetweenfilingdateAndduedate</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int32">
+                                      <mca:CSharpValue x:TypeArguments="x:Int32">month</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Sequence DisplayName="PenalityListCalculation">
+                                  <Sequence.Variables>
+                                    <Variable x:TypeArguments="x:Int32" Default="1" Name="iteration" />
+                                  </Sequence.Variables>
+                                  <DoWhile DisplayName="Calculate Quaterly Based interest and Add to list">
+                                    <DoWhile.Variables>
+                                      <Variable x:TypeArguments="x:String" Name="variable2" />
+                                    </DoWhile.Variables>
+                                    <DoWhile.Condition>
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">iteration &lt;= monthbetweenfilingdateAndduedate</mca:CSharpValue>
+                                    </DoWhile.Condition>
+                                    <Sequence DisplayName="Sequence1">
+                                      <Sequence.Variables>
+                                        <Variable x:TypeArguments="jtb:InterestOnUnpaidDue" Name="interestOnUnpaidDue">
+                                          <Variable.Default>
+                                            <mca:CSharpValue x:TypeArguments="jtb:InterestOnUnpaidDue">new InterestOnUnpaidDue()</mca:CSharpValue>
+                                          </Variable.Default>
+                                        </Variable>
+                                      </Sequence.Variables>
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="s:DateTime">
+                                            <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterStartDate</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="s:DateTime">
+                                            <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <If>
+                                        <If.Condition>
+                                          <InArgument x:TypeArguments="x:Boolean">
+                                            <mca:CSharpValue x:TypeArguments="x:Boolean">currentQuater.Month == staticmonth</mca:CSharpValue>
+                                          </InArgument>
+                                        </If.Condition>
+                                        <If.Then>
+                                          <Sequence>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpReference x:TypeArguments="s:DateTime">currentQuater</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpValue x:TypeArguments="s:DateTime">currentQuater.AddMonths(2)</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpReference x:TypeArguments="s:DateTime">currentQuater</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(currentQuater.Year, currentQuater.Month, 1)</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterStartDate</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterEndDate</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(dueDate.Year, currentQuater.Month, DateTime.DaysInMonth(currentQuater.Year, currentQuater.Month))</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.interestRate</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpValue x:TypeArguments="x:Double">interestAmount</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpValue x:TypeArguments="x:Double">(interestOnUnpaidDue.QuarterEndDate - interestOnUnpaidDue.QuarterStartDate).Days;</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30, 2)</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.NumberOfDays</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpValue x:TypeArguments="x:Double">datedifference</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.InterestAmount</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(taxdueamount * ((double)interestAmount / 100) * ((double)datedifference / 365), 2)</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Amount</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpReference x:TypeArguments="x:Double">runningCalculation</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation + interestOnUnpaidDue.InterestAmount</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Balance</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtb:InterestOnUnpaidDue" DisplayName="AddToCollection&lt;InterestOnUnpaidDue&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtb:InterestOnUnpaidDue">
+                                                  <mca:CSharpValue x:TypeArguments="jtb:InterestOnUnpaidDue">interestOnUnpaidDue</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpReference x:TypeArguments="s:DateTime">currentQuater</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpValue x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterEndDate</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int32">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int32">iteration</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int32">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int32">iteration+2</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                          </Sequence>
+                                        </If.Then>
+                                        <If.Else>
+                                          <Sequence>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int32">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int32">month</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int32">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int32">((filingDate.Year - currentQuater.Year) * 12) + filingDate.Month - currentQuater.Month</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <If>
+                                              <If.Condition>
+                                                <InArgument x:TypeArguments="x:Boolean">
+                                                  <mca:CSharpValue x:TypeArguments="x:Boolean">month &gt; 3</mca:CSharpValue>
+                                                </InArgument>
+                                              </If.Condition>
+                                              <If.Then>
+                                                <Sequence>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="s:DateTime">
+                                                        <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterStartDate</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="s:DateTime">
+                                                        <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(currentQuater.Year, currentQuater.AddMonths(1).Month, 1)</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="s:DateTime">
+                                                        <mca:CSharpReference x:TypeArguments="s:DateTime">currentQuater</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="s:DateTime">
+                                                        <mca:CSharpValue x:TypeArguments="s:DateTime">currentQuater.AddMonths(3)</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign DisplayName="QuarterEndDate">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="s:DateTime">
+                                                        <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterEndDate</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="s:DateTime">
+                                                        <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(currentQuater.Year, currentQuater.Month, DateTime.DaysInMonth(currentQuater.Year, currentQuater.Month))</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign DisplayName="InterestRate">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.interestRate</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">interestAmount</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">(interestOnUnpaidDue.QuarterEndDate - interestOnUnpaidDue.QuarterStartDate).Days</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30, 2)</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign DisplayName="NumberOfDays">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.NumberOfDays</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">datedifference</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign DisplayName="InterestAmount">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.InterestAmount</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(taxdueamount * ((double)interestAmount / 100) * ((double)datedifference / 365), 2)</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Amount</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">runningCalculation</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation + interestOnUnpaidDue.InterestAmount</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Balance</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Int32">
+                                                        <mca:CSharpReference x:TypeArguments="x:Int32">iteration</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Int32">
+                                                        <mca:CSharpValue x:TypeArguments="x:Int32">iteration+3</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                              </If.Then>
+                                              <If.Else>
+                                                <Sequence>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="s:DateTime">
+                                                        <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterStartDate</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="s:DateTime">
+                                                        <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(currentQuater.Year, currentQuater.AddMonths(1).Month, 1)</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="s:DateTime">
+                                                        <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDue.QuarterEndDate</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="s:DateTime">
+                                                        <mca:CSharpValue x:TypeArguments="s:DateTime">new DateTime(filingDate.Year, filingDate.Month, filingDate.Day)</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.interestRate</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">interestAmount</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">(interestOnUnpaidDue.QuarterEndDate - interestOnUnpaidDue.QuarterStartDate).Days</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30, 2)</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.NumberOfDays</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">datedifference</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.InterestAmount</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(taxdueamount * ((double)interestAmount / 100) * ((double)datedifference / 365), 2)</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Amount</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">runningCalculation</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation + interestOnUnpaidDue.InterestAmount</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDue.Balance</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Double">
+                                                        <mca:CSharpValue x:TypeArguments="x:Double">runningCalculation</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign>
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Int32">
+                                                        <mca:CSharpReference x:TypeArguments="x:Int32">iteration</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Int32">
+                                                        <mca:CSharpValue x:TypeArguments="x:Int32">iteration+month</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                              </If.Else>
+                                            </If>
+                                            <AddToCollection x:TypeArguments="jtb:InterestOnUnpaidDue" DisplayName="AddToCollection&lt;InterestOnUnpaidDue&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtb:InterestOnUnpaidDue">
+                                                  <mca:CSharpValue x:TypeArguments="jtb:InterestOnUnpaidDue">interestOnUnpaidDue</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </If.Else>
+                                      </If>
+                                    </Sequence>
+                                  </DoWhile>
+                                </Sequence>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence>
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="jtb:InterestOnUnpaidDue" Name="interestOnUnpaidDuenormal">
+                                    <Variable.Default>
+                                      <mca:CSharpValue x:TypeArguments="jtb:InterestOnUnpaidDue">new InterestOnUnpaidDue ()</mca:CSharpValue>
+                                    </Variable.Default>
+                                  </Variable>
+                                </Sequence.Variables>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="s:DateTime">
+                                      <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDuenormal.QuarterStartDate</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="s:DateTime">
+                                      <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="s:DateTime">
+                                      <mca:CSharpReference x:TypeArguments="s:DateTime">interestOnUnpaidDuenormal.QuarterEndDate</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="s:DateTime">
+                                      <mca:CSharpValue x:TypeArguments="s:DateTime">filingDate</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDuenormal.interestRate</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">interestAmount</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDuenormal.Amount</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">taxdueamount</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">(interestOnUnpaidDuenormal.QuarterEndDate - interestOnUnpaidDuenormal.QuarterStartDate).Days</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDuenormal.NumberOfDays</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">datedifference</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDuenormal.InterestAmount</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(taxdueamount * ((double)interestAmount / 100) * ((double)datedifference / 365), 2)</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">interestOnUnpaidDuenormal.Balance</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">taxdueamount + interestOnUnpaidDuenormal.InterestAmount</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtb:InterestOnUnpaidDue" DisplayName="AddToCollection&lt;InterestOnUnpaidDue&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtb:InterestOnUnpaidDue">
+                                      <mca:CSharpValue x:TypeArguments="jtb:InterestOnUnpaidDue">interestOnUnpaidDuenormal</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtb:InterestOnUnpaidDue)">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:Nullable(x:Double)">
+                              <mca:CSharpReference x:TypeArguments="s:Nullable(x:Double)">Tax1040Object.TaxesAndPenalties.PenaltiesAndInterest</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:Nullable(x:Double)">
+                              <mca:CSharpValue x:TypeArguments="s:Nullable(x:Double)">0</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </If.Else>
+                    </If>
+                    <If>
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">hasExtended</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <Sequence DisplayName="Extended file Calculation">
+                          <Assign DisplayName="Adding 6 month if etension made">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="s:DateTime">
+                                <mca:CSharpReference x:TypeArguments="s:DateTime">dueDate</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="s:DateTime">
+                                <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate.AddMonths(6)</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Datedifference between filing date and Due Date">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">(filingDate - dueDate).Days</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign>
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30)</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <If>
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">(filingDate - dueDate).Days &lt; 0</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="s:DateTime">
+                                      <mca:CSharpReference x:TypeArguments="s:DateTime">dueDate</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="s:DateTime">
+                                      <mca:CSharpValue x:TypeArguments="s:DateTime">dueDate.AddMonths(-6)</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign DisplayName="datedifference">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">(filingDate - dueDate).Days</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign DisplayName="monthdifference">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30, 2)</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign DisplayName="Late Payment Penaltybeforeduedate">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">LatePaymentPenaltybeforeduedate</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Min((((double)0.5 / 100) * monthdifference * taxdueamount), (((double)25 / 100) * taxdueamount))</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">0</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">LateFilingPenaltyforInterest</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">LateFilingPenalty + LatePaymentPenaltybeforeduedate</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">fivepercentpenality</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">((double)5 / 100) * taxdueamount * monthdifference</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign DisplayName="twentyfivepercentpenality">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">twentyfivepercentpenality</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">((double)25 / 100) * taxdueamount</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign DisplayName="Late filing Penality Calculation">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">LateFilingPenalty</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(fivepercentpenality, twentyfivepercentpenality)</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign DisplayName="Late Payment Penality before Due">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">LatePaymentPenaltybeforeduedate</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Min((((double)0.5 / 100) * 6 * taxdueamount), (((double)25 / 100) * taxdueamount))</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">LatePaymentPenaltyafterduedate</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Min((((double)0.5 / 100) * monthdifference * taxdueamount), (((double)25 / 100) * taxdueamount))</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">LateFilingPenaltyforInterest</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">LateFilingPenalty - LatePaymentPenaltyafterduedate</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                          <Assign DisplayName="Interest on Late Filing Penalty">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">InterestonLateFilingPenalty</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">LateFilingPenaltyforInterest * ((double)3 / 100) * ((double)datedifference / 365)</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="total Interest">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">totalinterest</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue.Select(a =&gt; a.InterestAmount).Sum() + InterestonLateFilingPenalty</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Sequence>
+                            <If>
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">Math.Round(totalinterest, MidpointRounding.AwayFromZero)&gt;0</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Assign DisplayName=" total Interest to taxoutput object">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.Interest</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String">"INT $" + Math.Round(totalinterest, MidpointRounding.AwayFromZero).ToString()</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                              <If.Else>
+                                <Assign DisplayName=" total Interest to taxoutput object">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.Interest</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                          <Sequence>
+                            <If>
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">Math.Round(LateFilingPenalty, MidpointRounding.AwayFromZero)&gt; 0</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Assign DisplayName=" LateFilingPenalty to taxoutput object">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.LateFilingPenalty</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String">"FTF $" +Math.Round(LateFilingPenalty, MidpointRounding.AwayFromZero).ToString()</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                              <If.Else>
+                                <Assign DisplayName=" LateFilingPenalty to taxoutput object">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.LateFilingPenalty</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                          <If>
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">Math.Round(LatePaymentPenaltyafterduedate, MidpointRounding.AwayFromZero) &gt; 0</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Assign DisplayName=" LatePaymentPenaltyafterduedate  to taxoutput object">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">
+                                    <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.LatePaymentPenalty</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String">"FTP $" + Math.Round(LatePaymentPenaltyafterduedate, MidpointRounding.AwayFromZero).ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Then>
+                            <If.Else>
+                              <Assign DisplayName=" LatePaymentPenaltyafterduedate  to taxoutput object">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">
+                                    <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.LatePaymentPenalty</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                          <Assign DisplayName="Penalties And Interest">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="s:Nullable(x:Double)">
+                                <mca:CSharpReference x:TypeArguments="s:Nullable(x:Double)">Tax1040Object.TaxesAndPenalties.PenaltiesAndInterest</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Round((LateFilingPenalty + Math.Max(LatePaymentPenaltybeforeduedate, LatePaymentPenaltyafterduedate)) + totalinterest)</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Not extended file calculation">
+                          <Assign DisplayName="Datedifference between filing date">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">datedifference</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">(filingDate - dueDate).Days</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="MonthDifference">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">monthdifference</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(datedifference / 30)</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Five percentage calculation">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">fivepercentpenality</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">((double)5 / 100) * taxdueamount * monthdifference</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Twenty Five percentage calculation">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">twentyfivepercentpenality</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">((double)25 / 100) * taxdueamount</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Late filing Penality Calculation">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">LateFilingPenalty</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(fivepercentpenality, twentyfivepercentpenality)</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="LatePaymentPenaltyafterduedate">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">LatePaymentPenaltyafterduedate</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Min((((double)0.5 / 100) * monthdifference * taxdueamount), (((double)25 / 100) * taxdueamount))</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Late Filing Penalty for Interest">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">LateFilingPenaltyforInterest</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">LateFilingPenalty - LatePaymentPenaltyafterduedate</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Intereston Late Filing Penalty">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">InterestonLateFilingPenalty</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">LateFilingPenaltyforInterest * ((double)3 / 100) * ((double)datedifference / 365)</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="total interest">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">totalinterest</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.TaxesAndPenalties.InterestOnUnpaidDue.Select(a =&gt; a.InterestAmount).Sum() + InterestonLateFilingPenalty</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Sequence>
+                            <If>
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">Math.Round(totalinterest, MidpointRounding.AwayFromZero)&gt;0</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Assign DisplayName=" total Interest to taxoutput object">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.Interest</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String">"INT $" + Math.Round(totalinterest, MidpointRounding.AwayFromZero).ToString()</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                              <If.Else>
+                                <Assign DisplayName=" total Interest to taxoutput object">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.Interest</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                          <Sequence>
+                            <If>
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">Math.Round(LateFilingPenalty, MidpointRounding.AwayFromZero)&gt; 0</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Assign DisplayName=" LateFilingPenalty to taxoutput object">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.LateFilingPenalty</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String">"FTF $"+Math.Round(LateFilingPenalty, MidpointRounding.AwayFromZero).ToString()</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                              <If.Else>
+                                <Assign DisplayName=" LateFilingPenalty to taxoutput object">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.LateFilingPenalty</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                          <If>
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">Math.Round(LatePaymentPenaltyafterduedate, MidpointRounding.AwayFromZero) &gt; 0</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Assign DisplayName=" LatePaymentPenaltyafterduedate  to taxoutput object">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">
+                                    <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.LatePaymentPenalty</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String">"FTP $" + Math.Round(LatePaymentPenaltyafterduedate, MidpointRounding.AwayFromZero).ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Then>
+                            <If.Else>
+                              <Assign DisplayName=" LatePaymentPenaltyafterduedate  to taxoutput object">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">
+                                    <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.LatePaymentPenalty</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                          <Assign DisplayName="Penalties And Interest">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="s:Nullable(x:Double)">
+                                <mca:CSharpReference x:TypeArguments="s:Nullable(x:Double)">Tax1040Object.TaxesAndPenalties.PenaltiesAndInterest</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(Math.Max(LateFilingPenalty, Math.Max(LatePaymentPenaltybeforeduedate, LatePaymentPenaltyafterduedate)) + totalinterest)</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <If>
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">taxdueamount &lt; 0</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.RefundAmount</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(Math.Abs(taxdueamount),2)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.RefundAmount</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">0</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </If.Else>
+              </If>
+            </Sequence>
+          </Sequence>
+        </If.Then>
+      </If>
+      <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </jtbwa:F1040EZTaxesAndPenalties.Implementation>
+</jtbwa:F1040EZTaxesAndPenalties>

@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<twa:F1099INTBusinessValidationRules xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:twa="clr-namespace:Tax1040WorkFlow.WorkFlow.Activities;assembly=JTL.Tax1040.BusinessLogic" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.TAX1040.PaymentLibrary</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <twa:F1099INTBusinessValidationRules.Implementation>
+    <Sequence DisplayName="1099INTBusinessValidationRules">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="jtb:Form1099INT" Name="F1099INT" />
+        <Variable x:TypeArguments="jtco:ErrorMessage" Name="ErrorMessage" />
+        <Variable x:TypeArguments="scg:List(jtco:ErrorMessage)" Name="ErrorMessageList">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="x:Double" Default="0" Name="StateTaxWithholdingAmountTotal" />
+        <Variable x:TypeArguments="x:Int32" Default="-1" Name="DynamicControlIDForBR3" />
+      </Sequence.Variables>
+      <If DisplayName="If Tax1040ObjectCheck">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object !=null) &amp;&amp; (Tax1040Object.Income !=null))</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <If DisplayName="If Form1099INT">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.Form1099INT != null) &amp;&amp; (Tax1040Object.Income.Form1099INT.Any()))</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <ForEach x:TypeArguments="jtb:Form1099INT" DisplayName="ForEach&lt;Form1099INT&gt;">
+                <ForEach.Values>
+                  <InArgument x:TypeArguments="scg:IEnumerable(jtb:Form1099INT)">
+                    <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:Form1099INT)">Tax1040Object.Income.Form1099INT</mca:CSharpValue>
+                  </InArgument>
+                </ForEach.Values>
+                <ActivityAction x:TypeArguments="jtb:Form1099INT">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="jtb:Form1099INT" Name="F1099INT" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="1099INT Validation">
+                    <Sequence DisplayName="Box 2 Early Withdrawal Penalty">
+                      <If DisplayName="If InvestmentExpensesCheck">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">F1099INT.EarlyWithdrawalPenalty.HasValue &amp;&amp; F1099INT.EarlyWithdrawalPenalty.Value &gt; 0</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence DisplayName="Error Message">
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.INT_EARLY_WITHDRAWAL_PENALTY_BR]</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="F1099INTId">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int64">
+                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int64">
+                                  <mca:CSharpValue x:TypeArguments="x:Int64">F1099INT.Form1099INTId</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                              <AddToCollection.Item>
+                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                </InArgument>
+                              </AddToCollection.Item>
+                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                              </InArgument>
+                            </AddToCollection>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                    <Sequence DisplayName="Box4-Federal withholding">
+                      <If DisplayName="If FederalWithholdCheck">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">(F1099INT.FederalTaxWithHoldingAmount.HasValue?F1099INT.FederalTaxWithHoldingAmount.Value:0)  &gt;  ((F1099INT.USBondsTreasury.HasValue?F1099INT.USBondsTreasury.Value:0) + (F1099INT.InterestIncome.HasValue?F1099INT.InterestIncome.Value:0))</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence DisplayName="Error Message">
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.INTEREST_INCOME_FEDERAL_WITHHOLDING]</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="F1099INTId">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int64">
+                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int64">
+                                  <mca:CSharpValue x:TypeArguments="x:Int64">F1099INT.Form1099INTId</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                              <AddToCollection.Item>
+                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                </InArgument>
+                              </AddToCollection.Item>
+                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                              </InArgument>
+                            </AddToCollection>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                    <Sequence DisplayName="Box5-Investment expenses">
+                      <If DisplayName="If InvestmentExpensesCheck">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">F1099INT.InvestmentExpenses.HasValue &amp;&amp; F1099INT.InvestmentExpenses.Value &gt; 0</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence DisplayName="Error Message">
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.INVESTMENT_EXPENSES]</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="F1099INTId">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int64">
+                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int64">
+                                  <mca:CSharpValue x:TypeArguments="x:Int64">F1099INT.Form1099INTId</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                              <AddToCollection.Item>
+                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                </InArgument>
+                              </AddToCollection.Item>
+                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                              </InArgument>
+                            </AddToCollection>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                    <Sequence DisplayName="Box6-ForeignTaxPaid">
+                      <If DisplayName="If ForeignTaxPaid">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">F1099INT.ForeignTaxPaid.HasValue &amp;&amp; F1099INT.ForeignTaxPaid.Value &gt; 0</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence DisplayName="Error Message">
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.FOREIGN_TAX_WITHHELD]</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="F1099INTId">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int64">
+                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int64">
+                                  <mca:CSharpValue x:TypeArguments="x:Int64">F1099INT.Form1099INTId</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                              <AddToCollection.Item>
+                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                </InArgument>
+                              </AddToCollection.Item>
+                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                              </InArgument>
+                            </AddToCollection>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                    <Sequence DisplayName="Box13-StateTaxwithheld">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="jtb:Form1099StateInformation" Name="Form1099StateInfo" />
+                      </Sequence.Variables>
+                      <If DisplayName="If StateWithheld">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">((F1099INT.Form1099StateInfo != null) &amp;&amp; (F1099INT.Form1099StateInfo.Any()))</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence DisplayName="StateWithheld">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="x:Int32" Default="0" Name="StateTaxLoopIndex" />
+                            </Sequence.Variables>
+                            <ForEach x:TypeArguments="jtb:Form1099StateInformation" DisplayName="ForEach&lt;Form1099StateInformation&gt;">
+                              <ForEach.Values>
+                                <InArgument x:TypeArguments="scg:IEnumerable(jtb:Form1099StateInformation)">
+                                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:Form1099StateInformation)">F1099INT.Form1099StateInfo</mca:CSharpValue>
+                                </InArgument>
+                              </ForEach.Values>
+                              <ActivityAction x:TypeArguments="jtb:Form1099StateInformation">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="jtb:Form1099StateInformation" Name="Form1099StateInfo" />
+                                </ActivityAction.Argument>
+                                <Sequence>
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Double">
+                                        <mca:CSharpReference x:TypeArguments="x:Double">StateTaxWithholdingAmountTotal</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Double">
+                                        <mca:CSharpValue x:TypeArguments="x:Double">StateTaxWithholdingAmountTotal + (Form1099StateInfo.StateTaxWithholdingAmount.HasValue?Form1099StateInfo.StateTaxWithholdingAmount.Value:0)</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <If>
+                                    <If.Condition>
+                                      <InArgument x:TypeArguments="x:Boolean">
+                                        <mca:CSharpValue x:TypeArguments="x:Boolean">DynamicControlIDForBR3 == -1 &amp;&amp; Form1099StateInfo.StateTaxWithholdingAmount.HasValue</mca:CSharpValue>
+                                      </InArgument>
+                                    </If.Condition>
+                                    <If.Then>
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpReference x:TypeArguments="x:Int32">DynamicControlIDForBR3</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpValue x:TypeArguments="x:Int32">StateTaxLoopIndex</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                  </If>
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Int32">
+                                        <mca:CSharpReference x:TypeArguments="x:Int32">StateTaxLoopIndex</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Int32">
+                                        <mca:CSharpValue x:TypeArguments="x:Int32">StateTaxLoopIndex + 1</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Sequence>
+                              </ActivityAction>
+                            </ForEach>
+                            <If DisplayName="If StateTaxWithholdingAmountTotalCheck">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">StateTaxWithholdingAmountTotal &gt; ((F1099INT.USBondsTreasury.HasValue?F1099INT.USBondsTreasury.Value:0) + (F1099INT.InterestIncome.HasValue?F1099INT.InterestIncome.Value:0))</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Sequence DisplayName="Error Message">
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.INTEREST_INCOME_STATE_TAX_WITHHELD]</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">
+                                        <mca:CSharpReference x:TypeArguments="x:String">ErrorMessage.FieldName</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">
+                                        <mca:CSharpValue x:TypeArguments="x:String">ErrorMessage.FieldName + DynamicControlIDForBR3.ToString()</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign DisplayName="F1099INTId">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Int64">
+                                        <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Int64">
+                                        <mca:CSharpValue x:TypeArguments="x:Int64">F1099INT.Form1099INTId</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                    <AddToCollection.Item>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection.Item>
+                                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                    <Assign>
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                          <mca:CSharpReference x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                          <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </ActivityAction>
+              </ForEach>
+            </If.Then>
+          </If>
+        </If.Then>
+      </If>
+      <sads:DebugSymbol.Symbol>9xAOpjKzSg/v8q9OTiztJ5+5hAFFOlxUYXgxMDQwRVpcVGF4MTA0MExhdGVzdFxKZWV2YW4xMDQwXEZlYXR1cmVcQ29kZVxKVEwuVGF4MTA0MC5CdXNpbmVzc0xvZ2ljXFdvcmtGbG93XEFjdGl2aXRpZXNcRjEwOTlJTlRCdXNpbmVzc1J1bGVWYWxpZGF0aW9uLnhhbWxkPAO4Aw4CAQFCC0J3AgEERTRFNwIBA0YzRjcCAQJIBbYDCgIBDEsLS4sBAgENTwm0Aw4CARVSD1KuAQIBFlYNsgMXAgEeWRNZiQEDAaMEYBGwAxwCAR9hE48BHgMB3gOQARO+AR4DAZkDvwET7QEeAwHUAu4BE5wCHgMBjwKdAhOjAx4CATOkAxOvAxwCASBiFY4BGgMB3wORARW9ARoDAZoDwAEV7AEaAwHVAu8BFZsCGgMBkAKhAhWiAxoCATSsAxmsA3oCASqnAxmnA40BAgEhZRtlugEDAeADaRmMASQDAekDlAEblAHeAgMBmwOYARm7ASQDAaQDwwEbwwGyAQMB1gLHARnqASQDAd8C8gEb8gGqAQMBkQL2ARmZAiQDAZoCpAIbpAKuAQIBNagCGaADJAIBP2obdSQDAZAEdhuBASQDAf0DggEbiwEtAwHqA5kBG6QBJAMBywOlARuwASQDAbgDsQEbugEtAwGlA8gBG9MBJAMBhgPUARvfASQDAfMC4AEb6QEtAwHgAvcBG4ICJAMBwQKDAhuOAiQDAa4CjwIbmAItAwGbAqoCSaoCTAIBQKwCG+YCJQMBqgHnAhufAyACAUFyIXKgAQMBmgRtIW18AwGRBH4hfnQDAYcEeSF5eQMB/gOJAR+JAYcBAwH0A4UBIYUBdAMB6wOhASGhAaQBAwHVA5wBIZwBfAMBzAOtASGtAXQDAcIDqAEhqAF5AwG5A7gBH7gBhwEDAa8DtAEhtAF0AwGmA9ABIdABlAEDAZADywEhywF8AwGHA9wBIdwBdAMB/QLXASHXAXkDAfQC5wEf5wGHAQMB6gLjASHjAXQDAeEC/wEh/wGVAQMBywL6ASH6AXwDAcICiwIhiwJ0AwG4AoYCIYYCeQMBrwKWAh+WAocBAwGlApICIZICdAMBnAKvAiGvAp4BAwGEArYCH+QCKgMBqwHqAiHqAo8CAgFC7gIfnQMqAgFNtwIhwgIqAwHrAcMCIdcCJgMBxQHYAiHjAioDAawB7wIh+gIqAwGTAfsCIYYDKgIBfIcDIZIDKgIBZZMDIZwDMwIBTr8CJ78C8AEDAfgBugInugKLAQMB7AHGAifGAsIBAwHGAcoCJdUCLgMB0gHgAifgAnkDAbkB2wIn2wJ9AwGtAfcCJ/cCqQEDAZ8B8gIn8gKCAQMBlAGDAyeDA58BAwGIAf4CJ/4CgwECAX2PAyePA3oCAXGKAyeKA38CAWaaAyWaA40BAgFalgMnlgN6AgFP0gIr0gJ5AwHfAc0CK80ChgEDAdMB</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </twa:F1099INTBusinessValidationRules.Implementation>
+</twa:F1099INTBusinessValidationRules>

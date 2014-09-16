@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                             -->
+<!-- REVISION HISTORY:           -->
+<!-- Initial Version  11/10/2006 -->
+<!--                             -->
+<!-- 11/21/2006                  -->
+<!-- Added Category to the GetVinDataResponseType definition -->
+<!-- 12/20/2006                  -->
+<!-- Modified GetVinDataResponseType to move EIN outside of the VINDataList -->
+<!-- to avoid repeating the same EIN in every entry of the list -->
+<!-- 05/07/2007                  -->
+<!-- Modified the EINType restriction to simply require 9 numeric digits -->
+<!-- 05/01/2012 -->
+<!-- Removed A2AException, It is now defined in MeFHeader.xsd to create a consistent namespace -->
+<!-- for all MeF exceptions returned as SOAP Faults from the portal and the TPI backend -->
+<!--                             -->
+<xsd:schema targetNamespace="http://www.irs.gov/a2a/etec/ETECStateService.xsd" 
+	xmlns="http://www.irs.gov/a2a/etec/ETECStateService.xsd" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:etec="http://www.irs.gov/a2a/etec/ETECStateService.xsd" 
+	elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:annotation>
+		<xsd:documentation>ETEC State Web Services' Element Definitions</xsd:documentation>
+	</xsd:annotation>
+
+
+	<xsd:element name="GetVinDataRequest"			type="etec:GetVinDataRequestType"/>
+	<xsd:element name="GetVinDataResponse"			type="etec:GetVinDataResponseType"/>
+
+
+	<xsd:complexType name="GetVinDataRequestType">
+		<xsd:sequence>
+			<xsd:element name="MaxResults"	type="xsd:positiveInteger"/>
+			<xsd:element name="EIN"			type="etec:EINType"/>
+			<xsd:element name="ReportingPeriod"	type="xsd:gYearMonth"/>
+			<xsd:element name="VIN"			type="xsd:string" minOccurs="0" maxOccurs="100"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="GetVinDataResponseType">
+		<xsd:sequence>
+			<xsd:element name="EIN"				type="etec:EINType"/>
+       		<xsd:element name="VINDataList"	type="etec:VINDataListType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="VINDataListType">
+		<xsd:sequence>
+        		<xsd:element name="VINData" type="etec:VINDataType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="VINDataType">
+		<xsd:sequence>
+			<xsd:element name="VIN"				type="xsd:string"/>
+			<xsd:element name="Category"			type="etec:VehicleCategoryType"/>
+			<xsd:element name="ReportingPeriod"		type="xsd:gYearMonth"/>
+			<xsd:element name="PaymentIndicator"	type="etec:PaymentIndicatorType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Employer Identification Number Type -->
+	<xsd:simpleType name="EINType">
+		<xsd:annotation>
+			<xsd:documentation>Type for Employer Identification No. - 9 digits starting with a predefined 2-digit IRS District Office code</xsd:documentation>
+		<!--	<xsd:pattern value="(0[1-6]|1[0-6]|2[0-7]|3[0-9]|4[0-8]|[5-6][0-9]|7[0-7]|8[0-8]|9[0-6]|98|99)[0-9]{7}" />  -->
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{9}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<xsd:simpleType name="PaymentIndicatorType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="paid" />
+			<xsd:enumeration value="suspended" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="VehicleCategoryType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-W]{1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+
+
+</xsd:schema>

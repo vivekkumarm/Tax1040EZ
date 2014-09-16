@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+     <script src="Scripts/jquery-2.1.0.js"></script>
+    <script src="Scripts/jquery-2.1.0.min.js"></script>
+    <script src="Scripts/jquery-ui-1.10.4.js"></script>
+    <script src="Scripts/jquery-ui-1.10.4.min.js"></script>
+    
+    <script>
+        var serviceUrl='http://localhost:9797/';
+        
+        function RegisterUser() {
+            $.ajax({
+                url: serviceUrl + 'user/create',
+                async: false,
+                dataType: "json",
+                type: "POST",
+                //beforeSend: function (request) {
+                //    //alert($.cookie('UserID'));
+                //    request.setRequestHeader("X-Token", $.cookie('UserID'));
+                //},
+                data: JSON.stringify({
+                    "Email": $("#txtemail").val(), "UserName": $("#txtusername").val(), "Password": $("#txtpasswd").val(),
+                    "SecurityQuestionId": $("#txtsquestion").val(), "SecurityAnswer": $("#txtanswer").val(), "IsActive": $("#chkagree").val(),
+                }),
+                contentType: "application/json; charset=utf-8",
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert($("#txtsquestion").val());
+                    alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+                },
+                success: function (data, textStatus) {
+                    
+                    alert('success');
+                }
+            });
+        }
+        
+        function SignInUser() {
+            $.ajax({
+                url: serviceUrl + 'user/signin/{username}/{password}', ///'+ $("#txtsigninusername").val()+"/" + $("#txtsigninpassowrd").val(),  //'{username}/{password}',
+                async: false,
+                dataType: "json",
+                type: "GET",
+                //beforeSend: function (request) {
+                //    //alert($.cookie('UserID'));
+                //    request.setRequestHeader("X-Token", $.cookie('UserID'));
+                //},
+                //data: JSON.stringify({ username: $("#txtsigninusername").val(), password: $("#txtsigninpassowrd").val() }),
+                //data: JSON.stringify({
+                //    "Username": $("#txtsigninusername").val(),"Password": $("#txtsigninpassowrd").val(),
+                //}),
+                data: { username:$("#txtsigninusername").val(), password:$("#txtsigninpassowrd").val() },
+                contentType: "application/json; charset=utf-8",
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+                },
+                success: function (data, textStatus) {
+                    $("#error").innerHTML = data;
+                    alert('success');
+                }
+            });
+        }
+        
+        function GetUserNameByEmail() {
+            $.ajax({
+                url: serviceUrl + 'user/GetUsernameByEmail',
+                async: false,
+                dataType: "json",
+                type: "POST",
+             //  data: JSON.stringify({ Email: $("#txtEmailcheck").val() }),
+                data: JSON.stringify({
+                    "Email": $("#txtEmailcheck").val(),
+                }),
+                contentType: "application/json; charset=utf-8",
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+                },
+                success: function (data, textStatus) {
+                    alert('success');
+                }
+            });
+        }
+        
+        
+        
+        
+
+      </script>
+</head>
+    <body>
+        <table>
+            <tr>
+               <div id="error">    </div>
+            </tr>
+            <tr>
+                <td>
+                    Email Address: <input id="txtemail" type="email" name="email"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    User Name: <input type="text" id="txtusername" name="username"/></td>
+            </tr>
+            <tr>
+                <td>
+                    Password: <input id="txtpasswd" type="password" name="password"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Security Question: <input id="txtsquestion" type="text" name="securityQuestion"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Answer: <input id="txtanswer" type="text" name="answer"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    I Agree to site: <input id="chkagree" type="checkbox" name="agree"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Remember me on the computer: <input type="checkbox" name="checkbox"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Submit: <input id="btnClick" type="button" name="submit" onclick="RegisterUser()"/>
+                </td>
+            </tr>
+        </table>
+        
+        <table>
+            <tr>
+                <td>
+                    User Name: <input type="text" id="txtsigninusername" name="username"/></td>
+            </tr>
+            <tr>
+                <td>
+                    Password: <input id="txtsigninpassowrd" type="password" name="password"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Submit: <input id="btnSignIn" type="button" name="submit" onclick="SignInUser()"/>
+                </td>
+            </tr>
+        </table>
+        
+        
+        <table>
+           <tr>
+                <td>
+                    Email: <input type="email" id="txtEmailcheck" name="Email"/></td>
+            </tr>
+             <tr>
+                <td>
+                    Submit: <input id="btnEmailcheck" type="button" name="submit" onclick="GetUserNameByEmail()"/>
+                </td>
+            </tr>
+        </table>
+
+    </body>
+</html>

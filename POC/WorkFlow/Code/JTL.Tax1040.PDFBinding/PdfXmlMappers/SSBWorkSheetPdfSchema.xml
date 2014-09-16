@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "SSBWorkSheet">
+  <Mapping>
+    <PDFField>txtWKTSSAAndRRBAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line1Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTSSBTaxableAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line2Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTSSBTotalWages</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line3Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTSSBTotalInterestIncome</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line4Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTSSBTotalAddedLines</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line5Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTSSBFilingStatusAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line6Amount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>ChkWKTTaxableCheckNo</PDFField>
+    <TROField Type="Bool">Tax1040.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.IsLine2SSBTaxable</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkWKTTaxableCheckYes</PDFField>
+    <TROField Type="Bool">Tax1040.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.IsLine2SSBTaxable</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkWKTEligibilityCheckNo</PDFField>
+    <TROField Type="Bool">Tax1040.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.IsLine7SSBTaxable</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkWKTEligibilityCheckYes</PDFField>
+    <TROField Type="Bool">Tax1040.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.IsLine7SSBTaxable</TROField>
+  </Mapping>
+</OutputForm>
+
+
+
+
+
+
+
+
+
+
+
+

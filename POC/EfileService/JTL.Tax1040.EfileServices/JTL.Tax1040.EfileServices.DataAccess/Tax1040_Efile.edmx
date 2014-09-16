@@ -1,0 +1,2112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Tax1040_EfileModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Tax1040_EfileModelStoreContainer">
+          <EntitySet Name="efile_comment" EntityType="Tax1040_EfileModel.Store.efile_comment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_email_log" EntityType="Tax1040_EfileModel.Store.efile_email_log" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_error" EntityType="Tax1040_EfileModel.Store.efile_error" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_hold" EntityType="Tax1040_EfileModel.Store.efile_hold" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_hold_attachment" EntityType="Tax1040_EfileModel.Store.efile_hold_attachment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_irs_schema" EntityType="Tax1040_EfileModel.Store.efile_irs_schema" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_last_status" EntityType="Tax1040_EfileModel.Store.efile_last_status" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_log" EntityType="Tax1040_EfileModel.Store.efile_log" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_name_control" EntityType="Tax1040_EfileModel.Store.efile_name_control" store:Type="Tables" store:Schema="dbo" store:Name="efile_name_control">
+            <DefiningQuery>SELECT 
+      [efile_name_control].[efile_name_control_id] AS [efile_name_control_id], 
+      [efile_name_control].[user_id] AS [user_id], 
+      [efile_name_control].[business_info_id] AS [business_info_id], 
+      [efile_name_control].[business_info_name] AS [business_info_name], 
+      [efile_name_control].[return_id] AS [return_id], 
+      [efile_name_control].[name_control] AS [name_control]
+      FROM [dbo].[efile_name_control] AS [efile_name_control]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="efile_progress" EntityType="Tax1040_EfileModel.Store.efile_progress" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_receiver" EntityType="Tax1040_EfileModel.Store.efile_receiver" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_request_response" EntityType="Tax1040_EfileModel.Store.efile_request_response" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_sender" EntityType="Tax1040_EfileModel.Store.efile_sender" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="efile_transmit" EntityType="Tax1040_EfileModel.Store.efile_transmit" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="fax_log" EntityType="Tax1040_EfileModel.Store.fax_log" store:Type="Tables" store:Schema="dbo" store:Name="fax_log">
+            <DefiningQuery>SELECT 
+      [fax_log].[fax_status_id] AS [fax_status_id], 
+      [fax_log].[return_id] AS [return_id], 
+      [fax_log].[shopping_cart_detail_id] AS [shopping_cart_detail_id], 
+      [fax_log].[fax_number] AS [fax_number], 
+      [fax_log].[fax_service_number] AS [fax_service_number], 
+      [fax_log].[fax_return_value_id] AS [fax_return_value_id], 
+      [fax_log].[create_time_stamp] AS [create_time_stamp], 
+      [fax_log].[update_time_stamp] AS [update_time_stamp]
+      FROM [dbo].[fax_log] AS [fax_log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sms_log" EntityType="Tax1040_EfileModel.Store.sms_log" store:Type="Tables" store:Schema="dbo" store:Name="sms_log">
+            <DefiningQuery>SELECT 
+      [sms_log].[sms_log_id] AS [sms_log_id], 
+      [sms_log].[return_id] AS [return_id], 
+      [sms_log].[return_value_id] AS [return_value_id], 
+      [sms_log].[stc_sms_template_id] AS [stc_sms_template_id], 
+      [sms_log].[create_time_stamp] AS [create_time_stamp], 
+      [sms_log].[update_time_stamp] AS [update_time_stamp]
+      FROM [dbo].[sms_log] AS [sms_log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="StcErrorCode" EntityType="Tax1040_EfileModel.Store.StcErrorCode" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fk_efile_attachment_hold_efile_hold" Association="Tax1040_EfileModel.Store.fk_efile_attachment_hold_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_hold_attachment" EntitySet="efile_hold_attachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_efile_email_log_efile_error" Association="Tax1040_EfileModel.Store.FK_efile_email_log_efile_error">
+            <End Role="efile_error" EntitySet="efile_error" />
+            <End Role="efile_email_log" EntitySet="efile_email_log" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_irs_schema_efile_hold" Association="Tax1040_EfileModel.Store.fk_efile_irs_schema_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_irs_schema" EntitySet="efile_irs_schema" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_last_status_efile_hold" Association="Tax1040_EfileModel.Store.fk_efile_last_status_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_last_status" EntitySet="efile_last_status" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_log_efile_hold" Association="Tax1040_EfileModel.Store.fk_efile_log_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_log" EntitySet="efile_log" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_progress_efile_hold" Association="Tax1040_EfileModel.Store.fk_efile_progress_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_progress" EntitySet="efile_progress" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_sender_efile_hold" Association="Tax1040_EfileModel.Store.fk_efile_sender_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_sender" EntitySet="efile_sender" />
+          </AssociationSet>
+          <AssociationSet Name="pk_efile_comment_efile_hold" Association="Tax1040_EfileModel.Store.pk_efile_comment_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_comment" EntitySet="efile_comment" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="efile_comment">
+          <Key>
+            <PropertyRef Name="efile_comment_id" />
+          </Key>
+          <Property Name="efile_comment_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="bigint" />
+          <Property Name="efile_comment" Type="text" />
+          <Property Name="admin_users_id" Type="bigint" />
+          <Property Name="create_time_stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="efile_email_log">
+          <Key>
+            <PropertyRef Name="efile_email_log_id" />
+          </Key>
+          <Property Name="efile_email_log_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="submission_id" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="efile_error_id" Type="int" Nullable="false" />
+          <Property Name="efile_email_template_id" Type="int" Nullable="false" />
+          <Property Name="email_to" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="email_from" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="email_message" Type="text" Nullable="false" />
+          <Property Name="email_subject" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="email_status" Type="bit" />
+        </EntityType>
+        <EntityType Name="efile_error">
+          <Key>
+            <PropertyRef Name="efile_error_id" />
+          </Key>
+          <Property Name="efile_error_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="submission_id" Type="varchar" MaxLength="25" />
+          <Property Name="error_code" Type="varchar" MaxLength="50" />
+          <Property Name="error_message" Type="varchar(max)" />
+          <Property Name="error_classification" Type="varchar(max)" />
+          <Property Name="action" Type="varchar" MaxLength="50" />
+          <Property Name="error_picked_up" Type="tinyint" />
+          <Property Name="error_fixed" Type="tinyint" />
+          <Property Name="is_deleted" Type="bit" />
+          <Property Name="create_time_stamp" Type="datetime" />
+          <Property Name="update_time_stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="efile_hold">
+          <Key>
+            <PropertyRef Name="efile_hold_id" />
+          </Key>
+          <Property Name="efile_hold_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="sender_id" Type="int" Nullable="false" />
+          <Property Name="return_id" Type="bigint" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="tax_return_type_id" Type="varchar" MaxLength="20" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" />
+          <Property Name="user_email" Type="varchar" MaxLength="50" />
+          <Property Name="no_of_attachments" Type="int" />
+          <Property Name="tax_object" Type="xml" Nullable="false" />
+          <Property Name="env_indicator" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="efile_trans_id" Type="varchar" MaxLength="30" />
+          <Property Name="tax_year" Type="varchar" MaxLength="10" />
+          <Property Name="tax_period" Type="varchar" MaxLength="30" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="update_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="irs_system_id" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="efile_hold_attachment">
+          <Key>
+            <PropertyRef Name="efile_hold_attachment_id" />
+          </Key>
+          <Property Name="efile_hold_attachment_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="bigint" Nullable="false" />
+          <Property Name="attachment_name" Type="varchar" MaxLength="100" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="efile_attachment" Type="varbinary(max)" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="update_time_stamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="efile_irs_schema">
+          <Key>
+            <PropertyRef Name="efile_irs_schema_id" />
+          </Key>
+          <Property Name="efile_irs_schema_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="bigint" Nullable="false" />
+          <Property Name="efile_irs_schema" Type="xml" Nullable="false" />
+          <Property Name="manifest_xml" Type="xml" />
+          <Property Name="submission_id" Type="varchar" MaxLength="20" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="update_time_stamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="efile_last_status">
+          <Key>
+            <PropertyRef Name="efile_last_status_id" />
+          </Key>
+          <Property Name="efile_last_status_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="bigint" Nullable="false" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="stage" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="state" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="update_time_stamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="efile_log">
+          <Key>
+            <PropertyRef Name="efile_log_id" />
+          </Key>
+          <Property Name="efile_log_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="bigint" Nullable="false" />
+          <Property Name="messages" Type="varchar(max)" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="update_time_stamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Tax1040_Efile.dbo.efile_name_control' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="efile_name_control">
+          <Key>
+            <PropertyRef Name="efile_name_control_id" />
+          </Key>
+          <Property Name="efile_name_control_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="bigint" />
+          <Property Name="business_info_id" Type="bigint" />
+          <Property Name="business_info_name" Type="varchar" MaxLength="100" />
+          <Property Name="return_id" Type="bigint" />
+          <Property Name="name_control" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="efile_progress">
+          <Key>
+            <PropertyRef Name="efile_progress_id" />
+          </Key>
+          <Property Name="efile_progress_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="bigint" Nullable="false" />
+          <Property Name="progress_status" Type="tinyint" Nullable="false" />
+          <Property Name="stage" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="state" Type="varchar" MaxLength="50" />
+          <Property Name="create_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="update_time_stamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="efile_receiver">
+          <Key>
+            <PropertyRef Name="efile_receiver_id" />
+          </Key>
+          <Property Name="efile_receiver_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="submission_id" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="send_submission_status" Type="varbinary(max)" />
+          <Property Name="get_ack_status" Type="varbinary(max)" />
+          <Property Name="ack_xml" Type="xml" />
+          <Property Name="submission_status" Type="varbinary(max)" />
+          <Property Name="schedule1" Type="varbinary(max)" />
+          <Property Name="is_deleted" Type="bit" />
+          <Property Name="create_time_stamp" Type="datetime" />
+          <Property Name="update_time_stamp" Type="datetime" />
+          <Property Name="system_id" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="efile_request_response">
+          <Key>
+            <PropertyRef Name="efile_req_res_id" />
+          </Key>
+          <Property Name="efile_req_res_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="submission_id" Type="varchar" MaxLength="25" />
+          <Property Name="message_id" Type="varchar" MaxLength="30" />
+          <Property Name="request" Type="text" />
+          <Property Name="response" Type="text" />
+          <Property Name="action" Type="varchar" MaxLength="50" />
+          <Property Name="status_id" Type="tinyint" />
+          <Property Name="create_time_stamp" Type="datetime" />
+          <Property Name="update_time_stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="efile_sender">
+          <Key>
+            <PropertyRef Name="efile_sender_id" />
+          </Key>
+          <Property Name="efile_sender_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="bigint" Nullable="false" />
+          <Property Name="dime_attachment" Type="varbinary(max)" Nullable="false" />
+          <Property Name="submission_id" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="message_id" Type="varchar" MaxLength="20" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="create_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="update_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="irs_system_id" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="efile_transmit">
+          <Key>
+            <PropertyRef Name="efile_transmit_id" />
+          </Key>
+          <Property Name="efile_transmit_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="return_id" Type="bigint" />
+          <Property Name="return_type" Type="varchar" MaxLength="20" />
+          <Property Name="stage" Type="varchar" MaxLength="10" />
+          <Property Name="state" Type="varchar" MaxLength="10" />
+          <Property Name="user_id" Type="bigint" />
+          <Property Name="ip_date_time" Type="varchar" MaxLength="50" />
+          <Property Name="ip_time_zone" Type="varchar" MaxLength="50" />
+          <Property Name="ip_address" Type="varchar" MaxLength="50" />
+          <Property Name="status_id" Type="int" />
+          <Property Name="is_deleted" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Tax1040_Efile.dbo.fax_log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="fax_log">
+          <Key>
+            <PropertyRef Name="fax_status_id" />
+          </Key>
+          <Property Name="fax_status_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="return_id" Type="bigint" />
+          <Property Name="shopping_cart_detail_id" Type="bigint" />
+          <Property Name="fax_number" Type="varchar" MaxLength="30" />
+          <Property Name="fax_service_number" Type="varchar" MaxLength="30" />
+          <Property Name="fax_return_value_id" Type="bigint" />
+          <Property Name="create_time_stamp" Type="datetime" />
+          <Property Name="update_time_stamp" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Tax1040_Efile.dbo.sms_log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="sms_log">
+          <Key>
+            <PropertyRef Name="sms_log_id" />
+            <PropertyRef Name="return_id" />
+            <PropertyRef Name="create_time_stamp" />
+            <PropertyRef Name="update_time_stamp" />
+          </Key>
+          <Property Name="sms_log_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="return_id" Type="bigint" Nullable="false" />
+          <Property Name="return_value_id" Type="int" />
+          <Property Name="stc_sms_template_id" Type="int" />
+          <Property Name="create_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="update_time_stamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StcErrorCode">
+          <Key>
+            <PropertyRef Name="ErrorCode" />
+          </Key>
+          <Property Name="ErrorCode" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ErrorFaultResponse" Type="varchar(max)" />
+          <Property Name="ErrorLogErrorMessage" Type="varchar(max)" />
+          <Property Name="ErrorType" Type="varchar" MaxLength="100" />
+          <Property Name="FixType" Type="tinyint" />
+        </EntityType>
+        <Association Name="fk_efile_attachment_hold_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.Store.efile_hold" Multiplicity="1" />
+          <End Role="efile_hold_attachment" Type="Tax1040_EfileModel.Store.efile_hold_attachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_hold_attachment">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_efile_email_log_efile_error">
+          <End Role="efile_error" Type="Tax1040_EfileModel.Store.efile_error" Multiplicity="1" />
+          <End Role="efile_email_log" Type="Tax1040_EfileModel.Store.efile_email_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_error">
+              <PropertyRef Name="efile_error_id" />
+            </Principal>
+            <Dependent Role="efile_email_log">
+              <PropertyRef Name="efile_error_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_irs_schema_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.Store.efile_hold" Multiplicity="1" />
+          <End Role="efile_irs_schema" Type="Tax1040_EfileModel.Store.efile_irs_schema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_irs_schema">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_last_status_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.Store.efile_hold" Multiplicity="1" />
+          <End Role="efile_last_status" Type="Tax1040_EfileModel.Store.efile_last_status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_last_status">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_log_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.Store.efile_hold" Multiplicity="1" />
+          <End Role="efile_log" Type="Tax1040_EfileModel.Store.efile_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_log">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_progress_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.Store.efile_hold" Multiplicity="1" />
+          <End Role="efile_progress" Type="Tax1040_EfileModel.Store.efile_progress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_progress">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_sender_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.Store.efile_hold" Multiplicity="1" />
+          <End Role="efile_sender" Type="Tax1040_EfileModel.Store.efile_sender" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_sender">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pk_efile_comment_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.Store.efile_hold" Multiplicity="0..1" />
+          <End Role="efile_comment" Type="Tax1040_EfileModel.Store.efile_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_comment">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_admin_efile_last_status_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_admin_find_name_control" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="return_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_admin_get_efile_status_report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_comment_get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_comment_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+          <Parameter Name="efile_comment" Type="text" Mode="In" />
+          <Parameter Name="admin_users_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_error_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+          <Parameter Name="error_code" Type="varchar" Mode="In" />
+          <Parameter Name="error_message" Type="varchar(max)" Mode="In" />
+          <Parameter Name="error_classification" Type="varchar" Mode="In" />
+          <Parameter Name="action" Type="varchar" Mode="In" />
+          <Parameter Name="status_id" Type="int" Mode="In" />
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_error_irs_schema_create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubmissionID" Type="varchar" Mode="In" />
+          <Parameter Name="ErrorCode" Type="varchar" Mode="In" />
+          <Parameter Name="Errormessage" Type="text" Mode="In" />
+          <Parameter Name="ErrorClassification" Type="text" Mode="In" />
+          <Parameter Name="Action" Type="varchar" Mode="In" />
+          <Parameter Name="ErrorType" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_error_picked_up_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_error_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_hold_attachment_get_on_efile_hold_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_hold_attachment_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="int" Mode="In" />
+          <Parameter Name="efile_attachment" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="type" Type="varchar" Mode="In" />
+          <Parameter Name="attachment_name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_hold_get_by_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_hold_get_irs_schema_count" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_efile_hold_get_on_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_hold_persist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sender_id" Type="int" Mode="In" />
+          <Parameter Name="return_id" Type="int" Mode="In" />
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="user_name" Type="varchar" Mode="In" />
+          <Parameter Name="no_of_attachments" Type="int" Mode="In" />
+          <Parameter Name="user_email" Type="varchar" Mode="In" />
+          <Parameter Name="tax_object" Type="xml" Mode="In" />
+          <Parameter Name="env_indicator" Type="char" Mode="In" />
+          <Parameter Name="efile_trans_id" Type="varchar" Mode="In" />
+          <Parameter Name="status_id" Type="int" Mode="In" />
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+          <Parameter Name="tax_return_type_id" Type="varchar" Mode="In" />
+          <Parameter Name="tax_year" Type="varchar" Mode="In" />
+          <Parameter Name="tax_period" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_irs_schema_get_on_efile_hold_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_irs_schema_get_today_count" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_efile_irs_schema_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="int" Mode="In" />
+          <Parameter Name="efile_irs_schema" Type="xml" Mode="In" />
+          <Parameter Name="manifest_xml" Type="xml" Mode="In" />
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+          <Parameter Name="status_id" Type="int" Mode="In" />
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_irs_schema_persist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="int" Mode="In" />
+          <Parameter Name="efile_irs_schema" Type="xml" Mode="In" />
+          <Parameter Name="manifest_xml" Type="xml" Mode="In" />
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+          <Parameter Name="status_id" Type="int" Mode="In" />
+          <Parameter Name="old_submission_id" Type="varchar" Mode="In" />
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_name_control_persist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_receiver_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+          <Parameter Name="send_submission_status" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="get_ack_status" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="submission_status" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="schedule1" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="ack_xml" Type="xml" Mode="In" />
+          <Parameter Name="status_id" Type="int" Mode="In" />
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+          <Parameter Name="irs_system_id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_receiver_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubmissionID" Type="varchar" Mode="In" />
+          <Parameter Name="ReceiverType" Type="varchar(max)" Mode="In" />
+          <Parameter Name="AttachmentStatus" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="AckXML" Type="xml" Mode="In" />
+          <Parameter Name="StatusID" Type="int" Mode="In" />
+          <Parameter Name="Stage" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_request_response_create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+          <Parameter Name="request" Type="text" Mode="In" />
+          <Parameter Name="message_id" Type="varchar" Mode="In" />
+          <Parameter Name="response" Type="text" Mode="In" />
+          <Parameter Name="error_code" Type="varchar" Mode="In" />
+          <Parameter Name="error_message" Type="text" Mode="In" />
+          <Parameter Name="error_classification" Type="varchar" Mode="In" />
+          <Parameter Name="action" Type="varchar" Mode="In" />
+          <Parameter Name="service_action" Type="varchar" Mode="In" />
+          <Parameter Name="status_id" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_schema_get_by_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="return_id" Type="bigint" Mode="In" />
+          <Parameter Name="business_name" Type="varchar" Mode="In" />
+          <Parameter Name="ein" Type="varchar" Mode="In" />
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+          <Parameter Name="date" Type="datetime" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+          <Parameter Name="form_type" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_sender_persist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="int" Mode="In" />
+          <Parameter Name="dime_attachment" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+          <Parameter Name="message_id" Type="varchar" Mode="In" />
+          <Parameter Name="status_id" Type="tinyint" Mode="In" />
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_transmit_get_all" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_efile_transmit_persist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_id" Type="bigint" Mode="In" />
+          <Parameter Name="return_id" Type="bigint" Mode="In" />
+          <Parameter Name="return_type" Type="varchar" Mode="In" />
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+          <Parameter Name="ip_date_time" Type="varchar" Mode="In" />
+          <Parameter Name="ip_time_zone" Type="varchar" Mode="In" />
+          <Parameter Name="ip_address" Type="varchar" Mode="In" />
+          <Parameter Name="status_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_efile_transmit_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_transmit_id" Type="bigint" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efiled_users" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="form_type" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_efiled_users_by_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_get_admin_efile_count" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="from_date" Type="datetime" Mode="In" />
+          <Parameter Name="to_date" Type="datetime" Mode="In" />
+          <Parameter Name="product_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_get_admin_efile_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_get_efile_acknowledge_on_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_attachement_and_xml_by_efile_trans_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_trans_id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_error_from_error_code" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_get_efile_error_on_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_error_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_error_on_submission_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_error_on_transmission_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_trans_id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_hold_records_on_acknowledgement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_get_efile_hold_records_on_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_hold_sender_count" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sender_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_info_on_stage_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_irs_schema_on_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Stage" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_name_control" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_name_control_on_efile_hold_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_req_res_by_action_and_time" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="varchar" Mode="In" />
+          <Parameter Name="start_time" Type="varchar" Mode="In" />
+          <Parameter Name="end_time" Type="varchar" Mode="In" />
+          <Parameter Name="date" Type="varchar" Mode="In" />
+          <Parameter Name="last_hours" Type="char" Mode="In" />
+          <Parameter Name="form_type" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_efile_sender_on_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Stage" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_latest_efile_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_get_rejected_efile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_get_rpt_payment_and_efile_count" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_get_schedule1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="efile_trans_id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_submission_id_for_acknowledgement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_get_submissions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="form_type" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_get_submissions_for_sender_channel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_rejected_efile_get_on_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_rpt_get_payment_and_efile_count_old" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_status_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+          <Parameter Name="status_id" Type="int" Mode="In" />
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_update_system_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="irs_system_id" Type="varchar" Mode="In" />
+          <Parameter Name="efile_hold_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_upload_files" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="submission_id" Type="varchar" Mode="In" />
+          <Parameter Name="zip" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="get_ack_status" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="schedule1" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="stage" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Tax1040_EfileModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Tax1040_EfileEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="efile_comment" EntityType="Tax1040_EfileModel.efile_comment" />
+          <EntitySet Name="efile_email_log" EntityType="Tax1040_EfileModel.efile_email_log" />
+          <EntitySet Name="efile_error" EntityType="Tax1040_EfileModel.efile_error" />
+          <EntitySet Name="efile_hold" EntityType="Tax1040_EfileModel.efile_hold" />
+          <EntitySet Name="efile_hold_attachment" EntityType="Tax1040_EfileModel.efile_hold_attachment" />
+          <EntitySet Name="efile_irs_schema" EntityType="Tax1040_EfileModel.efile_irs_schema" />
+          <EntitySet Name="efile_last_status" EntityType="Tax1040_EfileModel.efile_last_status" />
+          <EntitySet Name="efile_log" EntityType="Tax1040_EfileModel.efile_log" />
+          <EntitySet Name="efile_name_control" EntityType="Tax1040_EfileModel.efile_name_control" />
+          <EntitySet Name="efile_progress" EntityType="Tax1040_EfileModel.efile_progress" />
+          <EntitySet Name="efile_receiver" EntityType="Tax1040_EfileModel.efile_receiver" />
+          <EntitySet Name="efile_request_response" EntityType="Tax1040_EfileModel.efile_request_response" />
+          <EntitySet Name="efile_sender" EntityType="Tax1040_EfileModel.efile_sender" />
+          <EntitySet Name="efile_transmit" EntityType="Tax1040_EfileModel.efile_transmit" />
+          <EntitySet Name="fax_log" EntityType="Tax1040_EfileModel.fax_log" />
+          <EntitySet Name="sms_log" EntityType="Tax1040_EfileModel.sms_log" />
+          <EntitySet Name="StcErrorCodes" EntityType="Tax1040_EfileModel.StcErrorCode" />
+          <AssociationSet Name="pk_efile_comment_efile_hold" Association="Tax1040_EfileModel.pk_efile_comment_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_comment" EntitySet="efile_comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_efile_email_log_efile_error" Association="Tax1040_EfileModel.FK_efile_email_log_efile_error">
+            <End Role="efile_error" EntitySet="efile_error" />
+            <End Role="efile_email_log" EntitySet="efile_email_log" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_attachment_hold_efile_hold" Association="Tax1040_EfileModel.fk_efile_attachment_hold_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_hold_attachment" EntitySet="efile_hold_attachment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_irs_schema_efile_hold" Association="Tax1040_EfileModel.fk_efile_irs_schema_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_irs_schema" EntitySet="efile_irs_schema" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_last_status_efile_hold" Association="Tax1040_EfileModel.fk_efile_last_status_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_last_status" EntitySet="efile_last_status" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_log_efile_hold" Association="Tax1040_EfileModel.fk_efile_log_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_log" EntitySet="efile_log" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_progress_efile_hold" Association="Tax1040_EfileModel.fk_efile_progress_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_progress" EntitySet="efile_progress" />
+          </AssociationSet>
+          <AssociationSet Name="fk_efile_sender_efile_hold" Association="Tax1040_EfileModel.fk_efile_sender_efile_hold">
+            <End Role="efile_hold" EntitySet="efile_hold" />
+            <End Role="efile_sender" EntitySet="efile_sender" />
+          </AssociationSet>
+          <FunctionImport Name="usp_admin_efile_last_status_update">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_admin_find_name_control">
+            <Parameter Name="return_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_admin_get_efile_status_report">
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_comment_get">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_comment_insert">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+            <Parameter Name="efile_comment" Mode="In" Type="String" />
+            <Parameter Name="admin_users_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_error_insert">
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+            <Parameter Name="error_code" Mode="In" Type="String" />
+            <Parameter Name="error_message" Mode="In" Type="String" />
+            <Parameter Name="error_classification" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="status_id" Mode="In" Type="Int32" />
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_error_irs_schema_create">
+            <Parameter Name="SubmissionID" Mode="In" Type="String" />
+            <Parameter Name="ErrorCode" Mode="In" Type="String" />
+            <Parameter Name="Errormessage" Mode="In" Type="String" />
+            <Parameter Name="ErrorClassification" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+            <Parameter Name="ErrorType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_error_picked_up_update">
+            <Parameter Name="efile_error_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_hold_attachment_get_on_efile_hold_id" ReturnType="Collection(Tax1040_EfileModel.usp_efile_hold_attachment_get_on_efile_hold_id_Result)">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_hold_attachment_insert">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int32" />
+            <Parameter Name="efile_attachment" Mode="In" Type="Binary" />
+            <Parameter Name="type" Mode="In" Type="String" />
+            <Parameter Name="attachment_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_hold_get_by_id" ReturnType="Collection(Tax1040_EfileModel.usp_efile_hold_get_by_id_Result)">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_hold_get_irs_schema_count" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="usp_efile_hold_get_on_id" ReturnType="Collection(Tax1040_EfileModel.usp_efile_hold_get_on_id_Result)">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_hold_persist" ReturnType="Collection(Int32)">
+            <Parameter Name="sender_id" Mode="In" Type="Int32" />
+            <Parameter Name="return_id" Mode="In" Type="Int32" />
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="user_name" Mode="In" Type="String" />
+            <Parameter Name="no_of_attachments" Mode="In" Type="Int32" />
+            <Parameter Name="user_email" Mode="In" Type="String" />
+            <Parameter Name="tax_object" Mode="In" Type="String" />
+            <Parameter Name="env_indicator" Mode="In" Type="String" />
+            <Parameter Name="efile_trans_id" Mode="In" Type="String" />
+            <Parameter Name="status_id" Mode="In" Type="Int32" />
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+            <Parameter Name="tax_return_type_id" Mode="In" Type="String" />
+            <Parameter Name="tax_year" Mode="In" Type="String" />
+            <Parameter Name="tax_period" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_irs_schema_get_on_efile_hold_id" ReturnType="Collection(Tax1040_EfileModel.usp_efile_irs_schema_get_on_efile_hold_id_Result)">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_irs_schema_get_today_count" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="usp_efile_irs_schema_insert">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int32" />
+            <Parameter Name="efile_irs_schema" Mode="In" Type="String" />
+            <Parameter Name="manifest_xml" Mode="In" Type="String" />
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+            <Parameter Name="status_id" Mode="In" Type="Int32" />
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_irs_schema_persist">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int32" />
+            <Parameter Name="efile_irs_schema" Mode="In" Type="String" />
+            <Parameter Name="manifest_xml" Mode="In" Type="String" />
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+            <Parameter Name="status_id" Mode="In" Type="Int32" />
+            <Parameter Name="old_submission_id" Mode="In" Type="String" />
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_name_control_persist">
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_receiver_insert">
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+            <Parameter Name="send_submission_status" Mode="In" Type="Binary" />
+            <Parameter Name="get_ack_status" Mode="In" Type="Binary" />
+            <Parameter Name="submission_status" Mode="In" Type="Binary" />
+            <Parameter Name="schedule1" Mode="In" Type="Binary" />
+            <Parameter Name="ack_xml" Mode="In" Type="String" />
+            <Parameter Name="status_id" Mode="In" Type="Int32" />
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+            <Parameter Name="irs_system_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_receiver_update">
+            <Parameter Name="SubmissionID" Mode="In" Type="String" />
+            <Parameter Name="ReceiverType" Mode="In" Type="String" />
+            <Parameter Name="AttachmentStatus" Mode="In" Type="Binary" />
+            <Parameter Name="AckXML" Mode="In" Type="String" />
+            <Parameter Name="StatusID" Mode="In" Type="Int32" />
+            <Parameter Name="Stage" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_request_response_create">
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+            <Parameter Name="request" Mode="In" Type="String" />
+            <Parameter Name="message_id" Mode="In" Type="String" />
+            <Parameter Name="response" Mode="In" Type="String" />
+            <Parameter Name="error_code" Mode="In" Type="String" />
+            <Parameter Name="error_message" Mode="In" Type="String" />
+            <Parameter Name="error_classification" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="service_action" Mode="In" Type="String" />
+            <Parameter Name="status_id" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_schema_get_by_id" ReturnType="Collection(Tax1040_EfileModel.usp_efile_schema_get_by_id_Result)">
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_search">
+            <Parameter Name="return_id" Mode="In" Type="Int64" />
+            <Parameter Name="business_name" Mode="In" Type="String" />
+            <Parameter Name="ein" Mode="In" Type="String" />
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="form_type" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_sender_persist">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int32" />
+            <Parameter Name="dime_attachment" Mode="In" Type="Binary" />
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+            <Parameter Name="message_id" Mode="In" Type="String" />
+            <Parameter Name="status_id" Mode="In" Type="Byte" />
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_transmit_get_all" ReturnType="Collection(Tax1040_EfileModel.usp_efile_transmit_get_all_Result)" />
+          <FunctionImport Name="usp_efile_transmit_persist">
+            <Parameter Name="user_id" Mode="In" Type="Int64" />
+            <Parameter Name="return_id" Mode="In" Type="Int64" />
+            <Parameter Name="return_type" Mode="In" Type="String" />
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+            <Parameter Name="ip_date_time" Mode="In" Type="String" />
+            <Parameter Name="ip_time_zone" Mode="In" Type="String" />
+            <Parameter Name="ip_address" Mode="In" Type="String" />
+            <Parameter Name="status_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efile_transmit_update">
+            <Parameter Name="efile_transmit_id" Mode="In" Type="Int64" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efiled_users">
+            <Parameter Name="form_type" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_efiled_users_by_id">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_admin_efile_count">
+            <Parameter Name="from_date" Mode="In" Type="DateTime" />
+            <Parameter Name="to_date" Mode="In" Type="DateTime" />
+            <Parameter Name="product_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_admin_efile_status" />
+          <FunctionImport Name="usp_get_efile_acknowledge_on_status" ReturnType="Collection(Tax1040_EfileModel.usp_get_efile_acknowledge_on_status_Result)">
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_attachement_and_xml_by_efile_trans_id" ReturnType="Collection(Tax1040_EfileModel.usp_get_efile_attachement_and_xml_by_efile_trans_id_Result)">
+            <Parameter Name="efile_trans_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_error_from_error_code" />
+          <FunctionImport Name="usp_get_efile_error_on_id">
+            <Parameter Name="efile_error_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_error_on_submission_id" ReturnType="Collection(Tax1040_EfileModel.usp_get_efile_error_on_submission_id_Result)">
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_error_on_transmission_id" ReturnType="Collection(Tax1040_EfileModel.usp_get_efile_error_on_transmission_id_Result)">
+            <Parameter Name="efile_trans_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_hold_records_on_acknowledgement" />
+          <FunctionImport Name="usp_get_efile_hold_records_on_status" ReturnType="Collection(Tax1040_EfileModel.usp_get_efile_hold_records_on_status_Result)">
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_hold_sender_count" ReturnType="Collection(Int32)">
+            <Parameter Name="sender_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_info_on_stage_status" ReturnType="Collection(Tax1040_EfileModel.usp_get_efile_info_on_stage_status_Result)">
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_irs_schema_on_status">
+            <Parameter Name="Stage" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_name_control" ReturnType="Collection(Tax1040_EfileModel.usp_get_efile_name_control_Result)">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_name_control_on_efile_hold_id">
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_req_res_by_action_and_time">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="start_time" Mode="In" Type="String" />
+            <Parameter Name="end_time" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="String" />
+            <Parameter Name="last_hours" Mode="In" Type="String" />
+            <Parameter Name="form_type" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_efile_sender_on_status" ReturnType="Collection(Tax1040_EfileModel.usp_get_efile_sender_on_status_Result)">
+            <Parameter Name="Stage" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_latest_efile_status" />
+          <FunctionImport Name="usp_get_rejected_efile" />
+          <FunctionImport Name="usp_get_rpt_payment_and_efile_count" />
+          <FunctionImport Name="usp_get_schedule1" ReturnType="Collection(Binary)">
+            <Parameter Name="efile_trans_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_submission_id_for_acknowledgement" ReturnType="Collection(Tax1040_EfileModel.usp_get_submission_id_for_acknowledgement_Result)" />
+          <FunctionImport Name="usp_get_submissions" ReturnType="Collection(Tax1040_EfileModel.usp_get_submissions_Result)">
+            <Parameter Name="form_type" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_get_submissions_for_sender_channel" ReturnType="Collection(Tax1040_EfileModel.usp_get_submissions_for_sender_channel_Result)">
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_rejected_efile_get_on_id" ReturnType="Collection(Tax1040_EfileModel.usp_rejected_efile_get_on_id_Result)">
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_rpt_get_payment_and_efile_count_old" />
+          <FunctionImport Name="usp_status_update" ReturnType="Collection(Int64)">
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+            <Parameter Name="status_id" Mode="In" Type="Int32" />
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_update_system_status">
+            <Parameter Name="irs_system_id" Mode="In" Type="String" />
+            <Parameter Name="efile_hold_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_upload_files">
+            <Parameter Name="submission_id" Mode="In" Type="String" />
+            <Parameter Name="zip" Mode="In" Type="Binary" />
+            <Parameter Name="get_ack_status" Mode="In" Type="Binary" />
+            <Parameter Name="schedule1" Mode="In" Type="Binary" />
+            <Parameter Name="stage" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="efile_comment">
+          <Key>
+            <PropertyRef Name="efile_comment_id" />
+          </Key>
+          <Property Name="efile_comment_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="Int64" />
+          <Property Name="efile_comment1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="admin_users_id" Type="Int64" />
+          <Property Name="create_time_stamp" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="efile_hold" Relationship="Tax1040_EfileModel.pk_efile_comment_efile_hold" FromRole="efile_comment" ToRole="efile_hold" />
+        </EntityType>
+        <EntityType Name="efile_email_log">
+          <Key>
+            <PropertyRef Name="efile_email_log_id" />
+          </Key>
+          <Property Name="efile_email_log_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="submission_id" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="efile_error_id" Type="Int32" Nullable="false" />
+          <Property Name="efile_email_template_id" Type="Int32" Nullable="false" />
+          <Property Name="email_to" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="email_from" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="email_message" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="email_subject" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="email_status" Type="Boolean" />
+          <NavigationProperty Name="efile_error" Relationship="Tax1040_EfileModel.FK_efile_email_log_efile_error" FromRole="efile_email_log" ToRole="efile_error" />
+        </EntityType>
+        <EntityType Name="efile_error">
+          <Key>
+            <PropertyRef Name="efile_error_id" />
+          </Key>
+          <Property Name="efile_error_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="submission_id" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="error_code" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="error_message" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="error_classification" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="action" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="error_picked_up" Type="Byte" />
+          <Property Name="error_fixed" Type="Byte" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <Property Name="create_time_stamp" Type="DateTime" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="efile_email_log" Relationship="Tax1040_EfileModel.FK_efile_email_log_efile_error" FromRole="efile_error" ToRole="efile_email_log" />
+        </EntityType>
+        <EntityType Name="efile_hold">
+          <Key>
+            <PropertyRef Name="efile_hold_id" />
+          </Key>
+          <Property Name="efile_hold_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="sender_id" Type="Int32" Nullable="false" />
+          <Property Name="return_id" Type="Int64" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="tax_return_type_id" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="user_name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="no_of_attachments" Type="Int32" />
+          <Property Name="tax_object" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="env_indicator" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="efile_trans_id" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="tax_year" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="tax_period" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="irs_system_id" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="efile_comment" Relationship="Tax1040_EfileModel.pk_efile_comment_efile_hold" FromRole="efile_hold" ToRole="efile_comment" />
+          <NavigationProperty Name="efile_hold_attachment" Relationship="Tax1040_EfileModel.fk_efile_attachment_hold_efile_hold" FromRole="efile_hold" ToRole="efile_hold_attachment" />
+          <NavigationProperty Name="efile_irs_schema" Relationship="Tax1040_EfileModel.fk_efile_irs_schema_efile_hold" FromRole="efile_hold" ToRole="efile_irs_schema" />
+          <NavigationProperty Name="efile_last_status" Relationship="Tax1040_EfileModel.fk_efile_last_status_efile_hold" FromRole="efile_hold" ToRole="efile_last_status" />
+          <NavigationProperty Name="efile_log" Relationship="Tax1040_EfileModel.fk_efile_log_efile_hold" FromRole="efile_hold" ToRole="efile_log" />
+          <NavigationProperty Name="efile_progress" Relationship="Tax1040_EfileModel.fk_efile_progress_efile_hold" FromRole="efile_hold" ToRole="efile_progress" />
+          <NavigationProperty Name="efile_sender" Relationship="Tax1040_EfileModel.fk_efile_sender_efile_hold" FromRole="efile_hold" ToRole="efile_sender" />
+        </EntityType>
+        <EntityType Name="efile_hold_attachment">
+          <Key>
+            <PropertyRef Name="efile_hold_attachment_id" />
+          </Key>
+          <Property Name="efile_hold_attachment_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="Int64" Nullable="false" />
+          <Property Name="attachment_name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="efile_attachment" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="efile_hold" Relationship="Tax1040_EfileModel.fk_efile_attachment_hold_efile_hold" FromRole="efile_hold_attachment" ToRole="efile_hold" />
+        </EntityType>
+        <EntityType Name="efile_irs_schema">
+          <Key>
+            <PropertyRef Name="efile_irs_schema_id" />
+          </Key>
+          <Property Name="efile_irs_schema_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="Int64" Nullable="false" />
+          <Property Name="efile_irs_schema1" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="manifest_xml" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="submission_id" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="efile_hold" Relationship="Tax1040_EfileModel.fk_efile_irs_schema_efile_hold" FromRole="efile_irs_schema" ToRole="efile_hold" />
+        </EntityType>
+        <EntityType Name="efile_last_status">
+          <Key>
+            <PropertyRef Name="efile_last_status_id" />
+          </Key>
+          <Property Name="efile_last_status_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="Int64" Nullable="false" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="stage" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="state" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="efile_hold" Relationship="Tax1040_EfileModel.fk_efile_last_status_efile_hold" FromRole="efile_last_status" ToRole="efile_hold" />
+        </EntityType>
+        <EntityType Name="efile_log">
+          <Key>
+            <PropertyRef Name="efile_log_id" />
+          </Key>
+          <Property Name="efile_log_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="Int64" Nullable="false" />
+          <Property Name="messages" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="efile_hold" Relationship="Tax1040_EfileModel.fk_efile_log_efile_hold" FromRole="efile_log" ToRole="efile_hold" />
+        </EntityType>
+        <EntityType Name="efile_name_control">
+          <Key>
+            <PropertyRef Name="efile_name_control_id" />
+          </Key>
+          <Property Name="efile_name_control_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="business_info_id" Type="Int64" />
+          <Property Name="business_info_name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="return_id" Type="Int64" />
+          <Property Name="name_control" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="efile_progress">
+          <Key>
+            <PropertyRef Name="efile_progress_id" />
+          </Key>
+          <Property Name="efile_progress_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="Int64" Nullable="false" />
+          <Property Name="progress_status" Type="Byte" Nullable="false" />
+          <Property Name="stage" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="state" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="create_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="efile_hold" Relationship="Tax1040_EfileModel.fk_efile_progress_efile_hold" FromRole="efile_progress" ToRole="efile_hold" />
+        </EntityType>
+        <EntityType Name="efile_receiver">
+          <Key>
+            <PropertyRef Name="efile_receiver_id" />
+          </Key>
+          <Property Name="efile_receiver_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="submission_id" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="send_submission_status" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="get_ack_status" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ack_xml" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="submission_status" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="schedule1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <Property Name="create_time_stamp" Type="DateTime" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Precision="3" />
+          <Property Name="system_id" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="efile_request_response">
+          <Key>
+            <PropertyRef Name="efile_req_res_id" />
+          </Key>
+          <Property Name="efile_req_res_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="submission_id" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="message_id" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="request" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="response" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="action" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="status_id" Type="Byte" />
+          <Property Name="create_time_stamp" Type="DateTime" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="efile_sender">
+          <Key>
+            <PropertyRef Name="efile_sender_id" />
+          </Key>
+          <Property Name="efile_sender_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="efile_hold_id" Type="Int64" Nullable="false" />
+          <Property Name="dime_attachment" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="submission_id" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="message_id" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="create_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="irs_system_id" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="efile_hold" Relationship="Tax1040_EfileModel.fk_efile_sender_efile_hold" FromRole="efile_sender" ToRole="efile_hold" />
+        </EntityType>
+        <EntityType Name="efile_transmit">
+          <Key>
+            <PropertyRef Name="efile_transmit_id" />
+          </Key>
+          <Property Name="efile_transmit_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="return_id" Type="Int64" />
+          <Property Name="return_type" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="stage" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="state" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="ip_date_time" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ip_time_zone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ip_address" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="status_id" Type="Int32" />
+          <Property Name="is_deleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="fax_log">
+          <Key>
+            <PropertyRef Name="fax_status_id" />
+          </Key>
+          <Property Name="fax_status_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="return_id" Type="Int64" />
+          <Property Name="shopping_cart_detail_id" Type="Int64" />
+          <Property Name="fax_number" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="fax_service_number" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="fax_return_value_id" Type="Int64" />
+          <Property Name="create_time_stamp" Type="DateTime" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sms_log">
+          <Key>
+            <PropertyRef Name="sms_log_id" />
+            <PropertyRef Name="return_id" />
+            <PropertyRef Name="create_time_stamp" />
+            <PropertyRef Name="update_time_stamp" />
+          </Key>
+          <Property Name="sms_log_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="return_id" Type="Int64" Nullable="false" />
+          <Property Name="return_value_id" Type="Int32" />
+          <Property Name="stc_sms_template_id" Type="Int32" />
+          <Property Name="create_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="StcErrorCode">
+          <Key>
+            <PropertyRef Name="ErrorCode" />
+          </Key>
+          <Property Name="ErrorCode" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ErrorFaultResponse" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ErrorLogErrorMessage" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ErrorType" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="FixType" Type="Byte" />
+        </EntityType>
+        <Association Name="pk_efile_comment_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.efile_hold" Multiplicity="0..1" />
+          <End Role="efile_comment" Type="Tax1040_EfileModel.efile_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_comment">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_efile_email_log_efile_error">
+          <End Role="efile_error" Type="Tax1040_EfileModel.efile_error" Multiplicity="1" />
+          <End Role="efile_email_log" Type="Tax1040_EfileModel.efile_email_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_error">
+              <PropertyRef Name="efile_error_id" />
+            </Principal>
+            <Dependent Role="efile_email_log">
+              <PropertyRef Name="efile_error_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_attachment_hold_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.efile_hold" Multiplicity="1" />
+          <End Role="efile_hold_attachment" Type="Tax1040_EfileModel.efile_hold_attachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_hold_attachment">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_irs_schema_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.efile_hold" Multiplicity="1" />
+          <End Role="efile_irs_schema" Type="Tax1040_EfileModel.efile_irs_schema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_irs_schema">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_last_status_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.efile_hold" Multiplicity="1" />
+          <End Role="efile_last_status" Type="Tax1040_EfileModel.efile_last_status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_last_status">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_log_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.efile_hold" Multiplicity="1" />
+          <End Role="efile_log" Type="Tax1040_EfileModel.efile_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_log">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_progress_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.efile_hold" Multiplicity="1" />
+          <End Role="efile_progress" Type="Tax1040_EfileModel.efile_progress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_progress">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_efile_sender_efile_hold">
+          <End Role="efile_hold" Type="Tax1040_EfileModel.efile_hold" Multiplicity="1" />
+          <End Role="efile_sender" Type="Tax1040_EfileModel.efile_sender" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="efile_hold">
+              <PropertyRef Name="efile_hold_id" />
+            </Principal>
+            <Dependent Role="efile_sender">
+              <PropertyRef Name="efile_hold_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="usp_efile_hold_attachment_get_on_efile_hold_id_Result">
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="String" Name="type" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="efile_attachment" Nullable="false" />
+          <Property Type="String" Name="attachment_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="efile_hold_attachment_id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_efile_hold_get_by_id_Result">
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="Int32" Name="sender_id" Nullable="false" />
+          <Property Type="Int64" Name="return_id" Nullable="true" />
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="user_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="user_email" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="no_of_attachments" Nullable="true" />
+          <Property Type="String" Name="tax_object" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="env_indicator" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="efile_trans_id" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="tax_year" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="tax_period" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="usp_efile_hold_get_on_id_Result">
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="Int32" Name="sender_id" Nullable="false" />
+          <Property Type="Int64" Name="return_id" Nullable="true" />
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="user_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="user_email" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="no_of_attachments" Nullable="true" />
+          <Property Type="String" Name="tax_object" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="env_indicator" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="efile_trans_id" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="tax_year" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="tax_period" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="usp_efile_irs_schema_get_on_efile_hold_id_Result">
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="efile_irs_schema" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="manifest_xml" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="submission_id" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="usp_efile_schema_get_by_id_Result">
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="submission_id" Nullable="true" MaxLength="20" />
+          <Property Type="Int64" Name="return_id" Nullable="true" />
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="String" Name="user_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="user_email" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="no_of_attachments" Nullable="true" />
+          <Property Type="String" Name="tax_object" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="efile_trans_id" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="efile_irs_schema" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="manifest_xml" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="usp_efile_transmit_get_all_Result">
+          <Property Type="Int64" Name="efile_transmit_id" Nullable="false" />
+          <Property Type="Int64" Name="return_id" Nullable="true" />
+          <Property Type="String" Name="return_type" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="stage" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="state" Nullable="true" MaxLength="10" />
+          <Property Type="Int64" Name="user_id" Nullable="true" />
+          <Property Type="String" Name="ip_date_time" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ip_time_zone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ip_address" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="is_deleted" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_get_efile_acknowledge_on_status_Result">
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="String" Name="DimeAttachment" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="submission_id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="message_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="irs_system_id" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="usp_get_efile_attachement_and_xml_by_efile_trans_id_Result">
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="String" Name="manifest_xml" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="submission_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="efile_irs_schema" Nullable="false" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="usp_get_efile_error_on_submission_id_Result">
+          <Property Type="Int32" Name="efile_error_id" Nullable="false" />
+          <Property Type="String" Name="submission_id" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="error_code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="error_message" Nullable="true" />
+          <Property Type="String" Name="error_classification" Nullable="true" />
+          <Property Type="String" Name="action" Nullable="true" MaxLength="50" />
+          <Property Type="Byte" Name="error_picked_up" Nullable="true" />
+          <Property Type="Byte" Name="error_fixed" Nullable="true" />
+          <Property Type="DateTime" Name="Time" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="usp_get_efile_error_on_transmission_id_Result">
+          <Property Type="Int32" Name="efile_error_id" Nullable="false" />
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="error_code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="error_message" Nullable="true" />
+          <Property Type="String" Name="error_classification" Nullable="true" />
+          <Property Type="String" Name="action" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="usp_get_efile_hold_records_on_status_Result">
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="sender_id" Nullable="false" />
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="Int64" Name="return_id" Nullable="true" />
+          <Property Type="Int32" Name="no_of_attachments" Nullable="true" />
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="String" Name="user_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="user_email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="tax_object" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="env_indicator" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="efile_trans_id" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="stage" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="state" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="submission_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="tax_year" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="tax_period" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="usp_get_efile_info_on_stage_status_Result">
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="Int64" Name="return_id" Nullable="true" />
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="String" Name="user_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="efile_trans_id" Nullable="true" MaxLength="30" />
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="String" Name="tax_object" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="submission_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="efile_irs_schema" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="manifest_xml" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="stage" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="state" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="usp_get_efile_name_control_Result">
+          <Property Type="String" Name="name_control" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="user_id" Nullable="true" />
+          <Property Type="Int64" Name="business_info_id" Nullable="true" />
+          <Property Type="String" Name="businessname" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="usp_get_efile_sender_on_status_Result">
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="Binary" Name="dime_attachment" Nullable="false" />
+          <Property Type="String" Name="submission_id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="message_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="irs_system_id" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="usp_get_submission_id_for_acknowledgement_Result">
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="String" Name="submission_id" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="SubmittedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="stage" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="state" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="usp_get_submissions_Result">
+          <Property Type="String" Name="submission_id" Nullable="true" MaxLength="20" />
+          <Property Type="Int64" Name="StatusID" Nullable="false" />
+          <Property Type="String" Name="stcstatus" Nullable="false" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="usp_get_submissions_for_sender_channel_Result">
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="Int64" Name="return_id" Nullable="true" />
+          <Property Type="String" Name="efile_trans_id" Nullable="true" MaxLength="30" />
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="String" Name="submission_id" Nullable="false" MaxLength="20" />
+          <Property Type="Binary" Name="dime_attachment" Nullable="false" />
+          <Property Type="DateTime" Name="create_time_stamp" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="usp_rejected_efile_get_on_id_Result">
+          <Property Type="String" Name="tax_return_type_id" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="efile_irs_schema_id" Nullable="false" />
+          <Property Type="Int64" Name="efile_hold_id" Nullable="false" />
+          <Property Type="String" Name="efile_irs_schema" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="manifest_xml" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="submission_id" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="create_time_stamp" Nullable="false" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Tax1040_EfileModelStoreContainer" CdmEntityContainer="Tax1040_EfileEntities">
+          <EntitySetMapping Name="efile_comment">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_comment">
+              <MappingFragment StoreEntitySet="efile_comment">
+                <ScalarProperty Name="efile_comment_id" ColumnName="efile_comment_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="efile_comment1" ColumnName="efile_comment" />
+                <ScalarProperty Name="admin_users_id" ColumnName="admin_users_id" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_email_log">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_email_log">
+              <MappingFragment StoreEntitySet="efile_email_log">
+                <ScalarProperty Name="efile_email_log_id" ColumnName="efile_email_log_id" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="efile_error_id" ColumnName="efile_error_id" />
+                <ScalarProperty Name="efile_email_template_id" ColumnName="efile_email_template_id" />
+                <ScalarProperty Name="email_to" ColumnName="email_to" />
+                <ScalarProperty Name="email_from" ColumnName="email_from" />
+                <ScalarProperty Name="email_message" ColumnName="email_message" />
+                <ScalarProperty Name="email_subject" ColumnName="email_subject" />
+                <ScalarProperty Name="email_status" ColumnName="email_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_error">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_error">
+              <MappingFragment StoreEntitySet="efile_error">
+                <ScalarProperty Name="efile_error_id" ColumnName="efile_error_id" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="error_code" ColumnName="error_code" />
+                <ScalarProperty Name="error_message" ColumnName="error_message" />
+                <ScalarProperty Name="error_classification" ColumnName="error_classification" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="error_picked_up" ColumnName="error_picked_up" />
+                <ScalarProperty Name="error_fixed" ColumnName="error_fixed" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_hold">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_hold">
+              <MappingFragment StoreEntitySet="efile_hold">
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="no_of_attachments" ColumnName="no_of_attachments" />
+                <ScalarProperty Name="tax_object" ColumnName="tax_object" />
+                <ScalarProperty Name="env_indicator" ColumnName="env_indicator" />
+                <ScalarProperty Name="efile_trans_id" ColumnName="efile_trans_id" />
+                <ScalarProperty Name="tax_year" ColumnName="tax_year" />
+                <ScalarProperty Name="tax_period" ColumnName="tax_period" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+                <ScalarProperty Name="irs_system_id" ColumnName="irs_system_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_hold_attachment">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_hold_attachment">
+              <MappingFragment StoreEntitySet="efile_hold_attachment">
+                <ScalarProperty Name="efile_hold_attachment_id" ColumnName="efile_hold_attachment_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="attachment_name" ColumnName="attachment_name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="efile_attachment" ColumnName="efile_attachment" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_irs_schema">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_irs_schema">
+              <MappingFragment StoreEntitySet="efile_irs_schema">
+                <ScalarProperty Name="efile_irs_schema_id" ColumnName="efile_irs_schema_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="efile_irs_schema1" ColumnName="efile_irs_schema" />
+                <ScalarProperty Name="manifest_xml" ColumnName="manifest_xml" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_last_status">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_last_status">
+              <MappingFragment StoreEntitySet="efile_last_status">
+                <ScalarProperty Name="efile_last_status_id" ColumnName="efile_last_status_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_log">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_log">
+              <MappingFragment StoreEntitySet="efile_log">
+                <ScalarProperty Name="efile_log_id" ColumnName="efile_log_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="messages" ColumnName="messages" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_name_control">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_name_control">
+              <MappingFragment StoreEntitySet="efile_name_control">
+                <ScalarProperty Name="efile_name_control_id" ColumnName="efile_name_control_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="business_info_id" ColumnName="business_info_id" />
+                <ScalarProperty Name="business_info_name" ColumnName="business_info_name" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="name_control" ColumnName="name_control" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_progress">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_progress">
+              <MappingFragment StoreEntitySet="efile_progress">
+                <ScalarProperty Name="efile_progress_id" ColumnName="efile_progress_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="progress_status" ColumnName="progress_status" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_receiver">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_receiver">
+              <MappingFragment StoreEntitySet="efile_receiver">
+                <ScalarProperty Name="efile_receiver_id" ColumnName="efile_receiver_id" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="send_submission_status" ColumnName="send_submission_status" />
+                <ScalarProperty Name="get_ack_status" ColumnName="get_ack_status" />
+                <ScalarProperty Name="ack_xml" ColumnName="ack_xml" />
+                <ScalarProperty Name="submission_status" ColumnName="submission_status" />
+                <ScalarProperty Name="schedule1" ColumnName="schedule1" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+                <ScalarProperty Name="system_id" ColumnName="system_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_request_response">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_request_response">
+              <MappingFragment StoreEntitySet="efile_request_response">
+                <ScalarProperty Name="efile_req_res_id" ColumnName="efile_req_res_id" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="message_id" ColumnName="message_id" />
+                <ScalarProperty Name="request" ColumnName="request" />
+                <ScalarProperty Name="response" ColumnName="response" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_sender">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_sender">
+              <MappingFragment StoreEntitySet="efile_sender">
+                <ScalarProperty Name="efile_sender_id" ColumnName="efile_sender_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="dime_attachment" ColumnName="dime_attachment" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="message_id" ColumnName="message_id" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+                <ScalarProperty Name="irs_system_id" ColumnName="irs_system_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="efile_transmit">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.efile_transmit">
+              <MappingFragment StoreEntitySet="efile_transmit">
+                <ScalarProperty Name="efile_transmit_id" ColumnName="efile_transmit_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="return_type" ColumnName="return_type" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ip_date_time" ColumnName="ip_date_time" />
+                <ScalarProperty Name="ip_time_zone" ColumnName="ip_time_zone" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fax_log">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.fax_log">
+              <MappingFragment StoreEntitySet="fax_log">
+                <ScalarProperty Name="fax_status_id" ColumnName="fax_status_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="shopping_cart_detail_id" ColumnName="shopping_cart_detail_id" />
+                <ScalarProperty Name="fax_number" ColumnName="fax_number" />
+                <ScalarProperty Name="fax_service_number" ColumnName="fax_service_number" />
+                <ScalarProperty Name="fax_return_value_id" ColumnName="fax_return_value_id" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sms_log">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.sms_log">
+              <MappingFragment StoreEntitySet="sms_log">
+                <ScalarProperty Name="sms_log_id" ColumnName="sms_log_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="return_value_id" ColumnName="return_value_id" />
+                <ScalarProperty Name="stc_sms_template_id" ColumnName="stc_sms_template_id" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+                <ScalarProperty Name="update_time_stamp" ColumnName="update_time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StcErrorCodes">
+            <EntityTypeMapping TypeName="Tax1040_EfileModel.StcErrorCode">
+              <MappingFragment StoreEntitySet="StcErrorCode">
+                <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+                <ScalarProperty Name="ErrorFaultResponse" ColumnName="ErrorFaultResponse" />
+                <ScalarProperty Name="ErrorLogErrorMessage" ColumnName="ErrorLogErrorMessage" />
+                <ScalarProperty Name="ErrorType" ColumnName="ErrorType" />
+                <ScalarProperty Name="FixType" ColumnName="FixType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_admin_efile_last_status_update" FunctionName="Tax1040_EfileModel.Store.usp_admin_efile_last_status_update" />
+          <FunctionImportMapping FunctionImportName="usp_admin_find_name_control" FunctionName="Tax1040_EfileModel.Store.usp_admin_find_name_control" />
+          <FunctionImportMapping FunctionImportName="usp_admin_get_efile_status_report" FunctionName="Tax1040_EfileModel.Store.usp_admin_get_efile_status_report" />
+          <FunctionImportMapping FunctionImportName="usp_efile_comment_get" FunctionName="Tax1040_EfileModel.Store.usp_efile_comment_get" />
+          <FunctionImportMapping FunctionImportName="usp_efile_comment_insert" FunctionName="Tax1040_EfileModel.Store.usp_efile_comment_insert" />
+          <FunctionImportMapping FunctionImportName="usp_efile_error_insert" FunctionName="Tax1040_EfileModel.Store.usp_efile_error_insert" />
+          <FunctionImportMapping FunctionImportName="usp_efile_error_irs_schema_create" FunctionName="Tax1040_EfileModel.Store.usp_efile_error_irs_schema_create" />
+          <FunctionImportMapping FunctionImportName="usp_efile_error_picked_up_update" FunctionName="Tax1040_EfileModel.Store.usp_efile_error_picked_up_update" />
+          <FunctionImportMapping FunctionImportName="usp_efile_hold_attachment_get_on_efile_hold_id" FunctionName="Tax1040_EfileModel.Store.usp_efile_hold_attachment_get_on_efile_hold_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_efile_hold_attachment_get_on_efile_hold_id_Result">
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="efile_attachment" ColumnName="efile_attachment" />
+                <ScalarProperty Name="attachment_name" ColumnName="attachment_name" />
+                <ScalarProperty Name="efile_hold_attachment_id" ColumnName="efile_hold_attachment_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_efile_hold_attachment_insert" FunctionName="Tax1040_EfileModel.Store.usp_efile_hold_attachment_insert" />
+          <FunctionImportMapping FunctionImportName="usp_efile_hold_get_by_id" FunctionName="Tax1040_EfileModel.Store.usp_efile_hold_get_by_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_efile_hold_get_by_id_Result">
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="no_of_attachments" ColumnName="no_of_attachments" />
+                <ScalarProperty Name="tax_object" ColumnName="tax_object" />
+                <ScalarProperty Name="env_indicator" ColumnName="env_indicator" />
+                <ScalarProperty Name="efile_trans_id" ColumnName="efile_trans_id" />
+                <ScalarProperty Name="tax_year" ColumnName="tax_year" />
+                <ScalarProperty Name="tax_period" ColumnName="tax_period" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_efile_hold_get_irs_schema_count" FunctionName="Tax1040_EfileModel.Store.usp_efile_hold_get_irs_schema_count" />
+          <FunctionImportMapping FunctionImportName="usp_efile_hold_get_on_id" FunctionName="Tax1040_EfileModel.Store.usp_efile_hold_get_on_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_efile_hold_get_on_id_Result">
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="no_of_attachments" ColumnName="no_of_attachments" />
+                <ScalarProperty Name="tax_object" ColumnName="tax_object" />
+                <ScalarProperty Name="env_indicator" ColumnName="env_indicator" />
+                <ScalarProperty Name="efile_trans_id" ColumnName="efile_trans_id" />
+                <ScalarProperty Name="tax_year" ColumnName="tax_year" />
+                <ScalarProperty Name="tax_period" ColumnName="tax_period" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_efile_hold_persist" FunctionName="Tax1040_EfileModel.Store.usp_efile_hold_persist" />
+          <FunctionImportMapping FunctionImportName="usp_efile_irs_schema_get_on_efile_hold_id" FunctionName="Tax1040_EfileModel.Store.usp_efile_irs_schema_get_on_efile_hold_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_efile_irs_schema_get_on_efile_hold_id_Result">
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="efile_irs_schema" ColumnName="efile_irs_schema" />
+                <ScalarProperty Name="manifest_xml" ColumnName="manifest_xml" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_efile_irs_schema_get_today_count" FunctionName="Tax1040_EfileModel.Store.usp_efile_irs_schema_get_today_count" />
+          <FunctionImportMapping FunctionImportName="usp_efile_irs_schema_insert" FunctionName="Tax1040_EfileModel.Store.usp_efile_irs_schema_insert" />
+          <FunctionImportMapping FunctionImportName="usp_efile_irs_schema_persist" FunctionName="Tax1040_EfileModel.Store.usp_efile_irs_schema_persist" />
+          <FunctionImportMapping FunctionImportName="usp_efile_name_control_persist" FunctionName="Tax1040_EfileModel.Store.usp_efile_name_control_persist" />
+          <FunctionImportMapping FunctionImportName="usp_efile_receiver_insert" FunctionName="Tax1040_EfileModel.Store.usp_efile_receiver_insert" />
+          <FunctionImportMapping FunctionImportName="usp_efile_receiver_update" FunctionName="Tax1040_EfileModel.Store.usp_efile_receiver_update" />
+          <FunctionImportMapping FunctionImportName="usp_efile_request_response_create" FunctionName="Tax1040_EfileModel.Store.usp_efile_request_response_create" />
+          <FunctionImportMapping FunctionImportName="usp_efile_schema_get_by_id" FunctionName="Tax1040_EfileModel.Store.usp_efile_schema_get_by_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_efile_schema_get_by_id_Result">
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="no_of_attachments" ColumnName="no_of_attachments" />
+                <ScalarProperty Name="tax_object" ColumnName="tax_object" />
+                <ScalarProperty Name="efile_trans_id" ColumnName="efile_trans_id" />
+                <ScalarProperty Name="efile_irs_schema" ColumnName="efile_irs_schema" />
+                <ScalarProperty Name="manifest_xml" ColumnName="manifest_xml" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_efile_search" FunctionName="Tax1040_EfileModel.Store.usp_efile_search" />
+          <FunctionImportMapping FunctionImportName="usp_efile_sender_persist" FunctionName="Tax1040_EfileModel.Store.usp_efile_sender_persist" />
+          <FunctionImportMapping FunctionImportName="usp_efile_transmit_get_all" FunctionName="Tax1040_EfileModel.Store.usp_efile_transmit_get_all">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_efile_transmit_get_all_Result">
+                <ScalarProperty Name="efile_transmit_id" ColumnName="efile_transmit_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="return_type" ColumnName="return_type" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ip_date_time" ColumnName="ip_date_time" />
+                <ScalarProperty Name="ip_time_zone" ColumnName="ip_time_zone" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_efile_transmit_persist" FunctionName="Tax1040_EfileModel.Store.usp_efile_transmit_persist" />
+          <FunctionImportMapping FunctionImportName="usp_efile_transmit_update" FunctionName="Tax1040_EfileModel.Store.usp_efile_transmit_update" />
+          <FunctionImportMapping FunctionImportName="usp_efiled_users" FunctionName="Tax1040_EfileModel.Store.usp_efiled_users" />
+          <FunctionImportMapping FunctionImportName="usp_efiled_users_by_id" FunctionName="Tax1040_EfileModel.Store.usp_efiled_users_by_id" />
+          <FunctionImportMapping FunctionImportName="usp_get_admin_efile_count" FunctionName="Tax1040_EfileModel.Store.usp_get_admin_efile_count" />
+          <FunctionImportMapping FunctionImportName="usp_get_admin_efile_status" FunctionName="Tax1040_EfileModel.Store.usp_get_admin_efile_status" />
+          <FunctionImportMapping FunctionImportName="usp_get_efile_acknowledge_on_status" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_acknowledge_on_status">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_efile_acknowledge_on_status_Result">
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="DimeAttachment" ColumnName="DimeAttachment" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="message_id" ColumnName="message_id" />
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="irs_system_id" ColumnName="irs_system_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_efile_attachement_and_xml_by_efile_trans_id" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_attachement_and_xml_by_efile_trans_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_efile_attachement_and_xml_by_efile_trans_id_Result">
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="manifest_xml" ColumnName="manifest_xml" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="efile_irs_schema" ColumnName="efile_irs_schema" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_efile_error_from_error_code" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_error_from_error_code" />
+          <FunctionImportMapping FunctionImportName="usp_get_efile_error_on_id" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_error_on_id" />
+          <FunctionImportMapping FunctionImportName="usp_get_efile_error_on_submission_id" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_error_on_submission_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_efile_error_on_submission_id_Result">
+                <ScalarProperty Name="efile_error_id" ColumnName="efile_error_id" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="error_code" ColumnName="error_code" />
+                <ScalarProperty Name="error_message" ColumnName="error_message" />
+                <ScalarProperty Name="error_classification" ColumnName="error_classification" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="error_picked_up" ColumnName="error_picked_up" />
+                <ScalarProperty Name="error_fixed" ColumnName="error_fixed" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_efile_error_on_transmission_id" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_error_on_transmission_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_efile_error_on_transmission_id_Result">
+                <ScalarProperty Name="efile_error_id" ColumnName="efile_error_id" />
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="error_code" ColumnName="error_code" />
+                <ScalarProperty Name="error_message" ColumnName="error_message" />
+                <ScalarProperty Name="error_classification" ColumnName="error_classification" />
+                <ScalarProperty Name="action" ColumnName="action" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_efile_hold_records_on_acknowledgement" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_hold_records_on_acknowledgement" />
+          <FunctionImportMapping FunctionImportName="usp_get_efile_hold_records_on_status" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_hold_records_on_status">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_efile_hold_records_on_status_Result">
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="no_of_attachments" ColumnName="no_of_attachments" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="tax_object" ColumnName="tax_object" />
+                <ScalarProperty Name="env_indicator" ColumnName="env_indicator" />
+                <ScalarProperty Name="efile_trans_id" ColumnName="efile_trans_id" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="tax_year" ColumnName="tax_year" />
+                <ScalarProperty Name="tax_period" ColumnName="tax_period" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_efile_hold_sender_count" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_hold_sender_count" />
+          <FunctionImportMapping FunctionImportName="usp_get_efile_info_on_stage_status" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_info_on_stage_status">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_efile_info_on_stage_status_Result">
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="efile_trans_id" ColumnName="efile_trans_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="tax_object" ColumnName="tax_object" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="efile_irs_schema" ColumnName="efile_irs_schema" />
+                <ScalarProperty Name="manifest_xml" ColumnName="manifest_xml" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_efile_irs_schema_on_status" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_irs_schema_on_status" />
+          <FunctionImportMapping FunctionImportName="usp_get_efile_name_control" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_name_control">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_efile_name_control_Result">
+                <ScalarProperty Name="name_control" ColumnName="name_control" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="business_info_id" ColumnName="business_info_id" />
+                <ScalarProperty Name="businessname" ColumnName="businessname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_efile_name_control_on_efile_hold_id" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_name_control_on_efile_hold_id" />
+          <FunctionImportMapping FunctionImportName="usp_get_efile_req_res_by_action_and_time" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_req_res_by_action_and_time" />
+          <FunctionImportMapping FunctionImportName="usp_get_efile_sender_on_status" FunctionName="Tax1040_EfileModel.Store.usp_get_efile_sender_on_status">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_efile_sender_on_status_Result">
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="dime_attachment" ColumnName="dime_attachment" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="message_id" ColumnName="message_id" />
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="irs_system_id" ColumnName="irs_system_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_latest_efile_status" FunctionName="Tax1040_EfileModel.Store.usp_get_latest_efile_status" />
+          <FunctionImportMapping FunctionImportName="usp_get_rejected_efile" FunctionName="Tax1040_EfileModel.Store.usp_get_rejected_efile" />
+          <FunctionImportMapping FunctionImportName="usp_get_rpt_payment_and_efile_count" FunctionName="Tax1040_EfileModel.Store.usp_get_rpt_payment_and_efile_count" />
+          <FunctionImportMapping FunctionImportName="usp_get_schedule1" FunctionName="Tax1040_EfileModel.Store.usp_get_schedule1" />
+          <FunctionImportMapping FunctionImportName="usp_get_submission_id_for_acknowledgement" FunctionName="Tax1040_EfileModel.Store.usp_get_submission_id_for_acknowledgement">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_submission_id_for_acknowledgement_Result">
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_submissions" FunctionName="Tax1040_EfileModel.Store.usp_get_submissions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_submissions_Result">
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="stcstatus" ColumnName="stcstatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_submissions_for_sender_channel" FunctionName="Tax1040_EfileModel.Store.usp_get_submissions_for_sender_channel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_get_submissions_for_sender_channel_Result">
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="return_id" ColumnName="return_id" />
+                <ScalarProperty Name="efile_trans_id" ColumnName="efile_trans_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="dime_attachment" ColumnName="dime_attachment" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_rejected_efile_get_on_id" FunctionName="Tax1040_EfileModel.Store.usp_rejected_efile_get_on_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Tax1040_EfileModel.usp_rejected_efile_get_on_id_Result">
+                <ScalarProperty Name="tax_return_type_id" ColumnName="tax_return_type_id" />
+                <ScalarProperty Name="efile_irs_schema_id" ColumnName="efile_irs_schema_id" />
+                <ScalarProperty Name="efile_hold_id" ColumnName="efile_hold_id" />
+                <ScalarProperty Name="efile_irs_schema" ColumnName="efile_irs_schema" />
+                <ScalarProperty Name="manifest_xml" ColumnName="manifest_xml" />
+                <ScalarProperty Name="submission_id" ColumnName="submission_id" />
+                <ScalarProperty Name="create_time_stamp" ColumnName="create_time_stamp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_rpt_get_payment_and_efile_count_old" FunctionName="Tax1040_EfileModel.Store.usp_rpt_get_payment_and_efile_count_old" />
+          <FunctionImportMapping FunctionImportName="usp_status_update" FunctionName="Tax1040_EfileModel.Store.usp_status_update" />
+          <FunctionImportMapping FunctionImportName="usp_update_system_status" FunctionName="Tax1040_EfileModel.Store.usp_update_system_status" />
+          <FunctionImportMapping FunctionImportName="usp_upload_files" FunctionName="Tax1040_EfileModel.Store.usp_upload_files" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

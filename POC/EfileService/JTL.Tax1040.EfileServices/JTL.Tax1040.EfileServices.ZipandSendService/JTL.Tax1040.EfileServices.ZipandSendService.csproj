@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{820F3E80-4B13-4318-9802-3384B5E7C91C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JTL.Tax1040.EfileServices.ZipandSendService</RootNamespace>
+    <AssemblyName>JTL.Tax1040.EfileServices.ZipandSendService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>CommonLibraries\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
+      <HintPath>CommonLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>CommonLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>CommonLibraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling">
+      <HintPath>CommonLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging">
+      <HintPath>CommonLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>CommonLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder">
+      <HintPath>CommonLibraries\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>CommonLibraries\Microsoft.Web.Services3.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessEntity\Constants.cs" />
+    <Compile Include="BusinessEntity\IRSSenderBL.cs" />
+    <Compile Include="BusinessEntity\StatusBE.cs" />
+    <Compile Include="BusinessEntity\Utility.cs" />
+    <Compile Include="DataAccess\EfileDAL.cs" />
+    <Compile Include="DataAccess\IRSSenderDAL.cs" />
+    <Compile Include="DataAccess\IRSZipDAL.cs" />
+    <Compile Include="DataEntity\IRSSenderDE.cs" />
+    <Compile Include="EfileIRSFilter\CustomAssertion.cs" />
+    <Compile Include="EfileIRSFilter\IRSInputFilter.cs" />
+    <Compile Include="EfileIRSFilter\IRSOutputFilter.cs" />
+    <Compile Include="IRSSender.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IRSSender.Designer.cs">
+      <DependentUpon>IRSSender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IRSSubmissionZip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IRSSubmissionZip.Designer.cs">
+      <DependentUpon>IRSSubmissionZip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUsernameToken.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Proxy\mSendSubmissions.cs" />
+    <Compile Include="Validations\MessagesBE.cs" />
+    <Compile Include="Validations\Status.cs" />
+    <Compile Include="Validations\Validations.cs" />
+    <Compile Include="Web References\ETECTransmitterServicesMTOM\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\MeFMSIServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\MeFTransmitterServicesMTOM\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ETECTransmitterServicesMTOM\ETECTransmitterServiceMTOM.wsdl" />
+    <None Include="Web References\ETECTransmitterServicesMTOM\ETECTransmitterServiceMTOM.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ETECTransmitterServicesMTOM\Get2290Schedule1ResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ETECTransmitterServicesMTOM\Get2290Schedule1sByMsgIDResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ETECTransmitterServicesMTOM\Get2290Schedule1sResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ETECTransmitterServicesMTOM\GetNew2290Schedule1sResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ETECTransmitterServicesMTOM\MeFHeader.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ETECTransmitterServicesMTOM\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ETECTransmitterServicesMTOM\xmime.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MeFMSIServices\ChangePasswordResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFMSIServices\EtinRetrievalResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFMSIServices\EtinStatusResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFMSIServices\GetStateParticipantsListResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFMSIServices\InitialLoginResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFMSIServices\LoginResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFMSIServices\LogoutResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFMSIServices\MeFHeader.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MeFMSIServices\MeFMSIServices.wsdl" />
+    <None Include="Web References\MeFMSIServices\MeFMSIServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MeFMSIServices\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\GetAckResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\GetAcksByMsgIDResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\GetAcksResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\GetNewAcksResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\GetNewSubmissionsStatusResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\GetSubmissionsStatusResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\GetSubmissionStatusResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\MeFHeader.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\MeFTransmitterServiceMTOM.wsdl" />
+    <None Include="Web References\MeFTransmitterServicesMTOM\MeFTransmitterServiceMTOM.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\SendSubmissionsResponseType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MeFTransmitterServicesMTOM\xmime.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="IRSSender.resx">
+      <DependentUpon>IRSSender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IRSSubmissionZip.resx">
+      <DependentUpon>IRSSubmissionZip.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="C:\Users\jt719\Desktop\Tax1040Services\W3services\ETECTransmitterServicesMTOM.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ETECTransmitterServicesMTOM\</RelPath>
+      <UpdateFromURL>C:\Users\jt719\Desktop\Tax1040Services\W3services\ETECTransmitterServicesMTOM.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>JTL_Tax1040_EfileServices_ZipandSendService_ETECTransmitterServicesMTOM_GetNew2290Schedule1s</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="C:\Users\jt719\Desktop\Tax1040Services\W3services\MeFMSIServices.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\MeFMSIServices\</RelPath>
+      <UpdateFromURL>C:\Users\jt719\Desktop\Tax1040Services\W3services\MeFMSIServices.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>JTL_Tax1040_EfileServices_ZipandSendService_MeFMSIServices_ChangePassword</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="C:\Users\jt719\Desktop\Tax1040Services\W3services\MeFTransmitterServicesMTOM.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\MeFTransmitterServicesMTOM\</RelPath>
+      <UpdateFromURL>C:\Users\jt719\Desktop\Tax1040Services\W3services\MeFTransmitterServicesMTOM.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>JTL_Tax1040_EfileServices_ZipandSendService_MeFTransmitterServicesMTOM_SendSubmissions</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CommonLibraries\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="CommonLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
+    <Content Include="CommonLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="CommonLibraries\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="CommonLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll" />
+    <Content Include="CommonLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll" />
+    <Content Include="CommonLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
+    <Content Include="CommonLibraries\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="CommonLibraries\Microsoft.Web.Services3.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

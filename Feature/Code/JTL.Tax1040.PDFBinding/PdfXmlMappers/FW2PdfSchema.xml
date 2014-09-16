@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "FW2PdfSchema">
+  <Mapping>
+    <PDFField>txtFW2WagesAmount</PDFField>
+    <TROField Type="String">W2.WagesAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2FederalTaxWithheld</PDFField>
+    <TROField Type="String">W2.FederalTaxWithholdingAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployerIdentificationNumber</PDFField>
+    <TROField Type="String">W2.Employer.Organization.EIN</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployerCompanyName</PDFField>
+    <TROField Type="String">W2.Employer.Organization.Name</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployerStreetAddress</PDFField>
+    <TROField Type="String">W2.Employer.Organization.Address.CompanyAddress.StreetAddress</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployerStateCode</PDFField>
+    <TROField Type="String">W2.Employer.Organization.Address.CompanyAddress.State.StateCode</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtFW2EmployerZipCode</PDFField>
+    <TROField Type="String">W2.Employer.Organization.Address.CompanyAddress.Zip</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2SocialSecurityWages</PDFField>
+    <TROField Type="String">W2.SocialSecurityWagesAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2SocialSecurityTaxWithheld</PDFField>
+    <TROField Type="String">W2.SocialSecurityTaxWithholdingAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2MedicareWages</PDFField>
+    <TROField Type="String">W2.MedicareWagesAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2MedicareTaxWithheld</PDFField>
+    <TROField Type="String">W2.MedicareTaxWithholdingAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2SocialSecurityTips</PDFField>
+    <TROField Type="String">W2.SocialSecurityTipsAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2AllocatedTips</PDFField>
+    <TROField Type="String">W2.AllocatedTipsAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2DependentCareBenefits</PDFField>
+    <TROField Type="String">W2.DependentCareBenefitsAmount</TROField>
+  </Mapping>
+  <!---->
+  <Mapping>
+    <PDFField>txtFW2EmployeeCity</PDFField>
+    <TROField Type="String">W2.EmployeeAddress.City</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployeeStreetAddress</PDFField>
+    <TROField Type="String">W2.EmployeeAddress.StreetAddress</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployeeStateCode</PDFField>
+    <TROField Type="String">W2.EmployeeAddress.State.StateCode</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployeeZipCode</PDFField>
+    <TROField Type="String">W2.EmployeeAddress.ZipCode</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2NonqualifiedPlans</PDFField>
+    <TROField Type="String">W2.NonQualifiedPlansAmount</TROField>
+  </Mapping>
+    
+  <!--<Mapping>
+    <PDFField>txtFW2StateIDNumber</PDFField>
+    <TROField Type="List">W2.W2StateLocalTaxInfo.StateId</TROField>
+  </Mapping>
+  
+  <Mapping>
+    <PDFField>txtFW2StateCode</PDFField>
+    <TROField Type="List">W2.W2StateLocalTaxInfo.StateCode</TROField>
+  </Mapping>
+  
+  
+  <Mapping>
+    <PDFField>txtFW2StateWages</PDFField>
+    <TROField Type="List">W2.W2StateLocalTaxInfo.StateWagesAmount</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtFW2StateIncomeTax</PDFField>
+    <TROField Type="List">W2.W2StateLocalTaxInfo.StateTaxWithholdingAmount</TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtFW2LocalityName</PDFField>
+    <TROField Type="List">W2.W2StateLocalTaxInfo.W2LocalTaxInfo.LocalityName</TROField>
+  </Mapping>
+
+  
+  <Mapping>
+    <PDFField>txtFW2LocalWages</PDFField>
+    <TROField Type="List">W2.W2StateLocalTaxInfo.W2LocalTaxInfo.LocalWagesAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2LocalincomeTax</PDFField>
+    <TROField Type="List">W2.W2StateLocalTaxInfo.W2LocalTaxInfo.LocalTaxWithholdingAmount</TROField>
+  </Mapping>-->
+  
+  <!--<Mapping>
+    <PDFField>txtFW2Other</PDFField>
+    <TROField Type="List">W2.OtherDeductsBenefits.Amount</TROField>
+  </Mapping>
+  
+  <Mapping>
+    <PDFField>txtFW2Other</PDFField>
+    <TROField Type="List">W2.OtherDeductsBenefits.Description</TROField>
+  </Mapping>-->
+  
+  <!--//TODO:have to implementd for Enum value. 
+  -->
+  
+  <Mapping>
+    <PDFField>chkFW2StatutoryEmployee</PDFField>
+    <TROField Type="Bool">W2.IsStatutoryEmployee</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkFW2RetirementPlan</PDFField>
+    <TROField Type="Bool">W2.HasRetirementPlan</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkFW2ThirdPartySickPay</PDFField>
+    <TROField Type="Bool">W2.HasThirdPartySickPay</TROField>
+  </Mapping>
+  
+</OutputForm>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<twa:F1040EZEICEligibilityRuleCheck xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:local="clr-namespace:JTL.Tax1040.BusinessLogic.WorkFlow.Activities.CalculationWithNoValidation;assembly=JTL.Tax1040.BusinessLogic" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:twa="clr-namespace:Tax1040WorkFlow.WorkFlow.Activities;assembly=JTL.Tax1040.BusinessLogic" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+      <x:String>JTL.Tax1040.Core.Process</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.TAX1040.PaymentLibrary</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <twa:F1040EZEICEligibilityRuleCheck.Implementation>
+    <Sequence DisplayName="EICEligibilityRules">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="jtco:ErrorMessage" Name="ErrorMessage" />
+        <Variable x:TypeArguments="scg:List(jtco:ErrorMessage)" Name="ErrorMessageList">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="x:Double" Default="14339" Name="SingleAdjustedGrossIncome" />
+        <Variable x:TypeArguments="x:Double" Default="19679" Name="MFJAdjustedGrossIncome" />
+      </Sequence.Variables>
+      <If DisplayName="If Tax1040ObjectCheck">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object !=null</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <Sequence DisplayName="EIC EligibilityCheck">
+            <If DisplayName="If-Null Condition Check">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">(ErrorMessageList==null)</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="Error Message List Initialization">
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                        <mca:CSharpReference x:TypeArguments="scg:List(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                        <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">new List&lt;ErrorMessage&gt; ()</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Then>
+            </If>
+            <Sequence DisplayName="AdjustmentGrossIncome">
+              <If DisplayName="If EICPersonalDetailsCheck -AGI">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails !=null</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <If DisplayName="If EICPrimaryTaxPayerCheck">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.PrimaryTaxPayer != null</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="AGIStatus">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="s:DateTime" Name="MinimumDOB">
+                            <Variable.Default>
+                              <mca:CSharpValue x:TypeArguments="s:DateTime">Utilities.MinimumDOB()</mca:CSharpValue>
+                            </Variable.Default>
+                          </Variable>
+                          <Variable x:TypeArguments="s:DateTime" Name="MaximumDOB">
+                            <Variable.Default>
+                              <mca:CSharpValue x:TypeArguments="s:DateTime">Utilities.MaximumDOB()</mca:CSharpValue>
+                            </Variable.Default>
+                          </Variable>
+                        </Sequence.Variables>
+                        <Switch x:TypeArguments="jtco:FilingStatus" DisplayName="Switch&lt;FilingStatus&gt;">
+                          <Switch.Expression>
+                            <InArgument x:TypeArguments="jtco:FilingStatus">
+                              <mca:CSharpValue x:TypeArguments="jtco:FilingStatus">Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus</mca:CSharpValue>
+                            </InArgument>
+                          </Switch.Expression>
+                          <Sequence x:Key="Single" DisplayName="Eligibility Information Check for Single">
+                            <If DisplayName="AGIStatusCheck -Single">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome &lt;= SingleAdjustedGrossIncome</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Else>
+                                <Sequence DisplayName="Error Message">
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_TAXPAYER_SPOUSE_AGI_LIMIT]</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                    <AddToCollection.Item>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection.Item>
+                                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection>
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                            <If DisplayName="SSN Check-Single">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person == null || Utilities.IsStringEmpty(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.SSN)</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Sequence DisplayName="Error Message">
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_FORGOT_TAXPAYER_SSN]</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                    <AddToCollection.Item>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection.Item>
+                                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection>
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <If>
+                                  <If.Condition>
+                                    <InArgument x:TypeArguments="x:Boolean">
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">!Utilities.IsValidSSN(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.SSN)</mca:CSharpValue>
+                                    </InArgument>
+                                  </If.Condition>
+                                  <If.Then>
+                                    <Sequence DisplayName="Error Message">
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_VALID_TAXPAYER_SSN]</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                        <AddToCollection.Item>
+                                          <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                          </InArgument>
+                                        </AddToCollection.Item>
+                                        <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                          <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection>
+                                    </Sequence>
+                                  </If.Then>
+                                </If>
+                              </If.Else>
+                            </If>
+                            <If DisplayName="HasClaimedasDependent Check-Single">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person != null) &amp;&amp; (Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue &amp;&amp;  Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value)</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Sequence DisplayName="Error Message">
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_TAXPAYER_CLAIM_DEPENDENT]</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                    <AddToCollection.Item>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection.Item>
+                                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                            <If DisplayName="Age Eligibility Check-Single">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person == null) || (Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth == null)</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Sequence DisplayName="Error Message">
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_TAXPAYER_AGE_LIMIT]</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                    <AddToCollection.Item>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection.Item>
+                                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection>
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <If DisplayName="Age Eligibility Check-Single">
+                                  <If.Condition>
+                                    <InArgument x:TypeArguments="x:Boolean">
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">Utilities.EICAgeCalculation (Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth)</mca:CSharpValue>
+                                    </InArgument>
+                                  </If.Condition>
+                                  <If.Else>
+                                    <Sequence DisplayName="Error Message">
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_TAXPAYER_AGE_LIMIT]</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                        <AddToCollection.Item>
+                                          <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                          </InArgument>
+                                        </AddToCollection.Item>
+                                        <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                          <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                              </If.Else>
+                            </If>
+                            <Sequence DisplayName="Investment Income Check">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:Double" Default="0" Name="Form1099OIDTotal" />
+                                <Variable x:TypeArguments="x:Double" Default="0" Name="F1099OIDTaxExemptInterest" />
+                                <Variable x:TypeArguments="x:Double" Default="0" Name="Form1099INTTotal" />
+                                <Variable x:TypeArguments="x:Double" Default="0" Name="F1099INTTaxExemptInterest" />
+                                <Variable x:TypeArguments="x:Double" Default="0" Name="InvestmentIncome" />
+                                <Variable x:TypeArguments="x:Double" Default="3300" Name="TaxableInterestLimit" />
+                              </Sequence.Variables>
+                              <If DisplayName="1099 INT Calculation">
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income != null) &amp;&amp; (Tax1040Object.Income.Form1099INT != null) &amp;&amp; (Tax1040Object.Income.Form1099INT.Count &gt; 0))</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="1099-INT">
+                                    <local:F1099INTWithNoValidation>
+                                      <local:F1099INTWithNoValidation.Tax1040Object>
+                                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                        </InOutArgument>
+                                      </local:F1099INTWithNoValidation.Tax1040Object>
+                                      <local:F1099INTWithNoValidation.TotalTaxableInterest>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">Form1099INTTotal</mca:CSharpReference>
+                                        </OutArgument>
+                                      </local:F1099INTWithNoValidation.TotalTaxableInterest>
+                                      <local:F1099INTWithNoValidation.TotaltaxExemptInterest1099INT>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">F1099INTTaxExemptInterest</mca:CSharpReference>
+                                        </OutArgument>
+                                      </local:F1099INTWithNoValidation.TotaltaxExemptInterest1099INT>
+                                    </local:F1099INTWithNoValidation>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If DisplayName="1099OID Calculation">
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income != null) &amp;&amp; (Tax1040Object.Income.Form1099OID != null) &amp;&amp; (Tax1040Object.Income.Form1099OID.Count &gt; 0))</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="F1099-OID">
+                                    <local:F1099OIDWithNoValidation argument1="{x:Null}">
+                                      <local:F1099OIDWithNoValidation.Tax1040Object>
+                                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                        </InOutArgument>
+                                      </local:F1099OIDWithNoValidation.Tax1040Object>
+                                      <local:F1099OIDWithNoValidation.TotalTaxableInterest>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">Form1099OIDTotal</mca:CSharpReference>
+                                        </OutArgument>
+                                      </local:F1099OIDWithNoValidation.TotalTaxableInterest>
+                                      <local:F1099OIDWithNoValidation.TotaltaxExemptInterest1099OID>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">F1099OIDTaxExemptInterest</mca:CSharpReference>
+                                        </OutArgument>
+                                      </local:F1099OIDWithNoValidation.TotaltaxExemptInterest1099OID>
+                                    </local:F1099OIDWithNoValidation>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">InvestmentIncome</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Form1099INTTotal + F1099INTTaxExemptInterest + Form1099OIDTotal + F1099OIDTaxExemptInterest</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <If>
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">InvestmentIncome &gt; TaxableInterestLimit</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="Error Message">
+                                    <Assign>
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_TAXPAYER_INVESTMENT_INCOME_LIMIT]</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                      <AddToCollection.Item>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection.Item>
+                                      <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                        <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                            </Sequence>
+                            <Sequence DisplayName="Earned Income Check">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:Double" Name="TotalWages" />
+                              </Sequence.Variables>
+                              <If>
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income != null &amp;&amp; Tax1040Object.Income.W2Wages != null</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="W2 Calculation">
+                                    <local:W2WithNoValidation NonQualifiedPlansAmount="{x:Null}" PrefixTotalWages="{x:Null}" TaxableScholarshipAmount="{x:Null}">
+                                      <local:W2WithNoValidation.Tax1040Object>
+                                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                        </InOutArgument>
+                                      </local:W2WithNoValidation.Tax1040Object>
+                                      <local:W2WithNoValidation.TotalWages>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">TotalWages</mca:CSharpReference>
+                                        </OutArgument>
+                                      </local:W2WithNoValidation.TotalWages>
+                                    </local:W2WithNoValidation>
+                                    <If>
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">TotalWages==0</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Sequence DisplayName="Error Message">
+                                          <Assign>
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_HAVE_EARNED_INCOME]</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                            <AddToCollection.Item>
+                                              <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection.Item>
+                                            <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                              <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                            </InArgument>
+                                          </AddToCollection>
+                                        </Sequence>
+                                      </If.Then>
+                                    </If>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence DisplayName="Error Message">
+                                    <Assign>
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_HAVE_EARNED_INCOME]</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                      <AddToCollection.Item>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection.Item>
+                                      <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                        <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </Sequence>
+                          <Sequence x:Key="MarriedFilingJointly" DisplayName="AGI and SSN Check for MFJ">
+                            <If DisplayName="AGIStatusCheck-MFJ">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome &lt;= MFJAdjustedGrossIncome</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Else>
+                                <Sequence>
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_TAXPAYER_SPOUSE_AGI_LIMIT]</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                    <AddToCollection.Item>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection.Item>
+                                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection>
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                            <If DisplayName="If Spouse Check">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.PersonalDetails.Spouse == null) || (Tax1040Object.PersonalDetails.Spouse.Person == null) || Utilities.IsStringEmpty(Tax1040Object.PersonalDetails.Spouse.Person.SSN)) || ((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person == null) || Utilities.IsStringEmpty(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.SSN))</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Sequence DisplayName="Error Message">
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_FORGOT_TAXPAYER_OR_SPOUSE_SSN]</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                    <AddToCollection.Item>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection.Item>
+                                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection>
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <If DisplayName="If Spouse Check">
+                                  <If.Condition>
+                                    <InArgument x:TypeArguments="x:Boolean">
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">(!Utilities.IsValidSSN(Tax1040Object.PersonalDetails.Spouse.Person.SSN)) || (!Utilities.IsValidSSN(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.SSN))</mca:CSharpValue>
+                                    </InArgument>
+                                  </If.Condition>
+                                  <If.Then>
+                                    <Sequence DisplayName="Error Message">
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_VALID_TAXPAYER_OR_SPOUSE_SSN]</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                        <AddToCollection.Item>
+                                          <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                          </InArgument>
+                                        </AddToCollection.Item>
+                                        <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                          <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection>
+                                    </Sequence>
+                                  </If.Then>
+                                </If>
+                              </If.Else>
+                            </If>
+                            <If DisplayName="HasClaimedasDependent Check-MFJ">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person != null) &amp;&amp; (Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue &amp;&amp; Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value)) || ((Tax1040Object.PersonalDetails.Spouse != null) &amp;&amp; (Tax1040Object.PersonalDetails.Spouse.Person != null) &amp;&amp; (Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue &amp;&amp; Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value))</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Sequence DisplayName="Error Message">
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_TAXPAYER_SPOUSE_CLAIM_DEPENDENT]</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                    <AddToCollection.Item>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection.Item>
+                                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                            <If DisplayName="Age Eligibility Check-MFJ">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person == null) || (Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth == null))
+|| ((Tax1040Object.PersonalDetails.Spouse == null) || (Tax1040Object.PersonalDetails.Spouse.Person == null) || (Tax1040Object.PersonalDetails.Spouse.Person.DateOfBirth == null))</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Sequence DisplayName="Error Message">
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_TAXPAYER_SPOUSE_AGE_LIMIT]</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                    <AddToCollection.Item>
+                                      <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection.Item>
+                                    <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                      <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection>
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <If DisplayName="Age Eligibility Check-Single">
+                                  <If.Condition>
+                                    <InArgument x:TypeArguments="x:Boolean">
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">Utilities.EICAgeCalculation(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.DateOfBirth) &amp;&amp; Utilities.EICAgeCalculation(Tax1040Object.PersonalDetails.Spouse.Person.DateOfBirth)</mca:CSharpValue>
+                                    </InArgument>
+                                  </If.Condition>
+                                  <If.Else>
+                                    <Sequence DisplayName="Error Message">
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_TAXPAYER_SPOUSE_AGE_LIMIT]</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                        <AddToCollection.Item>
+                                          <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                          </InArgument>
+                                        </AddToCollection.Item>
+                                        <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                          <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                              </If.Else>
+                            </If>
+                            <Sequence DisplayName="Investment Income Check">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:Double" Name="Form1099OIDTotal" />
+                                <Variable x:TypeArguments="x:Double" Name="F1099OIDTaxExemptInterest" />
+                                <Variable x:TypeArguments="x:Double" Name="Form1099INTTotal" />
+                                <Variable x:TypeArguments="x:Double" Name="F1099INTTaxExemptInterest" />
+                                <Variable x:TypeArguments="x:Double" Name="InvestmentIncome" />
+                                <Variable x:TypeArguments="x:Double" Default="3300" Name="TaxableInterestLimit" />
+                              </Sequence.Variables>
+                              <If DisplayName="1099 INT Calculation">
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income != null) &amp;&amp; (Tax1040Object.Income.Form1099INT != null) &amp;&amp; (Tax1040Object.Income.Form1099INT.Count &gt; 0))</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="1099-INT">
+                                    <local:F1099INTWithNoValidation>
+                                      <local:F1099INTWithNoValidation.Tax1040Object>
+                                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                        </InOutArgument>
+                                      </local:F1099INTWithNoValidation.Tax1040Object>
+                                      <local:F1099INTWithNoValidation.TotalTaxableInterest>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">Form1099INTTotal</mca:CSharpReference>
+                                        </OutArgument>
+                                      </local:F1099INTWithNoValidation.TotalTaxableInterest>
+                                      <local:F1099INTWithNoValidation.TotaltaxExemptInterest1099INT>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">F1099INTTaxExemptInterest</mca:CSharpReference>
+                                        </OutArgument>
+                                      </local:F1099INTWithNoValidation.TotaltaxExemptInterest1099INT>
+                                    </local:F1099INTWithNoValidation>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If DisplayName="1099OID Calculation">
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income != null) &amp;&amp; (Tax1040Object.Income.Form1099OID != null) &amp;&amp; (Tax1040Object.Income.Form1099OID.Count &gt; 0))</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="F1099-OID">
+                                    <local:F1099OIDWithNoValidation argument1="{x:Null}">
+                                      <local:F1099OIDWithNoValidation.Tax1040Object>
+                                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                        </InOutArgument>
+                                      </local:F1099OIDWithNoValidation.Tax1040Object>
+                                      <local:F1099OIDWithNoValidation.TotalTaxableInterest>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">Form1099OIDTotal</mca:CSharpReference>
+                                        </OutArgument>
+                                      </local:F1099OIDWithNoValidation.TotalTaxableInterest>
+                                      <local:F1099OIDWithNoValidation.TotaltaxExemptInterest1099OID>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">F1099OIDTaxExemptInterest</mca:CSharpReference>
+                                        </OutArgument>
+                                      </local:F1099OIDWithNoValidation.TotaltaxExemptInterest1099OID>
+                                    </local:F1099OIDWithNoValidation>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">InvestmentIncome</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Form1099INTTotal + F1099INTTaxExemptInterest + Form1099OIDTotal + F1099OIDTaxExemptInterest</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <If>
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">InvestmentIncome &gt; TaxableInterestLimit</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="Error Message">
+                                    <Assign>
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_TAXPAYER_INVESTMENT_INCOME_LIMIT]</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                      <AddToCollection.Item>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection.Item>
+                                      <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                        <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                            </Sequence>
+                            <Sequence DisplayName="Earned Income Check">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:Double" Name="TotalWages" />
+                              </Sequence.Variables>
+                              <If>
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income != null &amp;&amp; Tax1040Object.Income.W2Wages != null</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="W2 Calculation">
+                                    <local:W2WithNoValidation NonQualifiedPlansAmount="{x:Null}" PrefixTotalWages="{x:Null}" TaxableScholarshipAmount="{x:Null}">
+                                      <local:W2WithNoValidation.Tax1040Object>
+                                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                        </InOutArgument>
+                                      </local:W2WithNoValidation.Tax1040Object>
+                                      <local:W2WithNoValidation.TotalWages>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">TotalWages</mca:CSharpReference>
+                                        </OutArgument>
+                                      </local:W2WithNoValidation.TotalWages>
+                                    </local:W2WithNoValidation>
+                                    <If>
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">TotalWages==0</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Sequence DisplayName="Error Message">
+                                          <Assign>
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_HAVE_EARNED_INCOME]</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                            <AddToCollection.Item>
+                                              <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection.Item>
+                                            <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                              <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                            </InArgument>
+                                          </AddToCollection>
+                                        </Sequence>
+                                      </If.Then>
+                                    </If>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence DisplayName="Error Message">
+                                    <Assign>
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_INFO_HAVE_EARNED_INCOME]</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                      <AddToCollection.Item>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection.Item>
+                                      <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                        <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </Sequence>
+                        </Switch>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </If.Then>
+              </If>
+            </Sequence>
+            <Sequence DisplayName="EarnedIncomeCredits">
+              <If DisplayName="If EICCreditsCheck">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits !=null</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <If DisplayName="If EICCheck">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits.EIC !=null</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="EIC">
+                        <Sequence DisplayName="LivedInUSStatus">
+                          <If DisplayName="LivedInUsStatusCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits.EIC.IsInUSMorethanHalfYear.HasValue &amp;&amp; Tax1040Object.Credits.EIC.IsInUSMorethanHalfYear.Value</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Else>
+                              <Sequence DisplayName="Error Message">
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_LIVED_IN_US]</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="HasValidSSNStatus">
+                          <If DisplayName="ValidSSNStatusCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits.EIC.HasValidSSN.HasValue &amp;&amp; Tax1040Object.Credits.EIC.HasValidSSN.Value</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Else>
+                              <Sequence DisplayName="Error Message">
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_SINGLE_OR_MFJ__INVALID_SSN]</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="QualifyingChildStatus ">
+                          <If DisplayName="QualifyingChildStatusCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits.EIC.HasClaimedAsQualifyingChild.HasValue &amp;&amp; Tax1040Object.Credits.EIC.HasClaimedAsQualifyingChild.Value</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="Error Message">
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_NON_QUALIFIED_CHILD]</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="IRSNoticeOnEICStatus">
+                          <If DisplayName="IRSNoticeOnEICStatusCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Credits.EIC.HasReceivedIRSNoticeOnEICNotEligible.HasValue &amp;&amp; Tax1040Object.Credits.EIC.HasReceivedIRSNoticeOnEICNotEligible.Value</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="Error Message">
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.EIC_RECEIVED_IRS_NOTICE]</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </If.Then>
+              </If>
+            </Sequence>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                  <mca:CSharpReference x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                  <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+      </If>
+      <sads:DebugSymbol.Symbol>9xBdgxk9qyhG6J/gtTNLxGvPhAFFOlxUYXgxMDQwRVpcVGF4MTA0MExhdGVzdFxKZWV2YW4xMDQwXEZlYXR1cmVcQ29kZVxKVEwuVGF4MTA0MC5CdXNpbmVzc0xvZ2ljXFdvcmtGbG93XEFjdGl2aXRpZXNcRjEwNDBFWkVJQ0VsaWdpYmlsaXR5UnVsZUNoZWNrLnhhbWyhAj8D6QgOAgEBRAtEdwIBBEc0RzsCAQNINEg7AgECSgXnCAoCAQtNC01eAgEMUQnlCBQCARNSC2gQAwG4DGkLtgcWAwHVAbcHC9gIFgIBI9kIC+QIFAIBFFURVWgDAbkMWQ9mGgMBwAxqDbUHEgMB1gG4Bw3XCBICASThCBHhCHICARzcCBHcCIUBAgEVWhFlGgMBwQxtE212AwHXAXERswcWAwHeAbsHE7sHbgIBJb8HEdUIFgIBLGIXYocBAwHJDF0XXYABAwHCDHQXdIsBAwHfAXgVsQcgAwHmAcIHF8IHdgIBLcYHFdMIIAIBNHwdfHMDAfABgQEdgQFzAwHnAYUBF7AHIAMB+QHHBxfpByIDAa0B6gcXjAgiAwGFAY0IF68IIgIBXbAIF9IIIgIBNYgBHYgBngEDAfoBiwEZnAQkAwGbB50EGa8HJAMBgwLIBxnoBx4DAa4B6wcZiwgeAwGGAY4IGa4IHgIBXrEIGdEIHgIBNowBG6wBIAMBhwytARvwASADAaUL8QEbkQIgAwH0CpICG9UCIAMBkgrWAhvEAyYDAZ8IxQMbmwQmAwGcB54EG74EIAMB6ga/BBuCBSADAYgGgwUbowUgAwHXBaQFG+gFIAMB9QTpBRvXBiYDAYcD2AYbrgcmAwGEAssHH8sH2QEDAa8Bzwcd5gcoAwG2Ae4HH+4HwwEDAYcB8gcdiQgoAwGOAZEIH5EI4wECAV+VCB2sCCgCAWa0CB+0CPUBAgE3uAgdzwgoAgE+jwEhjwG8AQMBiAyTAR+qASoDAZEMsAEhsAHxAQMBpgu0AR/LASoDAeALzgEf7gEkAwGvC/QBIfQB8QIDAfUK+AEfjwIqAwH+CpUCIZUC7AEDAZMKmQIfsAIqAwHNCrMCH9MCJAMBnArYAkzYAk8DAaUI2QJM2QJPAwGkCNoCTNoCTwMBowjbAkzbAk8DAaII3AJM3AJPAwGhCN0CTN0CUgMBoAjfAh36AiIDAdMJ+wIdlgMiAwGUCZcDHaIDJgMB9QijAx3DAyIDAaYIyQMdmgQiAwGdB6EEIaEEuQEDAesGpQQfvAQqAwH0BsIEIcIErgMDAYkGxgQf3QQqAwHDBuAEH4AFJAMBkgaGBSGGBf0EAwHYBYoFH6EFKgMB4QWnBSGoBcQBAwH2BKwFH8MFKgMBsAXGBR/mBSQDAf8E8AVM8AVSAwGIA/IFHY0GIgMBtgSOBh2pBiIDAfcDqgYdtQYmAwHYA7YGHdYGIgMBiQPcBh2tByIDAYUC0Acf2wcoAwHGAdwHH+UHMQMBtwHzBx/+BygDAZ4B/wcfiAgxAwGPAZYIH6EIKAIBdqIIH6sIMQIBZ7kIH8QIKAIBTsUIH84IMQIBP5QBIZ8BKgMBpQygASGpATMDAZIMtQEhwAEqAwH0C8EBIcoBMwMB4QvRASXRAbMBAwGwC9UBI+wBLgMBuQv5ASGEAioDAZILhQIhjgIzAwH/CpoCIaUCKgMB4QqmAiGvAjMDAc4KtgIltgLCAQMBnQq6AiPRAi4DAaYK4gIj4gLzAQMB1AnmAiH4AiwDAeMJ/gIj/gLzAQMBlQmCAyGUAywDAaQJnwMjnwO8AQMBhQmaAyOaA3kDAfYIpgMjpgOMAQMBpwiqAyHBAywDAbYIzAMjzAOuAQMBngfQAyH+AywDAdMHgQQhmAQsAwGoB6YEIbEEKgMBiAeyBCG7BDMDAfUGxwQh0gQqAwHXBtMEIdwEMwMBxAbjBCXjBIECAwGTBucEI/4ELgMBnAaLBSGWBSoDAfUFlwUhoAUzAwHiBa0FIbgFKgMBxAW5BSHCBTMDAbEFyQUlyQWhAgMBgAXNBSPkBS4DAYkF9QUj9QXzAQMBtwT5BSGLBiwDAcYEkQYjkQbzAQMB+AOVBiGnBiwDAYcEsgYjsga8AQMB6AOtBiOtBnkDAdkDuQYjuQaMAQMBigO9BiHUBiwDAZkD3wYj3wauAQMBhgLjBiGRBywDAbsClAchqwcsAwGQAtgHJdgHlAEDAc4B0wcl0weAAQMBxwHjByPjB4sBAwG/Ad8HJd8HeAMBuAH7ByX7B6MBAwGmAfYHJfYHgAEDAZ8BhggjhgiLAQMBlwGCCCWCCHgDAZABngglngicAQIBfpkIJZkIgAECAXepCCOpCIsBAgFvpQglpQh4AgFowQglwQicAQIBVrwIJbwIgAECAU/MCCPMCIsBAgFHyAglyAh4AgFAnAEnnAGpAQMBrwyXASeXAYIBAwGmDKcBJacBjQEDAZwMowEnowF6AwGTDL0BJ70BowEDAf4LuAEnuAGCAQMB9QvIASXIAY0BAwHrC8QBJ8QBegMB4gvWASXhAS4DAc0L4gEl6wE3AwG6C4ECJ4ECqAEDAZwL/AEn/AGCAQMBkwuMAiWMAo0BAwGJC4gCJ4gCegMBgAuiAieiAqIBAwHrCp0CJ50CggEDAeIKrQIlrQKNAQMB2AqpAiepAnoDAc8KuwIlxgIuAwG6CscCJdACNwMBpwrnAiP3AkQDAeQJgwMjkwNEAwGlCasDI7YDLAMB1gi3AyPAAzUDAbcI0QMj3AM+AwGKCN0DI/0DKAMB1AeCBCONBCwDAb4HjgQjlwQ1AwGpB64EJ64EqQEDAZIHqQQnqQSCAQMBiQe5BCW5BI0BAwH/BrUEJ7UEegMB9gbPBCfPBK0BAwHhBsoEJ8oEggEDAdgG2gQl2gSNAQMBzgbWBCfWBHoDAcUG6AQl8wQuAwGwBvQEJf0ENwMBnQaTBSeTBa8BAwH/BY4FJ44FggEDAfYFngUlngWNAQMB7AWaBSeaBXoDAeMFtQUntQWpAQMBzgWwBSewBYIBAwHFBcAFJcAFjQEDAbsFvAUnvAV6AwGyBc4FJdkFLgMBnQXaBSXjBTcDAYoF+gUjigZEAwHHBJYGI6YGRAMBiAS+BiPJBiwDAbkDygYj0wY1AwGaA+QGI+8GPgMB8gLwBiOQBygDAbwClQcjoAcsAwGmAqEHI6oHNQMBkQLeASveAaYBAwHXC9kBK9kBhgEDAc4L6QEp6QGRAQMBxAvlASvlAX4DAbsLwwIrwwKmAQMBxAq+Aiu+AoYBAwG7Cs4CKc4CkQEDAbEKygIrygJ+AwGoCuoCKeoCfwMBgwr0Ain0AogBAwH0Ce8CKe8CfwMB5QmQAymQA4gBAwHECYYDKYYDfwMBtQmLAymLA38DAaYJswMpswOyAQMB5giuAymuA4QBAwHXCL4DJ74DjwEDAccIugMpugN8AwG4CNQDKdQDfwMBlQjZAynZA3kDAYsI4AMp4AN1AwHVB+QDJ/sDMgMB3weKBCmKBKQBAwHJB4UEKYUEhAEDAb8HlQQnlQSPAQMBtAeRBCmRBHwDAaoH8AQr8ASwAQMBugbrBCvrBIYBAwGxBvsEKfsEkQEDAacG9wQr9wR+AwGeBtYFK9YFrQEDAacF0QUr0QWGAQMBngXhBSnhBZEBAwGUBd0FK90FfgMBiwX9BSn9BX8DAeYEhwYphwaIAQMB1wSCBimCBn8DAcgEowYpowaIAQMBpwSZBimZBn8DAZgEngYpngZ/AwGJBMYGKcYGsgEDAckDwQYpwQaEAQMBugPRBifRBo8BAwGqA80GKc0GfAMBmwPnBinnBn8DAf0C7AYp7AZ5AwHzAvMGKfMGdQMBvQL3BieOBzIDAccCnQcpnQekAQMBsQKYBymYB4QBAwGnAqgHJ6gHjwEDAZwCpAcppAd8AwGSAuUDKfADMgMB9QfxAyn6AzsDAeAH+AYpgwcyAwHdAoQHKY0HOwMByALtAy/tA6oBAwGACOgDL+gDigEDAfYH+AMt+AOVAQMB6wf0Ay/0A4IBAwHhB4AHL4AHqgEDAegC+wYv+waKAQMB3gKLBy2LB5UBAwHTAocHL4cHggEDAckC</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </twa:F1040EZEICEligibilityRuleCheck.Implementation>
+</twa:F1040EZEICEligibilityRuleCheck>

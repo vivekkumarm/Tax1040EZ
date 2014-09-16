@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title class="Title"></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/Credits/eic.js"></script>
+</head>
+
+<body>
+
+    <form id="frmUnemployment">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+
+
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <!--<script type="text/javascript" src="../lib/creditleftmenu.js"></script>-->
+
+                        <!--<div class="formfull">-->
+                        <!-- Right Help area -->
+                        <div id="riht">
+                            <script type="text/javascript" src="../lib/rightmenu.js"></script>
+                        </div>
+
+                        <!-- Center form area -->
+                        <div id="content">
+                            <div class="c4c8">
+                                <div class="">
+                                    <div class="title">
+                                        <h2>Credit Gateway
+                                            <!-- Right side collapse area menu  -->
+                                            <a id="changeSidebarPos" data-original-title="Show / Hide Sidebar" data-toggle="tooltip" class="hidden-xs open pull-right" href="#"><i class="transfer"></i></a>
+                                        </h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="creditGateway">Earned Income Credit</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+                                                    <h4>Credit reduces Your tax liability owes to Federal. The only Credit You can claim on 1040EZ tax return is Earned Income Credit.</h4>
+
+                                                    <!-- Eligibility Check box container DIV - <P1> logic -->
+                                                    <div id="divCheckbox" class="right1">
+                                                        <div class=" alert alert-success">
+                                                           <strong> <span id='spanTaxPayerInP1'></span> </strong>
+                                                        </div>
+
+                                                        <h4>Kindly check the below boxes that applies to You.</h4>
+
+                                                        <label class="checkbox">
+                                                            You & Your Spouse(MFJ) have a Valid SSN that allows You to work.
+                                                            <input id="chkHasValidSSN" type="checkbox" name="EICEligibility" value="1" tabindex="1" />
+                                                        </label>
+
+                                                        <label class="checkbox">
+                                                            <input id="chkLivedInUSMoreThanHalfYear" type="checkbox" name="EICEligibility" value="2" tabindex="2" />
+                                                            You & Your Spouse (MFJ) Lived in United States for more than half of the year(<span class="spanCurrentTaxyear"></span>).
+                                                        </label>
+
+                                                        <label class="checkbox">
+                                                            <input id="chkClaimedAsQualifiedChild" type="checkbox" name="EICEligibility" value="3" tabindex="3" />
+                                                            You & Your Spouse(MFJ) Claimed as Qualified Child on another Person tax return.
+                                                        </label>
+
+                                                        <label class="checkbox">
+                                                            <input id="chkNoticeFromIRSToClaimEIC" type="checkbox" name="EICEligibility" value="4" tabindex="4" />
+                                                            You received Notice from IRS as Not to Claim EIC
+                                                        </label>
+
+                                                        <label class="checkbox">
+                                                            <input id="chkNoticeFromIRSToFileForm8862" type="checkbox" name="EICEligibility" value="5" tabindex="5" />
+                                                            You received any Notice from IRS to file Form 8862 for Prior year disallowance Credit
+                                                        </label>
+                                                    </div>
+
+                                                    <!-- EIC Not Eligible reasons DIV - <P2> logic -->
+                                                    <div id="divEicNotEligible">
+                                                        <div class=" alert alert-warning">
+                                                            <h4><span id="spanTaxPayerInP2" /></h4>
+
+                                                            <ol>
+                                                                <li>To Qualify for Earned Income Credit, You must have Earned Income.
+                                                                </li>
+                                                                <li>Adjusted Gross Income limit for <strong>EIC Credit is $14,340 (single) or $19,680 MFJ)</strong>
+                                                                </li>
+                                                                <li>You & Your Spouse(MFJ) must have a<strong> Valid Social Security Number</strong>
+                                                                </li>
+                                                            </ol>
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <!-- Additional information DIV - <P3> logic -->
+                                                    <div id="divAdditionalInformation">
+                                                        <h4>Addition Information for EIC Credit:</h4>
+                                                        <!-- Taxable Scholarship Radio Button -->
+                                                        <h4>Did You or Your spouse (MFJ) receive any taxable scholarship or Fellowship Income not reported on Form W2?</h4>
+                                                        <div class="field-group">
+
+
+                                                            <label class="checkbox-inline">
+                                                                <input type="radio" id="radTaxableScholarshipYes" name="radTaxableScholarship" value="1"  tabindex="6" />
+                                                                Yes
+                                                                     
+                                                                </label>
+                                                            <label class="checkbox-inline">
+                                                                <input type="radio" id="radTaxableScholarshipNo" name="radTaxableScholarship" checked="checked" value="2" tabindex="7" />
+                                                                No
+                                                            </label>
+
+                                                            </div>
+                                                    </div>
+
+
+                                                    <div class="field-group" id="divTaxableScholarship" style="display: none">
+                                                        <div class="left-lbl">
+                                                            <label for="txtTaxableScholarship">Amount</label>
+                                                        </div>
+                                                            <div class="right">
+                                                            <input type="text" id="txtTaxableScholarship" placeholder="Taxable Scholarship or Fellowship Income" tabindex="8"
+                                                                class="form-control tip amountField" data-toggle="tooltip" data-placement="right"  
+                                                                title="Amount" data-trigger="focus" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);" />
+                                                            </div>
+                                                        <a id="popTaxableScholarship" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+
+                                                    <div id="dvPensionAnnuity">
+                                                        <!-- Pension Annuity Radio Button -->
+                                                        <h4>Did You or Your spouse (MFJ) receive any Pension or annuity from a non-qualified deferred compensation  plan not reported on Box 11 of Form W2 or Non-Governmental sectional 457 plans Income?</h4>
+
+                                                        <div class="field-group">
+                                                            <label class="checkbox-inline">
+                                                                <input type="radio" id="radPensionAnnuityYes" name="radPensionAnnuity" value="1" tabindex="9" />
+                                                                Yes
+                                                                </label>
+
+                                                            <label class="checkbox-inline">
+                                                                <input type="radio" id="radPensionAnnuityNo" checked="checked" name="radPensionAnnuity" value="2" tabindex="10" />
+                                                                No
+                                                                </label>
+                                                            </div>
+
+                                                        <div class="field-group" id="divPensionAnnuity" style="display: none">
+                                                            <div class="left-lbl">
+                                                                <label for="lblPensionAnnuity" class="left">Amount</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtPensionAnnuity" placeholder="Pension or Annuity Compensation" tabindex="11"
+                                                                    class="form-control tip amountField" data-toggle="tooltip" data-placement="right" 
+                                                                    title="Amount" data-trigger="focus" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);" />
+                                                            </div>
+                                                            <a id="popPensionAnnuity" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+
+
+
+                                                        <!-- Inmate wages in Penal Institution -->
+                                                        <h4>Did You or Your spouse (MFJ) receive Wages while worked as an inmate in a penal institution?</h4>
+
+                                                        <div class="field-group">
+
+                                                            <label class="checkbox-inline">
+                                                                <input type="radio" id="radInmateWagesYes" name="radInmateWages" value="1" tabindex="12" />
+                                                                Yes
+                                                                </label>
+
+
+                                                            <label class="checkbox-inline">
+                                                                <input type="radio" id="radInmateWagesNo" checked="checked" name="radInmateWages" value="2" tabindex="13" />
+                                                                No
+                                                                </label>
+                                                        </div>
+
+                                                        <div class="field-group" id="divInmateWages" style="display: none">
+                                                            <div class="left-lbl">
+                                                                <label for="lblInmateWages" class="left">Amount</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtInmateWages" placeholder="Penal institution Wage income" tabindex="14" onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                    class="form-control tip amountField" data-toggle="tooltip" data-placement="right"  
+                                                                    title="Amount" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popInmateWages" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                            </div>
+                                                        </div>
+                                                        <!---->
+
+
+                                                    <div id="divNextButton" class="pull-right" style="display: none">
+                                                        <button type="submit" id="btnSubmitOne" class="btn btn-success" onclick="PersistEIC();return false;">Next</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Accordion 2 Starts here -->
+                                        <!-- Prior year disallowance Expando outer window - START -->
+                                        <div class="panel panel-blue" id="divEicForDisallowance" style="display: none">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="earnedIncomeCredit">Earned Income Credit After Disallowance
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>You must file Form 8862 if Your Earned Income Credit  was reduced or disallowed for any reason other than a math or clerical error for a year after 1996 .</h4>
+
+                                                    <div>
+                                                        <h4>Do not file this Form 8862  if either of the following applies:
+                                                        </h4>
+                                                        <!--<div class="c4c8">-->
+                                                        <div>
+                                                            <ul>
+                                                                1. Your Earned Income Credit (EIC) was not reduced or disallowed in an earlier year<br />
+                                                                2. You do not want to claim the earned income Credit (EIC)
+                                                            </ul>
+                                                        </div>
+
+                                                        <div>
+                                                            <h4>Did You like to take EIC for Prior year disallowance and Meet all the requirement?</h4>
+                                                            <div class="field-group">
+
+                                                                <label class="checkbox-inline">
+                                                                    <input type="radio" id="radEICforPriorYearDisallowanceYes" name='radEICforPriorYearDisallowance' value="1" tabindex="15" />
+                                                                    Yes</label>
+                                                                <label class="checkbox-inline">
+                                                                    <input type="radio" id="radEICforPriorYearDisallowanceNo" name='radEICforPriorYearDisallowance' checked="checked" value="2" tabindex="16" />
+                                                                    No</label>
+                                                            </div>
+
+
+
+                                                            <!-- Prior year disallowance Expando inner window - START -->
+                                                            <div id="divEICforPriorYearDisallowance" style="display: none">
+                                                                <h4>Lets Check the Information to Claim Credit for EIC after disallowance
+                                                                </h4>
+
+                                                                <div>
+                                                                    <h4>The only reason Your EIC was reduced or disallowed in the earlier year was because You Incorrectly reported Your earned Income or Investment Income?</h4>
+
+                                                                    <div class="field-group">
+
+                                                                        <label class="checkbox-inline">
+                                                                            <input type="radio" id="radIncorrectlyReportedEarnedIncomeYes" name='radReasonForEICReduced' value="1" tabindex="17" />
+                                                                            Yes</label>
+
+
+                                                                        <label class="checkbox-inline">
+                                                                            <input type="radio" id="radIncorrectlyReportedEarnedIncomeNo" name='radReasonForEICReduced' checked="checked" value="2" tabindex="18" />
+                                                                            No
+                                                                            </label>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <h4>Enter the Number of days You and Your Spouse lived in the United States during <span class="spanCurrentTaxyear"></span></h4>
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                            <label>Number of days Taxpayer lived in US</label>
+                                                                        </div>
+                                                                        <div class="right">
+                                                                        <input type="text" id="txtNoOfDaysTaxPayerLivedInUS" placeholder="No. Of Days" tabindex="19"
+                                                                            class="form-control tip" data-toggle="tooltip" data-placement="right"  maxlength="3"
+                                                                            title="Number of days Taxpayer lived in US" data-trigger="focus" />
+                                                                        </div>
+                                                                    <a id="popNoOfDaysTaxPayerLivedInUs" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                        data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                                    </div>
+                                                                <div class="field-group">
+                                                                    <div class="left-lbl">
+                                                                            <label>Number of days Spouse lived in US</label>
+                                                                        </div>
+                                                                        <div class="right">
+                                                                        <input type="text" id="txtNoOfDaysSpouseLivedInUS" placeholder="No. Of Days" tabindex="20"
+                                                                            class="form-control tip" data-toggle="tooltip" data-placement="right"  maxlength="3"
+                                                                            title="Number of days Spouse lived in US" data-trigger="focus" />
+                                                                        </div>
+                                                                    <a id="popNoOfDaysSpouseLivedInUs" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                        data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <!-- Prior year disallowance Expando inner window - END -->
+
+
+                                                        </div>
+
+                                                        <!--</div>-->
+                                                    </div>
+                                                <!--  <div class="pull-right">
+                                                        <button type="submit" class="btn btn-success" onclick="PersistEIC();return false;" tabindex="21">Next</button>
+                                                    </div>-->
+                                                    <!-- Prior year disallowance Expando outer window - END -->
+
+                                                    <!-- Accordion 2 ends here -->
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                        </div>
+
+                                    </div>
+
+                            <button type="submit" class="btn btn-primary" onclick="GoToPreviousPage();return false;" tabindex="23">Back</button>
+                            <button type="submit" class="btn btn-success" id="btnContinue" tabindex="22">Continue</button>
+                                </div>
+                            </div>
+
+                            <!-- Back and Continue Button -->
+
+
+                        </div>
+                        <!--  </div>-->
+                    </div>
+                </div>
+            </div>
+
+    </form>
+
+    <!--//footer-->
+    <script type="text/javascript" src="../lib/footer.js"></script>
+    </div>
+</body>
+</html>

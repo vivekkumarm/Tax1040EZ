@@ -1,0 +1,558 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css" />
+    <script src="../../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery-2.1.0.js"></script>
+    <script src="../../Scripts/jquery.validate.js"></script>
+    <!--<script src="../../Scripts/Pages/PreLogin/welcomepage.js"></script>-->
+    <script src="../../Scripts/jquery.validate.js"></script>
+    <script src="../../Scripts/custom.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
+    <script src="../../Scripts/tooltip.js"></script>
+    <script src="../../Scripts/popover.js"></script>
+    <!--<script src="../../lib/config.js"></script>-->
+    <script src="../../Scripts/Pages/State/CA/cabasicinfo.js"></script>
+    <script src="../../Scripts/bootstrap-datepicker.js"></script>
+</head>
+<body>
+    <form id="cainfo">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <!--<script type="text/javascript" src="../../lib/breadcrum.js"></script>-->
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <!-- <script type="text/javascript" src="../../lib/leftmenu.js"></script>-->
+                        <div class="formfull">
+
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>California</h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+
+                                        <div class="panel panel-blue ">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                                        id="aCAFiling">Welcome to Your California Filing</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <h4>Let's begin filing your California State Tax Return now! 
+                                                    </h4>
+                                                    <h4>TaxGarden automatically transfers all your Federal information to the State so that you
+                                                        <br />
+                                                        don't have to do the same stuff all over again.</h4>
+                                                    <h3>Federal</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue ">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                                                        id="aCAResidencyStatus">Check California Residency Status</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <h4>Your 2014  California "Residency Status". You may make a change if needed.
+                                                    </h4>
+
+                                                    <ul class="list-group">
+                                                        <li>
+                                                            <input type="radio" name="radResident" id="radResident" tabindex="1" />
+                                                            Resident(Lived in California for all of <span class="spanCurrentTaxYear"></span>)			
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" name="radPartYearResident" id="radPartYearResident" tabindex="2" />
+                                                            Part year Resident ( Moved in to or out of California during <span class="spanCurrentTaxYear"></span>)
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" name="radNonResident" id="radNonResident" tabindex="2" />
+                                                            Non Resident ( Worked in California or received California Income without living there)
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue ">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
+                                                        id="aCAPriorYearInformation">California - Prior year Information</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <h4>Share your prior year (<span class="spanPreviousFilingYear"></span>) State Return information
+                                                    </h4>
+                                                    <ul class="list-group">
+                                                        <li>
+                                                            <input type="radio" name="radPriorYear" id="radPriorYearYes" tabindex="1" />
+                                                            Yes, I filed my California tax return on <span class="spanPreviousFilingYear"></span>
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" name="radPriorYear" id="radPriorYearNo" tabindex="2" />
+                                                            No, I didn't file California tax return on <span class="spanPreviousFilingYear"></span>
+                                                        </li>
+                                                    </ul>
+
+
+                                                    <div id="divLivedInCA">
+                                                        <h4>Did you or your Spouse(if MFJ)  filed <span class="spanPreviousFilingYear"></span>California return with different last name.</h4>
+
+                                                        <div class="table-responsive table-bordered">
+                                                            <table class="table table-hover " style="margin-bottom: 0;">
+                                                                <thead>
+                                                                    <tr class="active">
+                                                                        <th><span id="lblTaxpayer">Taxpayer</span>
+                                                                        </th>
+                                                                        <th id="lblSpouse"><span>Spouse</span></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+
+                                                                        <td>
+                                                                            <input type="radio" name="radFiled" id="radFiledYes" tabindex="1" />
+                                                                            Yes
+                                                                        </td>
+
+                                                                        <td id="tdSpouseFiledYes">
+                                                                            <input type="radio" name="radFiled" id="radFiledSpouseYes" tabindex="2" />
+                                                                            Yes
+
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+
+                                                                        <td>
+                                                                            <input type="radio" name="radFiled" id="radFiledNo" tabindex="3" />
+                                                                            No
+                                                                        </td>
+
+                                                                        <td id="td1">
+                                                                            <input type="radio" name="radFiled" id="radSpouseFiledNo" tabindex="4" />
+                                                                            No
+
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <br />
+
+                                                    <div id="divTaxpayerLastName">
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label id="lblTaxPayer">Enter Taxpayer  <span class="spanPreviousFilingYear"></span>Last name</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtTaxpayerLastName" placeholder=""
+                                                                    class="form-control tip amountField" data-toggle="tooltip" data-placement="right"
+                                                                    title="Enter Taxpayer Last Name" data-trigger="focus" tabindex="5"
+                                                                    onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);" />
+                                                            </div>
+                                                            <a id="popTaxpayerLastName" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="divSpouseLastName">
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label id="lblSpouseLastName">Enter Spouse  <span class="spanPreviousFilingYear"></span>Last name</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtSpouseLastName" placeholder=""
+                                                                    class="form-control tip amountField" data-toggle="tooltip" data-placement="right"
+                                                                    title="Enter Spouse Last Name" data-trigger="focus" tabindex="6"
+                                                                    onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);" />
+                                                            </div>
+                                                            <a id="popSpouseLastName" data-toggle="popover" class="help" rel="popover"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue" id="divCAAdjustmentWagesDetails">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseFour" id="aCAMiltaryInformation">Military Information
+                                                    </a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapseFour" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>Military Service Personals are qualified for an automatic filing extension of up to 180 days to file their 
+                                                        California Income Tax Return. Hence they are permitted to pay their tax without any Interest and
+                                                        Penalties under certain set of circumstances. 
+                                                    </h4>
+                                                    <br />
+                                                    <h4>Kindly furnish the following data for availing the Automatic Extension for six months.</h4>
+
+                                                    <div class="table-responsive table-bordered">
+                                                        <table class="table table-hover " style="margin-bottom: 0;">
+                                                            <thead>
+                                                                <tr class="active">
+                                                                    <th>&nbsp;</th>
+                                                                    <th><span id="lbltaxpayer">Taxpayer</span>
+                                                                    </th>
+                                                                    <th id="lblspouse"><span>Spouse</span></th>
+                                                                    <th>&nbsp;</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <label id="lblOtherIncomeSSA">Military Indicator</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="ddlMilitary" id="ddlMilitaryIndicator" tabindex="12">
+                                                                        </select>
+                                                                    </td>
+
+                                                                    <td id="txtSpouseMilitary">
+                                                                        <select name="ddlMilitary" id="ddlSpouseMilitaryIndicator" tabindex="12">
+                                                                        </select>
+
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a id="popMilitaryIndicator" data-toggle="popover" class="help qik " rel="popover"></a>
+
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <label id="lblDateDeployment">Date of Deployment</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group date" id="divTpDateOfDeployment">
+                                                                            <input type="text" id="dtTaxpayerDateDeployment" name="dtDateOfDeployment"
+                                                                                tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                                data-placement="right" title="Your Date of Deployment" data-trigger="focus"
+                                                                                readonly="true" />
+                                                                            <span class="input-group-addon"><span id="spncal" class="cal"></span>
+                                                                            </span>
+
+                                                                            <div id="divDateDeploymentTDErrorMsg" class="error">
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+
+                                                                    <td id="txtSpouseDateDeployment">
+                                                                        <div class="input-group date" id="divSpouseDateDeployment">
+                                                                            <input type="text" id="dtSpouseDateDeployment" name="dtDateOfDeployment"
+                                                                                tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                                data-placement="right" title="Your Date of Deployment" data-trigger="focus"
+                                                                                readonly="true" />
+                                                                            <span class="input-group-addon"><span id="Span1" class="cal"></span>
+                                                                            </span>
+
+                                                                            <div id="divSpouseDeploymentDateErrorMsg" class="error">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <a id="popDateOfDeployment" data-toggle="popover" class="help qik " rel="popover"></a>
+
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <label id="lblDateReturned">Date Returned</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group date" id="divTaxpayerDateRetured">
+                                                                            <input type="text" id="dtDateRetured" name="dtDateRetured"
+                                                                                tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                                data-placement="right" title="Your Date Retured" data-trigger="focus"
+                                                                                readonly="true" />
+                                                                            <span class="input-group-addon"><span id="Span2" class="cal"></span>
+                                                                            </span>
+                                                                            <div id="divTaxpayerDateReturedErrorMsg" class="error">
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td id="txtSpouseDateReturned">
+                                                                        <div class="input-group date" id="divSpouseDateRetured">
+                                                                            <input type="text" id="dtSpouseDateRetured" name="dtSpouseDateRetured"
+                                                                                tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                                data-placement="right" title="Your Date Retured" data-trigger="focus"
+                                                                                readonly="true" />
+                                                                            <span class="input-group-addon"><span id="Span3" class="cal"></span>
+                                                                            </span>
+                                                                            <div id="divSpouseDateReturedErrorMsg" class="error">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <a id="popDateRetured" data-toggle="popover" class="help qik " rel="popover"></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <label id="lblCombatZone">Combat Zone, QHDA or service Area</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <label id="lblTaxpayerCombatZone"></label>
+                                                                    </td>
+
+                                                                    <td id="txtSpouseFederalRRBtd">
+                                                                        <label id="lblSpouseCombatZone"></label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a id="popCombatZone" data-toggle="popover" class="help qik " rel="popover"></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                    <br />
+
+                                                    <h4>At any time in <span class="spanCurrentTaxYear"></span>, were you  or your Spouse (MFJ) an active duty military member stationed outside of California ( On permanent change of Station orders)?
+                                                    </h4>
+
+                                                    <div class="field-group">
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radMilitilary" id="radMilitilaryYes" tabindex="1" />
+                                                            Yes
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="radio" name="radMilitilary" id="radMilitilaryNo" tabindex="2" />
+                                                            No
+                                                        </label>
+                                                    </div>
+
+
+                                                    <div id="divMilitaryServiceArea">
+                                                        <h3>Military Service Area</h3>
+
+                                                        <h4>Filing the State Tax Return is more complicated for Military Personnel.
+                                                            <br />
+                                                            Confirm us, the below information that you provided on Federal basic information to cut short the process:
+                                                        </h4>
+                                                        <div id="divTaxpayerMilitaryservice ">
+                                                            <h4>Taxpayer Military service Information
+                                                            </h4>
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label id="lblTaxPayerLegalResidency">Your State of Legal Residency</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblLegalResidencyDetails"></label>
+                                                                </div>
+                                                                <a id="popTaxpayerLegalResidency" data-toggle="popover" class="help" rel="popover"></a>
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label id="lblTaxpayerMilitaryService">Your Military Service area</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblTaxpayerMilitaryServiceDetails"></label>
+                                                                </div>
+                                                                <a id="popTaxpayerMilitaryService" data-toggle="popover" class="help" rel="popover"></a>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div id="divSpouseMilitaryservice">
+                                                            <h4>Spouse  Military service Information
+                                                            </h4>
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label id="lblSpouseLegalResidency">Spouse State of Legal Residency</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblSpouseLegalResidencyDetails"></label>
+                                                                </div>
+                                                                <a id="popSpouseLegalResidency" data-toggle="popover" class="help" rel="popover"></a>
+                                                            </div>
+
+                                                            <div class="field-group">
+                                                                <div class="left-lbl">
+                                                                    <label id="lblSpouseMilitaryService">Spoue Military Service area</label>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <label id="lblSpouseMilitaryServiceDetails"></label>
+                                                                </div>
+                                                                <a id="popSpouseMilitaryService" data-toggle="popover" class="help" rel="popover"></a>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue" id="divCAAdjustmentInterestDetails">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseFive" id="aCAStationedOutside">Stationed Outside California for PCS Orders
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFive" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>As 
+                                                        <label id="lblFirstName"></label>
+                                                        was a Military member on duty and was stationed outside California (either as Non-resident or  permanent change of station orders), TaxGarden suggests you to  file the Non-resident Tax Return for the State of California.
+                                                        <br />
+                                                        <center>Form 540 NR ( Non Resident or Part Year Resident)</center>
+                                                        <br />
+
+                                                        Click on 'Residency Status' to modify your Return status or else,  you may click 'Continue' button to proceed with your Residential Return Filing.
+                                                        <br />
+                                                        <br />
+                                                        <a href="#">Residency Status</a>
+                                                    </h4>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="panel panel-blue" id="divCAAdjustmentUnemploymentDetails">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseSix" id="caConfirmAddress">Confirm Your Address
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseSix" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>The Address you provided on your Federal Return had an ‘Apartment Number’,  however the State of California wants a detailed and precise address.  
+                                                    </h4>
+
+                                                    <h4>You can modify the unit description if 'Apartment Number’ is not the exact term that describes your address. 
+                                                    </h4>
+
+                                                    <!--         <div class="panel panel-primary">
+
+                                                        <div class="panel-heading">
+                                                            <h3>Address Unit Description</h3>
+                                                        </div>
+                                                        <div class="panel-body-grid">
+
+                                                            <div id="divAddressDetails">
+                                                                <div class="pangird head">
+                                                                    <label class="col-md-2" id="lblFederalWages"></label>
+                                                                    <label class="col-md-2" id="lblCaAddtion"></label>
+                                                                </div>
+
+                                                                <div id="">
+                                                                    <div class="pangird itm" id="divCAAddressDetails">
+                                                                        <label class="col-md-2">
+                                                                       
+                                                                        </label>
+                                                                        <label class="col-md-2">
+                                                                          
+                                                                        </label>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>-->
+
+
+                                                    <div class="table-responsive table-bordered">
+                                                        <table class="table table-hover " style="margin-bottom: 0;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <label id="Label1">Address Unit Description</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="ddlAddressDescriptionList" id="ddlAddressDescriptionList" tabindex="7">
+                                                                        </select>
+                                                                    </td>
+
+                                                                    <td id="Td2">
+                                                                        <label id="lblAddressDescription">Address </label>
+
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a id="A3" data-toggle="popover" class="help qik " rel="popover"></a>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary" onclick="GoToPreviousPage();return false;">
+                                        Back</button>
+                                    <button type="submit" id="btnPrimaryFilerInfo" class="btn btn-success" tabindex="37">
+                                        Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!--//Footer-->
+            <script type="text/javascript" src="../../lib/footer.js"></script>
+        </div>
+    </form>
+
+
+</body>
+
+</html>
+
+

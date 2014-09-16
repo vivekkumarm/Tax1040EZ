@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{962F12D6-B5F9-4072-94BA-2BC0595B692E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JTL.TAX1040.Admin.DataAccess</RootNamespace>
+    <AssemblyName>JTL.TAX1040.Admin.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="address.cs">
+      <DependentUpon>TAX1040Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="admin_role.cs">
+      <DependentUpon>TAX1040UserAdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="country.cs">
+      <DependentUpon>TAX1040Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataService\UserAdminDataService.cs" />
+    <Compile Include="DataService\UserDataService.cs" />
+    <Compile Include="filing_status.cs">
+      <DependentUpon>TAX1040Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="personal_info.cs">
+      <DependentUpon>TAX1040Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="person_type.cs">
+      <DependentUpon>TAX1040Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="state.cs">
+      <DependentUpon>TAX1040Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="state_feature_sku.cs">
+      <DependentUpon>TAX1040Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="state_zip_code_conditions.cs">
+      <DependentUpon>TAX1040Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TAX1040Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TAX1040Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TAX1040Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TAX1040Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TAX1040Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TAX1040Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="TAX1040UserAdminModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TAX1040UserAdminModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TAX1040UserAdminModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TAX1040UserAdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TAX1040UserAdminModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TAX1040UserAdminModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs">
+      <DependentUpon>TAX1040Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_admin.cs">
+      <DependentUpon>TAX1040UserAdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_admin_role.cs">
+      <DependentUpon>TAX1040UserAdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_all_user_admin_Result.cs">
+      <DependentUpon>TAX1040UserAdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_user_admin_by_username_Result.cs">
+      <DependentUpon>TAX1040UserAdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_user_admin_by_user_admin_id_Result.cs">
+      <DependentUpon>TAX1040UserAdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_get_user_admin_role_by_user_admin_id_Result.cs">
+      <DependentUpon>TAX1040UserAdminModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="TAX1040Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TAX1040Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TAX1040Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TAX1040Model.edmx</DependentUpon>
+      <LastGenOutput>TAX1040Model.Context.cs</LastGenOutput>
+    </None>
+    <None Include="TAX1040Model.edmx.diagram">
+      <DependentUpon>TAX1040Model.edmx</DependentUpon>
+    </None>
+    <None Include="TAX1040Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TAX1040Model.edmx</DependentUpon>
+      <LastGenOutput>TAX1040Model.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="TAX1040UserAdminModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TAX1040UserAdminModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TAX1040UserAdminModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TAX1040UserAdminModel.edmx</DependentUpon>
+      <LastGenOutput>TAX1040UserAdminModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="TAX1040UserAdminModel.edmx.diagram">
+      <DependentUpon>TAX1040UserAdminModel.edmx</DependentUpon>
+    </None>
+    <None Include="TAX1040UserAdminModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TAX1040UserAdminModel.edmx</DependentUpon>
+      <LastGenOutput>TAX1040UserAdminModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JTL.TAX1040.Admin.BusinessObject\JTL.TAX1040.Admin.BusinessObject.csproj">
+      <Project>{ac45ee8f-762a-4dec-8bdf-b24b1878e3c9}</Project>
+      <Name>JTL.TAX1040.Admin.BusinessObject</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

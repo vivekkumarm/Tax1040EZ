@@ -1,0 +1,130 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.BusinessObject", "JTL.Tax1040.BusinessObject\JTL.Tax1040.BusinessObject.csproj", "{F69E72CD-6CC2-4B32-AFCF-7E531B7B2452}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.BusinessLogic", "JTL.Tax1040.BusinessLogic\JTL.Tax1040.BusinessLogic.csproj", "{98EC024C-6439-44B1-8B1E-29E457B2201F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax.1040.Web.UI", "JTL.Tax.1040.Web.UI\JTL.Tax.1040.Web.UI.csproj", "{BC038C72-5F70-470B-9833-935CA4AEE5F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdPartyBinaries", "ThirdPartyBinaries", "{653C101C-1833-4C30-B18D-8CC97568C772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.PDFBinding", "JTL.Tax1040.PDFBinding\JTL.Tax1040.PDFBinding.csproj", "{098A6583-D6BB-46D9-BE1C-26B2CC45F9C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.DataAccess", "JTL.Tax1040.DataAccess\JTL.Tax1040.DataAccess.csproj", "{697E1790-7229-4499-9A8F-A740F18D9272}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.Core.Object", "JTL.Tax1040.Core.Object\JTL.Tax1040.Core.Object.csproj", "{841D591B-C677-497C-90CB-BD736F87DDC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.Core.Process", "JTL.Tax1040.Core.Process\JTL.Tax1040.Core.Process.csproj", "{48956080-8858-46A1-A2CE-6DB089A2B88B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.DataAccess.Test", "JTL.Tax1040.DataAccess.Test\JTL.Tax1040.DataAccess.Test.csproj", "{9261203C-213F-4117-9D1B-F96773CF785B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.BusinessLogic.Test", "JTL.Tax1040.BusinessLogic.Test\JTL.Tax1040.BusinessLogic.Test.csproj", "{FD693264-B05E-4352-99A2-0C81F8992D9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.Web", "JTL.Tax1040.Web\JTL.Tax1040.Web.csproj", "{BC6D1812-9E2E-4EAE-AA9A-D9B48CC9E1E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.WebApi", "JTL.Tax1040.WebApi\JTL.Tax1040.WebApi.csproj", "{53A54D02-9588-4D9D-A7F6-7C2061E6A548}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.PaymentLibrary", "JTL.TAX1040.PaymentLibrary\JTL.Tax1040.PaymentLibrary.csproj", "{0D5E6E9A-1679-4955-95EA-780B2B14F453}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 13
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.168.1.10:8080/tfs/jeevantax
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = JTL.Tax1040.BusinessObject\\JTL.Tax1040.BusinessObject.csproj
+		SccProjectName1 = JTL.Tax1040.BusinessObject
+		SccLocalPath1 = JTL.Tax1040.BusinessObject
+		SccProjectUniqueName2 = JTL.Tax1040.PDFBinding\\JTL.Tax1040.PDFBinding.csproj
+		SccProjectName2 = JTL.Tax1040.PDFBinding
+		SccLocalPath2 = JTL.Tax1040.PDFBinding
+		SccProjectUniqueName3 = JTL.Tax1040.DataAccess\\JTL.Tax1040.DataAccess.csproj
+		SccProjectName3 = JTL.Tax1040.DataAccess
+		SccLocalPath3 = JTL.Tax1040.DataAccess
+		SccProjectUniqueName4 = JTL.Tax1040.Core.Object\\JTL.Tax1040.Core.Object.csproj
+		SccProjectName4 = JTL.Tax1040.Core.Object
+		SccLocalPath4 = JTL.Tax1040.Core.Object
+		SccProjectUniqueName5 = JTL.Tax1040.Core.Process\\JTL.Tax1040.Core.Process.csproj
+		SccProjectName5 = JTL.Tax1040.Core.Process
+		SccLocalPath5 = JTL.Tax1040.Core.Process
+		SccProjectUniqueName6 = JTL.Tax1040.BusinessLogic\\JTL.Tax1040.BusinessLogic.csproj
+		SccProjectName6 = JTL.Tax1040.BusinessLogic
+		SccLocalPath6 = JTL.Tax1040.BusinessLogic
+		SccProjectUniqueName7 = JTL.Tax.1040.Web.UI\\JTL.Tax.1040.Web.UI.csproj
+		SccProjectName7 = JTL.Tax.1040.Web.UI
+		SccLocalPath7 = JTL.Tax.1040.Web.UI
+		SccProjectUniqueName8 = JTL.Tax1040.DataAccess.Test\\JTL.Tax1040.DataAccess.Test.csproj
+		SccProjectName8 = JTL.Tax1040.DataAccess.Test
+		SccLocalPath8 = JTL.Tax1040.DataAccess.Test
+		SccProjectUniqueName9 = JTL.Tax1040.BusinessLogic.Test\\JTL.Tax1040.BusinessLogic.Test.csproj
+		SccProjectName9 = JTL.Tax1040.BusinessLogic.Test
+		SccLocalPath9 = JTL.Tax1040.BusinessLogic.Test
+		SccProjectUniqueName10 = JTL.Tax1040.Web\\JTL.Tax1040.Web.csproj
+		SccProjectName10 = JTL.Tax1040.Web
+		SccLocalPath10 = JTL.Tax1040.Web
+		SccProjectUniqueName11 = JTL.Tax1040.WebApi\\JTL.Tax1040.WebApi.csproj
+		SccProjectName11 = JTL.Tax1040.WebApi
+		SccLocalPath11 = JTL.Tax1040.WebApi
+		SccProjectUniqueName12 = JTL.TAX1040.PaymentLibrary\\JTL.TAX1040.PaymentLibrary.csproj
+		SccProjectName12 = JTL.TAX1040.PaymentLibrary
+		SccLocalPath12 = JTL.TAX1040.PaymentLibrary
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F69E72CD-6CC2-4B32-AFCF-7E531B7B2452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F69E72CD-6CC2-4B32-AFCF-7E531B7B2452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F69E72CD-6CC2-4B32-AFCF-7E531B7B2452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F69E72CD-6CC2-4B32-AFCF-7E531B7B2452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98EC024C-6439-44B1-8B1E-29E457B2201F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98EC024C-6439-44B1-8B1E-29E457B2201F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98EC024C-6439-44B1-8B1E-29E457B2201F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98EC024C-6439-44B1-8B1E-29E457B2201F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC038C72-5F70-470B-9833-935CA4AEE5F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC038C72-5F70-470B-9833-935CA4AEE5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC038C72-5F70-470B-9833-935CA4AEE5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC038C72-5F70-470B-9833-935CA4AEE5F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{098A6583-D6BB-46D9-BE1C-26B2CC45F9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{098A6583-D6BB-46D9-BE1C-26B2CC45F9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{098A6583-D6BB-46D9-BE1C-26B2CC45F9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{098A6583-D6BB-46D9-BE1C-26B2CC45F9C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{697E1790-7229-4499-9A8F-A740F18D9272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{697E1790-7229-4499-9A8F-A740F18D9272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{697E1790-7229-4499-9A8F-A740F18D9272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{697E1790-7229-4499-9A8F-A740F18D9272}.Release|Any CPU.Build.0 = Release|Any CPU
+		{841D591B-C677-497C-90CB-BD736F87DDC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841D591B-C677-497C-90CB-BD736F87DDC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841D591B-C677-497C-90CB-BD736F87DDC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841D591B-C677-497C-90CB-BD736F87DDC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48956080-8858-46A1-A2CE-6DB089A2B88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48956080-8858-46A1-A2CE-6DB089A2B88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48956080-8858-46A1-A2CE-6DB089A2B88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48956080-8858-46A1-A2CE-6DB089A2B88B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9261203C-213F-4117-9D1B-F96773CF785B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9261203C-213F-4117-9D1B-F96773CF785B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9261203C-213F-4117-9D1B-F96773CF785B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9261203C-213F-4117-9D1B-F96773CF785B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD693264-B05E-4352-99A2-0C81F8992D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD693264-B05E-4352-99A2-0C81F8992D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD693264-B05E-4352-99A2-0C81F8992D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD693264-B05E-4352-99A2-0C81F8992D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC6D1812-9E2E-4EAE-AA9A-D9B48CC9E1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC6D1812-9E2E-4EAE-AA9A-D9B48CC9E1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC6D1812-9E2E-4EAE-AA9A-D9B48CC9E1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC6D1812-9E2E-4EAE-AA9A-D9B48CC9E1E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53A54D02-9588-4D9D-A7F6-7C2061E6A548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53A54D02-9588-4D9D-A7F6-7C2061E6A548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53A54D02-9588-4D9D-A7F6-7C2061E6A548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53A54D02-9588-4D9D-A7F6-7C2061E6A548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5E6E9A-1679-4955-95EA-780B2B14F453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5E6E9A-1679-4955-95EA-780B2B14F453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5E6E9A-1679-4955-95EA-780B2B14F453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5E6E9A-1679-4955-95EA-780B2B14F453}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

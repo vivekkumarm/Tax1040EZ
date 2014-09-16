@@ -1,0 +1,1034 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/JTL.Tax1040.Web.dll">
+      <publishTime>08/20/2014 18:43:54</publishTime>
+    </File>
+    <File Include="Common/browsercompatibility.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/animated-overlay.gif">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery-ui.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.accordion.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.all.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.autocomplete.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.base.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.button.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.core.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.datepicker.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.dialog.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.menu.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.progressbar.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.resizable.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.selectable.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.slider.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.spinner.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.tabs.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.theme.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.tooltip.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/animated-overlay.gif">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_222222_256x240.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_454545_256x240.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_888888_256x240.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery-ui.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.accordion.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.autocomplete.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.button.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.core.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.datepicker.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.dialog.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.menu.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.progressbar.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.resizable.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.selectable.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.slider.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.spinner.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.tabs.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.theme.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.tooltip.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Credits/creditsummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Credits/earnedincomecredits.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="css/bootstrap.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Deduction/deductiongateway.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Deduction/deductionsummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="default.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Diagnostics/finaldiagnostics.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/capaymentdetail.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/catransmissiondetail.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/efileacknowledge.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/efilediagnostics.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/efiledisclaimer.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/efileerrors.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/federalefileinformation.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/federalfilingnotselected.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/federalpaymentdetail.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/filingoption.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/filingoptionsummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/returnstatus.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/returntransmitted.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/reviewtaxreturn.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="EFile/taxduepaymentoption.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="errorpage.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="F1040Eligibility/1040EZEligibilityCheck.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Finalpage/signout.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Finalpage/userrating.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Finalpage/userreferral.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="font-awesome/css/font-awesome.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="font-awesome/css/font-awesome.min.css">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="font-awesome/fonts/fontawesome-webfont.eot">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="font-awesome/fonts/fontawesome-webfont.svg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="font-awesome/fonts/fontawesome-webfont.ttf">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="font-awesome/fonts/fontawesome-webfont.woff">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="font-awesome/fonts/FontAwesome.otf">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.eot">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.svg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.ttf">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.woff">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="fonts/FontAwesome.otf">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/audit-report.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/BankAccoutInfo.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/bottom.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/bullet.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/center.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/chrome.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/Firefox.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/gicon.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/ie.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/l-arw.gif">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/l-arw.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/left.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/logo-bg.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/logo.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/mail.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/mcafee.gif">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/onlyin.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/opera.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/our-services.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/phone.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/right.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/Safari.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/secure.gif">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/sep.jpg">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/star%402x.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/star.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/t-arw.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/Tax-Garden-Logo.png">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Images/title-bg.gif">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/f1099int.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/f1099oid.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/incomegateway.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/incomesummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/interestincome.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/interestincomechecklist.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/interestincomesummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/otherincome.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/otherincomegateway.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/otherincomesummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/unemployment.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/unemploymentsummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/w2.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/w2employmentandownertype.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Income/w2summary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/breadcrum.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/browsercompatibility.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/config.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/constants.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/controlconfig.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/creditleftmenu.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/deductionleftmenu.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/fileleftmenu.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/footer.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/header.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/incomeleftmenu.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/leftmenu.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/popovercontent.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/reviewleftmenu.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/rightmenu.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/slidemenu.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="lib/taxesandwrapupleftmenu.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Login.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PaperFile/fileoption.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PaperFile/paperfile.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PaperFile/previewreturn.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Payment/checkout.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Payment/checkoutsummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Payment/federalreturnsummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Payment/filingsteps.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Payment/invoice.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Payment/irspayment.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PersonalInfo/address.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PersonalInfo/filingstatus.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PersonalInfo/nonsupportedstatefinal.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PersonalInfo/nonsupportedstatesummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PersonalInfo/personalsummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PersonalInfo/primaryfilerinfo.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PersonalInfo/spouseinfo.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/createpassword.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/emailrecoverybybothcondition.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/emailrecoverybyusername.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/forgotpassword.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/forgotusername.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/passwordresetcode.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/recoverusernameandpassword.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/recovery.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/registration.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/securityquestionbycondition.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/taxoverview.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/unabletoaccessemail.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/updateemailaddress.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="PreLogin/welcomepage.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Review/efilerejection.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Review/finalsummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Review/noteligibilityfor1040EZ.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Review/returnfinalization.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Review/returnsummary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Review/taxaccuracyguarantee.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/AddressPersist.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/AddressPrimary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/AddressSecondary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/Dependent.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/DependentInfo1.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/DependentInfo2.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/EligibilityCheck2.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/EligibilityCheck3.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/incomegatewayold.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/NewSpouseInfoPrimary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/PersonInfoId.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/PT_DOB.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/PT_ECF.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/PT_PersonalSituation.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/PT_PrimaryInfo.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/PT_SSN.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/Recovery2.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/SecurityQuestionByBothCondition.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/SecurityQuestionByEmailAddress.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/SpouseInfoPrimary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/SpouseInfoSecondary.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/UserRegistration.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/w2sum.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/w2summ.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/WizardFiling.html">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Sample/WizardPersonalInfo.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Sample/worksheet.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-datepicker.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Scripts/custom.js">
+      <publishTime>08/20/2014 18:43:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.0.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.0.min.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.0.min.map">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-migrate-1.2.1.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.10.4.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.10.4.min.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.barrating.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.bootstrap.wizard.min.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.idletimeout.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.idletimer.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.slidemenu.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/less-1.6.3.min.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Credits/creditsummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Credits/eic.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Deduction/deductionsummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Diagnostics/finaldiagnostics.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/capaymentdetail.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/catransmissiondetail.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/efileacknowledge.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/efilediagnostics.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/efiledisclaimer.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/efileerrors.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/federalefileinformation.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/federalfilingnotselected.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/federalpaymentdetail.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/filingoption.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/filingoptionsummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/returnstatus.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/EFile/reviewtaxreturn.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Finalpage/signout.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Finalpage/userrating.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Finalpage/userreferral.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/f1099int.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/f1099oid.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/incomegateway.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/incomesummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/interestincome.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/interestincomechecklist.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/interestincomesummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/otherincome.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/otherincomegateway.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/otherincomesummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/unemployment.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/unemploymentsummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/w2.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/w2employmentandownertype.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Income/w2summary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Payment/checkout.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Payment/checkoutsummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Payment/invoice.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Payment/irspayment.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PersonalInfo/address.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PersonalInfo/filingstatus.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PersonalInfo/nonsupportedstatefinal.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PersonalInfo/nonsupportedstatesummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PersonalInfo/personalfilerinfo.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PersonalInfo/personalsummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PersonalInfo/spouseinfo.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/createpassword.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/emailrecoverybybothcondition.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/emailrecoverybyusername.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/forgotpassword.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/forgotusername.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/login.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/passwordresetcode.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/recoverusernameandpassword.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/registration.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/securityquestionbycondition.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/taxoverview.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/unabletoaccessemail.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/updateemailaddress.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/PreLogin/welcomepage.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Review/efilerejection.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Review/finalsummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Review/returnfinalization.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Review/returnsummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/Review/taxaccuracyguarantee.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/State/stategateway.js">
+      <publishTime>08/05/2014 17:09:30</publishTime>
+    </File>
+    <File Include="Scripts/Pages/StateGateway/stategateway.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/TaxesAndWrapUp/federaltaxsummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/TaxesAndWrapUp/federalwrapupsummary.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/TaxesAndWrapUp/taxesandwrapupchecklist.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/TaxesAndWrapUp/taxesandwrapupinfo.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/UserProfile/updateemail.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/UserProfile/updatepassword.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/UserProfile/updatesecurityquestion.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/Pages/UserProfile/updateusername.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/popover.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/prettify.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Scripts/tooltip.js">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="State/stategateway.html">
+      <publishTime>08/05/2014 17:09:30</publishTime>
+    </File>
+    <File Include="StateGateway/stategateway.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="TaxesAndWrapUp/federaltaxsummary.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="TaxesAndWrapUp/federalwrapupsummary.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="TaxesAndWrapUp/taxesandwrapupchecklist.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="TaxesAndWrapUp/taxesandwrapupinfo.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="UserProfile/manageaccountgateway.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="UserProfile/updateemail.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="UserProfile/updatepassword.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="UserProfile/updatesecurityquestion.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="UserProfile/updateusername.html">
+      <publishTime>08/20/2014 18:43:50</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>08/20/2014 18:44:22</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

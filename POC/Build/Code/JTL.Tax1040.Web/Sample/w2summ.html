@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaxGarden.com</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    <!--<script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>-->
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+
+    <script>
+        var serviceUrl = 'http://localhost:9797/';
+        function W2GetData() {
+            $.ajax({
+                url: serviceUrl + 'personalinfo/getstate',
+                async: false,
+                dataType: "json",
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+                },
+                success: function(data, textStatus) {
+
+                    $.each(data, function(index, value) {
+                        $("#w2Summary").append('<label class="col-md-4">' + value.StateName + '</label>', '<label class="col-md-3">' + value.StateId + '</label>', '<label class="col-md-3">' + "$00.00" + '</label>',
+                        '<label class="col-md-2"><a href="#" class="fa fa-edit"></a><a href="#" class="fa fa-minus-square-o"></a></label>');
+                    });
+                }
+            });
+        }
+    </script>
+
+</head>
+<body onload="W2GetData()">
+
+
+    <div class="container">
+        <!--Header-->
+
+            <script type="text/javascript" src="../lib/header.js"></script>
+
+        <div class="whtwell" id="signin">
+            <div role="form" class="container-fluid">
+
+                <!--Bread Crum-->
+
+                    <script type="text/javascript" src="../lib/BreadCrum.js"></script>
+
+                <div class="innerform">
+
+                    <!-- Left menu -->
+                    <div class="menu" role="navigation">
+                            <ul class="nav  side-nav">
+                                <li><a href="#"><i class="fa fa-exchange"></i>W2</a></li>
+                                <li><a href="#"><i class="fa fa-user"></i>1099INT</a></li>
+                                <li><a href="#"><i class="fa fa-female"></i>1099OID</a></li>
+                                <li><a href="#"><i class="fa fa-users"></i>1099G </a></li>
+                            </ul>
+                        </div>
+
+                  
+
+                    <div class="formfull">
+
+                        <!-- Right Help area -->
+                        <div id="riht">
+                            Right Help area
+                        </div>
+
+                        <!-- Center form area -->
+
+                        <div id="content">
+                            <div class="c12">
+                                <div class="title">
+                                    <h2>W2 Summary       
+                                        <!-- Right side collapse area menu  -->
+                                        <a id="changeSidebarPos" data-original-title="Show / Hide Sidebar" data-toggle="tooltip" class="hidden-xs open pull-right" href="#"><i class="fa fa-bars"></i></a>
+
+                                    </h2>
+                                    <h5>Your total W2 wages Income is <span class="wag">$00.00</span> Amount. If you want to report another Form W2 for yourself click on ADD <i class="fa fa-plus"></i>to add. To edit any form W2, Click on  <i class="fa fa-edit"></i></h5>
+                                </div>
+
+
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3>W2 Summary <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-plus "></i>Add New</a></h3>
+                                    </div>
+
+                                    <div class="panel-body-grid">
+
+
+                                        <div class="pangird head">
+                                            <label class="col-md-4 ">Employer Name</label>
+                                            <label class="col-md-3 ">Name</label>
+                                            <label class="col-md-3 ">Wage</label>
+                                            <label class="col-md-2 ">Action</label>
+                                        </div>
+
+                                        <div id="w2Summary" class="pangird itm">
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+    </div>
+</body>
+
+</html>

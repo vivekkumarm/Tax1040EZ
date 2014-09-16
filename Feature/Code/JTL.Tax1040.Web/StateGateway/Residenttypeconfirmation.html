@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title">Resident Type Confirmation</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../Scripts/Pages/StateGateway/Residenttypeconfirmation.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+
+</head>
+<body>
+    <form id="ResidentTypeConfirmation">
+        <div class="container">
+
+            <!--Slide Menu-->
+
+            <script src="../lib/slidemenu.js"></script>
+
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+                    <div class="innerform">
+
+
+
+                        <!-- Center form area -->
+                        <div id="content">
+                            <div>
+                                <div class="title">
+                                    <h2>Check Your Residency Status
+                                        <!-- Left Responsive action Menu   -->
+                                        <!--  <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#lftmenu">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="glyphicon glyphicon-th-list"></span>
+                                        </button>-->
+                                    </h2>
+                                </div>
+
+                                <div id="divCancelFiling">
+                                    <div class="panel panel-primary animated fadeInDown">
+                                        <div class="panel-heading">
+                                            <h3>State Taxes</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <input type="hidden" id="hdnstateid" />
+                                           Your 2014 
+                                            <label id="lblstatename"></label> "Residency Status".
+                                            You may make a change if needed.
+                                              <div class="radio">
+                                                  <label>
+                                                      <input type="radio" id="radResident" name="radresident" tabindex="1" />
+                                                      <span class="spanResident"></span>Resident (Lived in  <label id="lblstatenameresident"></label> for all of 2014)
+                                                  </label>
+                                              </div>
+                                             <div class="radio">
+                                                <label>
+                                                    <input type="radio" id="radPartYearResident" name="radresident" tabindex="2" />
+                                                    <span class="spanPartYearResident"></span>Part year Resident ( Moved in to or out of <label id="lblstatenamepartyear"></label> during 2014)
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" id="radNonResident" name="radresident" tabindex="3" />
+                                                    <span class="spanNonResident"></span>Non Resident ( Worked in <label id="lblstatenamenonresident"></label> or received <label id="lblnonresidentstatename"></label> Income without living there>
+                                                </label>
+                                            </div>
+                                           
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button id="btnBackStateGateWay" type="submit" class="btn btn-primary">Back</button>
+                                        <button type="submit" id="btnContinue" class="btn btn-success pull-right" >Continue</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+    </form>
+
+
+</body>
+
+</html>

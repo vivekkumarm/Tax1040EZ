@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script type="text/javascript">
+        function GetPersonalInfo() {
+            debugger
+            var serviceUrl = 'http://localhost:9797/';
+            debugger
+            
+            $.ajax({
+                url: serviceUrl + 'user/getpersonalinfobyid',
+                async: false,
+                dataType: "json",
+                type: "GET",
+                data: {"personalInfoId": $("#txtpersonalinfoid").val()}, //$("#txtpersonalinfoid").val(), //JSON.stringify({ "personalInfoId": $("#txtpersonalinfoid").val() }),
+                contentType: "application/json; charset=utf-8",
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+                },
+                success: function (data, textStatus) {
+
+                    alert('success');
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    personalInfoId
+     <input type="text" id="txtpersonalinfoid"/><br />
+<button id="btnSubmit" onclick="GetPersonalInfo()" ></button>
+</body>
+</html>

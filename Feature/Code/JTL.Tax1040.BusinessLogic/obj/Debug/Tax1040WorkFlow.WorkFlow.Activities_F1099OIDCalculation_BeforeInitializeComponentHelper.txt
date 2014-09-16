@@ -1,0 +1,2 @@
+F1099OIDCalculation.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

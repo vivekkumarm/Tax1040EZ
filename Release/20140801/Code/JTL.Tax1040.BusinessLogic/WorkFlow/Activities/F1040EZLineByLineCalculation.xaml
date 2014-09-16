@@ -1,0 +1,1101 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Tax1040WorkFlow.WorkFlow.Activities.F1040EZLineByLineCalculation"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject"
+ xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object"
+ xmlns:local="clr-namespace:Tax1040WorkFlow.WorkFlow.Activities"
+ xmlns:local1="clr-namespace:Tax1040WorkFlow.WorkFlow"
+ xmlns:local2="clr-namespace:JTL.Tax1040.BusinessLogic.WorkFlow.Activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Tax1040Object" Type="InOutArgument(jtb:Tax1040)" />
+    <x:Property Name="ErrorMessages" Type="InArgument(jtco:ErrorMessages)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap2010:WorkflowViewState.IdRef>Tax1040WorkFlow.WorkFlow.Activities.F1040EZLineByLineCalculation</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="F1040EZLineByLineCalculation" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="jtco:ErrorMessage" Name="ErrorMessage" />
+      <Variable x:TypeArguments="scg:List(jtco:ErrorMessage)" Name="ErrorMessageList">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
+    <If DisplayName="IfTax1040ObjectCheck" sap2010:WorkflowViewState.IdRef="If_8">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object !=null</mca:CSharpValue>
+        </InArgument>
+      </If.Condition>
+      <If.Then>
+        <Sequence DisplayName="Tax1040LineByLineCheck" sap2010:WorkflowViewState.IdRef="Sequence_31">
+          <Sequence DisplayName="Initialization" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="jtb:OutputForms">
+                  <mca:CSharpReference x:TypeArguments="jtb:OutputForms">Tax1040Object.OutputForms</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="jtb:OutputForms">
+                  <mca:CSharpValue x:TypeArguments="jtb:OutputForms">new OutputForms()</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="jtb:Tax1040EZPage1">
+                  <mca:CSharpReference x:TypeArguments="jtb:Tax1040EZPage1">Tax1040Object.OutputForms.Tax1040EZPage1</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="jtb:Tax1040EZPage1">
+                  <mca:CSharpValue x:TypeArguments="jtb:Tax1040EZPage1">new Tax1040EZPage1()</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+          <If DisplayName="IfTax1040IncomeCheck" sap2010:WorkflowViewState.IdRef="If_7">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income !=null</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence DisplayName="Tax1040IncomeCheck" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                <Sequence DisplayName="F1040EZLine1 - TotalWages" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="jtb:W2" Name="W2" />
+                  </Sequence.Variables>
+                  <If DisplayName="TotalWages Calculation" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.W2Wages != null) &amp;&amp; (Tax1040Object.Income.W2Wages.Count&gt;0))</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="W2 Calculation" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Double" Name="TotalWages" />
+                        </Sequence.Variables>
+                        <local:FW2Calculation sap2010:WorkflowViewState.IdRef="FW2Calculation_6">
+                          <local:FW2Calculation.ErrorMessages>
+                            <InArgument x:TypeArguments="jtco:ErrorMessages">
+                              <mca:CSharpValue x:TypeArguments="jtco:ErrorMessages">ErrorMessages</mca:CSharpValue>
+                            </InArgument>
+                          </local:FW2Calculation.ErrorMessages>
+                          <local:FW2Calculation.PrefixTotalWages>
+                            <OutArgument x:TypeArguments="x:String">
+                              <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.Tax1040EZPage1.WagesPrefix</mca:CSharpReference>
+                            </OutArgument>
+                          </local:FW2Calculation.PrefixTotalWages>
+                          <local:FW2Calculation.Tax1040Object>
+                            <InOutArgument x:TypeArguments="jtb:Tax1040">
+                              <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                            </InOutArgument>
+                          </local:FW2Calculation.Tax1040Object>
+                          <local:FW2Calculation.TotalWages>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalWages</mca:CSharpReference>
+                            </OutArgument>
+                          </local:FW2Calculation.TotalWages>
+                        </local:FW2Calculation>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine2 - TaxableInterest" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="jtb:Form1099OID" Name="Form1099OID" />
+                    <Variable x:TypeArguments="jtb:Form1099INT" Name="Form1099INT" />
+                    <Variable x:TypeArguments="x:Double" Name="Totol1099OIDAmount" />
+                    <Variable x:TypeArguments="x:Double" Name="Form1099INTTotal" />
+                    <Variable x:TypeArguments="x:Double" Name="Form1099OIDTotal" />
+                    <Variable x:TypeArguments="x:Double" Name="F1099INTTaxExemptInterest" />
+                    <Variable x:TypeArguments="x:Double" Name="F1099OIDTaxExemptInterest" />
+                  </Sequence.Variables>
+                  <If DisplayName="1099 INT Calculation" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.Form1099INT != null) &amp;&amp; (Tax1040Object.Income.Form1099INT.Count &gt; 0))</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="1099-INT" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Double" Name="Total1099INTAmount" />
+                        </Sequence.Variables>
+                        <local:F1099INTCalculation sap2010:WorkflowViewState.IdRef="F1099INTCalculation_2">
+                          <local:F1099INTCalculation.ErrorMessages>
+                            <InArgument x:TypeArguments="jtco:ErrorMessages">
+                              <mca:CSharpValue x:TypeArguments="jtco:ErrorMessages">ErrorMessages</mca:CSharpValue>
+                            </InArgument>
+                          </local:F1099INTCalculation.ErrorMessages>
+                          <local:F1099INTCalculation.Tax1040Object>
+                            <InOutArgument x:TypeArguments="jtb:Tax1040">
+                              <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                            </InOutArgument>
+                          </local:F1099INTCalculation.Tax1040Object>
+                          <local:F1099INTCalculation.TotalTaxableInterest>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Form1099INTTotal</mca:CSharpReference>
+                            </OutArgument>
+                          </local:F1099INTCalculation.TotalTaxableInterest>
+                          <local:F1099INTCalculation.TotaltaxExemptInterest1099INT>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">F1099INTTaxExemptInterest</mca:CSharpReference>
+                            </OutArgument>
+                          </local:F1099INTCalculation.TotaltaxExemptInterest1099INT>
+                        </local:F1099INTCalculation>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                  <If DisplayName="1099OID Calculation" sap2010:WorkflowViewState.IdRef="If_3">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.Form1099OID != null) &amp;&amp; (Tax1040Object.Income.Form1099OID.Count &gt; 0))</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="F1099-OID" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="variable1" />
+                        </Sequence.Variables>
+                        <local:F1099OIDCalculation sap2010:WorkflowViewState.IdRef="F1099OIDCalculation_2">
+                          <local:F1099OIDCalculation.ErrorMessages>
+                            <InArgument x:TypeArguments="jtco:ErrorMessages">
+                              <mca:CSharpValue x:TypeArguments="jtco:ErrorMessages">ErrorMessages</mca:CSharpValue>
+                            </InArgument>
+                          </local:F1099OIDCalculation.ErrorMessages>
+                          <local:F1099OIDCalculation.Tax1040Object>
+                            <InOutArgument x:TypeArguments="jtb:Tax1040">
+                              <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                            </InOutArgument>
+                          </local:F1099OIDCalculation.Tax1040Object>
+                          <local:F1099OIDCalculation.TotalTaxableInterest>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Form1099OIDTotal</mca:CSharpReference>
+                            </OutArgument>
+                          </local:F1099OIDCalculation.TotalTaxableInterest>
+                          <local:F1099OIDCalculation.TotaltaxExemptInterest1099OID>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">F1099OIDTaxExemptInterest</mca:CSharpReference>
+                            </OutArgument>
+                          </local:F1099OIDCalculation.TotaltaxExemptInterest1099OID>
+                        </local:F1099OIDCalculation>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                  <Assign DisplayName="Total Interest Income" sap2010:WorkflowViewState.IdRef="Assign_22">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableInterest</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">Form1099INTTotal + Form1099OIDTotal</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Total Taxable Interest" sap2010:WorkflowViewState.IdRef="Assign_26">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TEI</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">F1099INTTaxExemptInterest + F1099OIDTaxExemptInterest</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <If DisplayName="If TEI VAlue" sap2010:WorkflowViewState.IdRef="If_12">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TEI !=null</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Assign DisplayName=" Taxable Exempt Interest" sap2010:WorkflowViewState.IdRef="Assign_28">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableExemptInterestPrefix</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">TEI -</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                  </If>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine3 - UnemploymentCompensation" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="jtb:Form1099G" Name="Form1099G" />
+                    <Variable x:TypeArguments="x:Double" Name="AlaskaPermanantFundAmount" />
+                    <Variable x:TypeArguments="x:Double" Name="UnemploymentAmount" />
+                  </Sequence.Variables>
+                  <If DisplayName="UnemploymentCompensation Calculation" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.Form1099G != null) &amp;&amp; (Tax1040Object.Income.Form1099G.Count &gt; 0))</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="Unemployment" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                        <Sequence DisplayName="1099G" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Double" Name="TotalUnemploymentCompensationAmount" />
+                            <Variable x:TypeArguments="x:Double" Name="TotalRepaid" />
+                          </Sequence.Variables>
+                          <local:F1099GCalculation sap2010:WorkflowViewState.IdRef="F1099GCalculation_2">
+                            <local:F1099GCalculation.ErrorMessages>
+                              <InArgument x:TypeArguments="jtco:ErrorMessages">
+                                <mca:CSharpValue x:TypeArguments="jtco:ErrorMessages">ErrorMessages</mca:CSharpValue>
+                              </InArgument>
+                            </local:F1099GCalculation.ErrorMessages>
+                            <local:F1099GCalculation.Tax1040Object>
+                              <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                              </InOutArgument>
+                            </local:F1099GCalculation.Tax1040Object>
+                            <local:F1099GCalculation.TotalRepaidForCurrentYear>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">TotalRepaid</mca:CSharpReference>
+                              </OutArgument>
+                            </local:F1099GCalculation.TotalRepaidForCurrentYear>
+                            <local:F1099GCalculation.UnEmployment>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">UnemploymentAmount</mca:CSharpReference>
+                              </OutArgument>
+                            </local:F1099GCalculation.UnEmployment>
+                          </local:F1099GCalculation>
+                          <Assign DisplayName="TotalRepaidAmount" sap2010:WorkflowViewState.IdRef="Assign_29">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">
+                                <mca:CSharpReference x:TypeArguments="x:String">Tax1040Object.OutputForms.Tax1040EZPage1.TotalRepaidForCurrentYear</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">
+                                <mca:CSharpValue x:TypeArguments="x:String">TotalRepaid.ToString()</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                  <If DisplayName="Alaska Permanent Fund" sap2010:WorkflowViewState.IdRef="If_10">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.OtherIncome !=null</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <If DisplayName="If Alaska Check" sap2010:WorkflowViewState.IdRef="If_9">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.OtherIncome.HasAlaskaPermanantFund.HasValue&amp;&amp;Tax1040Object.Income.OtherIncome.HasAlaskaPermanantFund.Value</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence DisplayName="AlaskaPermanantFund" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                            <local:F1040EZAlaskaPermanentFund sap2010:WorkflowViewState.IdRef="F1040EZAlaskaPermanentFund_1">
+                              <local:F1040EZAlaskaPermanentFund.AlaskaPermanantFund>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">AlaskaPermanantFundAmount</mca:CSharpReference>
+                                </OutArgument>
+                              </local:F1040EZAlaskaPermanentFund.AlaskaPermanantFund>
+                              <local:F1040EZAlaskaPermanentFund.Tax1040Object>
+                                <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                  <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                </InOutArgument>
+                              </local:F1040EZAlaskaPermanentFund.Tax1040Object>
+                            </local:F1040EZAlaskaPermanentFund>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </If.Then>
+                  </If>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_23">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.UnemploymentCompensation</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">UnemploymentAmount + AlaskaPermanantFundAmount</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine4 - AdjustedGrossIncome" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Double" Name="TotalAdjustedGrossIncome" />
+                  </Sequence.Variables>
+                  <Sequence DisplayName="AdjustedGrossIncome Calculation" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalWages + Tax1040Object.OutputForms.Tax1040EZPage1.TaxableInterest + Tax1040Object.OutputForms.Tax1040EZPage1.UnemploymentCompensation</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine5 - Personal Exemptions &amp; Standard Deduction" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <Sequence DisplayName="StandardDeduction" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Double" Name="TotalStandardDeduction" />
+                    </Sequence.Variables>
+                    <local1:F1040EZStandardDeduction sap2010:WorkflowViewState.IdRef="F1040EZStandardDeduction_1">
+                      <local1:F1040EZStandardDeduction.Tax1040Object>
+                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                        </InOutArgument>
+                      </local1:F1040EZStandardDeduction.Tax1040Object>
+                      <local1:F1040EZStandardDeduction.TotalWorksheetStandardDeduction>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.StandardDeduction</mca:CSharpReference>
+                        </OutArgument>
+                      </local1:F1040EZStandardDeduction.TotalWorksheetStandardDeduction>
+                    </local1:F1040EZStandardDeduction>
+                  </Sequence>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine6 - TaxableIncome" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                  <If DisplayName="TaxableIncome Calculation" sap2010:WorkflowViewState.IdRef="If_5">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome &gt; Tax1040Object.OutputForms.Tax1040EZPage1.StandardDeduction</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.AdjustedGrossIncome - Tax1040Object.OutputForms.Tax1040EZPage1.StandardDeduction</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                    <If.Else>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">0</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Else>
+                  </If>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine7 - FederalTaxWithholdingAmount" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Double" Name="W2FederalTaxWithholdTotal" />
+                    <Variable x:TypeArguments="x:Double" Name="Form1099INTFederalTaxWithholdTotal" />
+                    <Variable x:TypeArguments="x:Double" Name="Form1099OIDFederalTaxWithholdTotal" />
+                    <Variable x:TypeArguments="x:Double" Name="Form1099GFederalTaxWithholdTotal" />
+                  </Sequence.Variables>
+                  <Sequence DisplayName="FederalTaxWithholding" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Double" Name="FSSBFederalTaxWithHoldingTotal" />
+                      <Variable x:TypeArguments="x:Double" Name="FRRBFederalTaxWithHoldingTotal" />
+                    </Sequence.Variables>
+                    <local:FW2FederalTaxWithholding sap2010:WorkflowViewState.IdRef="FW2FederalTaxWithholding_1">
+                      <local:FW2FederalTaxWithholding.Tax1040Object>
+                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                        </InOutArgument>
+                      </local:FW2FederalTaxWithholding.Tax1040Object>
+                      <local:FW2FederalTaxWithholding.TotalW2FederalTaxWithhold>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">W2FederalTaxWithholdTotal</mca:CSharpReference>
+                        </OutArgument>
+                      </local:FW2FederalTaxWithholding.TotalW2FederalTaxWithhold>
+                    </local:FW2FederalTaxWithholding>
+                    <local:F1099INTFederalTaxWithholding sap2010:WorkflowViewState.IdRef="F1099INTFederalTaxWithholding_1">
+                      <local:F1099INTFederalTaxWithholding.Tax1040Object>
+                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                        </InOutArgument>
+                      </local:F1099INTFederalTaxWithholding.Tax1040Object>
+                      <local:F1099INTFederalTaxWithholding.Total1099INTFederalTaxWithhold>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">Form1099INTFederalTaxWithholdTotal</mca:CSharpReference>
+                        </OutArgument>
+                      </local:F1099INTFederalTaxWithholding.Total1099INTFederalTaxWithhold>
+                    </local:F1099INTFederalTaxWithholding>
+                    <local:F1099OIDFederalTaxWithholding sap2010:WorkflowViewState.IdRef="F1099OIDFederalTaxWithholding_1">
+                      <local:F1099OIDFederalTaxWithholding.Tax1040Object>
+                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                        </InOutArgument>
+                      </local:F1099OIDFederalTaxWithholding.Tax1040Object>
+                      <local:F1099OIDFederalTaxWithholding.Total1099OIDFederalTaxWithhold>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">Form1099OIDFederalTaxWithholdTotal</mca:CSharpReference>
+                        </OutArgument>
+                      </local:F1099OIDFederalTaxWithholding.Total1099OIDFederalTaxWithhold>
+                    </local:F1099OIDFederalTaxWithholding>
+                    <local:F1099GFederalWithholding sap2010:WorkflowViewState.IdRef="F1099GFederalWithholding_1">
+                      <local:F1099GFederalWithholding.Tax1040Object>
+                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                        </InOutArgument>
+                      </local:F1099GFederalWithholding.Tax1040Object>
+                      <local:F1099GFederalWithholding.Total1099GFederalTaxWithhold>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">Form1099GFederalTaxWithholdTotal</mca:CSharpReference>
+                        </OutArgument>
+                      </local:F1099GFederalWithholding.Total1099GFederalTaxWithhold>
+                    </local:F1099GFederalWithholding>
+                    <local:FSSAFederalTaxWithHolding sap2010:WorkflowViewState.IdRef="FSSAFederalTaxWithHolding_1">
+                      <local:FSSAFederalTaxWithHolding.Tax1040Object>
+                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                        </InOutArgument>
+                      </local:FSSAFederalTaxWithHolding.Tax1040Object>
+                      <local:FSSAFederalTaxWithHolding.TotalSSBWithHolding>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">FSSBFederalTaxWithHoldingTotal</mca:CSharpReference>
+                        </OutArgument>
+                      </local:FSSAFederalTaxWithHolding.TotalSSBWithHolding>
+                    </local:FSSAFederalTaxWithHolding>
+                    <local:FRRBFederalTaxWithHolding sap2010:WorkflowViewState.IdRef="FRRBFederalTaxWithHolding_1">
+                      <local:FRRBFederalTaxWithHolding.Tax1040Object>
+                        <InOutArgument x:TypeArguments="jtb:Tax1040">
+                          <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                        </InOutArgument>
+                      </local:FRRBFederalTaxWithHolding.Tax1040Object>
+                      <local:FRRBFederalTaxWithHolding.TotalRRBWithHolding>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">FRRBFederalTaxWithHoldingTotal</mca:CSharpReference>
+                        </OutArgument>
+                      </local:FRRBFederalTaxWithHolding.TotalRRBWithHolding>
+                    </local:FRRBFederalTaxWithHolding>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Double">
+                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.FederalTaxWithholdingAmount</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">W2FederalTaxWithholdTotal + Form1099INTFederalTaxWithholdTotal + Form1099OIDFederalTaxWithholdTotal + Form1099GFederalTaxWithholdTotal + FSSBFederalTaxWithHoldingTotal + FRRBFederalTaxWithHoldingTotal</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine8a - EarnedIncomeCredit" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Double" Name="EarnedIncomeCreditTotal" />
+                  </Sequence.Variables>
+                  <local:F1040EZEarnedIncomeCreditCalculation EICOut="{x:Null}" sap2010:WorkflowViewState.IdRef="F1040EZEarnedIncomeCreditCalculation_2">
+                    <local:F1040EZEarnedIncomeCreditCalculation.ErrorMessages>
+                      <InArgument x:TypeArguments="jtco:ErrorMessages">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessages">ErrorMessages</mca:CSharpValue>
+                      </InArgument>
+                    </local:F1040EZEarnedIncomeCreditCalculation.ErrorMessages>
+                    <local:F1040EZEarnedIncomeCreditCalculation.Tax1040Object>
+                      <InOutArgument x:TypeArguments="jtb:Tax1040">
+                        <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                      </InOutArgument>
+                    </local:F1040EZEarnedIncomeCreditCalculation.Tax1040Object>
+                    <local:F1040EZEarnedIncomeCreditCalculation.TotalEIC>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.EarnedIncomeCredit</mca:CSharpReference>
+                      </OutArgument>
+                    </local:F1040EZEarnedIncomeCreditCalculation.TotalEIC>
+                  </local:F1040EZEarnedIncomeCreditCalculation>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine8b - NonTaxableCombatPay" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Double" Name="NonTaxableCombatPayElectionTotal" />
+                  </Sequence.Variables>
+                  <local:F1040EZNonTaxableCombatPay sap2010:WorkflowViewState.IdRef="F1040EZNonTaxableCombatPay_1">
+                    <local:F1040EZNonTaxableCombatPay.Tax1040Object>
+                      <InOutArgument x:TypeArguments="jtb:Tax1040">
+                        <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                      </InOutArgument>
+                    </local:F1040EZNonTaxableCombatPay.Tax1040Object>
+                    <local:F1040EZNonTaxableCombatPay.TotalNonTaxableCombatPayElection>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.NonTaxableCombatPayElection</mca:CSharpReference>
+                      </OutArgument>
+                    </local:F1040EZNonTaxableCombatPay.TotalNonTaxableCombatPayElection>
+                  </local:F1040EZNonTaxableCombatPay>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine9- TotalPaymentsAndCredits" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                  <If DisplayName="If TaxesAndPenaltiesCheck" sap2010:WorkflowViewState.IdRef="If_11">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.TaxesAndPenalties != null &amp;&amp; Tax1040Object.TaxesAndPenalties.FederalExtensionAmount != null</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_27">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.FederalExtensionAmount</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">(Tax1040Object.TaxesAndPenalties.FederalExtensionAmount.HasValue ? Tax1040Object.TaxesAndPenalties.FederalExtensionAmount.Value : 0)</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                  </If>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_25">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.FederalTaxWithholdingAmount + Tax1040Object.OutputForms.Tax1040EZPage1.EarnedIncomeCredit+ Tax1040Object.OutputForms.Tax1040EZPage1.FederalExtensionAmount</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine10- TaxAmount" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Double" Name="TaxAmountTotal" />
+                  </Sequence.Variables>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxAmount</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">JTL.Tax1040.Core.Process.TaxRateCalculation.TaxCalculation(Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus, Tax1040Object.OutputForms.Tax1040EZPage1.TaxableIncome)</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+                <Sequence DisplayName="F1040EZLine11- RefundAmount &amp;&amp; F1040EZLine12- TaxOweAmount" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                  <If DisplayName="Refund Calculations" sap2010:WorkflowViewState.IdRef="If_6">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits &gt; Tax1040Object.OutputForms.Tax1040EZPage1.TaxAmount</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="Total Payment" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.RefundAmount</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits - Tax1040Object.OutputForms.Tax1040EZPage1.TaxAmount</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxOweAmount</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">0</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="TotalPaymentsAndCredits" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxOweAmount</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.TaxAmount - Tax1040Object.OutputForms.Tax1040EZPage1.TotalPaymentsAndCredits</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.OutputForms.Tax1040EZPage1.RefundAmount</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">0</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+                <Sequence DisplayName="SSBEligibilityCheck" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                  <local:Form1040EZSSBEligiblity sap2010:WorkflowViewState.IdRef="Form1040EZSSBEligiblity_1">
+                    <local:Form1040EZSSBEligiblity.ErrorMessages>
+                      <InArgument x:TypeArguments="jtco:ErrorMessages">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessages">ErrorMessages</mca:CSharpValue>
+                      </InArgument>
+                    </local:Form1040EZSSBEligiblity.ErrorMessages>
+                    <local:Form1040EZSSBEligiblity.Tax1040Object>
+                      <InOutArgument x:TypeArguments="jtb:Tax1040">
+                        <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                      </InOutArgument>
+                    </local:Form1040EZSSBEligiblity.Tax1040Object>
+                  </local:Form1040EZSSBEligiblity>
+                </Sequence>
+                <Sequence DisplayName="TaxableInterestEligibilityCheck" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                  <local:Form1040EZTaxableInterestEligibility sap2010:WorkflowViewState.IdRef="Form1040EZTaxableInterestEligibility_1">
+                    <local:Form1040EZTaxableInterestEligibility.ErrorMessages>
+                      <InArgument x:TypeArguments="jtco:ErrorMessages">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessages">ErrorMessages</mca:CSharpValue>
+                      </InArgument>
+                    </local:Form1040EZTaxableInterestEligibility.ErrorMessages>
+                    <local:Form1040EZTaxableInterestEligibility.Tax1040Object>
+                      <InOutArgument x:TypeArguments="jtb:Tax1040">
+                        <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                      </InOutArgument>
+                    </local:Form1040EZTaxableInterestEligibility.Tax1040Object>
+                  </local:Form1040EZTaxableInterestEligibility>
+                </Sequence>
+                <Sequence DisplayName="PersonalInfoDetails" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                  <local2:PersonalInfoBusinessRuleValidation sap2010:WorkflowViewState.IdRef="PersonalInfoBusinessRuleValidation_1">
+                    <local2:PersonalInfoBusinessRuleValidation.ErrorMessages>
+                      <InArgument x:TypeArguments="jtco:ErrorMessages">
+                        <mca:CSharpValue x:TypeArguments="jtco:ErrorMessages">ErrorMessages</mca:CSharpValue>
+                      </InArgument>
+                    </local2:PersonalInfoBusinessRuleValidation.ErrorMessages>
+                    <local2:PersonalInfoBusinessRuleValidation.Tax1040Object>
+                      <InOutArgument x:TypeArguments="jtb:Tax1040">
+                        <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                      </InOutArgument>
+                    </local2:PersonalInfoBusinessRuleValidation.Tax1040Object>
+                  </local2:PersonalInfoBusinessRuleValidation>
+                </Sequence>
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                      <mca:CSharpReference x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                      <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+      </If.Then>
+    </If>
+    <sads:DebugSymbol.Symbol>d3REOlxUYXgxMDQwRmVhdHVyZUJyYW5jaFxGZWF0dXJlXENvZGVcSlRMLlRheDEwNDAuQnVzaW5lc3NMb2dpY1xXb3JrRmxvd1xBY3Rpdml0aWVzXEYxMDQwRVpMaW5lQnlMaW5lQ2FsY3VsYXRpb24ueGFtbKwBPgP+BQ4CAQFDC0N3AgECRwX8BQoCAQdKC0peAgEITgn6BRQCAQ1PC2gWAwGRBmkL+QUQAgEOUA1bFgMBnQZcDWcWAwGSBmwRbGsCAQ9wD/cFGgIBFFgTWGkDAaMGUxNTeQMBngZkE2RvAwGYBl8TX4sBAwGTBnERmQEcAwHrBZoBEZcCHAMBlwSYAhH9AhwDAZgD/gIRkAMcAwGJA5EDEaMDHAMB+gKkAxHGAxwDAeECxwMRqAQcAwG+AakEEb4EHAMBqgG/BBHPBBwDAZwB0AQR8gQcAgF/8wQRgwUcAgFxhAURwAUcAgFEwQURzgUcAgE4zwUR3AUcAgEs3QUR6gUcAgEg6wUR9gUaAgEVdROYARgDAewFpAETxwEYAwGoBcgBE+sBGAMB5QTsARP3ARwDAcwE+AETgwIcAwGzBIQCE5YCGAMBmASeAhPQAhgDAc4D0QIT8AIYAwGqA/ECE/wCHAMBmQOCAxOPAx4DAYoDkgMTogMeAwH7AqUDE8UDGAMB4gLOAxOnBB4DAb8BrQQTvQRAAwGrAcMEE84ENgMBnQHRBBPlBBgDAYsB5gQT8QQcAwGAAfcEE4IFHAIBcoUFE78FGAIBRcIFE80FMwIBOdAFE9sFQAIBLd4FE+kFPwIBIfMFF/MFeAIBG+4FF+4FiwECARZ4GXi1AQMB7QV8F5YBIgMB8wWnARmnAb8BAwGpBasBF8UBIgMBtQXLARnLAb8BAwHmBM8BF+kBIgMB8gT0ARn0AXoDAdkE7wEZ7wGXAQMBzQSAAhmAAowBAwHABPsBGfsBiwEDAbQEhwIZhwKLAQMBmQSLAheUAiADAaUEoQIZoQK7AQMBzwOlAhfOAiIDAdcD1AIZ1AJ/AwGrA9gCF+4CHAMBswP5Ahn5AoUBAwGiA/QCGfQCoAEDAZoDgwMVjgMeAwGLA5YDFaEDNwMB/AKoAxmoA9QBAwHjAqwDF7cDIAMB7wK6AxfDAyADAegC0wMV3gM2AwHKAt8DFeoDOwMBswLrAxX2AzsDAZwC9wMVggQ2AwGFAoMEFY4ENwMB7gGPBBWaBDcDAdcBmwQVpgQeAwHAAbUEGbUEbwMBuAG6BBm6BJoBAwGyAbAEGbAEbgMBrAHGBBnGBG8DAaQBywQZywSjAQMBngHUBBnUBMkBAwGMAdgEF+MEIAMBkQHuBBnuBJoCAwGGAekEGekEnwEDAYEB/wQZ/wSFAgIBefoEGfoEkQECAXOIBRmIBdABAgFGjAUXowUiAgFepgUXvQUiAgFLygUZygVvAgE/xQUZxQVuAgE62AUZ2AVvAgEz0wUZ0wVuAgEu5gUZ5gVvAgEn4QUZ4QVuAgEigAEZlQEwAwH0Ba8BGcQBNQMBtgXTARnoATUDAfMEkgJCkgJHAwGyBI4CHY4CpwEDAaYEpgIZzQIkAwHYA9sCHdsC4wEDAbQD3wIb7AImAwG8A4sDG4sDiwIDAZIDhgMbhgOdAQMBjAOZAxuZA3EDAYMDngMbngObAQMB/QK0Ax20A9QBAwH1Aq8DHa8DmQEDAfACwQNCwQNDAwHuAr0DHb0DmQEDAekC1gMb1gNxAwHWAtsDG9sDegMBywLiAxviA3EDAb8C5wMb5wODAQMBtALuAxvuA3EDAagC8wMb8wODAQMBnQL/Axv/A4EBAwGRAvoDG/oDcQMBhgKGBBuGBHEDAfoBiwQbiwR/AwHvAZcEG5cEfwMB4wGSBBuSBHEDAdgBowQbowShAgMBzAGeBBueBKUBAwHBAeAEHeAE3wEDAZcB2wQd2wSiAQMBkgGNBRmYBSICAWaZBRmiBSICAV+nBRmyBSICAVOzBRm8BSICAUyNAR+NAXUDAYoGkgEfkgGYAQMBgwaDAR+DAXQDAfwFiAEfiAGZAQMB9QW3AR+3AXUDAd4FwQEfwQF+AwHRBbIBH7IBdAMBxAW8AR+8AXUDAbcF5QEf5QF+AwGbBdsBH9sBdQMBjgXWAR/WAXQDAYEF4AEf4AF1AwH0BKsCG8ACNQMB7gPBAhvMAiQDAdkD4AId6wJAAwG9A5UFH5UF0gECAWyQBR+QBZoBAgFnoAVEoAVFAgFlnAUfnAWaAQIBYK8FH68F0gECAVmqBR+qBZoBAgFUugVEugVFAgFStgUftgWaAQIBTbMCIbMCdwMBjQSuAiGuAnYDAYMEvQIhvQJ5AwH5A7gCIbgCcgMB7wPJAiHJAnUDAeQDxAIhxAKpAQMB2gPoAiPoAnkDAcYD4wIj4wKCAQMBvgM=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="758,288">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FW2Calculation_6" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,296">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="611,420">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="F1099INTCalculation_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,296">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="F1099OIDCalculation_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,296">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="464,62" />
+      <sap2010:ViewStateData Id="Assign_26" sap:VirtualizedContainerService.HintSize="464,62" />
+      <sap2010:ViewStateData Id="Assign_28" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_12" sap:VirtualizedContainerService.HintSize="464,212" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="611,1212">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="F1099GCalculation_2" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Assign_29" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="264,248">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="286,372">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="589,522">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="F1040EZAlaskaPermanentFund_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_27" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_9" sap:VirtualizedContainerService.HintSize="464,296">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_10" sap:VirtualizedContainerService.HintSize="589,446" />
+      <sap2010:ViewStateData Id="Assign_23" sap:VirtualizedContainerService.HintSize="589,62" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="611,1234">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="264,186">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="611,310">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="F1040EZStandardDeduction_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_13" sap:VirtualizedContainerService.HintSize="611,270">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="509,212">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_14" sap:VirtualizedContainerService.HintSize="611,336">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FW2FederalTaxWithholding_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="F1099INTFederalTaxWithholding_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="F1099OIDFederalTaxWithholding_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="F1099GFederalWithholding_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="FSSAFederalTaxWithHolding_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="FRRBFederalTaxWithHolding_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_15" sap:VirtualizedContainerService.HintSize="264,558">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_16" sap:VirtualizedContainerService.HintSize="611,682">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="F1040EZEarnedIncomeCreditCalculation_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="611,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="F1040EZNonTaxableCombatPay_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_23" sap:VirtualizedContainerService.HintSize="611,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_27" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_11" sap:VirtualizedContainerService.HintSize="464,212" />
+      <sap2010:ViewStateData Id="Assign_25" sap:VirtualizedContainerService.HintSize="464,62" />
+      <sap2010:ViewStateData Id="Sequence_17" sap:VirtualizedContainerService.HintSize="611,438">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="611,186">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_19" sap:VirtualizedContainerService.HintSize="264,288">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_20" sap:VirtualizedContainerService.HintSize="264,288">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="553,438" />
+      <sap2010:ViewStateData Id="Sequence_21" sap:VirtualizedContainerService.HintSize="611,562">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Form1040EZSSBEligiblity_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_25" sap:VirtualizedContainerService.HintSize="611,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Form1040EZTaxableInterestEligibility_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="611,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="PersonalInfoBusinessRuleValidation_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_29" sap:VirtualizedContainerService.HintSize="611,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_24" sap:VirtualizedContainerService.HintSize="611,62" />
+      <sap2010:ViewStateData Id="Sequence_30" sap:VirtualizedContainerService.HintSize="633,7166">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="758,7316">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_31" sap:VirtualizedContainerService.HintSize="780,7768">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="905,7918" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="927,8042">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Tax1040WorkFlow.WorkFlow.Activities.F1040EZLineByLineCalculation" sap:VirtualizedContainerService.HintSize="967,8122" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

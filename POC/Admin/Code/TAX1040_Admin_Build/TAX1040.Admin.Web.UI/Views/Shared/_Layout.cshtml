@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                @*<p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>*@
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    @if (Session["Username"] != null)
+                        {
+                            <text>
+                                Welcome,  @Session["Username"].ToString()
+                            </text>
+                        }
+                        <li>@Html.ActionLink("Log Out", "SignOutUser", "UserAdmin")</li>
+                    @*@Html.Partial("_LoginPartial")*@
+                </section>
+                <nav>
+                    <ul id="menu">
+                        @*<li>@Html.ActionLink(" Create Admin", "PersistUserAdmin", "UserAdmin")</li>
+                         <li>@Html.ActionLink("Search", "GetAllCustomers", "User")</li>
+                        <li>@Html.ActionLink("Log Out", "SignInUser", "UserAdmin")</li>*@
+                       @* <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <div style="width: 250px; float: left">
+            <ul>
+                <li>@Html.ActionLink(" Account Setting", "PersistUserAdmin", "UserAdmin")
+                    <ul>
+                        <li>@Html.ActionLink("Create User", "PersistUserAdmin", "UserAdmin")</li>
+                    </ul>
+                    <ul>
+                        <li>@Html.ActionLink("View User", "GetAllUserAdmin", "UserAdmin")</li>
+                    </ul>
+                    <ul>
+                        <li>@Html.ActionLink("Change Password", "ChangePassword", "UserAdmin")</li>
+                    </ul>
+                </li>
+                
+                <li>@Html.ActionLink("Customer Support", "", "")
+                    <ul>
+                        <li>@Html.ActionLink("Customer Search", "", "")</li>
+                    </ul>
+                    <ul>
+                        <li>@Html.ActionLink("Current Status", "", "")</li>
+                    </ul>
+                </li>
+                
+                <li>@Html.ActionLink("Report", "", "")
+                    <ul>
+                        <li>@Html.ActionLink("Payment Report", "", "")</li>
+                    </ul>
+                    <ul>
+                        <li>@Html.ActionLink("Daily Report", "", "")</li>
+                    </ul>
+                </li>
+                
+                  <li>@Html.ActionLink("Efile- IRS Setting", "", "")
+                    <ul>
+                        <li>@Html.ActionLink("IRS User Setting", "", "")</li>
+                    </ul>
+                      <ul>
+                          <li>@Html.ActionLink("Efile IRS Setting", "", "")</li>
+                      </ul>
+                       <ul>
+                        <li>@Html.ActionLink("Efile REejected Return", "", "")</li>
+                    </ul>
+                  </li>
+                        
+            </ul>
+        </div>
+        <div style="width: auto">
+        @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+            </div>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+   
+</body>
+
+</html>

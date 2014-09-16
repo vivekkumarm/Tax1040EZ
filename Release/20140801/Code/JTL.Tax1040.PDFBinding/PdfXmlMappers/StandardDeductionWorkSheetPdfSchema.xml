@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "StandardDeduction">
+  <Mapping>
+    <PDFField>txtWKTLine5Amount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTLine5LargerAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTLine5MaximumAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTLine5MSmallerAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTLine5ExemptionAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTLine5TotalAddedAmount</PDFField>
+    <TROField Type="String">Tax1040.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount</TROField>
+  </Mapping>
+</OutputForm>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "FW2PdfSchema">
+  <Mapping>
+    <PDFField>txtFW2EmployeeFirstName</PDFField>
+    <TROField Type="String">PrimaryTaxPayer.Person.FirstName</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployeeLastName</PDFField>
+    <TROField Type="String">PrimaryTaxPayer.Person.LastName</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployeeInitial</PDFField>
+    <TROField Type="String">PrimaryTaxPayer.Person.MiddleInitial</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtFW2EmployeeSSN</PDFField>
+    <TROField Type="String">PrimaryTaxPayer.Person.SSN</TROField>
+  </Mapping>
+</OutputForm>

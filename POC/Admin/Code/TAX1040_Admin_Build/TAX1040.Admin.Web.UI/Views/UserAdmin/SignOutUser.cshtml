@@ -1,0 +1,12 @@
+﻿@model JTL.TAX1040.Admin.BusinessObject.UserAdmin
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="loginForm"> 
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+}
+</section>

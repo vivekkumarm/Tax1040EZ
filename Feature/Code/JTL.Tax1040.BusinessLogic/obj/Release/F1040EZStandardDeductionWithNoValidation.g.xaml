@@ -1,0 +1,917 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<local:F1040EZStandardDeductionWithNoValidation xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:local="clr-namespace:JTL.Tax1040.BusinessLogic.WorkFlow.Activities.CalculationWithNoValidation;assembly=JTL.Tax1040.BusinessLogic" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <local:F1040EZStandardDeductionWithNoValidation.Implementation>
+    <Sequence DisplayName="StandardDeduction Calculation">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Double" Default="6100" Name="DeductionWorkSheetSingleStandardDeduction" />
+        <Variable x:TypeArguments="x:Double" Default="12200" Name="DeductionWorkSheetMFJStandardDeduction" />
+        <Variable x:TypeArguments="x:Double" Default="3900" Name="DeductionWorkSheetMFJExemption" />
+        <Variable x:TypeArguments="x:Double" Default="0" Name="DeductionWorkSheetDefaultExemption" />
+        <Variable x:TypeArguments="x:Double" Default="10000" Name="DeductionWorksheetSingleDefaultStandardDeduction" />
+        <Variable x:TypeArguments="x:Double" Default="20000" Name="DeductionWorksheetMFJDefaultStandardDeduction" />
+        <Variable x:TypeArguments="x:Double" Default="1000" Name="DeductionWorksheetMinimunStandardDeduction" />
+        <Variable x:TypeArguments="x:Double" Default="350" Name="DeductionWorksheetLine1DefaultAmount" />
+        <Variable x:TypeArguments="x:Double" Name="TotalWages" />
+        <Variable x:TypeArguments="x:String" Name="WagesPrefix" />
+      </Sequence.Variables>
+      <If DisplayName="If Tax1040Object and PersonalDetails  Null Check">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object != null) &amp;&amp; (Tax1040Object.PersonalDetails != null))</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <Sequence DisplayName="StandardDeduction">
+            <Sequence DisplayName="Initialization">
+              <If DisplayName="If-Null Condition Check">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.F1040EZ==null)</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Sequence DisplayName="F1040EZ Instance Creation">
+                    <Assign>
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="jtb:F1040EZ">
+                          <mca:CSharpReference x:TypeArguments="jtb:F1040EZ">Tax1040Object.F1040EZ</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="jtb:F1040EZ">
+                          <mca:CSharpValue x:TypeArguments="jtb:F1040EZ">new F1040EZ()</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign>
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="jtb:F1040EZWorkSheets">
+                          <mca:CSharpReference x:TypeArguments="jtb:F1040EZWorkSheets">Tax1040Object.F1040EZ.F1040EZWorkSheets</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="jtb:F1040EZWorkSheets">
+                          <mca:CSharpValue x:TypeArguments="jtb:F1040EZWorkSheets">new F1040EZWorkSheets()</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign>
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="jtb:DeductionsWorkSheet">
+                          <mca:CSharpReference x:TypeArguments="jtb:DeductionsWorkSheet">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="jtb:DeductionsWorkSheet">
+                          <mca:CSharpValue x:TypeArguments="jtb:DeductionsWorkSheet">new DeductionsWorkSheet()</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <If DisplayName="If - F1040EZWorksheet Object Null Check">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.F1040EZ.F1040EZWorkSheets==null)</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="F1040EZWorkSheets Instance Creation">
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="jtb:F1040EZWorkSheets">
+                              <mca:CSharpReference x:TypeArguments="jtb:F1040EZWorkSheets">Tax1040Object.F1040EZ.F1040EZWorkSheets</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="jtb:F1040EZWorkSheets">
+                              <mca:CSharpValue x:TypeArguments="jtb:F1040EZWorkSheets">new F1040EZWorkSheets()</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </If.Else>
+              </If>
+              <Sequence DisplayName="InitializationDeductionWorksheet">
+                <Assign>
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="jtb:DeductionsWorkSheet">
+                      <mca:CSharpReference x:TypeArguments="jtb:DeductionsWorkSheet">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="jtb:DeductionsWorkSheet">
+                      <mca:CSharpValue x:TypeArguments="jtb:DeductionsWorkSheet">new DeductionsWorkSheet()</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </Sequence>
+            <If DisplayName="If PrimaryTaxpayer Null Check">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.PrimaryTaxPayer !=null</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Switch x:TypeArguments="jtco:FilingStatus">
+                  <Switch.Expression>
+                    <InArgument x:TypeArguments="jtco:FilingStatus">
+                      <mca:CSharpValue x:TypeArguments="jtco:FilingStatus">Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus</mca:CSharpValue>
+                    </InArgument>
+                  </Switch.Expression>
+                  <Sequence x:Key="Single" DisplayName="Single">
+                    <If DisplayName="If Primary Taxpaer Person Null Check">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person !=null</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <If DisplayName="Single TaxPayer ClaimedAsDependent Check">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue ?Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value:false</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Sequence DisplayName="Line 5 WorkSheet">
+                              <Sequence DisplayName="Total Wages">
+                                <local:W2WithNoValidation NonQualifiedPlansAmount="{x:Null}" TaxableScholarshipAmount="{x:Null}">
+                                  <local:W2WithNoValidation.PrefixTotalWages>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String">WagesPrefix</mca:CSharpReference>
+                                    </OutArgument>
+                                  </local:W2WithNoValidation.PrefixTotalWages>
+                                  <local:W2WithNoValidation.Tax1040Object>
+                                    <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                      <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                    </InOutArgument>
+                                  </local:W2WithNoValidation.Tax1040Object>
+                                  <local:W2WithNoValidation.TotalWages>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">TotalWages</mca:CSharpReference>
+                                    </OutArgument>
+                                  </local:W2WithNoValidation.TotalWages>
+                                </local:W2WithNoValidation>
+                                <Assign DisplayName="Line 5 Worksheet A">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">TotalWages + DeductionWorksheetLine1DefaultAmount</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                              <Assign DisplayName="Line 5 Worksheet B">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineBAmount</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorksheetMinimunStandardDeduction</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Line 5 Worksheet C">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Math.Max(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount, Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineBAmount)</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Line 5 Worksheet D">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetSingleStandardDeduction</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Line 5 Worksheet E">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount, Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount)</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Line 5 Worksheet F">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetDefaultExemption</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Line 5 Worksheet G">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount + Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">TotalWorksheetStandardDeduction</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpReference x:TypeArguments="x:Double">TotalWorksheetStandardDeduction</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(DeductionWorksheetSingleDefaultStandardDeduction,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                      </If.Then>
+                    </If>
+                  </Sequence>
+                  <Sequence x:Key="MarriedFilingJointly" DisplayName="MarriedFilingCheck">
+                    <If DisplayName="If PrimaryTaxPayer OR Spouse - Person Null Check">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person !=null) || (Tax1040Object.PersonalDetails.Spouse !=null))</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <If DisplayName="PrimaryTaxPayer AND Spouse - Person Null Check">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person != null) &amp;&amp; (Tax1040Object.PersonalDetails.Spouse != null))</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Sequence DisplayName="TaxPayer&amp;SpouseStatus">
+                              <If DisplayName="TaxPayerHasClaimedAsDependent&amp;SpouseHasClaimedAsDependentCheck">
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue ? Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value : false) &amp;&amp; (Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue ? Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value : false))</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="Line 5 WorkSheet">
+                                    <Sequence DisplayName="Total Wages">
+                                      <local:W2WithNoValidation NonQualifiedPlansAmount="{x:Null}" TaxableScholarshipAmount="{x:Null}">
+                                        <local:W2WithNoValidation.PrefixTotalWages>
+                                          <OutArgument x:TypeArguments="x:String">
+                                            <mca:CSharpReference x:TypeArguments="x:String">WagesPrefix</mca:CSharpReference>
+                                          </OutArgument>
+                                        </local:W2WithNoValidation.PrefixTotalWages>
+                                        <local:W2WithNoValidation.Tax1040Object>
+                                          <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                            <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                          </InOutArgument>
+                                        </local:W2WithNoValidation.Tax1040Object>
+                                        <local:W2WithNoValidation.TotalWages>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">TotalWages</mca:CSharpReference>
+                                          </OutArgument>
+                                        </local:W2WithNoValidation.TotalWages>
+                                      </local:W2WithNoValidation>
+                                      <Assign DisplayName="Line 5 Worksheet A">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">TotalWages + DeductionWorksheetLine1DefaultAmount</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </Sequence>
+                                    <Assign DisplayName="Line 5 Worksheet B">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineBAmount</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorksheetMinimunStandardDeduction</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign DisplayName="Line 5 Worksheet C">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpValue x:TypeArguments="x:Double">Math.Max(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount, Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineBAmount)</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign DisplayName="Line 5 Worksheet D">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetMFJStandardDeduction</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign DisplayName="Line 5 Worksheet E">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount, Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount)</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign DisplayName="Line 5 Worksheet F">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetDefaultExemption</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign DisplayName="Line 5 Worksheet G">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount + Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign>
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">TotalWorksheetStandardDeduction</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <If DisplayName="TaxPayerHasClaimedAsDependentOrSpouseHasClaimedAsDependentCheck">
+                                    <If.Condition>
+                                      <InArgument x:TypeArguments="x:Boolean">
+                                        <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue ? Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value : false) || (Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue ? Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value : false))</mca:CSharpValue>
+                                      </InArgument>
+                                    </If.Condition>
+                                    <If.Then>
+                                      <Sequence DisplayName="Line 5 WorkSheet">
+                                        <Sequence DisplayName="Total Wages">
+                                          <local:W2WithNoValidation NonQualifiedPlansAmount="{x:Null}" TaxableScholarshipAmount="{x:Null}">
+                                            <local:W2WithNoValidation.PrefixTotalWages>
+                                              <OutArgument x:TypeArguments="x:String">
+                                                <mca:CSharpReference x:TypeArguments="x:String">WagesPrefix</mca:CSharpReference>
+                                              </OutArgument>
+                                            </local:W2WithNoValidation.PrefixTotalWages>
+                                            <local:W2WithNoValidation.Tax1040Object>
+                                              <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                                <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                              </InOutArgument>
+                                            </local:W2WithNoValidation.Tax1040Object>
+                                            <local:W2WithNoValidation.TotalWages>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">TotalWages</mca:CSharpReference>
+                                              </OutArgument>
+                                            </local:W2WithNoValidation.TotalWages>
+                                          </local:W2WithNoValidation>
+                                          <Assign DisplayName="Line 5 Worksheet A">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">TotalWages + DeductionWorksheetLine1DefaultAmount</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                        <Assign DisplayName="Line 5 Worksheet B">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineBAmount</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorksheetMinimunStandardDeduction</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <Assign DisplayName="Line 5 Worksheet C">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Max(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount, Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineBAmount)</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <Assign DisplayName="Line 5 Worksheet D">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetMFJStandardDeduction</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <Assign DisplayName="Line 5 Worksheet E">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount, Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount)</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <Assign DisplayName="Line 5 Worksheet F">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetMFJExemption</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <Assign DisplayName="Line 5 Worksheet G">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount + Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <Assign>
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpReference x:TypeArguments="x:Double">TotalWorksheetStandardDeduction</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                    </If.Then>
+                                    <If.Else>
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">TotalWorksheetStandardDeduction</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(DeductionWorksheetMFJDefaultStandardDeduction,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Else>
+                                  </If>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <If DisplayName="MFJCheck">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person != null)</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <If DisplayName="TaxPayerHasClaimedAsDependentCheck">
+                                  <If.Condition>
+                                    <InArgument x:TypeArguments="x:Boolean">
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.HasValue ? Tax1040Object.PersonalDetails.PrimaryTaxPayer.Person.HasClaimedAsDependent.Value : false)</mca:CSharpValue>
+                                    </InArgument>
+                                  </If.Condition>
+                                  <If.Then>
+                                    <Sequence DisplayName="Line 5 WorkSheet">
+                                      <Sequence DisplayName="Total Wages">
+                                        <local:W2WithNoValidation NonQualifiedPlansAmount="{x:Null}" TaxableScholarshipAmount="{x:Null}">
+                                          <local:W2WithNoValidation.PrefixTotalWages>
+                                            <OutArgument x:TypeArguments="x:String">
+                                              <mca:CSharpReference x:TypeArguments="x:String">WagesPrefix</mca:CSharpReference>
+                                            </OutArgument>
+                                          </local:W2WithNoValidation.PrefixTotalWages>
+                                          <local:W2WithNoValidation.Tax1040Object>
+                                            <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                              <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                            </InOutArgument>
+                                          </local:W2WithNoValidation.Tax1040Object>
+                                          <local:W2WithNoValidation.TotalWages>
+                                            <OutArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpReference x:TypeArguments="x:Double">TotalWages</mca:CSharpReference>
+                                            </OutArgument>
+                                          </local:W2WithNoValidation.TotalWages>
+                                        </local:W2WithNoValidation>
+                                        <Assign DisplayName="Line 5 Worksheet A">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpValue x:TypeArguments="x:Double">TotalWages + DeductionWorksheetLine1DefaultAmount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                      <Assign DisplayName="Line 5 Worksheet B">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineBAmount</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorksheetMinimunStandardDeduction</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign DisplayName="Line 5 Worksheet C">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">Math.Max(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount, Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineBAmount)</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign DisplayName="Line 5 Worksheet D">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetMFJStandardDeduction</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign DisplayName="Line 5 Worksheet E">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount, Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount)</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign DisplayName="Line 5 Worksheet F">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetMFJExemption</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign DisplayName="Line 5 Worksheet G">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount + Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">TotalWorksheetStandardDeduction</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Assign>
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpReference x:TypeArguments="x:Double">TotalWorksheetStandardDeduction</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Double">
+                                          <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(DeductionWorksheetMFJDefaultStandardDeduction,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </If.Else>
+                                </If>
+                              </If.Then>
+                              <If.Else>
+                                <If DisplayName="MFJCheck">
+                                  <If.Condition>
+                                    <InArgument x:TypeArguments="x:Boolean">
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.PersonalDetails.Spouse.Person != null)</mca:CSharpValue>
+                                    </InArgument>
+                                  </If.Condition>
+                                  <If.Then>
+                                    <If DisplayName="SpouseHasClaimedAsDependentCheck">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.HasValue ? Tax1040Object.PersonalDetails.Spouse.Person.HasClaimedAsDependent.Value : false)</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Sequence DisplayName="Line 5 WorkSheet">
+                                          <Sequence DisplayName="Total Wages">
+                                            <local:W2WithNoValidation NonQualifiedPlansAmount="{x:Null}" TaxableScholarshipAmount="{x:Null}">
+                                              <local:W2WithNoValidation.PrefixTotalWages>
+                                                <OutArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpReference x:TypeArguments="x:String">WagesPrefix</mca:CSharpReference>
+                                                </OutArgument>
+                                              </local:W2WithNoValidation.PrefixTotalWages>
+                                              <local:W2WithNoValidation.Tax1040Object>
+                                                <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                                  <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                                                </InOutArgument>
+                                              </local:W2WithNoValidation.Tax1040Object>
+                                              <local:W2WithNoValidation.TotalWages>
+                                                <OutArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpReference x:TypeArguments="x:Double">TotalWages</mca:CSharpReference>
+                                                </OutArgument>
+                                              </local:W2WithNoValidation.TotalWages>
+                                            </local:W2WithNoValidation>
+                                            <Assign DisplayName="Line 5 Worksheet A">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <mca:CSharpValue x:TypeArguments="x:Double">TotalWages + DeductionWorksheetLine1DefaultAmount</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                          </Sequence>
+                                          <Assign DisplayName="Line 5 Worksheet B">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineBAmount</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorksheetMinimunStandardDeduction</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign DisplayName="Line 5 Worksheet C">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Max(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineAAmount, Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineBAmount)</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign DisplayName="Line 5 Worksheet D">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetMFJStandardDeduction</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign DisplayName="Line 5 Worksheet E">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Min(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineCAmount, Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineDAmount)</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign DisplayName="Line 5 Worksheet F">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">DeductionWorkSheetMFJExemption</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign DisplayName="Line 5 Worksheet G">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineEAmount + Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineFAmount</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign>
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpReference x:TypeArguments="x:Double">TotalWorksheetStandardDeduction</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">
+                                                <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(Tax1040Object.F1040EZ.F1040EZWorkSheets.DeductionsWorkSheet.LineGAmount,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Assign>
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpReference x:TypeArguments="x:Double">TotalWorksheetStandardDeduction</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Double">
+                                              <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(DeductionWorksheetMFJDefaultStandardDeduction,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </If.Else>
+                                    </If>
+                                  </If.Then>
+                                </If>
+                              </If.Else>
+                            </If>
+                          </If.Else>
+                        </If>
+                      </If.Then>
+                    </If>
+                  </Sequence>
+                </Switch>
+              </If.Then>
+            </If>
+          </Sequence>
+        </If.Then>
+      </If>
+      <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </local:F1040EZStandardDeductionWithNoValidation.Implementation>
+</local:F1040EZStandardDeductionWithNoValidation>

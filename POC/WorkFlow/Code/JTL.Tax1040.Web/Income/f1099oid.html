@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaxGarden.com</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/Pages/Income/F1099OID.js"></script>
+
+
+</head>
+<body onload="F1099OIDGetData()">
+
+    <form id="form1">
+        <div class="container">
+            <!--Header-->
+
+            <script type="text/javascript" src="../lib/header.js"></script>
+
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+
+                    <!--Bread Crum-->
+
+                    <script type="text/javascript" src="../lib/BreadCrum.js"></script>
+
+                    <div class="innerform">
+
+                        <!-- Left menu -->
+
+                        <script type="text/javascript" src="../lib/leftmenu.js"></script>
+
+                        <div class="formfull">
+
+                            <!-- Right Help area -->
+                            <div id="riht">
+                                <script src="../lib/rightmenu.js"></script>
+                            </div>
+
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="cl8">
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1099 OID -Interest Income Information</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+
+                                                    <div class="panel-body ">
+                                                        <h4>
+                                                            <label>Enter Your 1099 OID Interest Income & Withholding from Box 1 to Box 9</label></h4>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblBox1">Box 1 Original issue Discount</label>
+                                                            </div>
+
+                                                            <div class="right">
+                                                                <input type="text" id="txtOriginalIssueDiscount" placeholder="Enter Box 1 Values" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Box 1 Values" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popOriginalIssueDiscount" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblbox2">Box 2 Other Periodical Interest</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtOtherPeriodicInterest" placeholder="Enter Box 2 Values" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Box 2 Values" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popOtherPeriodicalInterest" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblbox3">Box 3 Early withdrawal Penalty</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtEarlyWithdrawalPenalty" placeholder="Enter Box 3 Values" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Box 3 Values" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popEarlyWithdrawalPenalty" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblbox4">Box 4 Federal Tax Withheld</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtFederalTaxWithHoldingAmount" placeholder="Enter Box 4 Values" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Box 4 Values" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popFederalTaxWithheld" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblbox5">Box 5 Foreign tax Withheld</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtForeignTaxPaid" placeholder="Enter Box 5 Values" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Box 5 Values" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popForeignTaxWithheld" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+
+                                                        <div class="field-group" id="ddlStateCode">
+                                                            <div class="left-lbl">
+                                                                <label for="ddlForeginCountry">Box 6 Foreign Country on US possession</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <select name="ForeginCountry" id="ddlForeginCountryID">
+                                                                    <option value="1" selected="selected">--Select--</option>
+                                                                </select>
+                                                            </div>
+                                                            <a id="popForiegnCountryorUS" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblbox7">Box 7 Description</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtDescription" placeholder="Enter Box 7 Values" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Box 7 Values" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popDescription" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblbox8">Box 8 OID on U.S Treasury Obligation</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtUSTreasuryObligations" placeholder="Enter Box 8 Values" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Box 8 Values" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popOIDonUSTreasuryObligation" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblbox9">Box 9 Investment Expenses</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtInvestmentExpenses" placeholder="Enter the Box 9 Values" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Box 9 Values" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popInvestmentExpenses" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblAccNo">Account Number</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtAccNo" placeholder="Enter the Account Number" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter the Account Number" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popAccountNumber" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl"></div>
+                                                            <div class="right">
+                                                                <button type="submit" class="btn btn-success" onclick="PersistF1099OID()">Next</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">State Info on Form 1099OID
+
+
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>
+                                                        <label>
+                                                            Lets proceed with Your 1099 OID State Information</label></h4>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="ddlbox11">Box 11 State Code</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <select name="ddlState" id="ddlStateCodeID">
+                                                                <option value="1" selected="selected">--Select--</option>
+                                                            </select>
+                                                        </div>
+                                                        <a href="#" class="help"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="lblbox12">Box 12 Payer's State Id</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtStateIdentificationNumber" placeholder="Enter Payer State Id" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Payer State Id" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popPayerStateId" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="lblbox13">Box 13 State Tax Withheld</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtStateTaxWithholdingAmount" placeholder="Enter State Tax Withheld" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter State Tax Withheld" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popStateTaxWithheld" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+
+
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="ddlbox11">Box 11 State Code</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <select name="ddl" id="ddlStateCode2">
+                                                                <option value="1" selected="selected">--Select--</option>
+                                                            </select>
+                                                        </div>
+                                                        <a id="popStateCode2" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+
+
+
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="lblbox12">Box 12 Payer's State Id</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtPayerStateID" placeholder="Enter Payer State Id" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Payer State Id" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popPayerStateID" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="lblbox13">Box 13 State Tax Withheld</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtPayerStateWithheld" placeholder="Enter State Tax Withheld" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter State Tax Withheld" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popPayerStateWithheld" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+
+                                                    </div>
+                                                    <h4>
+                                                        <label>
+                                                            Other Info:
+                                                        </label>
+                                                    </h4>
+
+
+
+
+                                                    <div id="Taxexempt">
+
+                                                        <label>
+                                                            <input type="checkbox" id="chktaxexempt" name="rad1099OID" value="1" />
+                                                            You  want to report Your Tax Exempt OID Interest.
+                                                        </label>
+
+                                                    </div>
+
+
+                                                    <div id="Taxexemptshow">
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lbltaxexampt">Tax Exempt Interest</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txttaxexempt" placeholder="Enter the Tax Exempt Interest" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter the Tax Exempt Interest" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popTaxExempt" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+                                                        <h4>
+                                                            <label>Please enter Your In State source on Your OID TaxExempt Interest.</label>
+                                                        </h4>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="ddlbox11">
+                                                                    State Code
+                                                                </label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <select name="ddlStateCode" id="ddlStateCode3">
+                                                                    <option value="1" selected="selected">--Select--</option>
+                                                                </select>
+                                                            </div>
+                                                            <a id="popStateCode3" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblstateexempt">State Exempt Amount</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtstateexempt" placeholder="Enter the State Exempt Amount" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter the State Exempt Amount" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popStateExempt" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+                                                    </div>
+                                                    <div id="OIDadjus">
+                                                        <label>
+                                                            <input type="checkbox" id="chkadjustment" name="rad1099OID" value="1" />
+                                                            You want to report Your  OID adjustment.
+                                                        </label>
+                                                    </div>
+                                                    <div id="OIDadjusshow">
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lblajusment">Please enter Your OID Adjustment amount</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtajusment" placeholder="Enter Your OID Adjustment amount" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Your OID Adjustment amount" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popOldAdjustment" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <button type="submit" class="btn btn-success" onclick="PersistF1099OID()">Next</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <button type="submit" class="btn btn-primary" onclick="GoToPreviousPage();return false;">Back</button>
+                                    <button type="submit" id="btnPrimaryFilerInfo" onclick="ContinueAndPersistF1099OID()" class="btn btn-success">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--//Footer-->
+        <script type="text/javascript" src="../lib/footer.js"></script>
+    </form>
+
+
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>
+
+</body>
+
+</html>
+
+

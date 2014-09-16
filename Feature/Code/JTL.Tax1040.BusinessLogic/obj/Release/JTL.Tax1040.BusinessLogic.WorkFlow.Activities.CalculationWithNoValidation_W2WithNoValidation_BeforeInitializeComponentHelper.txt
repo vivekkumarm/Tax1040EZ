@@ -1,0 +1,2 @@
+W2WithNoValidation.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

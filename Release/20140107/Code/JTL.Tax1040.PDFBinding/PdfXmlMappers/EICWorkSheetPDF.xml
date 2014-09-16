@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "EICWorkSheet">
+  <Mapping>
+    <PDFField>txtWKTEICStep2</PDFField>
+    <TROField Type="Integer">tax1040.OutputForms.Tax1040EZPage1.TotalWages</TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTEICCreditAmount</PDFField>
+    <TROField Type="Integer"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTEICLine4Amount</PDFField>
+    <TROField Type="Integer"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>txtWKTEICFilingStatusCreditAmount</PDFField>
+    <TROField Type="Integer"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkEICFilingStatusYes</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+  <Mapping>
+    <PDFField>chkEICFilingStatusNo</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>txtWKTEICLine8aCreditAmount</PDFField>
+    <TROField Type="Integer"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkEICLine5Yes</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+
+  <Mapping>
+    <PDFField>chkEICLine5No</PDFField>
+    <TROField Type="Bool"></TROField>
+  </Mapping>
+</OutputForm>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,883 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/Pages/Income/w2.js"></script>
+</head>
+
+<body>
+    <form id="W2">
+        <div class="container">
+            <!--Header-->
+
+            <script type="text/javascript" src="../lib/header.js"></script>
+
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+
+                    <!--Bread Crum-->
+
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <script type="text/javascript" src="../lib/incomeleftmenu.js"></script>
+                        <div class="formfull">
+
+                            <!-- Right Help area -->
+                            <div id="riht">
+                                <script src="../lib/rightmenu.js"></script>
+                            </div>
+
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Wages (Form W-2 )
+                                            <!-- Right side collapse area menu  -->
+                                            <a id="changeSidebarPos" data-original-title="Show / Hide Sidebar" data-toggle="tooltip" class="hidden-xs open pull-right" href="#"><i class="transfer"></i></a>
+                                        </h2>
+                                    </div>
+
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue W2Employment">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="aEmployerInfo">Employer Information</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <h4>Share  with us your Employer Information on Form W-2</h4>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2EmployerID">Employer Identification Number</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2EmployerID" maxlength="10" onkeyup="javascript:return maskInputForEIN(this.value,this,'2',event);" name="txtW2EmployerID" tabindex="1" class="form-control tip" placeholder="Enter Employer Identification Number" data-toggle="tooltip" data-placement="right" title="Enter Employer Identification Number" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popEmployerID" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2EmployerName">Employer's Name</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2EmployerName" maxlength="35" name="txtW2EmployerName" tabindex="2" class="form-control tip" placeholder="Enter Employer's Name" data-toggle="tooltip" data-placement="right" title="Enter Employer's Name" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popEmployerName" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2EmployerAddress">Employer's  Address</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2EmployerAddress" maxlength="35" tabindex="3" class="form-control tip" placeholder="Enter Employer's  Address" data-toggle="tooltip" data-placement="right" title="Enter Employer's  Address" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popEmployerAddress" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2EmployerCity">Employer's City</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2EmployerCity" maxlength="20" tabindex="4" class="form-control tip" placeholder="Enter Employer's City" data-toggle="tooltip" data-placement="right" title="Enter Employer's City" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popEmployerCity" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2EmployerState">Employer's State</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <select name="ddlW2State" id="ddlW2State" tabindex="5">
+                                                            </select>
+                                                        </div>
+                                                        <a id="popEmployerState" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2EmployerZip">Employer's Zip Code</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2EmployerZip" name="txtW2EmployerZip" onkeyup="javascript:return maskInput(this.value,this,'5',event,true);" maxlength="10" tabindex="6" class="form-control tip" placeholder="Enter Employer's Zip Code" data-toggle="tooltip" data-placement="right" title="Enter Employer's Zip Code" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popEmployerZipCode" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <!-- <div class="right">
+                                                                 <input type="text" id="txtW2EmployeeZip" class="form-control" />
+                                                             </div>-->
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <button type="submit" id="btnSubmitOne" tabindex="7" class="btn btn-success btnNextClass">Next</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue W2Employment">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="aEmployeeAddress">Employee Address</a>
+
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body ">
+                                                    <h4>Confirm your Form W-2 Mailing address</h4>
+                                                      <div class="checkbox">
+                                                          <label>
+                                                              <input type="checkbox" id="chkW2EmployerAddress" tabindex="8" name="optionsRadios" />
+                                                              Employee Address on Form W-2 is different from your Mailing address
+                                                          </label>
+                                                          </div>
+                                                    <div class="panel-group" id="divEmployee">
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label id="lblW2EmployeeAddress">Employee Address</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtW2EmployeeAddress" maxlength="35" tabindex="9" class="form-control tip" placeholder="Enter Employee Address" data-toggle="tooltip" data-placement="right" title="Enter Employee Address" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popEmployeeAddress" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label id="lblW2EmployeeCity">Employee City</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtW2EmployeeCity" maxlength="20" tabindex="10" class="form-control tip" placeholder="Enter Employee City" data-toggle="tooltip" data-placement="right" title="Enter Employee City" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popEmployeeCity" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label id="lblW2EmployeeState">Employee State</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <select name="ddlW2EmployeeState" id="ddlW2EmployeeState" tabindex="11">
+                                                                </select>
+                                                            </div>
+                                                            <a id="popEmployeeState" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label id="lblW2EmployeeZip">Employee Zip Code</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtW2EmployeeZip" name="txtW2EmployeeZip" onkeyup="javascript:return maskInput(this.value,this,'5',event,true);" maxlength="10" tabindex="12" class="form-control tip" placeholder="Enter Employee Zip Code" data-toggle="tooltip" data-placement="right" title="Enter Employee Zip Code" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popEmployeeZipCode" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <h4>Check any that applies to Form W-2
+                                                    </h4>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" id="chkW2correct" name="optionsRadios" tabindex="13" />
+                                                            Corrected W-2
+                                                        </label>
+                                                    </div>
+                                                      <div class="checkbox">
+                                                          <label>
+                                                              <input type="checkbox" id="chkW2NonStandard" name="optionsRadios" tabindex="14" />
+                                                              Non Standard W-2
+                                                          </label>
+                                                          </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <button type="submit" id="btnSubmitTwo" class="btn btn-success btnNextClass" tabindex="15">Next</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue W2Employment">
+                                             <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" id="aWagesWithholding">Wages & Withholdings</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>
+                                                        <label>Start entering your Wages & Withholdings information from Form W-2 (Box 1 to Box 10)</label>
+                                                    </h4>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2FederalWages">Box 1 Federal Wages</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2FederalWages"  
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                tabindex="16" class="form-control tip amountField" placeholder="Enter Federal Wages"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Federal Wages" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popFederalWages" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2FederalWithheld">Box 2 Federal Tax Withheld</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2FederalWithheld" 
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                tabindex="17" class="form-control tip amountField" placeholder="Enter Federal Tax Withheld"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Federal Tax Withheld" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popFederalTaxWithheld" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2SSWages">Box  3 Social Security Wages</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2SSWages" onblur="extractNumberBlur
+                                                                (this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                class="form-control tip amountField" tabindex="18" placeholder="Enter Social Security Wages"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Social Security Wages" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popSocialSecurityWages" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2SSwithheld">Box 4 Social Security Tax Withheld</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2SSwithheld"                                                                 onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                class="form-control tip amountField" tabindex="19" placeholder="Enter Social Security Tax Withheld"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Social Security Tax Withheld" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popSocialSecurityTaxWithheld" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2MedicalWages">Box 5 Medicare Wages</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2MedicalWages"                                                                 onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                tabindex="20" class="form-control tip amountField" placeholder="Enter Medicare Wages"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Medicare Wages" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popMedicalWages" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2MedicalWithheld">Box 6 Medicare Tax Withheld</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2MedicalWithheld"
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                tabindex="21" class="form-control tip amountField" placeholder="Enter Medicare Tax Withheld"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Medicare Tax Withheld" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popMedicalTaxWithheld" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2SSTips">Box 7 Social Security Tips</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2SSTips"
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                tabindex="22" class="form-control tip amountField" placeholder="Enter Social Security Tips"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Social Security Tips" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popSocialSecurityTips" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2AllocatedTips">Box 8 Allocated Tips</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2AllocatedTips" 
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                tabindex="23" class="form-control tip amountField" placeholder="Enter Allocated Tips"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Allocated Tips" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popAllocatedTips" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2DependentCare">Box 10 Dependent Care Benefits</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtW2DependentCare" 
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                tabindex="24" class="form-control tip amountField" placeholder="Enter Dependent Care Benefits"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Dependent Care Benefits" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popDependentCareBenefits" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblQualifiedPlan">Box 11 Non Qualified Plan</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtQualifiedPlan" 
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                tabindex="25" class="form-control tip amountField" placeholder="Enter Non Qualified Plan"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Non Qualified Plan" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popNonQualifiedPlan" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <button type="submit" id="btnSubmitThree" tabindex="26" class="btn btn-success btnNextClass">Next</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue W2Employment">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" id="aW2Benefits">W-2 Benefits & Other Information
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>Let's Continue your benefits and Other Information from Box 12 to Box 14</h4>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW212A" data-toggle="tooltip" data-placement="right" title="(See Instruction for Box 12)" data-trigger="focus">Box 12A <small>(See Instruction for Box 12)</small> </label>
+                                                        </div>
+
+                                                        <div class="right">
+                                                            <select name="ddlW212A" id="ddlW212A" tabindex="27">
+                                                            </select>
+                                                        </div>
+                                                        <a id="popW212A" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <input type="text" id="txt12AAmount" 
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                name="12AAmount" class="form-control tip amountField" placeholder="Enter Box 12A"
+                                                                data-toggle="tooltip" tabindex="28" data-placement="right"
+                                                                title="Enter Box 12A" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="pop12AAmount" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW212B" data-toggle="tooltip" data-placement="right" title="See Instruction for Box 12" data-trigger="focus">Box 12B<small>(See Instruction for Box 12)</small></label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <select name="ddlW212B" id="ddlW212B" tabindex="29">
+                                                            </select>
+                                                        </div>
+                                                        <a id="popW212B" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <input type="text" id="txt12BAmount"
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                name="12BAmount" class="form-control tip amountField" tabindex="30"
+                                                                placeholder="Enter Box 12B" data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Box 12B" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popW212BAmount" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW212c" data-toggle="tooltip" data-placement="right" title="See Instruction for Box 12" data-trigger="focus">Box 12C<small>(See Instruction for Box 12)</small></label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <select name="ddlW212C" id="ddlW212C" tabindex="31">
+                                                            </select>
+                                                        </div>
+                                                        <a id="popW212C" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <input type="text" id="txt12CAmount" 
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                name="12CAmount" class="form-control tip amountField" placeholder="Enter Box 12C"
+                                                                tabindex="32" data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Box 12C" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="pop12CAmount" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW212D" data-toggle="tooltip" data-placement="right" title="See Instruction for Box 12" data-trigger="focus">Box 12D <small>(See Instruction for Box 12)</small></label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <select name="ddlW212D" id="ddlW212D" tabindex="33">
+                                                            </select>
+                                                        </div>
+                                                        <a id="popW212D" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <input type="text" id="txt12DAmount" 
+                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                name="12DAmount" class="form-control tip amountField" placeholder="Enter Box 12D"
+                                                                tabindex="34" data-toggle="tooltip" data-placement="right"
+                                                                title="Enter Box 12D" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="pop12DAmount" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label id="lblW2Box13">Box 13- Check which one is applicable</label>
+                                                        </div>
+
+                                                        <div class="right">
+                                                            <ul class="list-group">
+                                                                <li>
+                                                                    <label>
+                                                                        <input type="radio" id="rdW2Statutory" name="optionsRadios" tabindex="35" />
+                                                                        Statutory Employee
+                                                                    </label>
+                                                                </li>
+                                                                <li>
+                                                                    <label>
+                                                                        <input type="radio" id="rdW2RetirementPlan" name="optionsRadios" tabindex="36" />
+                                                                        Retirement Plan
+                                                                    </label>
+                                                                </li>
+                                                                <li>
+                                                                    <label>
+                                                                        <input type="radio" id="rdW2ThridPartySick" name="optionsRadios" tabindex="37" />
+                                                                        Third-party Sick Pay
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-heading">
+                                                            <h3>Box 14 Other Information
+                                                               <small> (Leave Blank if no value)</small>
+                                                                        <a class="btn btn-default btn-xs pull-right" href="#" id="aBox14OtherInformation"><i class="fa fa-plus " tabindex="38"></i>Add New</a>
+                                                            </h3>
+                                                        </div>
+
+                                                        <div class="panel-body-grid">
+
+                                                            <div class="pangird itm">
+                                                                <label class="col-md-4 ">Description</label>
+                                                                <label class="col-md-4 ">Amount</label>
+                                                                <label class="col-md-3 ">Code</label>
+                                                            </div>
+                                                            <div id="divBox14OtherInformation" class="clearfix">
+                                                                <div  id="divBox14OtherInformation0">
+                                                                    <input type="hidden" id="hW2OtherInfoIndex0" value="0" />
+                                                                    <div class="pangird itm">
+                                                                    <label class="col-md-4">
+                                                                        <input type="text" maxlength="15" id="txtW2Description0" class="form-control" tabindex="39" />
+                                                                    </label>
+                                                                    <label class="col-md-4">
+                                                                        <input type="text" id="txtW2Amount0"
+                                                                            onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                            class="form-control amountField" tabindex="40" />
+                                                                    </label>
+                                                                    <label class="col-md-4">
+                                                                        <select id="ddlW2OtherCode0" name="ddlW2OtherCode" tabindex="41">
+                                                                        </select>
+                                                                    </label>
+                                                                </div></div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right"></div>
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <button type="submit" id="btnSubmitFour" class="btn btn-success btnNextClass" tabindex="42">Next</button>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue W2Employment">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" id="aStateandLocalInfo">State & Local Information
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFive" class="panel-collapse collapse">
+                                                <div class="panel-body ">
+                                                    <h4>
+                                                        <label>Proceed with your State and Local Info</label>
+                                                    </h4>
+                                                    <div class="">
+                                                        <!-- <h4>
+                                                                <label>State Info</label>
+                                                            </h4>-->
+
+
+                                                        <div class="panel panel-primary">
+                                                            <!-- State begining container -->
+                                                            <div class="panel-heading">
+                                                                <h3>State Info & Local Info <a class="btn btn-default btn-xs pull-right" id="aStateWages" href="#"><i class="fa fa-plus " tabindex="43"></i>Add New</a></h3>
+                                                            </div>
+
+                                                            <div class="panel-body-grid">
+                                                                <div class="pangird head">
+                                                                    <label class="col-md-3 ">Box 15 State Code</label>
+                                                                    <label class="col-md-3 ">Box 15A State ID No</label>
+                                                                    <label class="col-md-3 ">Box 16 State Wages</label>
+                                                                    <label class="col-md-3 ">Box 17State Tax Withheld</label>
+                                                                </div>
+                                                              
+                                                                    <div id="divLocalStateWagesInfo" class="clearfix">
+                                                                       
+                                                                        <div id="divLocalStateWagesInfo0" >
+                                                                <div class="pangird itm">
+                                                                            <input type="hidden" id="hLocalStateWagesIndex0" value="0" />
+                                                                            <label id="lblEmployerName" class="col-md-3" >
+                                                                                <select id="ddlW2Box15State0" name="ddlBox15State" tabindex="44">
+                                                                                </select>
+                                                                            </label>
+                                                                            <label class="col-md-3">
+                                                                                <input type="text" maxlength="9" id="txtW2StateID0" onkeyup="extractNumber(this,event,0,false,false);" class="form-control" tabindex="45" />
+                                                                            </label>
+                                                                            <label class="col-md-3">
+                                                                                <input type="text" id="txtW2StateWages0"
+                                                                                    onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                                    class="form-control amountField" tabindex="46"  maxlength="9" />
+                                                                            </label>
+                                                                            <label class="col-md-3">
+                                                                                <input type="text" id="txtW2StateWithheld0" 
+                                                                                    onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                                    class="form-control amountField" tabindex="47" />
+                                                                            </label>
+                                                                        
+                                                                    </div></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--</div>-->
+
+
+                                                        <hr />
+
+                                                        <!-- <div class="panel panel-primary">-->
+                                                        <!--<div class="panel-heading">
+                                                                    <h3>Local Info<a class="btn btn-default btn-xs pull-right" href="#" id="aLocalTaxInfo">
+                                                                        <i class="fa fa-plus "></i>Add New
+                                                                    </a></h3>
+                                                                </div>-->
+                                                       <div class="panel panel-primary">
+                                                        <div class="panel-body-grid">
+                                                            <div class="pangird head">
+                                                                <label class="col-md-3 ">Box 18 Local Wages</label>
+                                                                <label class="col-md-3 ">Box 19 Local Withheld</label>
+                                                                <label class="col-md-3 ">Box 20 Locality Name</label>
+                                                                <label class="col-md-3 ">Associated State</label>
+                                                            </div>
+                                                            <!-- new local info -->
+
+                                                           
+                                                                <div id="divLocalTaxInfo" class="clearfix">
+                                                                  
+                                                                    <div id="divLocalTaxInfo0">
+                                                            <div class="pangird itm">
+                                                                         
+                                                                        <label class="col-md-3">
+                                                                            <input type="hidden" id="hLocalTaxInfoIndex0" value="0" />
+                                                                            <input type="text" id="txtW2LocalWages0" 
+                                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                                class="form-control amountField" tabindex="48" />
+                                                                        </label>
+                                                                        <label class="col-md-3">
+                                                                            <input type="text" id="txtW2LocalWithHeld0"
+                                                                                onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                                                class="form-control amountField" tabindex="49" />
+                                                                        </label>
+                                                                        <label class="col-md-3">
+                                                                            <input type="text" maxlength="9" id="txtW2LocalityName0" class="form-control" tabindex="50" />
+                                                                        </label>
+                                                                        <label class="col-md-3">
+                                                                            <select name="ddlW2AssociatedState" id="ddlW2AssociatedState0" tabindex="51">
+                                                                            </select>
+                                                                        </label></div>
+                                                                   
+                                                                </div></div>
+                                                            </div>
+
+                                                        </div>
+                                                        <!-- State end container -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Onpage Logic 2 display part -->
+                                    <div class="panel panel-blue" id="divHouseHold">
+                                        <div class="panel-heading1">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">Household Employee Wages
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseSeven" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <h4>Share your Employer Info and Household Employee Income</h4>
+                                                <!-- Changed the class name and added a popover attribute for all the feilds by Yogalakshmi on 13th May 2014-->
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblHouseholdEmployerName">Employer's Name</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <input type="text" maxlength="35" id="txtHouseholdEmployerName" class="form-control tip" placeholder="Enter Employer's Name" data-toggle="tooltip" tabindex="52" data-placement="right" title="Enter Employer Name" data-trigger="focus" />
+                                                    </div>
+                                                    <a id="popHouseholdEmployerName" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblHouseholdEmployerAddress">Employer's  Address</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <input type="text" maxlength="35" id="txtHouseholdEmployerAddress" tabindex="53" class="form-control tip" placeholder="Enter Employer's Address" data-toggle="tooltip" data-placement="right" title="Enter Employer Address" data-trigger="focus" />
+                                                    </div>
+                                                    <a id="popHouseholdEmployerAddress" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblHouseholdEmployerCity">Employer's City</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <input type="text" maxlength="20" id="txtHouseholdEmployerCity" class="form-control tip" placeholder="Enter Employer's City" data-toggle="tooltip" tabindex="54" data-placement="right" title="Enter Employer City" data-trigger="focus" />
+                                                    </div>
+                                                    <a id="popHouseholdEmployerCity" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblHouseholdEmployerState">Employer's State</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <select name="ddlHouseholdEmployerState" id="ddlHouseholdEmployerState" tabindex="55" class="form-control">
+                                                        </select>
+                                                    </div>
+                                                    <a id="popHouseholdEmployerState" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblHouseholdEmployerZip">Employer's Zip Code</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <input type="text" maxlength="10" id="txtHouseholdEmployerZip" name="txtHouseholdEmployerZip" onkeyup="javascript:return maskInput(this.value,this,'5',event,true);" class="form-control tip" placeholder="Enter Employer's Zip Code" tabindex="56" data-toggle="tooltip" data-placement="right" title="Enter Employer Zip Code" data-trigger="focus" />
+                                                    </div>
+                                                    <a id="popHouseholdEmployerZip" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblHouseholdEmployeeWages">Household Employee Wages</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <input type="text" id="txtHouseholdEmployeeWages"
+                                                            onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                            class="form-control tip amountField" placeholder="Enter Household Employee Wages"
+                                                            tabindex="57" data-toggle="tooltip" data-placement="right"
+                                                            title="Enter Employer Household Employee Wages" data-trigger="focus" />
+                                                    </div>
+                                                    <a id="popHouseholdEmployeeWages" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <h5><b>Note : </b>This Household Employee Earned Income should be less than $1,800 and not reported on Form W-2</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Onpage Logic 3 display part -->
+                                    <div class="panel panel-blue" id="divInstution">
+                                        <div class="panel-heading1">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">Scholarship or Fellowship Income.
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseEight" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <h4>Specify your Institution name that gives you Scholarship or Fellowship Income.</h4>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblInstitutionName">Institution Name</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <input type="text" maxlength="35" id="txtInstitutionName" class="form-control tip" placeholder="Enter Institution Name" tabindex="58" data-toggle="tooltip" data-placement="right" title="Enter Institution Name" data-trigger="focus" />
+                                                    </div>
+                                                    <a id="popInstitutionName" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblInstitutionAddress">Address</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <input type="text" maxlength="35" id="txtInstitutionAddress" class="form-control tip" tabindex="59" placeholder="Enter Institution Address" data-toggle="tooltip" data-placement="right" title="Enter Institution Address" data-trigger="focus" />
+                                                    </div>
+                                                    <a id="popInstitutionAddress" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblInstitutionCity">City</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <input type="text" maxlength="20" id="txtInstitutionCity" class="form-control tip" placeholder="Enter Institution City" data-toggle="tooltip" tabindex="60" data-placement="right" title="Enter Institution City" data-trigger="focus" />
+                                                    </div>
+                                                    <a id="popInstitutionCity" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblInstitutionState">State</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <select name="ddlInstitutionState" id="ddlInstitutionState" tabindex="61">
+                                                        </select>
+                                                    </div>
+                                                    <a id="popInstitutionState" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblInstitutionZip">Zip Code</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <input type="text" maxlength="10" id="txtInstitutionZip" name="txtInstitutionZip" onkeyup="javascript:return maskInput(this.value,this,'5',event,true);" class="form-control tip" placeholder="Enter Institution Zip Code" data-toggle="tooltip" data-placement="right" tabindex="62" title="Enter Institution Zip Code" data-trigger="focus" />
+                                                    </div>
+                                                    <a id="popInstitutionZip" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                                <div class="field-group">
+                                                    <div class="left-lbl">
+                                                        <label id="lblTaxableScholarshipAmount">Taxable Scholarship Amount</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <input type="text" id="txtTaxableScholarshipAmount"
+                                                            onblur="extractNumberBlur(this,event,2,false,true);" onkeyup="extractNumber(this,event,2,false,false);"
+                                                            tabindex="63" class="form-control tip amountField" placeholder="Enter Taxable Scholarship Amount"
+                                                            data-toggle="tooltip" data-placement="right"
+                                                            title="Enter Taxable Scholarship Amount" data-trigger="focus" />
+                                                    </div>
+                                                    <a id="popTaxableScholarshipAmount" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-blue" id="divForeignEmployment">
+                                        <div class="panel-heading1">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
+                                                    Foreign Employment
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseNine" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <h4>Did you receive Foreign Employment Compensation for the year 2014?</h4>
+                                                <div class="field-group">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" id="radYes" name="radForeignEmployment" value="1" />
+                                                        Yes
+                                                    </label>
+                                                      
+                                                        <label class="checkbox-inline">
+                                                        <input type="radio" id="radNo" name="radForeignEmployment" value="2" />
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" id="btnBack" class="btn btn-primary" tabindex="65">Back</button>
+                                    <button type="submit" id="btnContinue" class="btn btn-success" tabindex="64">Continue</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+        <!--//Footer-->
+        <script type="text/javascript" src="../lib/footer.js"></script>
+             </div>
+    </form>
+</body>
+</html>
+
+
+

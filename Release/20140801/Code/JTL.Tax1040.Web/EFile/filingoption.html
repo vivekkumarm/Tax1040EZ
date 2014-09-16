@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaxGarden.com</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/EFile/filingoption.js"></script>
+</head>
+<body>
+    <form id="federalreturnsummary">
+        <div class="container">
+
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <script type="text/javascript" src="../lib/fileleftmenu.js"></script>
+
+                        <div class="formfull">
+                            <!-- Right Help area -->
+                            <div id="riht">
+                                <script src="../lib/rightmenu.js"></script>
+                            </div>
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Filing Option<a href="#" class="hidden-xs open pull-right" data-toggle="tooltip" data-original-title="Show / Hide Sidebar" id="changeSidebarPos">
+                                            <i class="transfer"></i>
+                                        </a></h2>
+                                    </div>
+                                    <div id="divEfileInformationError" class="alert alert-danger" style="display: none;"></div>
+                                    <div class="panel-group" id="accordion">
+
+                                        <div class="panel panel-blue in">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Filing Information</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+                                                    <h4>Before choosing your Filing Option,  inform us, How you filed your Prior year (2013) tax return?</h4>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="eFileType" id="radFiledPriorTaxYearInEfile" />
+                                                            I have filed my prior year tax return electronically</label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="eFileType" id="radFirstTimefiler" />
+                                                            I am a First time filer or I didn't file my 2013 tax return</label>
+                                                    </div>
+
+                                                    <div id="divradError" style="display: block; color: #cf1c16"></div>
+                                                    <h4>This Information help us to process your E-file Steps with simple and easiest way.</h4>
+
+
+                                                    <!--<div class="c4c8">
+                                                        <div class="left">
+                                                            <input type="radio" name="radReturnType" id="radFederal" value="1" />
+                                                            Federal
+                                                                <input type="radio" name="radReturnType" id="radState" value="2" />
+                                                            State
+                                                        </div>
+                                                    </div>-->
+
+
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-heading">
+                                                            <h3>Select the return which you would like to file electronically</h3>
+                                                        </div>
+                                                        <div class="panel-body-grid">
+                                                            <div class="pangird head">
+                                                                <label class="col-md-3 ">Tax Return</label>
+                                                                <label class="col-md-7 ">Option to -File</label>
+
+                                                                <label class="col-md-2 ">Status</label>
+                                                                <!--  <label class="col-md-3 ">Action</label>-->
+                                                            </div>
+
+                                                            <div id="divFilingOption" class="clearfix">
+                                                                <div class="pangird itm">
+                                                                    <label class="col-md-3">
+                                                                        Federal</label>
+                                                                    <label class="col-md-7">
+                                                                        <input type="hidden" id="chkStateId' + index + '" value="' + value.StateId + '" />
+                                                                        <span class="radio-inline">
+                                                                            <input type="radio" name="radFederalFilingOption" id="radFederalEFiling" />E-file </span>
+                                                                        <span id="spEfileFixLink">
+                                                                            <a href="../Review/finalsummary.html" id="aFinalReview" class="text-danger">Fix here to E-File</a>
+                                                                        </span>
+                                                                        <span class="radio-inline">
+
+                                                                            <input type="radio" name="radFederalFilingOption" id="radFederalPaperFiling" />Paper File
+
+                                                                        </span>
+                                                                    </label>
+                                                                    <label class="col-md-2" id="lblStatus"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div id="divFilerState" class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <h4>If you agree with file your tax return electronically.  Enter your Email Information below to receive the acknowledgement mail from IRS & State.</h4>
+
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtEmailAddress">Email Address</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtEmailAddress" name="txtEmailAddress" placeholder="Email Address" />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" onclick="GoToPreviousPage();return false;">
+                                        Back</button>
+                                    <button type="submit" id="btnEfileInformationContinue" class="btn btn-success">Continue</button>
+                                    <!--<a href="filingoptionsummary.html" class='more'>Federal Option Summary</a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--//Footer-->
+    <script type="text/javascript" src="../lib/footer.js"></script>
+</body>
+
+</html>
+
+

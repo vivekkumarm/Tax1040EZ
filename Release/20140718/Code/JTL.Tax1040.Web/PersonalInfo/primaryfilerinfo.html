@@ -1,0 +1,492 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/Pages/PersonalInfo/personalfilerinfo.js"></script>
+
+    <script src="../Scripts/bootstrap-datepicker.js"></script>
+</head>
+<body>
+    <form id="primaryfilerinfo">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <script type="text/javascript" src="../lib/leftmenu.js"></script>
+                        <div class="formfull">
+                            <!-- Right Help area -->
+                            <div id="riht">
+                                <script src="../lib/rightmenu.js"></script>
+                            </div>
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Primary Filer<a href="#" class="hidden-xs open pull-right" data-toggle="tooltip"
+                                            data-original-title="Show / Hide Sidebar" id="changeSidebarPos">
+                                            <i class="transfer"></i>
+                                        </a></h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue ">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                                        id="primaryinfo">Primary Info</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+
+                                                    <h4>Share us your Name and Other details</h4>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="lblfirstname">First Name</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtfirstname" maxlength="30" placeholder=""
+                                                                tabindex="1" class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                title="Your Name" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popFirstName" data-toggle="popover" data-original-title="Quick Help" class="help" rel="popover"></a>
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="lblmiddleinitial">Middle Initial</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtmiddleinitial" name="txtmiddleinitial" tabindex="2" maxlength="1"
+                                                                placeholder="" class="form-control tip" data-toggle="tooltip"
+                                                                data-placement="right" title="First Letter of Your Middle Name" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popMiddleInitial" data-toggle="popover" data-original-title="Quick Help" class="help" rel="popover"></a>
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="lbllastname">Last Name</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtlastname" maxlength="30" placeholder=""
+                                                                tabindex="3" class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                title="Your Family Name" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popLastName" data-toggle="popover" class="help" data-original-title="Quick Help" rel="popover"></a>
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="lblnickname">Nick Name</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtnickname" name="txtnickname" maxlength="10" tabindex="4"
+                                                                placeholder=""
+                                                                class="form-control tip" data-toggle="tooltip" data-placement="right" title="Your Short Name"
+                                                                data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popNickName" data-toggle="popover" class="help" data-original-title="Quick Help" rel="popover"></a>
+
+                                                    </div>
+
+                                                    <!-- <h4>Let us Know Your Field of Work<a id="A2" data-original-title="Show / Hide Sidebar"
+                                                                                              data-toggle="tooltip" class="hidden-xs open pull-right" href="#">
+                                            
+                                                                                           </a></h4>-->
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="lbloccupation">Occupation</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtoccupation" maxlength="30" placeholder=""
+                                                                tabindex="5" class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                title="Your Profession or Job" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popOccupation" data-toggle="popover" data-original-title="Quick Help" class="help" rel="popover"></a>
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">&nbsp;</div>
+                                                        <div class="right">
+                                                            <button type="submit" data-toggle="collapse" data-parent="#accordion" id="btnSubmitOne"
+                                                                tabindex="6" class="btn btn-success" onclick="PersistPrimaryFiller(false)">
+                                                                Next</button>
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseTwo" id="datebirth">Date of Birth & Social Security Number
+                                                    </a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>Share us your Social Security Number and Date of Birth</h4>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="lbldateofbirth">Date Of Birth</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="input-group date" id="divDateOfBirth">
+                                                                <input type="text" id="dtdateofbirth" name="dtdateofbirth"
+                                                                    tabindex="7" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                    data-placement="right" title="Your Birthdate" data-trigger="focus"
+                                                                    readonly="true" />
+                                                                <span class="input-group-addon"><span class="cal"></span>
+                                                                </span>
+                                                            </div>
+                                                            <label id="lblDOBErrorMsg" class="error"></label>
+                                                            <div id="divDOBErrorMsg" style="display: block; color: #cf1c16">
+                                                            </div>
+                                                        </div>
+
+                                                        <a id="popDateofBirth" class="help" data-original-title="Quick Help" rel="popover"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtssn">SSN/ITIN</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtssn" name="txtssn" maxlength="11" placeholder="XXX-XX-XXXX"
+                                                                class="form-control tip"
+                                                                onkeyup="javascript:return maskInput(this.value,this,'3,6',event);"
+                                                                tabindex="8" data-toggle="tooltip" data-placement="right" title="Social Security Number/
+Individual Taxpayer Identification Number" data-trigger="focus" />
+                                                        </div>
+                                                        <a id="popSocialSecurityNumber" data-original-title="Quick Help" class="help" rel="popover"></a>
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">&nbsp;</div>
+                                                        <div class="right">
+                                                            <button type="submit" tabindex="9" id="btnSubmitTwo" class="btn btn-success" onclick="PersistPrimaryFiller(false);">
+                                                                Next</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseThree" id="election">Election Campaign Fund
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse">
+                                                <div class="panel-body">
+
+                                                    <h4>Do you want to
+                                                        <label>Designate $3 </label>
+                                                        to a fund that provides campaigns Money to presidential
+                                                        Election?
+                                                    </h4>
+
+                                                    <p>
+                                                        If you’re filing a joint return, your Spouse can also contribute $3 for the fund.
+                                                        However, do note, if you check the box  your tax or refund will not change.
+                                                    </p>
+
+                                                    <div class="checkbox">
+                                                        <label id="lblTpFirstName">
+                                                            <input id="chkfirstname" type="checkbox" name="terms" value="1" tabindex="10" />
+                                                            <span class="spanFillerName"></span>
+
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="checkbox">
+                                                        <label id="lblSpouse">
+                                                            <input id="chkspouse" type="checkbox" name="terms" value="2" tabindex="11" />
+                                                            Spouse
+                                                                       
+                                                        </label>
+                                                    </div>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">&nbsp;</div>
+                                                        <div class="right">
+                                                            <button type="submit" id="btnSubmitThree" tabindex="12" class="btn btn-success" onclick="PersistPrimaryFiller(false);">
+                                                                Next</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="panel panel-blue">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseFour" id="otherinformation">Other Information
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <h4>Check if any of these applies to You?</h4>
+
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="chklegallybliend" type="checkbox" tabindex="13" name="terms" value="1" />
+                                                            <span class="spanFillerName"></span>
+                                                            was legally Blind in <span class="spanCurrentYear"></span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="chkdisabled" type="checkbox" tabindex="14" name="terms" value="2" />
+                                                            <span class="spanFillerName"></span>
+                                                            was permanently and totally Disabled in the year
+                                                        <span class="spanCurrentYear"></span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="chkclaimed" type="checkbox" name="terms" tabindex="15" value="3" />
+                                                            Can be claimed as a Dependent on someone else's return</label>
+                                                    </div>
+
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="chkdeparted" type="checkbox" name="terms" tabindex="16" value="4" />
+                                                            Departed this Life before filing the return for <span class="spanCurrentYear"></span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="field-group" id="dtdateofdeathshow">
+                                                        <div class="left-lbl">
+                                                            <label for="dtdateofdeath">Date Of Death</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="input-group date" id="divDateOfDeath">
+                                                                <input type="text" name="dtdateofdeath" id="dtdateofdeath" tabindex="17" onblur="DateValidation()"
+                                                                    placeholder="MM/DD/YYYY"
+                                                                    class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Date Of Death"
+                                                                    data-trigger="focus" readonly="true" />
+                                                                <span class="input-group-addon"><span class="cal"></span>
+                                                                </span>
+
+                                                            </div>
+                                                            <div id="divDODErrorMsg" class="error">
+                                                            </div>
+                                                        </div>
+
+
+                                                        <a id="popDateofDeath" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                    </div>
+
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="chkStudent" type="checkbox" tabindex="18" name="terms" value="5" />
+                                                            <span class="spanFillerName"></span>
+                                                            was a Student</label>
+                                                    </div>
+
+                                                    <div id="FulltimeStudentShow" style="display: none;">
+                                                        <label class="right">Are you a full time Student?</label>
+                                                        <div class="field-group">
+                                                            <label class="checkbox-inline">
+                                                                <input type="radio" name="radWasStudent" id="radWasStudentYes" tabindex="19" />
+                                                                Yes
+                                                            </label>
+                                                            <label class="checkbox-inline">
+                                                                <input type="radio" name="radWasStudent" checked="checked" id="radWasStudentNo" tabindex="20" />
+                                                                No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="checkbox">
+                                                        <input id="chkservedinMilitary" type="checkbox" name="terms" tabindex="21" value="3" />
+                                                        <span class="spanFillerName"></span>served in Military</label>
+                                                    <div id="divServedinMilitary" style="display: none;">
+                                                        <label class="right">
+                                                            <span class="spanFillerName"></span>served in Military during 
+                                                            <span class="spanservedinmilitary"></span>.</label>
+                                                        <h4>Let us know your Combat Zone or Hazards duty you served in.</h4>
+                                                        <ul class="list-group">
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="1" tabindex="22" />
+                                                                    Not Applicable
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="2" tabindex="23" />
+                                                                    Operation  Iraqi Freedom
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="3" tabindex="24" />
+                                                                    Kosovo Operation
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="4" tabindex="25" />
+                                                                    Afghanistan/Enduring Freedom
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="5" tabindex="26" />
+                                                                    Desert Storm
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="6" tabindex="27" />
+                                                                    Haiti
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="7" tabindex="28" />
+                                                                    Farmer Yugoslavia
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="8" tabindex="29" />
+                                                                    UN Operation
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="9" tabindex="30" />
+                                                                    Operation Joint Forge
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="10" tabindex="31" />
+                                                                    Northern Watch
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="11" tabindex="32" />
+                                                                    Operation Allied Force
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="12" tabindex="33" />
+                                                                    Northern Forge
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label id="dvother">
+                                                                    <input type="radio" name="radservedinmilitary" id="radOtherCombat" value="13" tabindex="34" />
+                                                                    Other Combat Zone
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="radservedinmilitary" value="14" tabindex="35" />
+                                                                    Joint Guard
+                                                                </label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div id="divradError" style="display: block; color: #cf1c16"></div>
+
+
+                                                    <div id="divOtherCombatZone">
+                                                        <h4>Tell us, When  <span class="spanFillerName"></span>deployed to their Combat Zone
+                                                        </h4>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="lbldateofbirth">Date Deployed</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <div class="input-group date" id="divDatedeployed">
+                                                                    <input type="text" id="dtdatedeployed" name="dtdatedeployed"
+                                                                        tabindex="36" placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip"
+                                                                        data-placement="right" title="Enter Date Of Deployed" data-trigger="focus"
+                                                                        readonly="true" />
+                                                                    <span class="input-group-addon"><span class="cal"></span>
+                                                                    </span>
+                                                                </div>
+                                                                <label id="Label1" class="error"></label>
+                                                                <div id="divdatedeployedError" style="display: block; color: #cf1c16">
+                                                                </div>
+                                                            </div>
+
+
+                                                            <a id="popDateOfDeploy" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary" onclick="GoToPreviousPage();return false;" tabindex="38">
+                                        Back</button>
+                                    <button type="submit" id="btnPrimaryFilerInfo" class="btn btn-success" tabindex="37">
+                                        Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+
+</body>
+
+</html>
+
+

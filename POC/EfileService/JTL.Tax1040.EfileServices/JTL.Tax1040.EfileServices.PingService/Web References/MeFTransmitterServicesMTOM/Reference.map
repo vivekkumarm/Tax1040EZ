@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///C:/Users/jt719/Desktop/Tax1040Services/W3services/MeFHeader.xsd" filename="MeFHeader.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///C:/Users/jt719/Desktop/Tax1040Services/W3services/xmime.xsd" filename="xmime.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///C:/Users/jt719/Desktop/Tax1040Services/W3services/MeFTransmitterServiceMTOM.xsd" filename="MeFTransmitterServiceMTOM.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="file:///C:/Users/jt719/Desktop/Tax1040Services/W3services/MeFTransmitterServicesMTOM.wsdl" filename="MeFTransmitterServiceMTOM.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>

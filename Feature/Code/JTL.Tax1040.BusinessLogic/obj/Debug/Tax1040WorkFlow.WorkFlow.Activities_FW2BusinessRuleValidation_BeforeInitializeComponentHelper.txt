@@ -1,0 +1,2 @@
+FW2BusinessRuleValidation.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

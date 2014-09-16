@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<IncomeTaxRate>
+  <TaxYear2013>
+    <FilingStatus Type="Single"> <!--10/3/14, Vincent, Changed the filing type as Single and MarriedFilingJointly Change the build action properties as Enbedded Resource. -->
+      <Slab1 StartRange="0.0"  EndRange="8924.0" TaxRate="0.10"/>
+      <Slab2 StartRange="8925.0"  EndRange="36249.0" TaxRate="0.15"/>
+      <Slab3 StartRange="36250.0"  EndRange="87849.0" TaxRate="0.25"/>
+      <Slab4 StartRange="87850.0"  EndRange="183249.0" TaxRate="0.28"/>
+      <Slab5 StartRange="183250.0"  EndRange="398349.0" TaxRate="0.33"/>
+      <Slab6 StartRange="398350.0"  EndRange="400000.0" TaxRate="0.35"/>
+      <Slab7 StartRange="400001.0"  EndRange="" TaxRate="0.396"/>
+    </FilingStatus>
+    <FilingStatus Type="MarriedFilingJointly">
+      <Slab1 StartRange="0.0"  EndRange="17849.0" TaxRate="0.10"/>
+      <Slab2 StartRange="17850.0"  EndRange="72499.0" TaxRate="0.15"/>
+      <Slab3 StartRange="72500.0"  EndRange="146399.0" TaxRate="0.25"/>
+      <Slab4 StartRange="146400.0"  EndRange="223049.0" TaxRate="0.28"/>
+      <Slab5 StartRange="223050.0"  EndRange="398349.0" TaxRate="0.33"/>
+      <Slab6 StartRange="398350.0"  EndRange="450000.0" TaxRate="0.35"/>
+      <Slab7 StartRange="450001.0"  EndRange="" TaxRate="0.396"/>
+    </FilingStatus>
+  </TaxYear2013>
+</IncomeTaxRate>

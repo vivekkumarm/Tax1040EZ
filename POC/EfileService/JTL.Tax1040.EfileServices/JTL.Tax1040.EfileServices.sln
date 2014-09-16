@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.EfileServices.PingService", "JTL.Tax1040.EfileServices.PingService\JTL.Tax1040.EfileServices.PingService.csproj", "{46345D44-3A39-4EB0-8180-4F63EAF6B675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.EfileServices.ZipandSendService", "JTL.Tax1040.EfileServices.ZipandSendService\JTL.Tax1040.EfileServices.ZipandSendService.csproj", "{820F3E80-4B13-4318-9802-3384B5E7C91C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.EfileServices.IRSResponseToApplcationService", "JTL.Tax1040.EfileServices.IRSResponseToApplcationService\JTL.Tax1040.EfileServices.IRSResponseToApplcationService.csproj", "{ADE366DF-DE4E-4C83-8856-9D1085D60578}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.EfileServices.ReceivingService", "JTL.Tax1040.EfileServices.ReceivingService\JTL.Tax1040.EfileServices.ReceivingService.csproj", "{8B1AC857-F1CC-4D49-8E2A-AE3B43BE8958}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.EfileServices.BusinessObject", "JTL.Tax1040.EfileServices.BusinessObject\JTL.Tax1040.EfileServices.BusinessObject.csproj", "{CCB2A268-4844-451D-839E-D22699415D1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.EfileServices.DataAccess", "JTL.Tax1040.EfileServices.DataAccess\JTL.Tax1040.EfileServices.DataAccess.csproj", "{6D266FFD-166C-470F-994F-E6F856876E84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTL.Tax1040.EfileServices.Core.Process", "JTL.Tax1040.EfileServices.Core.Process\JTL.Tax1040.EfileServices.Core.Process.csproj", "{6FD07A07-5ADD-4D37-90D8-0AAE0AB4DA72}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.168.1.10:8080/tfs/jeevantax
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = JTL.Tax1040.EfileServices.PingService\\JTL.Tax1040.EfileServices.PingService.csproj
+		SccProjectName1 = JTL.Tax1040.EfileServices.PingService
+		SccLocalPath1 = JTL.Tax1040.EfileServices.PingService
+		SccProjectUniqueName2 = JTL.Tax1040.EfileServices.ZipandSendService\\JTL.Tax1040.EfileServices.ZipandSendService.csproj
+		SccProjectName2 = JTL.Tax1040.EfileServices.ZipandSendService
+		SccLocalPath2 = JTL.Tax1040.EfileServices.ZipandSendService
+		SccProjectUniqueName3 = JTL.Tax1040.EfileServices.IRSResponseToApplcationService\\JTL.Tax1040.EfileServices.IRSResponseToApplcationService.csproj
+		SccProjectName3 = JTL.Tax1040.EfileServices.IRSResponseToApplcationService
+		SccLocalPath3 = JTL.Tax1040.EfileServices.IRSResponseToApplcationService
+		SccProjectUniqueName4 = JTL.Tax1040.EfileServices.ReceivingService\\JTL.Tax1040.EfileServices.ReceivingService.csproj
+		SccProjectName4 = JTL.Tax1040.EfileServices.ReceivingService
+		SccLocalPath4 = JTL.Tax1040.EfileServices.ReceivingService
+		SccProjectUniqueName5 = JTL.Tax1040.EfileServices.BusinessObject\\JTL.Tax1040.EfileServices.BusinessObject.csproj
+		SccProjectName5 = JTL.Tax1040.EfileServices.BusinessObject
+		SccLocalPath5 = JTL.Tax1040.EfileServices.BusinessObject
+		SccProjectUniqueName6 = JTL.Tax1040.EfileServices.DataAccess\\JTL.Tax1040.EfileServices.DataAccess.csproj
+		SccProjectName6 = JTL.Tax1040.EfileServices.DataAccess
+		SccLocalPath6 = JTL.Tax1040.EfileServices.DataAccess
+		SccProjectUniqueName7 = JTL.Tax1040.EfileServices.Core.Process\\JTL.Tax1040.EfileServices.Core.Process.csproj
+		SccProjectName7 = JTL.Tax1040.EfileServices.Core.Process
+		SccLocalPath7 = JTL.Tax1040.EfileServices.Core.Process
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46345D44-3A39-4EB0-8180-4F63EAF6B675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46345D44-3A39-4EB0-8180-4F63EAF6B675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46345D44-3A39-4EB0-8180-4F63EAF6B675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46345D44-3A39-4EB0-8180-4F63EAF6B675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820F3E80-4B13-4318-9802-3384B5E7C91C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820F3E80-4B13-4318-9802-3384B5E7C91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{820F3E80-4B13-4318-9802-3384B5E7C91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820F3E80-4B13-4318-9802-3384B5E7C91C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE366DF-DE4E-4C83-8856-9D1085D60578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE366DF-DE4E-4C83-8856-9D1085D60578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE366DF-DE4E-4C83-8856-9D1085D60578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE366DF-DE4E-4C83-8856-9D1085D60578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B1AC857-F1CC-4D49-8E2A-AE3B43BE8958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B1AC857-F1CC-4D49-8E2A-AE3B43BE8958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B1AC857-F1CC-4D49-8E2A-AE3B43BE8958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B1AC857-F1CC-4D49-8E2A-AE3B43BE8958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB2A268-4844-451D-839E-D22699415D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB2A268-4844-451D-839E-D22699415D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB2A268-4844-451D-839E-D22699415D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB2A268-4844-451D-839E-D22699415D1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D266FFD-166C-470F-994F-E6F856876E84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D266FFD-166C-470F-994F-E6F856876E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D266FFD-166C-470F-994F-E6F856876E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D266FFD-166C-470F-994F-E6F856876E84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FD07A07-5ADD-4D37-90D8-0AAE0AB4DA72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FD07A07-5ADD-4D37-90D8-0AAE0AB4DA72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FD07A07-5ADD-4D37-90D8-0AAE0AB4DA72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FD07A07-5ADD-4D37-90D8-0AAE0AB4DA72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

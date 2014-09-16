@@ -1,0 +1,105 @@
+﻿<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Tax Garden - Tax Garden Password Reset</title>
+    <style type="”text/css”">
+        html body * {
+            line-height: 0px!important;
+        }
+
+        p span {
+            display: none !important;
+        }
+
+        table {
+            border-spacing: 0!important;
+        }
+
+        p {
+            -webkit-margin-before: 0px!important;
+            -webkit-margin-after: 0px!important;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+        }
+    </style>
+
+    <script src="Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-2.1.0.js"></script>
+    <script src="Scripts/jquery.validate.js"></script>
+    <script src="lib/config.js"></script>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        $(window).load(function () {
+            var qs = getParameterByName("Errormsg");
+            $("#errormessage").html(qs);
+        });
+        
+      
+       //Added by Praveen T on 29 May 2014
+       $('#spCurrentYear').html(' ' + CURRENT_TAX_YEAR);
+    
+    </script>
+</head>
+<body style="margin: 0; padding: 0;">
+    <table width="600" border="0" cellspacing="0" cellpadding="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; border: 1px solid #585858; background: #fff;" align="center">
+        <tr>
+            <td>
+                <table width="600" border="0" cellspacing="0" cellpadding="0" align="left">
+                    <tr>
+                        <td bgcolor="#d1edfd"><a href="http://www.taxgarden.com" target="_blank" title="tax garden">
+                            <img src="images/logo.jpg" alt="tax garden" width="600" height="125" /></a></td>
+                    </tr>
+                    <tr>
+                        <td style="background: #d2edfe; padding: 8px 20px 8px; color: #000000; line-height: 29px; font-family: Tahoma; text-align: left;" align="left">
+                            <span style="font-size: 20px; font-family: Tahoma,fantasy">Error Message</span><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 14px 8px;">
+                            <table width="572" border="0" cellspacing="0" cellpadding="0" align="left">
+                                <tr>
+                                    <td style="background: #fffcd6; color: #10100e; padding: 11px 26px; border: 1px solid #b7b7ab; font-family: Arial, Helvetica, sans-serif; font-size: 12px; text-align: center; line-height: 18px;">                                                                          
+                                         <span style="font-weight: bold;">
+                                             <div id="errormessage" style="color: red;font-size: 17px;"></div>
+                                         </span></td>
+                                </tr>
+                                <tr align="left">
+                                    <td style="border-top: 1px dashed #c4c4c4; border-bottom: 1px dashed #c4c4c4; padding: 11px 0; color: #030000; font-size: 12px; line-height: 18px; text-align: left">For any queries &amp; assistance related to Tax Garden, Kindly contact us as<br />
+                                        <a href="mailto:supportteam@taxgarden.com" style="color: #030000; text-decoration: none;">supportteam@taxgarden.com</a>                                      </td>
+                                </tr>
+                                <tr align="left">
+                                    <td style="padding: 10px 0; text-align: left">Thanks & Regards,<br />
+                                        Support Team<br />
+                                        <span style="color: #ff0900; font-size: 16px; line-height: 18px; padding-top: 4px;">Taxgarden</span>    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background: #585858; padding: 10px 0;" align="center">
+                            <table width="320" border="0" cellspacing="0" cellpadding="0" bgcolor="#585858">
+                                <tr>
+                                    <td>
+                                        <table width="320" border="0" cellspacing="0" cellpadding="0" align="center">
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #ffffff; padding: 8px 0 0;">© <span id="spCurrentYear"></span> Taxgarden.com, Taxgarden, Inc. All rights reserved.</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

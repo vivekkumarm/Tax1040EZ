@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />-->
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../lib/config.js"></script>
+    <!--<script src="../lib/popovercontent.js"></script>-->
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/Pages/PreLogin/registration.js"></script>
+     
+
+</head>
+<body>
+
+    <form id="registration">
+        <div class="container">
+            <!--Header-->
+
+            <script type="text/javascript" src="../lib/header.js"></script>
+
+            <!-- New user Registration Form -->
+            <div class="loginbx" id="newaccount">
+                <div role="form" class="container-fluid">
+                    <div class="title">
+                        <h2>Sign Up</h2>
+                    </div>
+                    <div class="c8c4">
+                        <h5>Create your Account to Start the Tax return
+                        </h5>
+                    </div>
+
+                    <div class="row">
+                        <div style="display: none" id="divSignUpValidation" class="error-alert">
+                            error message
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <label for="txtEmail" id="lblEmail" class="left">Email Address</label>
+                        <div class="right">
+                            <!--<input type="email" id="txtEmail" name="txtEmail" placeholder="Enter Email Address " maxlength="100" />-->
+                            <input type="email" id="txtEmail" name="txtEmail" placeholder="Will@test.com" tabindex="1"
+                                onkeyup="username()" data-toggle="tooltip" data-placement="right" title="Valid Email Address for communication and Validation."
+                                maxlength="100" class="tip" data-trigger="focus" />
+                        </div>
+                        <a id="popEmail" data-toggle="popover" class="help" rel="popover"></a>
+                       
+
+
+
+                        <div class="left"></div>
+                        <div class="right1">
+                            <label class="checkbox">
+                                <input id="chkEmail" type="checkbox" name="chkEmail" value="1" tabindex="2" />
+                                I prefer to use my Email address as Username</label>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="txtUserName" class="left">Username</label>
+                        <div class="right">
+                            <!--<input type="text" id="txtUserName" name="txtUserName" placeholder="Enter UserName" maxlength="100" />-->
+                            <input type="text" id="txtUserName" name="txtUserName" onkeyup="username()" placeholder="Tax Garden Username"
+                                data-toggle="tooltip" data-placement="right" title="Username of your choice with minimum 6 characters." class="tip"
+                                data-trigger="focus" maxlength="64" tabindex="3" />
+                        </div>
+                         <a id="popUserName" data-toggle="popover" class="help" rel="popover"></a>
+                         
+                    </div>
+
+
+                    <div class="field-group">
+                        <label for="txtPassword" class="left">Password</label>
+                        <div class="right">
+                            <input type="password" id="txtPassword" name="txtPassword" placeholder="Tax Garden Password"
+                                   data-toggle="tooltip" data-placement="right" title="Password of your choice with minimum 8 characters." class="tip" maxlength="15"
+                                   data-trigger="focus" tabindex="4" />
+                        </div>
+                        
+                         <a id="popPassword" data-toggle="popover" class="help" rel="popover"></a>
+                    </div>
+
+
+                    <div class="field-group">
+                        <label for="txtConfirmPassword" class="left">Confirm Password</label>
+                        <div class="right">
+                            <input type="password" id="txtConfirmPassword" name="txtConfirmPassword" placeholder="Confirm your Password"
+                                data-toggle="tooltip" data-placement="right" title="Retype the Password you entered above." class="tip" maxlength="15"
+                                data-trigger="focus" tabindex="5" />
+                        </div>
+                         <a id="popConfirmPassword" data-toggle="popover" class="help" rel="popover"></a>
+                    </div>
+
+
+                    <div class="field-group">
+                        <label for="ddlSecurityQuestion" class="left" id="lblSecurityQuestion">Security Question</label>
+                        <div class="right">
+                            <select name="ddlSecurityQuestion" id="ddlSecurityQuestion" tabindex="6">
+                                <!--    <option value="What was the name of your first pet?" selected="selected">What was the name of your first pet?</option>-->
+                                <!--       <option value="What was the name of your first pet?" selected="selected">What was the name of your first pet?</option>
+                                <option value="2" selected="selected">What was the name of your first pet?</option>-->
+                            </select>
+                        </div>
+                      <!--  <a id="popSecurityQuestion" href="#" class="help" data-html="true" data-content=""
+                            rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                        <a id="popSecurityQuestion" data-toggle="popover" class="help" rel="popover"></a>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="txtSecurityAnswer" class="left">Answer</label>
+                        <div class="right">
+                            <input type="password" id="txtSecurityAnswer" placeholder="Enter Security Answer"
+                                name="txtSecurityAnswer" maxlength="30" data-toggle="tooltip" data-placement="right"
+                                title="What's the answer for your Security Question?" class="tip" data-trigger="focus" tabindex="7" />
+                        </div>
+                        <a id="popSecurityAnswer" data-toggle="popover" class="help" rel="popover"></a>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="left">&nbsp;</label>
+                        <div class="right">
+
+                            <label class="checkbox">
+                                I agree site's
+                                <a href="#" data-toggle="modal" data-target="#f-savetax" tabindex="9">Terms of Services</a>
+
+                                <input id="chkTermsofServices" type="checkbox" name="chkTermsofServices" tabindex="8" />
+
+                            </label>
+                        </div>
+                        <!--  <a id="popTermsofServices" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                        <a id="popTermsofServices" data-toggle="popover" class="help" rel="popover"></a>
+                    </div>
+
+                    <div tabindex="-1" class="modal fade" id="f-savetax" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                                    <h4 class="modal-title" id="H2">License Agreement: Important Information</h4>
+                                    <h4>Privacy Policy of Tax Garden</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div style="height: 600px; width: 570px; overflow-y: scroll;">
+                                        <h3>1.	Introduction</h3>
+                                        Thank you for your selection of the product “<span class="Title"></span>”.    Please read the terms and conditions listed below before you login. These terms and conditions govern your use of this website; by using this website, you accept these terms and conditions in full.   If you disagree with these terms and conditions or any part of these terms and conditions, you are not supposed to use these services. You may not use the Services until you have read this Agreement and indicated your unconditional acceptance of it by checking the box "I agree to the Terms and Conditions Listed Here". If you do not accept this Agreement, you should terminate your use of the Services by leaving the box unchecked.  Your must be at least 18 years of age to use this website. By using this website and by agreeing to these terms and conditions you warrant and represent that you are at least 18 years of age. 
+                                            <br />
+                                        <br />
+                                        These Terms and Conditions of Use and Service (the "Terms of Use") apply to the <span class="Title"></span>web site available at www.<span class="Title"></span>.com ("<span class="Title"></span>"), and of the Products and Services offered via the Site, all associated sites linked to www.<span class="Title"></span>.com. The Site is the property of Think trade Inc. By using the site, you agree to these terms of use. If you do not agree, do not use the site or any of the products and services offered via the site. Tax Garden reserves the right, at its sole discretion, to change, modify, add or remove portions of these Terms of Use or any of the Products and Services offered.
+                                                 <br />
+                                        <br />
+                                        <h3>2.	Governs Whom and What</h3>
+                                        This Agreement governs the use of all versions of (Website, Mobile Application, Mobile Website ) of <span class="Title"></span>® for Tax Year 2015 on-line tax return preparation product (including its related user instructions and content & Services).
+                                            <br />
+                                        <br />
+                                        As used in this Agreement, the terms "you", "your" or "user" are synonymous, and refer to the person using the Services in any way.
+                                                 <br />
+                                        <br />
+                                        <h3>3.	Description of the Product and Services</h3>
+                                        The Site, <span class="Title"></span>provides its Users with access to 1040EZ   tax filing services for federal and some state income tax returns filing to IRS as well as such additional services like printed tax returns, professionally bound tax returns, audit assistance services by diagnostic check, as well as other services like printing – efiling, IRS status check, tax meter, associated forms preparations, statement making, email updates, invoices and bills on payment(all of which are referred to collectively as the "Products and Services").
+                                                <br />
+                                        <br />
+                                        This Site and the Products and Services provide users with access to a variety of on-line tax preparation services and tools. However, neither the Site nor any of the Products and Services is intended to provide specific tax advice to any individual. You are encouraged to consult your own legal and/or tax professionals or the IRS with any specific questions about your own tax return(s).
+                                                <br />
+                                        <br />
+                                        <h3>4. Registration of an Account</h3>
+                                        <br />
+                                        A "registered user" is a user from whom <span class="Title"></span>has received the information necessary to permit such person to print or electronically file a tax return prepared using the Services and who complies with the terms and conditions of this Agreement.
+                                                <br />
+                                        <br />
+                                        <h3>5. User Account, Password and Security</h3>
+                                        <br />
+                                        If you receive and/or utilize a password and/or account designation with regard to your use of this Site and/or any of the Products and Services offered via this Site, you agree to be solely responsible for maintaining the confidentiality of your specific password and account information, and further agree that you're fully and solely responsible for all activities that occur under your password or within your account. You agree to immediately notify <span class="Title"></span>of any unauthorized use of your password or account information or of any other breach of security.
+                                                <br />
+                                        If you forget your user name or password, you can use the service “Forget Password” and do submit the request, so that you will be mailed the new password. This means that <span class="Title"></span>may use your and other users' non-identifiable, aggregated data to improve the Services or to design promotions and provide ways for you to compare business practices with other users or to inform you on the IRS/ Site updates on services relevant to the product.
+                                                <br />
+                                        <br />
+                                        <h3>6. Permitted uses and restricted Information</h3>
+                                        <br />
+                                        You may view, download for caching purposes only, and print pages from the website for your own personal use, subject to the restrictions set out below and elsewhere in these terms and conditions.  
+                                                <br />
+                                        You must not:
+                                                <ul>
+
+                                                    <li>Republish material from <span class="Title"></span>of this website </li>
+                                                    <li>Sell, rent or sub-license material from the website;</li>
+                                                    <li>Show any material from the website in public;</li>
+                                                    <li>Reproduce, duplicate, copy or otherwise exploit material on this website for a commercial purpose;</li>
+                                                    <li>Edit or otherwise modify any material on the website</li>
+                                                    <li>Redistribute material from this website [except for content specifically and explicitly made available for redistribution]</li>
+                                                </ul>
+                                        <br />
+                                        <h3>7.  Efiling  Service</h3>
+                                        <br />
+                                        If you choose to file your return electronically, your tax return will be forwarded through TaxGardenr’s Electronic Filing service, where it will be converted to and stored in a standardized format and then transmitted to the applicable federal and/or state taxing authority (the "Electronic Filing Services"). <span class="Title"></span>cannot guarantee that the taxing authority will accept your return due to circumstances beyond <span class="Title"></span>’s control (e.g., incorrect user information, malfunction of the taxing authority's system, communications system problems, etc.). You are responsible for filing your tax return in sufficient time to meet any filing deadlines and for verifying the status of your return to confirm that it has been received and accepted by the applicable taxing authority and, if necessary, for filing it manually.
+     Without providing an full list, examples of such unlawful and/or prohibited conduct shall include the following:
+                                                <ul>
+
+
+                                                    <li>Engaging in the preparation and/or filing of any fraudulent tax return-whether for yourself or another;</li>
+                                                    <li>The use of any computer code, data mining software, "robot," "deep-link," "page-scrape," "spider" or other automatic device, program, or methodology, or any similar or equivalent manual process to access, acquire, copy or monitor any portion of the Site or any of the Products or Services offered via the Site;</li>
+                                                    <li>Transmitting any material that contains software viruses, Trojan horses, worms, time bombs, or any other computer code or files which may interrupt, destroy or limit the functionality of the Site or any of the Products and Services;</li>
+                                                    <li>Impersonating anyone or assuming the identity of anyone;</li>
+                                                    <li>Transmitting or using any information that infringes any patent, trademark, trade secret, copyright or other proprietary rights of <span class="Title"></span>or any third-party;</li>
+                                                    <li>Attempting to gain access to any portion or feature of the Site or any other systems or networks connected to the Site, or any of the Products and Services offered on or through the Site, by hacking, password mining or any other illegitimate or illegal means;</li>
+                                                    <li>Attempting to access, collect or store the personal data of any other users.</li>
+                                                    <li>You agree that the intended purposes and functionalities offered by virtue of the Site and the Products and Services is for the preparation of your own federal and/or state tax returns, the e-filing of any such returns, and any other Products and Services.</li>
+                                                </ul>
+                                        <br />
+                                        <h3>8.	Price/Fee</h3>
+                                        <br />
+                                        You agree to pay all fees incurred in connection with your use of this Site and any of the Products and Services accessed via the Site. <span class="Title"></span>reserves the right to change its fee structure and/or to add new fees as it shall determine. For a current listing of the fees associated with this Site and/or the Products and Services you may click on the "Services & Pricing" link on the home page of this Site.
+
+Failure to pay will result in access to the Site being restricted and/or the corresponding Products and Services not being fulfilled. Unless until the payment is made, the preview copy of the return prepared may not be available for the user.
+                                                <ul>
+                                                    <li>Payments will be billed to you   in U.S. dollars, and your account will be debited when you subscribe and provide your payment information, unless stated otherwise in the program services or payment terms on the website for the Services.</li>
+                                                    <li>You must pay with one of the following:</li>
+
+                                                    <li>A valid credit card acceptable </li>
+                                                    <li>A valid debit card acceptable </li>
+                                                    <li>Sufficient funds in a checking or savings account to cover an electronic debit of the payment due;</li>
+                                                    <li>If your payment and registration information is not accurate, current, and complete and you do not notify us promptly when such information changes, the data auto updated or auto filled through site may be invalid. In that case, it is the sole responsibility of the user to update the recent and valid personal, business and payment information.</li>
+                                                    <li>If you do not notify us of updates to your payment method (e.g., credit card expiration date), to avoid interruption of your service, we may participate in programs supported by your card provider (e.g., updater services, recurring billing programs, etc.) to try to update your payment information, and you authorize us to continue billing your account with the updated information that we obtain or you may not be able to avail your service.</li>
+                                                    <li><span class="Title"></span>will charge you “Pay on Use” model only when you use our service or annual Services at the then-current rates, unless the Services are cancelled or terminated under this Agreement.</li>
+                                                    <li>Additional cancellation or renewal terms may be provided to you on the website for the Services.</li>
+                                                    <li>Operation</li>
+                                                </ul>
+                                        Content
+                                        <p>
+                                            <span class="Title"></span>may, but has no obligation to, monitor content posted to or generated via the Site or any of the Products and Services. We may disclose any information necessary or which we deem appropriate to satisfy our legal obligations, to protect <span class="Title"></span>or our customers, or to operate or fulfill the Products and Services.Accuracy Warranty
+                                            If there is any inaccuracy in the data provided or delay from the customer end and because of that IRS sends notice on further penalty and interest, <span class="Title"></span>may not be responsible for that. Please do inform and keep in touch with our  help line on any IRS notice.
+                                        </p>
+                                        <br />
+                                        <h3>9.	Disclaimer of Warranties</h3>
+                                        <br />
+                                        <p>Your use of the services, software, and content is entirely at your own risk. Except as described in this agreement, the services are provided "as is." to the maximum extent permitted by applicable law, <span class="Title"></spa>, its affiliates, and its third party providers, licensors, distributors or suppliers (collectively,"suppliers") disclaim all warranties, express or implied, including any warranty that the services are fit for a particular purpose, title, merchantability, data loss, non-interference with or non-infringement of any intellectual property rights, or the accuracy, reliability, quality or content in or linked to the services. <span class="Title"></span>and its affiliates and suppliers do not warrant that the services are secure, free from bugs, viruses, interruption, errors, theft or destruction. If the exclusions for implied warranties do not apply to you, any implied warranties are limited to 60 days from the date of delivery of the services, whichever is sooner.</p>
+                                        <br />
+
+                                        <h3>10.	Limitation of Liabilities</h3>
+                                        <br />
+                                        <p>You agree not to hold <span class="Title"></span>liable for any loss or damage incurred as a result of your participation in third party services. Additionally, except for the entire liability of <span class="Title"></span>and the participating parties for any reason shall be limited to the amount paid by you for the services or the third party services, as applicable. To the maximum extent permitted by applicable law, <span class="Title"></span>and the participating parties are not liable for any indirect, special, incidental or consequential damages (including damages for loss of business, loss of data, loss of profits or investment or the like), whether based on breach of contract, breach of warranty, tort (including negligence), product liability or otherwise, even if <span class="Title"></span>or the participating parties have been advised of the possibility of such damages and even if a remedy set forth herein is found to have failed of its essential purpose. </p>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <div class="left"></div>
+                        <div class="right">
+                            <button type="submit" onclick="RegisterUser();return false;" class="btn btn-success" tabindex="10">
+                                Start My Return</button>
+                        </div>
+                    </div>
+
+                    <p class="recover">
+                        <a href="../Login.html" tabindex="11">Already have an account? Sign In here</a>
+                    </p>
+
+                </div>
+            </div>
+
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+
+        </div>
+    </form>
+</body>
+</html>

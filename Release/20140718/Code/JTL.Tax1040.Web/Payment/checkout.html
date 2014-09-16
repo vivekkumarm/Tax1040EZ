@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title class="Title"></title>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/Payment/checkout.js"></script>
+</head>
+<body>
+    <form id="checkout">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <!--   <script type="text/javascript" src="../lib/default.js"></script>-->
+
+                        <!-- Right Help area -->
+                        <div id="riht">
+                            <script src="../lib/rightmenu.js"></script>
+                        </div>
+                        <!-- Center form area -->
+                     <div id="content">
+                            <div class="c4c8">
+                                <div class="title">
+                                    <h2>Tax Garden Service Charges for 1040EZ  (Check Out Summary) <a href="#" class="hidden-xs open pull-right" data-toggle="tooltip" data-original-title="Show / Hide Sidebar" id="changeSidebarPos">
+                                        <i class="transfer"></i>
+                                    </a></h2>
+                                </div>
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-blue in">
+                                        <div class="panel-heading1">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Tax Garden Service Charges for 1040EZ  (Check Out Summary) </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse in">
+                                            <div class="panel-body ">
+                                                <div class="panel-body ">
+
+                                                    
+                                                    <div class="row">
+                                                        <div style="display: none" id="divCheckOutError" class="error-alert"></div>
+                                                    </div>
+
+                                                    <h4>Payment Details - Product Fees</h4>
+                                                    <p class="alert alert-info">Total tax preparation cost / Service charge for Tax Garden is :
+                                                          <label id="labelTotalTaxcost" class="text-danger">$100</label>
+                                                    </p>
+                                                    <h3>Please Enter the valid  card details, billing address . </h3>
+                                                    <h4>Name and Billing Address </h4>
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtName">First Name</label>
+                                                        </div>
+                                                        <div class="right">
+                                                                <input type="text" id="txtFirstName" name="txtFirstName" maxlength="15" placeholder="First Name" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter First Name" data-trigger="focus" />
+                                                        </div>
+                                                        
+                                                        <a id="popFirstName"  data-toggle="popover"  class="help"  rel="popover"></a>
+
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtLastName">Last Name</label>
+                                                        </div>
+                                                        <div class="right">
+                                                                <input type="text" id="txtLastName" name="txtLastName" maxlength="15" placeholder="Last Name" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Last Name" data-trigger="focus" />
+                                                        </div>
+                                                        <!--<a id="popLastName" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        
+                                                        <a id="popLastName"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtStreetAddress">Street Address</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtStreetAddress" name="txtStreetAddress" maxlength="35" placeholder="Street Address" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Street Address" data-trigger="focus" />
+                                                        </div>
+                                                        <!--<a id="popStreetAddress" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                          <a id="popStreetAddress"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtApartmentNumber">Apartment Number</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtApartmentNumber" name="txtApartmentNumber" maxlength="5" placeholder="Apartment Number" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Apartment Number" data-trigger="focus" />
+                                                        </div>
+                                                        <!--<a id="popApartmentNumber" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        <a id="popApartmentNumber"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtCity">City</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtCity" name="txtCity" maxlength="20" placeholder="City" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter City" data-trigger="focus" />
+                                                        </div>
+                                                       <!-- <a id="popCity" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        <a id="popCity"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+
+                                                    <div id="divUSAddress">
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="ddlState">State Province</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <select id="ddlState" name="ddlState">
+                                                                </select>
+                                                            </div>
+                                                            <!--<a id="popState" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                            <a id="popState"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div id="divForeignAddress" style="display: none">
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtStateProvince">State Province</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" id="txtStateProvince" name="txtStateProvince" maxlength="50" placeholder="State Province" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter State" data-trigger="focus" />
+                                                            </div>
+                                                           <!-- <a id="popForeignState" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                            <a id="popForeignState"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtZipCode">Zip Code</label>
+                                                        </div>
+                                                        <div class="right">
+                                                                <input type="text" id="txtZipCode" name="txtZipCode" maxlength="10" placeholder="Zip Code" class="form-control tip" data-toggle="tooltip"
+                                                                    data-placement="right" title="Enter Zip Code" data-trigger="focus" onkeyup="javascript:return maskInput(this.value,this,'5',event,true);" />
+                                                        </div>
+                                                        <!--<a id="popZipCode" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        <a id="popZipCode"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtPhoneNumber">Phone Number</label>
+                                                        </div>
+                                                        <div class="right">
+                                                                <input type="text" id="txtPhoneNumber" name="txtPhoneNumber" maxlength="12"
+                                                                    placeholder="Phone Number" class="form-control tip" data-toggle="tooltip"
+                                                                    onkeyup="javascript:return maskInput(this.value,this,'3,7',event,false,true);" data-placement="right" title="Enter Phone Number" data-trigger="focus" />
+
+                                                        </div>
+                                                        <!--<a id="popPhoneNumber" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        <a id="popPhoneNumber"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtEmail">Email</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <input type="text" id="txtEmail" name="txtEmail" maxlength="100" placeholder="Email" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Email" data-trigger="focus" />
+                                                        </div>
+                                                      <!--  <a id="popEmail" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        <a id="popEmail"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+
+                                                  <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" id="chkForeignAddress" name="chkForeignAddress" value="1" />
+                                                                Foreign Address
+                                                            </label>
+                                                       </div>
+
+                                                    <div class="field-group" style="display: none" id="divCountryCode">
+                                                        <div class="left-lbl">
+                                                            <label for="ddlCountryCode">Country Code</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <select id="ddlCountryCode" name="ddlCountryCode">
+                                                            </select>
+                                                        </div>
+
+                                                        <!--<a id="popCountryName" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        <a id="popCountryName4"  data-toggle="popover"  class="help"  rel="popover"></a>
+
+                                                    </div>
+
+                                                    <h4>Card Details</h4>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="ddlCardType">Card Type</label>
+                                                        </div>
+                                                        <div class="right">
+                                                            <select id="ddlCardType" tabindex="13" name="ddlCardType">
+                                                            </select>
+                                                        </div>
+                                                      <!--  <a id="popCardType" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        <a id="popCardType"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtCardNumber">Card Number</label>
+                                                        </div>
+                                                        <div class="right">
+                                                                <input type="text" id="txtCardNumber" name="txtCardNumber" maxlength="16" placeholder="Card Number" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Card Number" data-trigger="focus" />
+                                                        </div>
+                                                       <!-- <a id="popCardNumber" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        <a id="popCardNumber"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label for="txtCVC">CVC</label>
+                                                        </div>
+                                                        <div class="right">
+                                                                <input type="text" id="txtCVC" name="txtCVC" placeholder="CVC" maxlength="4" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter CVC" data-trigger="focus" />
+                                                        </div>
+                                                       <!-- <a id="popCVC" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        <a id="popCVC"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl">
+                                                            <label>Expiration Date</label>
+
+                                                        </div>
+                                                        <div class="right">
+                                                        <div class="field-group">
+                                                        <div class="col-md-6 col-sm-6 col-xs-5">
+                                                            <select name="ddlMonth" id="ddlMonth">
+                                                                <option value="" selected="selected">---Select---</option>
+                                                                <option value="01">01</option>
+                                                                <option value="02">02</option>
+                                                                <option value="03">03</option>
+                                                                <option value="04">04</option>
+                                                                <option value="05">05</option>
+                                                                <option value="06">06</option>
+                                                                <option value="07">07</option>
+                                                                <option value="08">08</option>
+                                                                <option value="09">09</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                            </select></div>
+                                                            <div class="col-md-6 col-sm-6 col-xs-7">
+
+                                                            <select name="ddlYear" id="ddlYear">
+                                                                <option value="" selected="selected">---Select---</option>
+                                                                <option value="2015">2015</option>
+                                                                <option value="2016">2016</option>
+                                                                <option value="2017">2017</option>
+                                                                <option value="2018">2018</option>
+                                                                <option value="2019">2019</option>
+                                                                <option value="2020">2020</option>
+
+                                                            </select></div></div>
+                                                        </div>
+                                                        <!--<a id="popExpirationDate" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                            data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                                        <a id="popExpirationDate"  data-toggle="popover"  class="help"  rel="popover"></a>
+                                                    </div>
+                                                    <div class="alert alert-warning">
+                                                    <ul class="infotxt">
+                                                    <li><i class="fa fa-info-circle"></i>* By Clicking Pay Now, you are authorizing  Tax Garden to charge your  card</li>
+                                                    <li><i class="fa fa-info-circle"></i>* Don't click More than once the  Pay Now Button and do not click on the back button of the browser</li></ul></div>
+                                                    
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                                <button type="submit" class="btn btn-primary" onClick="GoToPreviousPage();return false;">
+                                    Back</button>
+                                <button type="submit" id="btnPayNow" onClick="orderPersist();return false;" class="btn btn-success">Pay Now</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+</body>
+
+</html>
+
+

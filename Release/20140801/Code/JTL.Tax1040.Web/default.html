@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaxGarden.com</title>
+    
+   <link rel="stylesheet" href="css/bootstrap.css" type="text/css" /> 
+   
+  <!--    <link rel="stylesheet/less" type="text/css" href="less/bootstrap.less" /> -->   
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    
+     <script src="Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+ <form id="form1" >
+  <div class="container">
+<header role="banner" class="navbar">
+
+    <div class="navbar-header">    
+      <button data-target=".navbar-collapse" data-toggle="collapse" type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a alt="Less" class="navbar-brand" href="default.html"><img alt="" class="img-responsive" src="images/Tax-Garden-Logo.png" /></a>
+    </div> 
+   
+    <nav role="navigation" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav ">
+        <li>
+          <a href="default.html" class="actv">Home</a>                          
+        </li>
+        
+        <li>
+          <a href="filing.html" >Serives</a>
+        </li>
+        <li>
+          <a href="w2sum.html" class="active">Price</a>
+        </li>
+         <li>
+          <a href="wiz.html"> Tax Resources   </a>
+        </li>
+         <li>
+          <a href="forgot.html">Support</a>
+        </li>
+         <li>
+          <a href="#">Blog</a>
+        </li>
+        <li>
+          <a href="default.html" class="btn btn-sign">Sign In</a>
+        </li>
+      </ul>
+    </nav>
+
+</header>
+
+<div class="loginbx" id="signin" >
+<div role="form" class="container-fluid">
+<div class="title">
+        <h2>Sign In</h2>
+        <h5>Welcome to Taxgarden Online </h5>
+     </div>
+     
+     <div class="row">  
+      <div style="display:none" id="login-alert" class="error-alert">error message</div>
+     </div>
+       
+    <!-- Login Form Area -->   
+    <div class="col-md-6 col-sm-6">  
+      
+    <div class="form-group">
+    <label for="username">User Name</label>
+    <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i>
+    </span>
+    <input type="text" required id="username" class="form-control">
+    </div>
+    </div>
+    
+    <div class="form-group">
+    <label for="password">Password</label>
+    <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i>
+    </span>
+    <input type="password" required id="password" class="form-control"> 
+    </div>   
+    </div>
+    
+
+    <div class="form-group">
+    <span class="button-checkbox">
+    <button type="button" class="btn" data-color="info" > Stay Signed In</button>
+    <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+    </span>
+    </div>
+
+    <div class="row">
+    <div class="c8">
+    <button type="submit" class="btn btn-success btn-block"><i class="glyphicon glyphicon-ok"></i>   Sign in</button>
+    </div>
+    </div>
+  
+</div> 
+
+   <!-- Login Form Area --> 
+ <div class="col-md-5 col-sm-5 ">
+       <h3>New User</h3>
+       <a href="#" onClick="$('#signin').hide(); $('#newaccount').show()" class="btn btn-primary">Create an Account</a>
+       
+       <div class="support">       
+       Need Live Support? 
+       <div class="toll">
+       Toll Free 
+       <h4>1-866-245-3918</h4>
+       </div>
+       <div class="chat">
+       Live Chat
+       <h4> <a href="#" class="actv">Online</a> </h4>
+       </div>
+       </div>
+       
+       
+      </div>
+    
+    
+ <div class="row col-sm-12 col-lg-11"> 
+ <P class="recover"><a href="PreLogin/recovery.html" > Not able to access your Account?</a></P>
+ </div>
+     
+ </div>      
+</div>
+
+
+<!-- New user Registration Form -->
+<div class="loginbx" id="newaccount" style="display:none">
+<div role="form" class="container-fluid">
+<div class="title">
+        <h2>Create Account</h2>
+        <h5>Please provide the information below to create a New Account</h5>
+     </div>
+     
+    
+<div class="row">
+ <div style="display:none" id="login-alert" class="error-alert">error message</div>
+</div>
+  
+<div class="field-group">
+<label for="emailinput" class="left">Email Address</label>
+<div class="right" >
+<input type="email" id="emailinput" >
+</div>
+
+<div class="left"></div>
+<div class="right1" >
+<label class="checkbox">
+<input id="login-remember" type="checkbox" name="remember" value="1" >  I want to use email as my Username</label>
+</div>
+</div>
+ 
+
+<div class="field-group">
+<label for="nameinput" class="left">User Name</label>
+<div class="right">
+<input type="text" id="nameinput" placeholder="Enter User Name" >
+</div>
+<a id="popName" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus" ></a>
+
+</div>
+
+
+<div class="field-group">
+<label for="passwordinput" class="left">Password</label>
+<div class="right">
+<input type="password"  id="passwordinput" placeholder="Enter Password ">
+</div>
+</div>
+
+
+<div class="field-group">
+<label for="confpasswordinput" class="left">Confirm Password</label>
+<div class="right">
+<input type="password"  id="confpasswordinput" placeholder="Confirm Password ">
+</div>
+</div>
+
+
+<div class="field-group">
+<label for="createAccountQuestion" class="left">Security Question</label>
+<div class="right">
+<select name="createAccountQuestion"  id="createAccountQuestion" >
+    <option value="What was the name of your first pet?" selected="selected">What was the name of your first pet?</option>
+ </select>
+</div>
+<a href="#" class="help"></a>
+</div>
+
+
+<div class="field-group">
+<label for="answerinput" class="left">Answer</label>
+<div class="right">
+<input type="password"  id="answerinput" placeholder="Enter Security Answer ">
+</div>
+</div>
+
+<div class="field-group">
+<div class="left"></div>
+<div class="right1">
+<label class="checkbox ">
+     <input id="login-terms" type="checkbox" name="terms" value="1"> I agree to site's <a href="#">Terms of Services</a></label>
+     <label class="checkbox ">
+     <input id="login-terms" type="checkbox" name="terms" value="1"> Remember me on this computer to skip security question on next sign-in</label>
+     <button type="submit" class="btn btn-success">Start My Return</button>
+</div>
+</div>
+
+<P class="recover">
+<a href="#" onClick="$('#newaccount').hide(); $('#signin').show()">Already have an account? Sign In here</a></P>
+
+ </div>      
+</div>
+
+
+
+<footer role="contentinfo">
+
+<nav>
+<a href="#" class="comodo"></a><a href="#" class="mcafee"><img alt="" src="images/mcafee.gif" /></a><a href="#" class="bbb"></a><a href="#" class="irs"></a>
+</nav>
+<div class="copy">
+&copy; Copyright 2014 by Think Trade Inc.  | <a href="#"> Privacy</a>  |  <a href="#">Terms of Service </a>
+</div>
+
+</footer>
+
+
+  </div>
+  </form>
+
+   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+   <script src="Scripts/bootstrap.min.js"></script>
+   <script src="Scripts/custom.js"></script>
+	<script src="Scripts/popover.js"></script>
+    <script src="Scripts/tooltip.js"></script>
+<script>
+$(function ()
+//{ $("#popName").popover({title: 'Enter User Name <a href='' target='_blank' class='more'>Read Common Question</a>', content: "<img class='block' src='images/Tax-Garden-Logo.png' /><br />User Name Should at least 6 characters. You can choose your own name or memorable one "});
+{ $("#popName").popover({title: '', content: "<h5>User Name</h5><img class='block' src='images/Tax-Garden-Logo.png' /><br />User Name Should at least 6 characters. You can choose your own name or memorable one <hr /> <a href='' target='_blank' class='more'>Read Common Question</a>"});
+});
+
+$(function ()
+{ $(".tip").tooltip();
+});
+
+</script>
+</body>
+
+</html>

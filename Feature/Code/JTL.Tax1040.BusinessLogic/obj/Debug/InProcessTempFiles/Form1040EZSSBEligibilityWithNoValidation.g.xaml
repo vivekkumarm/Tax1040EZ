@@ -1,0 +1,743 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<local:Form1040EZSSBEligibilityWithNoValidation xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:local="clr-namespace:JTL.Tax1040.BusinessLogic.WorkFlow.Activities.CalculationWithNoValidation;assembly=JTL.Tax1040.BusinessLogic" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.TAX1040.PaymentLibrary</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <local:Form1040EZSSBEligibilityWithNoValidation.Implementation>
+    <Sequence DisplayName="SSBEligiblity Calculation">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="jtco:ErrorMessage" Name="ErrorMessage" />
+        <Variable x:TypeArguments="scg:List(jtco:ErrorMessage)" Name="ErrorMessageList">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="x:Double" Name="SSA" />
+        <Variable x:TypeArguments="x:Double" Name="RRB" />
+        <Variable x:TypeArguments="x:Double" Default="25000" Name="SingleLimit" />
+        <Variable x:TypeArguments="x:Double" Default="32000" Name="MFJLimit" />
+      </Sequence.Variables>
+      <If DisplayName="If Tax1040ObjectCheck">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object != null &amp;&amp; Tax1040Object.Income!=null &amp;&amp; Tax1040Object.Income.OtherIncome !=null</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <Sequence DisplayName="SSB EligibilityCheck">
+            <Sequence DisplayName="RRB &amp; SSB Check">
+              <Sequence DisplayName="SocialSecurityBenefits">
+                <If DisplayName="If  SocialSecurityBenefit Check">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.Income.OtherIncome.SSB != null)</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <If DisplayName=" If - Primary TaxPayer Null Check">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.PersonalDetails != null) &amp;&amp; (Tax1040Object.PersonalDetails.PrimaryTaxPayer != null)</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <Switch x:TypeArguments="jtco:FilingStatus">
+                          <Switch.Expression>
+                            <InArgument x:TypeArguments="jtco:FilingStatus">
+                              <mca:CSharpValue x:TypeArguments="jtco:FilingStatus">Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus</mca:CSharpValue>
+                            </InArgument>
+                          </Switch.Expression>
+                          <Sequence x:Key="Single" DisplayName="SSB TaxpayerNetBenefits">
+                            <If DisplayName="If TaxpayerNetBenefits Check">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.OtherIncome.SSB.TaxpayerNetBenefits !=null</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">SSA</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.Income.OtherIncome.SSB.TaxpayerNetBenefits.HasValue ? Tax1040Object.Income.OtherIncome.SSB.TaxpayerNetBenefits.Value:0</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                          </Sequence>
+                          <Sequence x:Key="MarriedFilingJointly" DisplayName="SSB TaxpayerNetBenefits">
+                            <If DisplayName="If TaxpayerNetBenefits Check">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.OtherIncome.SSB.TaxpayerNetBenefits != null || Tax1040Object.Income.OtherIncome.SSB.SpouseNetBenefits !=null</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">SSA</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">(Tax1040Object.Income.OtherIncome.SSB.TaxpayerNetBenefits.HasValue ? Tax1040Object.Income.OtherIncome.SSB.TaxpayerNetBenefits.Value:0 )+ (Tax1040Object.Income.OtherIncome.SSB.SpouseNetBenefits.HasValue ? Tax1040Object.Income.OtherIncome.SSB.SpouseNetBenefits.Value:0)</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                          </Sequence>
+                          <x:Null x:Key="HeadofHousehold" />
+                          <x:Null x:Key="MarriedFilingSeperately" />
+                          <x:Null x:Key="Widower" />
+                        </Switch>
+                      </If.Then>
+                    </If>
+                  </If.Then>
+                </If>
+              </Sequence>
+              <Sequence DisplayName="RailRoardRetirementBenefits">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="jtb:RailroadRetirementIncome" Name="RailRoadBenefit" />
+                </Sequence.Variables>
+                <If DisplayName="If RailroadRetirementBenefit Check">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.Income.OtherIncome.RRB != null)</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <If DisplayName=" If - Primary TaxPayer Null Check">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.PersonalDetails != null) &amp;&amp; (Tax1040Object.PersonalDetails.PrimaryTaxPayer != null)</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <Switch x:TypeArguments="jtco:FilingStatus">
+                          <Switch.Expression>
+                            <InArgument x:TypeArguments="jtco:FilingStatus">
+                              <mca:CSharpValue x:TypeArguments="jtco:FilingStatus">Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus</mca:CSharpValue>
+                            </InArgument>
+                          </Switch.Expression>
+                          <Sequence x:Key="Single" DisplayName="RRB TaxPayerNetBenefits Check">
+                            <If DisplayName="If TaxpayerNetBenefits Check">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.OtherIncome.RRB.TaxpayerNetBenefits !=null</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpReference x:TypeArguments="x:Double">RRB</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.Income.OtherIncome.RRB.TaxpayerNetBenefits.HasValue ? Tax1040Object.Income.OtherIncome.RRB.TaxpayerNetBenefits.Value:0</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                          </Sequence>
+                          <If x:Key="MarriedFilingJointly" DisplayName="If TaxpayerNetBenefits Check">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.Income.OtherIncome.RRB.TaxpayerNetBenefits != null || Tax1040Object.Income.OtherIncome.RRB.SpouseNetBenefits !=null</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Assign>
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpReference x:TypeArguments="x:Double">RRB</mca:CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <mca:CSharpValue x:TypeArguments="x:Double">(Tax1040Object.Income.OtherIncome.RRB.TaxpayerNetBenefits.HasValue ? Tax1040Object.Income.OtherIncome.RRB.TaxpayerNetBenefits.Value:0 )+( Tax1040Object.Income.OtherIncome.RRB.SpouseNetBenefits.HasValue ? Tax1040Object.Income.OtherIncome.RRB.SpouseNetBenefits.Value:0)</mca:CSharpValue>
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Then>
+                          </If>
+                          <x:Null x:Key="HeadofHousehold" />
+                          <x:Null x:Key="MarriedFilingSeperately" />
+                          <x:Null x:Key="Widower" />
+                        </Switch>
+                      </If.Then>
+                    </If>
+                  </If.Then>
+                </If>
+              </Sequence>
+            </Sequence>
+            <Sequence DisplayName="SSB&amp;RRBEligibilityWorksheetCalculation">
+              <Sequence DisplayName="Initialization">
+                <If>
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.F1040EZ==null)</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <Sequence>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="jtb:F1040EZ">
+                            <mca:CSharpReference x:TypeArguments="jtb:F1040EZ">Tax1040Object.F1040EZ</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="jtb:F1040EZ">
+                            <mca:CSharpValue x:TypeArguments="jtb:F1040EZ">new F1040EZ()</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="jtb:F1040EZWorkSheets">
+                            <mca:CSharpReference x:TypeArguments="jtb:F1040EZWorkSheets">Tax1040Object.F1040EZ.F1040EZWorkSheets</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="jtb:F1040EZWorkSheets">
+                            <mca:CSharpValue x:TypeArguments="jtb:F1040EZWorkSheets">new F1040EZWorkSheets()</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="jtb:SSBWorkSheet">
+                            <mca:CSharpReference x:TypeArguments="jtb:SSBWorkSheet">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="jtb:SSBWorkSheet">
+                            <mca:CSharpValue x:TypeArguments="jtb:SSBWorkSheet">new SSBWorkSheet()</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <If>
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.F1040EZ.F1040EZWorkSheets==null)</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <Sequence>
+                          <Assign>
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="jtb:F1040EZWorkSheets">
+                                <mca:CSharpReference x:TypeArguments="jtb:F1040EZWorkSheets">Tax1040Object.F1040EZ.F1040EZWorkSheets</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="jtb:F1040EZWorkSheets">
+                                <mca:CSharpValue x:TypeArguments="jtb:F1040EZWorkSheets">new F1040EZWorkSheets()</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign>
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="jtb:SSBWorkSheet">
+                                <mca:CSharpReference x:TypeArguments="jtb:SSBWorkSheet">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="jtb:SSBWorkSheet">
+                                <mca:CSharpValue x:TypeArguments="jtb:SSBWorkSheet">new SSBWorkSheet()</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <If>
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet==null)</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Assign>
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="jtb:SSBWorkSheet">
+                                  <mca:CSharpReference x:TypeArguments="jtb:SSBWorkSheet">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="jtb:SSBWorkSheet">
+                                  <mca:CSharpValue x:TypeArguments="jtb:SSBWorkSheet">new SSBWorkSheet()</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Then>
+                        </If>
+                      </If.Else>
+                    </If>
+                  </If.Else>
+                </If>
+              </Sequence>
+              <Sequence DisplayName="SSB WorkSheet Calculation">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Double" Name="UnEmployment" />
+                  <Variable x:TypeArguments="x:Double" Name="TotalWages" />
+                  <Variable x:TypeArguments="x:Double" Name="TaxableInterest" />
+                  <Variable x:TypeArguments="x:Double" Name="F1099INTAmount" />
+                  <Variable x:TypeArguments="x:Double" Name="F1099OIDAmount" />
+                  <Variable x:TypeArguments="x:Double" Name="TaxableExcemptInterestINT" />
+                  <Variable x:TypeArguments="x:Double" Name="TaxableExcemptInterestOID" />
+                  <Variable x:TypeArguments="x:Double" Name="TaxableExcemptInterest" />
+                  <Variable x:TypeArguments="x:Double" Name="Alaska" />
+                  <Variable x:TypeArguments="x:Double" Name="TotalUnemployment" />
+                </Sequence.Variables>
+                <Assign>
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Double">
+                      <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line1Amount</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Double">
+                      <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(SSA, MidpointRounding.AwayFromZero) + Math.Round(RRB, MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <If>
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">(Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line1Amount &gt; 0)</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <Sequence DisplayName="Validations and Calculations if Line1 &gt;0">
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpReference x:TypeArguments="x:Boolean">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.IsLine2SSBTaxable</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line2Amount</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line1Amount/2</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Sequence DisplayName="Income">
+                        <local:W2WithNoValidation NonQualifiedPlansAmount="{x:Null}" PrefixTotalWages="{x:Null}" TaxableScholarshipAmount="{x:Null}">
+                          <local:W2WithNoValidation.Tax1040Object>
+                            <InOutArgument x:TypeArguments="jtb:Tax1040">
+                              <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                            </InOutArgument>
+                          </local:W2WithNoValidation.Tax1040Object>
+                          <local:W2WithNoValidation.TotalWages>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">TotalWages</mca:CSharpReference>
+                            </OutArgument>
+                          </local:W2WithNoValidation.TotalWages>
+                        </local:W2WithNoValidation>
+                        <local:F1099GWithNoValidation TotalRepaidForCurrentYear="{x:Null}">
+                          <local:F1099GWithNoValidation.Tax1040Object>
+                            <InOutArgument x:TypeArguments="jtb:Tax1040">
+                              <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                            </InOutArgument>
+                          </local:F1099GWithNoValidation.Tax1040Object>
+                          <local:F1099GWithNoValidation.UnEmployment>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">UnEmployment</mca:CSharpReference>
+                            </OutArgument>
+                          </local:F1099GWithNoValidation.UnEmployment>
+                        </local:F1099GWithNoValidation>
+                        <local:AlaskaWithNoValidation>
+                          <local:AlaskaWithNoValidation.AlaskaPermanentFund>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">Alaska</mca:CSharpReference>
+                            </OutArgument>
+                          </local:AlaskaWithNoValidation.AlaskaPermanentFund>
+                          <local:AlaskaWithNoValidation.Tax1040Object>
+                            <InOutArgument x:TypeArguments="jtb:Tax1040">
+                              <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                            </InOutArgument>
+                          </local:AlaskaWithNoValidation.Tax1040Object>
+                        </local:AlaskaWithNoValidation>
+                        <Sequence DisplayName="Unemployment ">
+                          <Assign DisplayName="Interest Income Amount">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">TotalUnemployment</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">UnEmployment+Alaska</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                        <Sequence DisplayName="Interest Income">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Double" Name="F1099INTAmount" />
+                            <Variable x:TypeArguments="x:Double" Name="F1099OIDAmount" />
+                          </Sequence.Variables>
+                          <local:F1099INTWithNoValidation>
+                            <local:F1099INTWithNoValidation.Tax1040Object>
+                              <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                              </InOutArgument>
+                            </local:F1099INTWithNoValidation.Tax1040Object>
+                            <local:F1099INTWithNoValidation.TotalTaxableInterest>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">F1099INTAmount</mca:CSharpReference>
+                              </OutArgument>
+                            </local:F1099INTWithNoValidation.TotalTaxableInterest>
+                            <local:F1099INTWithNoValidation.TotaltaxExemptInterest1099INT>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">TaxableExcemptInterestINT</mca:CSharpReference>
+                              </OutArgument>
+                            </local:F1099INTWithNoValidation.TotaltaxExemptInterest1099INT>
+                          </local:F1099INTWithNoValidation>
+                          <local:F1099OIDWithNoValidation argument1="{x:Null}">
+                            <local:F1099OIDWithNoValidation.Tax1040Object>
+                              <InOutArgument x:TypeArguments="jtb:Tax1040">
+                                <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+                              </InOutArgument>
+                            </local:F1099OIDWithNoValidation.Tax1040Object>
+                            <local:F1099OIDWithNoValidation.TotalTaxableInterest>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">F1099OIDAmount</mca:CSharpReference>
+                              </OutArgument>
+                            </local:F1099OIDWithNoValidation.TotalTaxableInterest>
+                            <local:F1099OIDWithNoValidation.TotaltaxExemptInterest1099OID>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">TaxableExcemptInterestOID</mca:CSharpReference>
+                              </OutArgument>
+                            </local:F1099OIDWithNoValidation.TotaltaxExemptInterest1099OID>
+                          </local:F1099OIDWithNoValidation>
+                          <Assign DisplayName="Interest Income Amount">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">TaxableInterest</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">F1099OIDAmount + F1099INTAmount</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Exmept Amount">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">
+                                <mca:CSharpReference x:TypeArguments="x:Double">TaxableExcemptInterest</mca:CSharpReference>
+                              </OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">
+                                <mca:CSharpValue x:TypeArguments="x:Double">TaxableExcemptInterestINT + TaxableExcemptInterestOID</mca:CSharpValue>
+                              </InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </Sequence>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line3Amount</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">TotalWages + TotalUnemployment</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line4Amount</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">TaxableInterest + TaxableExcemptInterest</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign>
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">
+                            <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line5Amount</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">
+                            <mca:CSharpValue x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line2Amount+Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line3Amount + Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line4Amount</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <If DisplayName="If PersonalDetails Check">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails !=null</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <If DisplayName="If PrimaryTaxPayerCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.PersonalDetails.PrimaryTaxPayer !=null</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Switch x:TypeArguments="jtco:FilingStatus">
+                                <Switch.Expression>
+                                  <InArgument x:TypeArguments="jtco:FilingStatus">
+                                    <mca:CSharpValue x:TypeArguments="jtco:FilingStatus">Tax1040Object.PersonalDetails.PrimaryTaxPayer.FilingStatus</mca:CSharpValue>
+                                  </InArgument>
+                                </Switch.Expression>
+                                <Sequence x:Key="Single">
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Double">
+                                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line6Amount</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Double">
+                                        <mca:CSharpValue x:TypeArguments="x:Double">SingleLimit</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <If DisplayName="If SSB FilingStatus Single Check">
+                                    <If.Condition>
+                                      <InArgument x:TypeArguments="x:Boolean">
+                                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line5Amount &lt;= SingleLimit</mca:CSharpValue>
+                                      </InArgument>
+                                    </If.Condition>
+                                    <If.Then>
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Boolean">
+                                            <mca:CSharpReference x:TypeArguments="x:Boolean">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.IsLine7SSBTaxable</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                    <If.Else>
+                                      <Sequence>
+                                        <Assign>
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Boolean">
+                                              <mca:CSharpReference x:TypeArguments="x:Boolean">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.IsLine7SSBTaxable</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <Sequence DisplayName="Error Message">
+                                          <Assign>
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_TAXABLE_SOCIAL_SECURITY_AND_RAILROAD_BENEFITS]</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                            <AddToCollection.Item>
+                                              <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection.Item>
+                                            <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                              <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                            </InArgument>
+                                          </AddToCollection>
+                                        </Sequence>
+                                      </Sequence>
+                                    </If.Else>
+                                  </If>
+                                </Sequence>
+                                <Sequence x:Key="MarriedFilingJointly">
+                                  <Assign>
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Double">
+                                        <mca:CSharpReference x:TypeArguments="x:Double">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line6Amount</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Double">
+                                        <mca:CSharpValue x:TypeArguments="x:Double">MFJLimit</mca:CSharpValue>
+                                      </InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <If DisplayName="If SSB FilingStatus MFJ Check">
+                                    <If.Condition>
+                                      <InArgument x:TypeArguments="x:Boolean">
+                                        <mca:CSharpValue x:TypeArguments="x:Boolean">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.Line5Amount &lt;= MFJLimit</mca:CSharpValue>
+                                      </InArgument>
+                                    </If.Condition>
+                                    <If.Then>
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Boolean">
+                                            <mca:CSharpReference x:TypeArguments="x:Boolean">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.IsLine7SSBTaxable</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                    <If.Else>
+                                      <Sequence>
+                                        <Assign>
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Boolean">
+                                              <mca:CSharpReference x:TypeArguments="x:Boolean">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.IsLine7SSBTaxable</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <Sequence DisplayName="Error Message">
+                                          <Assign>
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.OTHERINCOME_TAXABLE_SOCIAL_SECURITY_AND_RAILROAD_BENEFITS]</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                            <AddToCollection.Item>
+                                              <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection.Item>
+                                            <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                              <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                            </InArgument>
+                                          </AddToCollection>
+                                        </Sequence>
+                                      </Sequence>
+                                    </If.Else>
+                                  </If>
+                                </Sequence>
+                                <x:Null x:Key="HeadofHousehold" />
+                                <x:Null x:Key="MarriedFilingSeperately" />
+                                <x:Null x:Key="Widower" />
+                              </Switch>
+                            </If.Then>
+                          </If>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Assign>
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpReference x:TypeArguments="x:Boolean">Tax1040Object.F1040EZ.F1040EZWorkSheets.SSBWorkSheet.IsLine2SSBTaxable</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Else>
+                </If>
+              </Sequence>
+              <Assign>
+                <Assign.To>
+                  <OutArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                    <mca:CSharpReference x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                    <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </Sequence>
+        </If.Then>
+      </If>
+      <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </local:Form1040EZSSBEligibilityWithNoValidation.Implementation>
+</local:Form1040EZSSBEligibilityWithNoValidation>

@@ -1,0 +1,2295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<twa:FW2BusinessRuleValidation xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:twa="clr-namespace:Tax1040WorkFlow.WorkFlow.Activities;assembly=JTL.Tax1040.BusinessLogic" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.PDFBinding</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <twa:FW2BusinessRuleValidation.Implementation>
+    <Sequence DisplayName="W2BusinessValidation">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="jtco:ErrorMessage" Name="ErrorMessage" />
+        <Variable x:TypeArguments="scg:List(jtco:ErrorMessage)" Name="ErrorMessageList">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="jtb:W2" Name="W2" />
+        <Variable x:TypeArguments="x:Double" Default="0.0145" Name="MedicareWagesAmountRange" />
+        <Variable x:TypeArguments="jtb:W2EmployerCode" Name="W2EmployerCode" />
+        <Variable x:TypeArguments="jtb:W2StateLocalTaxInfo" Name="FW2StateInfo" />
+        <Variable x:TypeArguments="x:Double" Default="200000" Name="ExecptedMedicareWagAmount" />
+        <Variable x:TypeArguments="x:Double" Default="200000" Name="MedicareWithheldLimit" />
+        <Variable x:TypeArguments="x:Int32" Default="0" Name="EmployerCodeCount" />
+        <Variable x:TypeArguments="x:Int32" Default="0" Name="DynamicControlIDForBR9" />
+      </Sequence.Variables>
+      <If DisplayName="If Tax1040Object">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object != null) &amp;&amp; (Tax1040Object.Income != null))</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <Sequence DisplayName="W2BusinessRule Check">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:Double" Default="0.0235" Name="AdditionalMedicareWagesRange" />
+              <Variable x:TypeArguments="x:Double" Default="1800" Name="HouseHoldLimit" />
+            </Sequence.Variables>
+            <If DisplayName="If W2Check">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.W2Wages !=null)&amp;&amp;(Tax1040Object.Income.W2Wages.Any()))</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="W2">
+                  <ForEach x:TypeArguments="jtb:W2" DisplayName="ForEach&lt;W2&gt;">
+                    <ForEach.Values>
+                      <InArgument x:TypeArguments="scg:IEnumerable(jtb:W2)">
+                        <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:W2)">Tax1040Object.Income.W2Wages</mca:CSharpValue>
+                      </InArgument>
+                    </ForEach.Values>
+                    <ActivityAction x:TypeArguments="jtb:W2">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="jtb:W2" Name="W2" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="W2">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Double" Default="0" Name="TotalStateWagesAmount" />
+                          <Variable x:TypeArguments="x:Double" Default="0" Name="TotalStateTaxwithholdingAmount" />
+                          <Variable x:TypeArguments="x:Double" Default="117000" Name="MaxSocialSecurityWagesAmount" />
+                          <Variable x:TypeArguments="x:Double" Default="7254" Name="MaxSocialSecurityWithHoldingAmount" />
+                        </Sequence.Variables>
+                        <Assign>
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpReference x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Sequence DisplayName="Box2-Federal Withholding">
+                          <If DisplayName="IfFederal WithholdingCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">(W2.FederalTaxWithholdingAmount.HasValue ? W2.FederalTaxWithholdingAmount.Value:0) &gt; (W2.WagesAmount.HasValue ? W2.WagesAmount.Value:0)</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="Error Message">
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.WAGES_FEDERAL_WITHHOLDING]</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="Box3-Social security Wages">
+                          <If DisplayName="IfSocialSecurityWagesCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">((W2.SocialSecurityWagesAmount.HasValue ? W2.SocialSecurityWagesAmount.Value:0)+(W2.SocialSecurityTipsAmount.HasValue?W2.SocialSecurityTipsAmount.Value:0)) &gt; MaxSocialSecurityWagesAmount</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="Error Message">
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.SOCIAL_SECURITY_WAGES]</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="Box4-Social security Withheld">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Double" Default="0.062" Name="SSWagesAmountRange" />
+                          </Sequence.Variables>
+                          <If DisplayName="IfSocialSecurityWithheldCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">(((W2.SocialSecurityTaxWithholdingAmount.HasValue ? W2.SocialSecurityTaxWithholdingAmount.Value : 0 ) &gt; ((W2.SocialSecurityWagesAmount.HasValue ?W2.SocialSecurityWagesAmount.Value:0) * SSWagesAmountRange)) ||
+((W2.SocialSecurityTaxWithholdingAmount.HasValue ? W2.SocialSecurityTaxWithholdingAmount.Value : 0)
+                &gt; MaxSocialSecurityWithHoldingAmount))</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="Error Message">
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.SOCIAL_SECURITY_TAX]</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="Box6-Medicare Withheld">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Double" Name="TotalMedicareWitheld">
+                              <Variable.Default>
+                                <mca:CSharpValue x:TypeArguments="x:Double">200000 * 0.0145</mca:CSharpValue>
+                              </Variable.Default>
+                            </Variable>
+                          </Sequence.Variables>
+                          <If DisplayName="IfMedicare Withheld">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">(W2.MedicareWagesAmount.HasValue ? W2.MedicareWagesAmount.Value:0) &lt; MedicareWithheldLimit</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="MedicareWithheld">
+                                <If DisplayName="IfMedicareWithheldCheck">
+                                  <If.Condition>
+                                    <InArgument x:TypeArguments="x:Boolean">
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">(W2.MedicareTaxWithholdingAmount.HasValue ? W2.MedicareTaxWithholdingAmount.Value:0) &gt; ((W2.MedicareWagesAmount.HasValue ? W2.MedicareWagesAmount.Value:0) * MedicareWagesAmountRange)</mca:CSharpValue>
+                                    </InArgument>
+                                  </If.Condition>
+                                  <If.Then>
+                                    <Sequence DisplayName="Error Message">
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.MEDICARE_TAX_WITHHELD]</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Int64">
+                                            <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Int64">
+                                            <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                        <AddToCollection.Item>
+                                          <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                          </InArgument>
+                                        </AddToCollection.Item>
+                                        <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                          <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection>
+                                    </Sequence>
+                                  </If.Then>
+                                </If>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <If DisplayName="IfMedicareWithheldCheck">
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">(W2.MedicareTaxWithholdingAmount.HasValue ? W2.MedicareTaxWithholdingAmount.Value : 0) &gt;
+((((W2.MedicareWagesAmount.HasValue ? W2.MedicareWagesAmount.Value : 0) - MedicareWithheldLimit)
+ * AdditionalMedicareWagesRange) + TotalMedicareWitheld)</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="Error Message">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="x:Double" Name="TotalStaticMedicareWages" />
+                                      <Variable x:TypeArguments="x:String" Name="variable3" />
+                                    </Sequence.Variables>
+                                    <Assign>
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.MEDICARE_TAX_WITHHELD]</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign>
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Int64">
+                                          <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Int64">
+                                          <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                      <AddToCollection.Item>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection.Item>
+                                      <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                        <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="Box8-Allocated Tips">
+                          <If DisplayName="IfAllocatedTipsCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">W2.AllocatedTipsAmount.HasValue &amp;&amp; W2.AllocatedTipsAmount.Value &gt; 0</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="Error Message">
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.ALLOCATED_TIPS]</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="Box10-Dependent care Benefits">
+                          <If DisplayName="IfDependentCareBenefitsCheck">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">W2.DependentCareBenefitsAmount.HasValue &amp;&amp; W2.DependentCareBenefitsAmount.Value &gt; 0</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="Error Message">
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.DEPENDENT_CARE_BENEFITS]</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="Box12A, 12B, 12C, 12D-Eligibility &amp; Business Rule Check">
+                          <If>
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">W2.W2EmployerCodes != null &amp;&amp; W2.W2EmployerCodes.Any()</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <ForEach x:TypeArguments="jtb:W2EmployerCode" DisplayName="ForEach&lt;W2EmployerCode&gt;">
+                                <ForEach.Values>
+                                  <InArgument x:TypeArguments="scg:IEnumerable(jtb:W2EmployerCode)">
+                                    <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:W2EmployerCode)">W2.W2EmployerCodes</mca:CSharpValue>
+                                  </InArgument>
+                                </ForEach.Values>
+                                <ActivityAction x:TypeArguments="jtb:W2EmployerCode">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="jtb:W2EmployerCode" Name="W2EmployerCode" />
+                                  </ActivityAction.Argument>
+                                  <Sequence>
+                                    <Sequence DisplayName="W2 Employer Count">
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpReference x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpValue x:TypeArguments="x:Int32">EmployerCodeCount+1</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </Sequence>
+                                    <If DisplayName="If AUncollectedSocSecOrRRTATaxOnTips ER Check">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.AUncollectedSocSecOrRRTATaxOnTips &amp;&amp; (W2EmployerCode.Amount.HasValue &amp;&amp; W2EmployerCode.Amount.Value &gt; 0)</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Switch x:TypeArguments="x:Int32" DisplayName="Switch &lt;Employer Code&gt;">
+                                          <Switch.Expression>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpValue x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Switch.Expression>
+                                          <Sequence x:Key="1" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12A_A_UNCOLLECTED_SOCIAL_SECURITY_OR_RRTA_TAX_ON_TIPS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="2" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12B_A_UNCOLLECTED_SOCIAL_SECURITY_OR_RRTA_TAX_ON_TIPS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="3" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12C_A_UNCOLLECTED_SOCIAL_SECURITY_OR_RRTA_TAX_ON_TIPS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="4" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12D_A_UNCOLLECTED_SOCIAL_SECURITY_OR_RRTA_TAX_ON_TIPS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </Switch>
+                                      </If.Then>
+                                    </If>
+                                    <If DisplayName="If BUncollectedMedicareTaxOnTips ER Check">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.BUncollectedMedicareTaxOnTips &amp;&amp; (W2EmployerCode.Amount.HasValue &amp;&amp; W2EmployerCode.Amount.Value &gt;0)</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Switch x:TypeArguments="x:Int32" DisplayName="Switch &lt;Employer Code&gt;">
+                                          <Switch.Expression>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpValue x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Switch.Expression>
+                                          <Sequence x:Key="1" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12A_B_UNCOLLECTED_MEDICARE_TAX_ON_TIPS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="2" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12B_B_UNCOLLECTED_MEDICARE_TAX_ON_TIPS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="3" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12C_B_UNCOLLECTED_MEDICARE_TAX_ON_TIPS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="4" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12D_B_UNCOLLECTED_MEDICARE_TAX_ON_TIPS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </Switch>
+                                      </If.Then>
+                                    </If>
+                                    <If DisplayName="If KExciseTaxOnExcessGoldenParachutePayments ER Check">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.KExciseTaxOnExcessGoldenParachutePayments &amp;&amp; (W2EmployerCode.Amount.HasValue &amp;&amp; W2EmployerCode.Amount.Value &gt; 0)</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Switch x:TypeArguments="x:Int32" DisplayName="Switch &lt;Employer Code&gt;">
+                                          <Switch.Expression>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpValue x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Switch.Expression>
+                                          <Sequence x:Key="1" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12A_K_EXCISE_TAX_ON_GOLDEN_PARACHUTE_PAYMENTS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="2" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12B_K_EXCISE_TAX_ON_GOLDEN_PARACHUTE_PAYMENTS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="3" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12C_K_EXCISE_TAX_ON_GOLDEN_PARACHUTE_PAYMENTS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="4" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12D_K_EXCISE_TAX_ON_GOLDEN_PARACHUTE_PAYMENTS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </Switch>
+                                      </If.Then>
+                                    </If>
+                                    <If DisplayName="If MUncollectedSocSecOrRRTATaxOnGroupTermsLifeIns ER Check">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.MUncollectedSocSecOrRRTATaxOnGrpTermsLifeIns &amp;&amp; (W2EmployerCode.Amount.HasValue &amp;&amp; W2EmployerCode.Amount.Value &gt; 0)</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Switch x:TypeArguments="x:Int32" DisplayName="Switch &lt;Employer Code&gt;">
+                                          <Switch.Expression>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpValue x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Switch.Expression>
+                                          <Sequence x:Key="1" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12A_M_UNCOLLECTED_SOCIAL_SECURITY_OR_RRTA_TAX_ON_TAXABLE_GROUP]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="2" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12B_M_UNCOLLECTED_SOCIAL_SECURITY_OR_RRTA_TAX_ON_TAXABLE_GROUP]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="3" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12C_M_UNCOLLECTED_SOCIAL_SECURITY_OR_RRTA_TAX_ON_TAXABLE_GROUP]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="4" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12D_M_UNCOLLECTED_SOCIAL_SECURITY_OR_RRTA_TAX_ON_TAXABLE_GROUP]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </Switch>
+                                      </If.Then>
+                                    </If>
+                                    <If DisplayName="If NUncollectedMedicareTaxOnGroupTermLifeInsurance ER Check">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.NUncollectedMedicareTaxOnGroupTermLifeInsurance &amp;&amp; ( W2EmployerCode.Amount.HasValue &amp;&amp; W2EmployerCode.Amount.Value &gt; 0)</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Switch x:TypeArguments="x:Int32" DisplayName="Switch &lt;Employer Code&gt;">
+                                          <Switch.Expression>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpValue x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Switch.Expression>
+                                          <Sequence x:Key="1" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12A_N_UNCOLLECTED_MEDICARE_TAX_ON_TAXABLE_GROUP]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="2" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12B_N_UNCOLLECTED_MEDICARE_TAX_ON_TAXABLE_GROUP]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="3" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12C_N_UNCOLLECTED_MEDICARE_TAX_ON_TAXABLE_GROUP]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="4" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12D_N_UNCOLLECTED_MEDICARE_TAX_ON_TAXABLE_GROUP]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </Switch>
+                                      </If.Then>
+                                    </If>
+                                    <If DisplayName="If ZCompensation Plan  ER Check">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.ZIncomeReceivedUnder409ANonQualifiedDeferredCompensationPlan &amp;&amp; (W2EmployerCode.Amount.HasValue &amp;&amp; W2EmployerCode.Amount.Value &gt; 0)</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Switch x:TypeArguments="x:Int32" DisplayName="Switch &lt;Employer Code&gt;">
+                                          <Switch.Expression>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpValue x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Switch.Expression>
+                                          <Sequence x:Key="1" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12A_Z_INCOME_RECEIVED_UNDER_409A]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="2" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12B_Z_INCOME_RECEIVED_UNDER_409A]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="3" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12C_Z_INCOME_RECEIVED_UNDER_409A]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="4" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12D_Z_INCOME_RECEIVED_UNDER_409A]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </Switch>
+                                      </If.Then>
+                                    </If>
+                                    <If DisplayName="If REmployeeContributionsToAnArcherMSA BR Check">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.REmployeeContributionsToAnArcherMSA</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Switch x:TypeArguments="x:Int32" DisplayName="Switch &lt;Employer Code&gt;">
+                                          <Switch.Expression>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpValue x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Switch.Expression>
+                                          <Sequence x:Key="1" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12A_R_EMPLOYER_CONTRIBUTIONS_TO_ARCHER_MEDICAL]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="2" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12B_R_EMPLOYER_CONTRIBUTIONS_TO_ARCHER_MEDICAL]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="3" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12C_R_EMPLOYER_CONTRIBUTIONS_TO_ARCHER_MEDICAL]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="4" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12D_R_EMPLOYER_CONTRIBUTIONS_TO_ARCHER_MEDICAL]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </Switch>
+                                      </If.Then>
+                                    </If>
+                                    <If DisplayName="If TEmployerPaidAdoptionBenefits BR Check">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.TAdoptionBenefits</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Switch x:TypeArguments="x:Int32" DisplayName="Switch &lt;Employer Code&gt;">
+                                          <Switch.Expression>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpValue x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Switch.Expression>
+                                          <Sequence x:Key="1" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12A_T_EMPLOYER_PAID_ADOPTION_BENEFITS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="2" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12B_T_EMPLOYER_PAID_ADOPTION_BENEFITS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="3" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12C_T_EMPLOYER_PAID_ADOPTION_BENEFITS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="4" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12D_T_EMPLOYER_PAID_ADOPTION_BENEFITS]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </Switch>
+                                      </If.Then>
+                                    </If>
+                                    <If DisplayName="If WEmployerAndEmployeeContributionsToAHealthSavingsAccount  BR Check">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">W2EmployerCode.EmployerCode == EmployerCode.WEmployerAndEmployeeContributionsToAHealthSavingsAccount</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <Switch x:TypeArguments="x:Int32" DisplayName="Switch &lt;Employer Code&gt;">
+                                          <Switch.Expression>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpValue x:TypeArguments="x:Int32">EmployerCodeCount</mca:CSharpValue>
+                                            </InArgument>
+                                          </Switch.Expression>
+                                          <Sequence x:Key="1" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12A_W_EMPLOYER_AND_EMPLOYEE_CONTRIBUTIONS_TO_HEALTH]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="2" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12B_W_EMPLOYER_AND_EMPLOYEE_CONTRIBUTIONS_TO_HEALTH]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="3" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12C_W_EMPLOYER_AND_EMPLOYEE_CONTRIBUTIONS_TO_HEALTH]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                          <Sequence x:Key="4" DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.BOX12D_W_EMPLOYER_AND_EMPLOYEE_CONTRIBUTIONS_TO_HEALTH]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </Switch>
+                                      </If.Then>
+                                    </If>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ForEach>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="Foriegn employment eligibility Check">
+                          <If>
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">W2.HasForeignEmployment.HasValue &amp;&amp; W2.HasForeignEmployment.Value == true</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="Error Message">
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.FOREIGN_EMPLOYMENT_MUST_REPORT]</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign>
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                    </OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int64">
+                                      <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                  <AddToCollection.Item>
+                                    <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                      <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection.Item>
+                                  <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                    <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                  </InArgument>
+                                </AddToCollection>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="State Wages">
+                          <If>
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">((W2.W2StateLocalTaxInfo != null) &amp;&amp; (W2.W2StateLocalTaxInfo.Any()))</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="StateLocalTaxInfo">
+                                <ForEach x:TypeArguments="jtb:W2StateLocalTaxInfo" DisplayName="ForEach&lt;W2StateLocalTaxInfo&gt;">
+                                  <ForEach.Values>
+                                    <InArgument x:TypeArguments="scg:IEnumerable(jtb:W2StateLocalTaxInfo)">
+                                      <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:W2StateLocalTaxInfo)">W2.W2StateLocalTaxInfo</mca:CSharpValue>
+                                    </InArgument>
+                                  </ForEach.Values>
+                                  <ActivityAction x:TypeArguments="jtb:W2StateLocalTaxInfo">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="jtb:W2StateLocalTaxInfo" Name="FW2StateInfo" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="StateWages">
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">TotalStateWagesAmount</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">(FW2StateInfo.StateWagesAmount.HasValue ? FW2StateInfo.StateWagesAmount.Value:0) + TotalStateWagesAmount</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <If DisplayName="Business Rule # 9 check">
+                                        <If.Condition>
+                                          <InArgument x:TypeArguments="x:Boolean">
+                                            <mca:CSharpValue x:TypeArguments="x:Boolean" xml:space="preserve">((FW2StateInfo.StateTaxWithholdingAmount.HasValue ? FW2StateInfo.StateTaxWithholdingAmount.Value : 0) &gt; (W2.WagesAmount.HasValue ? W2.WagesAmount.Value : 0)) ||
+((FW2StateInfo.StateTaxWithholdingAmount.HasValue ? FW2StateInfo.StateTaxWithholdingAmount.Value : 0) &gt; (FW2StateInfo.StateWagesAmount.HasValue ? FW2StateInfo.StateWagesAmount.Value : 0))</mca:CSharpValue>
+                                          </InArgument>
+                                        </If.Condition>
+                                        <If.Then>
+                                          <Sequence DisplayName="Error Message">
+                                            <Sequence.Variables>
+                                              <Variable x:TypeArguments="x:String" Name="variable1" />
+                                            </Sequence.Variables>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.WAGES_STATE_LOCAL_STATE_WAGES_NOT_MORE_THAN_FEDERAL_WAGES]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpReference x:TypeArguments="x:String">ErrorMessage.FieldName</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String">ErrorMessage.FieldName + DynamicControlIDForBR9.ToString()</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </If.Then>
+                                      </If>
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpReference x:TypeArguments="x:Int32">DynamicControlIDForBR9</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpValue x:TypeArguments="x:Int32">DynamicControlIDForBR9 +1</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </ForEach>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="Box17-State Income Tax withheld">
+                          <If>
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">((W2.W2StateLocalTaxInfo !=null) &amp;&amp; (W2.W2StateLocalTaxInfo.Any()))</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <Sequence DisplayName="State Withholding">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="x:Int32" Default="0" Name="DynamicControlID" />
+                                </Sequence.Variables>
+                                <ForEach x:TypeArguments="jtb:W2StateLocalTaxInfo" DisplayName="ForEach&lt;W2StateLocalTaxInfo&gt;">
+                                  <ForEach.Values>
+                                    <InArgument x:TypeArguments="scg:IEnumerable(jtb:W2StateLocalTaxInfo)">
+                                      <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:W2StateLocalTaxInfo)">W2.W2StateLocalTaxInfo</mca:CSharpValue>
+                                    </InArgument>
+                                  </ForEach.Values>
+                                  <ActivityAction x:TypeArguments="jtb:W2StateLocalTaxInfo">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="jtb:W2StateLocalTaxInfo" Name="FW2StateInfo" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="StateTaxWithHold">
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpReference x:TypeArguments="x:Double">TotalStateTaxwithholdingAmount</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Double">
+                                            <mca:CSharpValue x:TypeArguments="x:Double">(FW2StateInfo.StateTaxWithholdingAmount.HasValue ? FW2StateInfo.StateTaxWithholdingAmount.Value:0) + TotalStateTaxwithholdingAmount</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <If DisplayName="IfState IncomeTaxWithheldCheck">
+                                        <If.Condition>
+                                          <InArgument x:TypeArguments="x:Boolean">
+                                            <mca:CSharpValue x:TypeArguments="x:Boolean">((FW2StateInfo.StateTaxWithholdingAmount.HasValue ? FW2StateInfo.StateTaxWithholdingAmount.Value : 0) &gt; (W2.WagesAmount.HasValue ? W2.WagesAmount.Value : 0))</mca:CSharpValue>
+                                          </InArgument>
+                                        </If.Condition>
+                                        <If.Then>
+                                          <Sequence DisplayName="Error Message">
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.WAGES_STATE_TAX_WITHHELD]</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpReference x:TypeArguments="x:String">ErrorMessage.FieldName</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String">ErrorMessage.FieldName + DynamicControlID.ToString()</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign>
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                                </OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int64">
+                                                  <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                                </InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                              <AddToCollection.Item>
+                                                <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                                  <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                                </InArgument>
+                                              </AddToCollection.Item>
+                                              <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                                <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                              </InArgument>
+                                            </AddToCollection>
+                                          </Sequence>
+                                        </If.Then>
+                                      </If>
+                                      <Assign>
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpReference x:TypeArguments="x:Int32">DynamicControlID</mca:CSharpReference>
+                                          </OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpValue x:TypeArguments="x:Int32">DynamicControlID +1</mca:CSharpValue>
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </ForEach>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                        <Sequence DisplayName="House Hold ">
+                          <If>
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">((W2.Employer!=null&amp;&amp;W2.Employer.HouseholdEmployeeWages!=null))</mca:CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <If.Then>
+                              <If>
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean">W2.Employer.HouseholdEmployeeWages&gt;HouseHoldLimit</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence DisplayName="Error Message">
+                                    <Assign>
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpReference x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessages[Constants.HOUSEHOLD_EMPLOYEE_WAGES]</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign>
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Int64">
+                                          <mca:CSharpReference x:TypeArguments="x:Int64">ErrorMessage.FormId</mca:CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Int64">
+                                          <mca:CSharpValue x:TypeArguments="x:Int64">W2.W2Id</mca:CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <AddToCollection x:TypeArguments="jtco:ErrorMessage" DisplayName="AddToCollection&lt;ErrorMessage&gt;">
+                                      <AddToCollection.Item>
+                                        <InArgument x:TypeArguments="jtco:ErrorMessage">
+                                          <mca:CSharpValue x:TypeArguments="jtco:ErrorMessage">ErrorMessage</mca:CSharpValue>
+                                        </InArgument>
+                                      </AddToCollection.Item>
+                                      <InArgument x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">
+                                        <mca:CSharpValue x:TypeArguments="scg:ICollection(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                      </Sequence>
+                    </ActivityAction>
+                  </ForEach>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                        <mca:CSharpReference x:TypeArguments="scg:List(jtco:ErrorMessage)">Tax1040Object.ErrorMessages</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="scg:List(jtco:ErrorMessage)">
+                        <mca:CSharpValue x:TypeArguments="scg:List(jtco:ErrorMessage)">ErrorMessageList</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+        </If.Then>
+      </If>
+      <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </twa:FW2BusinessRuleValidation.Implementation>
+</twa:FW2BusinessRuleValidation>

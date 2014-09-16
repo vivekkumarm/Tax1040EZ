@@ -1,0 +1,71 @@
+﻿@using System.Collections
+@using JTL.TAX1040.Admin.BusinessObject
+@using TAX1040.Admin.Web.UI.Helpers
+@model JTL.TAX1040.Admin.BusinessObject.UserAdmin
+
+@{
+    IEnumerable<SelectListItem> adminRolesList = ViewBag.RolesCheckBoxList;
+    //var adminRolesList =  ViewBag.AdminRolesList;
+}
+
+<div>
+    @{
+        <h3 style="color: green">@ViewBag.Success</h3>
+    }
+
+</div>
+
+<h2>Create User</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Admin Registration Form</legend>
+        <ol>
+            <li>
+                @*@Html.LabelFor(m => m.YourString)*@
+            </li>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </li>
+            
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+            </li>
+            <li>
+                
+                @*@foreach (AdminRole role in adminRolesList)
+                {
+                   @Html.CheckBox("chkAdminRoles" + role.AdminRoleId, false, new { name = "chkAdminRoles", value = role.RoleName });
+                }*@
+                
+                @Html.CheckBoxListExt(adminRolesList)
+
+            </li>
+           @* <li>
+                @Html.CheckBoxFor(m => m.IsActive)
+                @Html.LabelFor(m => m.IsActive,new { @class = "checkbox" })
+                @Html.ValidationMessageFor(m => m.IsActive)
+            </li>*@
+            <li>
+            </li>
+        </ol>
+
+        <input type="submit" value="Save" />
+         <input type="submit" value="Cancel" />
+    </fieldset>
+}

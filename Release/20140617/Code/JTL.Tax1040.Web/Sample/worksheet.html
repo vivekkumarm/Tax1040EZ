@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../lib/config.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/jquery.base64.js"></script>
+
+    <script type="text/javascript">
+        //Added by Praveen T on 29 May 2014
+        $('.Title').html(TITLE);
+
+        $(document).ready(function () {
+
+            var worksheet = serviceUrl + 'taxreturn/getworksheet/' + userId + '/' + userDataId;
+
+            $('#btnEICWorkSheet').click(function () {
+                window.location.href = worksheet + '/EICWorkSheetBinding';
+                return false;
+            });
+
+            $('#btnStandardDeductionWorkSheet').click(function () {
+                window.location.href = worksheet + '/StandardDeductionWorkSheetBinding';
+                return false;
+            });
+
+            $('#btnSSBAndRRBWorkSheet').click(function () {
+                window.location.href = worksheet + '/SSBWorkSheetBinding';
+                return false;
+            });
+
+        });
+
+
+    </script>
+</head>
+<body>
+    <form id="form1">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+
+                    <!-- BreadCrum Menu  -->
+
+                    <script type="text/javascript" src="../lib/BreadCrum.js"></script>
+            
+                        <!-- Left menu -->
+                    <div class="innerform">
+
+                            <!-- Right Help area -->
+
+                            <div id="riht">
+                                <script src="../lib/rightmenu.js"></script>
+                            </div>
+
+                            <!-- Center form area -->
+
+                            <div id="content">
+                            <div class="c4c8">
+                                    <div class="title">
+                                        <h2>WorkSheet
+                                            <!-- Right side collapse area menu  -->
+                                            <a id="changeSidebarPos" data-original-title="Show / Hide Sidebar" data-toggle="tooltip"
+                                                class="hidden-xs open pull-right" href="#"><i class="transfer"></i></a>
+
+                                            <!-- Left Responsive action Menu   -->
+                                            <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#lftmenu">
+                                                <span class="sr-only">Toggle navigation</span>
+                                                <span class="glyphicon glyphicon-th-list"></span>
+                                            </button>
+                                        </h2>
+                                    </div>
+
+                                <p>Click here to view EIC WorkSheet</p>
+                                    <button type="submit" id="btnEICWorkSheet" class="btn  btn-success">EIC Worksheet</button>
+                                    <h5>Click here to view StandardDeduction WorkSheet</h5>
+                                    <button type="submit" id="btnStandardDeductionWorkSheet" class="btn btn-success">Standard Deduction Worksheet</button>
+                                    <h5>Click here to view SSBAndRRB WorkSheet</h5>
+                                    <button type="submit" id="btnSSBAndRRBWorkSheet" class="btn btn-success">SSB And RRB Worksheet</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+</body>
+</html>
+

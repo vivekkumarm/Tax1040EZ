@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/Review/returnsummary.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <form id="taxesandwrapupinfo">
+        <div class="container">
+            
+            <!--Slide Menu-->
+
+            <script src="../lib/slidemenu.js"></script>
+
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+
+                <div role="form" class="container-fluid">
+
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <script type="text/javascript" src="../lib/reviewleftmenu.js"></script>
+
+                        <div class="formfull">
+                         
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Final Summary</h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue in">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Return Summary
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    Great
+                                                    <label id="lblTaxPayerName"></label>
+                                                    , you are done preparing Tax return. Check your 
+                                                    Final summary before File your Tax return.
+                                                </div>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <h4>Federal Summary</h4>
+                                                    <h4 class="text-success">Income</h4>
+
+                                                    <div class="div8-4">
+                                                        <div class="row">
+                                                            <div class="col-md-8">Wages</div>
+                                                            <div class="col-md-4"><span id="lblTotalWages"></span></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-8">Interest Income </div>
+                                                            <div class="col-md-4"><span id="lblTotalInterestIncome"></span></div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-8">Unemployment Compensation & Alaska Dividend </div>
+                                                            <div class="col-md-4"><span id="lblTotalUnEmploymentCompensation"></span></div>
+                                                        </div>
+                                                        <div class="row ylw">
+                                                            <div class="col-md-8">Adjusted Gross Income </div>
+                                                            <div class="col-md-4"><span id="lblTotalAdjustedGrossIncome"></span></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-8">Deductions</div>
+                                                            <div class="col-md-4"><span id="lblTotalDeductions"></span></div>
+                                                        </div>
+                                                        <div class="row gren">
+                                                            <div class="col-md-8">Taxable Income</div>
+                                                            <div class="col-md-4"><span id="lblTotalTaxableIncome"></span></div>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class=" text-warning">Payments &amp; Credits </h4>
+                                                    <div class="div8-4">
+                                                        <div class="row">
+                                                            <div class="col-md-8">Federal Withheld</div>
+                                                            <div class="col-md-4"><span id="lblTotalFederalWithheld"></span></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-8">Earned Income Credits</div>
+                                                            <div class="col-md-4"><span id="lblEarnedIncomeCredits"></span></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-8">Non taxable Combat pay</div>
+                                                            <div class="col-md-4"><span id="lblTotalNonTaxableCombatPay"></span></div>
+                                                        </div>
+                                                        <div class="row ylw">
+                                                            <div class="col-md-8">Total Payments</div>
+                                                            <div class="col-md-4"><span id="lblTotalTotalPayments"></span></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-8">Taxes</div>
+                                                            <div class="col-md-4"><span id="lblTotalTaxes"></span></div>
+                                                        </div>
+
+                                                        <div class="row gren" id="divTaxRefund">
+                                                            <div class="col-md-8">Tax Refund</div>
+                                                            <div class="col-md-4"><span id="lblTotalTaxRefund"></span></div>
+                                                        </div>
+                                                        <div class="row" id="divPenaltiesAndInterest">
+                                                            <div class="col-md-8">Penalties and Interest</div>
+                                                            <div class="col-md-4"><span id="lblPenaltiesAndInterest"></span></div>
+                                                        </div>
+                                                        <div class="row wrn" id="divTaxDue">
+                                                            <div class="col-md-8">Tax Due</div>
+                                                            <div class="col-md-4"><span id="lblTaxDue"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <h4>State Summary</h4>
+                                                    <div>
+                                                        <p class="alert-warning alert text-center">
+                                                            Under Development
+                                                        </p>
+                                                    
+                                                    </div>
+                                                    <div>For details select Menu topics to view your summaries. </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="btnContinue" class="btn btn-success">
+                                        Continue
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+</body>
+</html>

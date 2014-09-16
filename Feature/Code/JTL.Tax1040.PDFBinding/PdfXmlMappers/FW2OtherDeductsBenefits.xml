@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutputForm String= "FW2PdfSchema">
+<Mapping>
+  <PDFField>txtFW2OtherDescription</PDFField>
+  <TROField Type="ListType">OtherDeductsBenefits.Description</TROField>
+</Mapping>
+<Mapping>
+  <PDFField>txtFW2OtherAmount</PDFField>
+  <TROField Type="ListType">OtherDeductsBenefits.Amount</TROField>
+</Mapping>
+</OutputForm>

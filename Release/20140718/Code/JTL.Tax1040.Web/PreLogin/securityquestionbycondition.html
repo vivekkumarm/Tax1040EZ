@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald' rel='stylesheet' type='text/css' />
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/Pages/PreLogin/securityquestionbycondition.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+
+    <script src="../Scripts/jquery.validate.js"></script>
+</head>
+<body>
+    <form class="cmxform" id="SecurityQuestion">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+
+            <div class="loginbx" id="signin">
+                <div role="form" class="container-fluid">
+                    <div class="title">
+                        <h2>Sign-In Issues</h2>
+                        <!--   <h5>Don't worry, We are here to help you. Pick an option below.</h5>-->
+                    </div>
+
+                    <div class="row">
+                        <div style="display: none" id="divErrorMsg" class="error-alert">error message</div>
+                    </div>
+
+                    <div class="c8c4">
+
+
+                        <!-- Form Area -->
+                        <form id="forgotpassword">
+                            <div class="cl8">
+
+
+                                <h3>Security Question
+                                </h3>
+                                <h5>To retrieve your Account information, Confirm your Security answer.</h5>
+                                <div class="field-group">
+                                    <div class="left-lbl">
+                                        <label id="lblSecurityQuestion">Security Question</label>
+                                    </div>
+                                    <div class="right">
+                                        <label class="blk" id="lblSelectedSecurityQuesiton"></label>
+                                        <input id="hdnQuestionId" type="hidden" />
+                                    </div>
+                                </div>
+                                <div class="field-group">
+                                    <div class="left-lbl">
+                                        <label for="txtAnswer" id="lblAnswer">Answer</label>
+                                    </div>
+                                    <div class="right">
+                                        <input type="password" placeholder="Answer Security Question" tabindex="1" id="txtAnswer" name="txtAnswer" maxlength="30" class="form-control tip" data-toggle="tooltip" data-placement="right" title="Answer for the Security Question" data-trigger="focus" />
+                                    </div>
+                                    <!--<a id="popSecurityAnswer" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>-->
+                                    <a id="popSecurityAnswer" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                        data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                </div>
+                                <div class="field-group">
+                                    <div class="left-lbl"></div>
+                                    <div class="right">
+                                        <button type="submit" tabindex="2" class="btn btn-success" id="cmdSubmit" onclick="javascript:return ValidateUserBySecurityInfo();">Submit</button>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </form>
+
+                        <!-- New User Link -->
+                        <div class="cl4">
+                            <h3>New User</h3>
+                            <a href="../PreLogin/registration.html" onclick="$('#signin').hide(); $('#newaccount').show()" class="btn btn-primary">Create an Account</a>
+
+                            <div class="support">
+                                Need Live Support? 
+       <div class="toll">
+           Toll Free 
+       <h4>1-866-245-3918</h4>
+       </div>
+                                <div class="chat">
+                                    Live Chat
+       <h4><a href="#" class="actv">Online</a> </h4>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row col-sm-12 col-lg-11">
+                        <p class="recover"><a href="../PreLogin/recovery.html" tabindex="3"><i class="glyphicon glyphicon-chevron-left"></i>Back</a></p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+</body>
+</html>

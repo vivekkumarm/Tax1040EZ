@@ -1,0 +1,52 @@
+﻿@using GridMvc.Html
+@model IEnumerable<JTL.TAX1040.Admin.BusinessObject.User>
+
+@{
+    ViewBag.Title = "Customer Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetAllUser</h2>
+
+<form method="post">
+    <label>User Name</label>
+    <input type="search" name="user_Name" />
+    <label>First Name</label>
+    <input type="search" name="first_Name" />
+    <label>Occupation</label>
+    <input type="search" name="occupation" />
+    <label>SSN</label>
+    <input type="search" name="social_security_number" />
+    <label>DOB</label>
+    <input type="search" name="date_of_birth" />
+    <br/>
+    <input type="submit" name="Search" />
+    
+
+
+</form>
+
+
+
+
+
+@helper GridManageItemColumn(long id)
+{
+    @Html.ActionLink("View Details", "", "", new { Id = id }, null)
+}
+
+<div id="GridRow" style="width: 1000px;">
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.UserName).Titled("User Name");
+    columns.Add(c => c.PersonalInfo.FirstName).Titled("First Name");
+    columns.Add(c => c.PersonalInfo.LastName).Titled("Last Name");
+    columns.Add(c => c.PersonalInfo.Occupation).Titled("Occupation");
+    columns.Add(c => c.Email).Titled("Email");
+    columns.Add(c => c.UserId).Titled("Action")
+      .Sanitized(false)
+      .Encoded(false)
+      .RenderValueAs(g => GridManageItemColumn(g.UserId).ToHtmlString());
+   
+}).WithPaging(5).Sortable(true)
+</div>

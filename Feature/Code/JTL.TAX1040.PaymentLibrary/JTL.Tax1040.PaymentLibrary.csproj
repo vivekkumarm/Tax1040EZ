@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0D5E6E9A-1679-4955-95EA-780B2B14F453}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JTL.TAX1040.PaymentLibrary</RootNamespace>
+    <AssemblyName>JTL.TAX1040.PaymentLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Address.cs" />
+    <Compile Include="AFSReply.cs" />
+    <Compile Include="AFSService.cs" />
+    <Compile Include="AirlineData.cs" />
+    <Compile Include="BankInfo.cs" />
+    <Compile Include="BankTransferRealTimeReply.cs" />
+    <Compile Include="BankTransferRealTimeService.cs" />
+    <Compile Include="BankTransferRefundReply.cs" />
+    <Compile Include="BankTransferRefundService.cs" />
+    <Compile Include="BankTransferReply.cs" />
+    <Compile Include="BankTransferService.cs" />
+    <Compile Include="Batch.cs" />
+    <Compile Include="BillTo.cs" />
+    <Compile Include="BML.cs" />
+    <Compile Include="BusinessRules.cs" />
+    <Compile Include="Card.cs" />
+    <Compile Include="CCAuthReply.cs" />
+    <Compile Include="CCAuthReversalReply.cs" />
+    <Compile Include="CCAuthReversalService.cs" />
+    <Compile Include="CCAuthService.cs" />
+    <Compile Include="CCCaptureReply.cs" />
+    <Compile Include="CCCaptureService.cs" />
+    <Compile Include="CCCreditReply.cs" />
+    <Compile Include="CCCreditService.cs" />
+    <Compile Include="Check.cs" />
+    <Compile Include="CyberSourceTransactionWS.cs" />
+    <Compile Include="DAVReply.cs" />
+    <Compile Include="DAVService.cs" />
+    <Compile Include="DecisionManager.cs" />
+    <Compile Include="DecisionReply.cs" />
+    <Compile Include="DeniedPartiesMatch.cs" />
+    <Compile Include="DirectDebitMandateReply.cs" />
+    <Compile Include="DirectDebitMandateService.cs" />
+    <Compile Include="DirectDebitRefundReply.cs" />
+    <Compile Include="DirectDebitRefundService.cs" />
+    <Compile Include="DirectDebitReply.cs" />
+    <Compile Include="DirectDebitService.cs" />
+    <Compile Include="DirectDebitValidateReply.cs" />
+    <Compile Include="DirectDebitValidateService.cs" />
+    <Compile Include="ECCreditReply.cs" />
+    <Compile Include="ECCreditService.cs" />
+    <Compile Include="ECDebitReply.cs" />
+    <Compile Include="ECDebitService.cs" />
+    <Compile Include="ExportReply.cs" />
+    <Compile Include="ExportService.cs" />
+    <Compile Include="FundingTotals.cs" />
+    <Compile Include="FundTransfer.cs" />
+    <Compile Include="FXQuote.cs" />
+    <Compile Include="FXRatesReply.cs" />
+    <Compile Include="FXRatesService.cs" />
+    <Compile Include="GECC.cs" />
+    <Compile Include="inputMessageIn.cs" />
+    <Compile Include="Installment.cs" />
+    <Compile Include="InvoiceHeader.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="JPO.cs" />
+    <Compile Include="Leg.cs" />
+    <Compile Include="MerchantDefinedData.cs" />
+    <Compile Include="MerchantSecureData.cs" />
+    <Compile Include="OtherTax.cs" />
+    <Compile Include="outputMessageOut.cs" />
+    <Compile Include="PayerAuthEnrollReply.cs" />
+    <Compile Include="PayerAuthEnrollService.cs" />
+    <Compile Include="PayerAuthValidateReply.cs" />
+    <Compile Include="PayerAuthValidateService.cs" />
+    <Compile Include="PayPal.cs" />
+    <Compile Include="PayPalAuthReversalReply.cs" />
+    <Compile Include="PayPalAuthReversalService.cs" />
+    <Compile Include="PayPalButtonCreateReply.cs" />
+    <Compile Include="PayPalButtonCreateService.cs" />
+    <Compile Include="PayPalCreditReply.cs" />
+    <Compile Include="PayPalCreditService.cs" />
+    <Compile Include="PayPalDoCaptureReply.cs" />
+    <Compile Include="PayPalDoCaptureService.cs" />
+    <Compile Include="PayPalEcDoPaymentReply.cs" />
+    <Compile Include="PayPalEcDoPaymentService.cs" />
+    <Compile Include="PayPalEcGetDetailsReply.cs" />
+    <Compile Include="PayPalEcGetDetailsService.cs" />
+    <Compile Include="PayPalEcSetReply.cs" />
+    <Compile Include="PayPalEcSetService.cs" />
+    <Compile Include="PayPalPaymentReply.cs" />
+    <Compile Include="PayPalPaymentService.cs" />
+    <Compile Include="PayPalPreapprovedPaymentReply.cs" />
+    <Compile Include="PayPalPreapprovedPaymentService.cs" />
+    <Compile Include="PayPalPreapprovedUpdateReply.cs" />
+    <Compile Include="PayPalPreapprovedUpdateService.cs" />
+    <Compile Include="PayPalRefundReply.cs" />
+    <Compile Include="PayPalRefundService.cs" />
+    <Compile Include="PaySubscriptionCreateReply.cs" />
+    <Compile Include="PaySubscriptionCreateService.cs" />
+    <Compile Include="PaySubscriptionEvent.cs" />
+    <Compile Include="PaySubscriptionEventUpdateReply.cs" />
+    <Compile Include="PaySubscriptionEventUpdateService.cs" />
+    <Compile Include="PaySubscriptionRetrieveReply.cs" />
+    <Compile Include="PaySubscriptionRetrieveService.cs" />
+    <Compile Include="PaySubscriptionUpdateReply.cs" />
+    <Compile Include="PaySubscriptionUpdateService.cs" />
+    <Compile Include="PinlessDebitReply.cs" />
+    <Compile Include="PinlessDebitService.cs" />
+    <Compile Include="PinlessDebitValidateReply.cs" />
+    <Compile Include="PinlessDebitValidateService.cs" />
+    <Compile Include="Pos.cs" />
+    <Compile Include="ProfileReply.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseTotals.cs" />
+    <Compile Include="RecurringSubscriptionInfo.cs" />
+    <Compile Include="ReplyMessage.cs" />
+    <Compile Include="RequestReserved.cs" />
+    <Compile Include="RiskUpdateReply.cs" />
+    <Compile Include="RiskUpdateService.cs" />
+    <Compile Include="RuleResultItem.cs" />
+    <Compile Include="ShipFrom.cs" />
+    <Compile Include="ShipTo.cs" />
+    <Compile Include="Subscription.cs" />
+    <Compile Include="TaxReply.cs" />
+    <Compile Include="TaxReplyItem.cs" />
+    <Compile Include="TaxService.cs" />
+    <Compile Include="TransactionProcessorClient.cs" />
+    <Compile Include="UCAF.cs" />
+    <Compile Include="VoidReply.cs" />
+    <Compile Include="VoidService.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

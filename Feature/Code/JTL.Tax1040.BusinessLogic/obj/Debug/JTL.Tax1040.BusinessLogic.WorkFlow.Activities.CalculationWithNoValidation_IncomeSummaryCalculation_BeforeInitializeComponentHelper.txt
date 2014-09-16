@@ -1,0 +1,2 @@
+IncomeSummaryCalculation.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

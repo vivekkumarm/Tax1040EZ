@@ -1,0 +1,2 @@
+F1099INTCalculation.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

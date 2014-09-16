@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                             -->
+<!-- REVISION HISTORY:           -->
+<!-- Initial Version  11/10/2006 -->
+<!--                             -->
+<!-- 05/01/2012  -->
+<!-- Changed file name to ETECStateService.wsdl -->
+<!-- Updated A2AException to use MeFException from the updated MeFHeader.xsd schema-->
+<!-- 07/27/2012  -->
+<!-- Changed soapAction to "http://www.irs.gov/a2a/mef/GetVinData" and  -->
+<!-- soap:address location to "http://localhost:9080/a2a/mef/GetVinData -->
+<!-- to sinmplify deployment in the portal SWAS boxes                   -->
+<!--                             -->
+
+<wsdl:definitions name="ETECStateService" 
+	targetNamespace="http://www.irs.gov/a2a/etec/ETECStateService" 
+	xmlns="http://www.irs.gov/a2a/etec/ETECStateService"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:mefhdr="http://www.irs.gov/a2a/mef/MeFHeader.xsd" 	
+	xmlns:etec="http://www.irs.gov/a2a/etec/ETECStateService" 	
+	xmlns:etsx="http://www.irs.gov/a2a/etec/ETECStateService.xsd">
+
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" 
+		targetNamespace="http://www.irs.gov/a2a/etec/ETECStateService">
+		<xsd:import namespace="http://www.irs.gov/a2a/etec/ETECStateService.xsd" 
+			schemaLocation="ETECStateService.xsd"/>
+		<xsd:import namespace="http://www.irs.gov/a2a/mef/MeFHeader.xsd" schemaLocation="MeFHeader.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="GetVinDataRequest">
+	<wsdl:part name="MeFHeader"				element="mefhdr:MeF"/>
+    <wsdl:part name="GetVinDataRequest"			element="etsx:GetVinDataRequest"/>
+  </wsdl:message>
+  
+  <wsdl:message name="GetVinDataResponse">
+	<wsdl:part name="MeFHeader"				element="mefhdr:MeF"/>
+      <wsdl:part name="GetVinDataResponse"		element="etsx:GetVinDataResponse"/>
+  </wsdl:message>
+
+ 
+  <wsdl:message name="A2AException">
+    <wsdl:part name="A2AException"						element="mefhdr:MeFException"/>  
+  </wsdl:message>
+
+    <!-- ETEC State Services -->
+
+  <wsdl:portType name="GetVinData">
+    <wsdl:operation name="GetVinData" parameterOrder="MeFHeader GetVinDataRequest">
+      <wsdl:input              message="etec:GetVinDataRequest"/>
+      <wsdl:output             message="etec:GetVinDataResponse"/>
+      <wsdl:fault name="fault" message="etec:A2AException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+  <wsdl:binding name="GetVinData" type="etec:GetVinData">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetVinData">
+      <soap:operation soapAction="http://www.irs.gov/a2a/mef/GetVinData"/>
+      <wsdl:input>
+		<soap:body use="literal" parts="GetVinDataRequest"/>
+		<soap:header use="literal" part="MeFHeader" message="etec:GetVinDataRequest"/>
+      </wsdl:input>
+	<wsdl:output>
+		<soap:body parts="GetVinDataResponse" use="literal"/>
+		<soap:header message="etec:GetVinDataResponse" part="MeFHeader" use="literal"/>
+	</wsdl:output>
+      <wsdl:fault name="fault">
+		<soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+   <!-- The URLs below are placeholders.  The actual URLs will be determined later, for the publication of this WSDL. -->
+
+  <wsdl:service name="GetVinData">
+    <wsdl:port name="GetVinData" binding="etec:GetVinData">
+      <soap:address location="http://localhost:9080/a2a/mef/GetVinData"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BC6D1812-9E2E-4EAE-AA9A-D9B48CC9E1E5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JTL.Tax1040.Web</RootNamespace>
+    <AssemblyName>JTL.Tax1040.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Common\browsercompatibility.html" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Credits\creditsummary.html" />
+    <Content Include="Credits\earnedincomecredits.html" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="Deduction\deductiongateway.html" />
+    <Content Include="Deduction\deductionsummary.html" />
+    <Content Include="default.html" />
+    <Content Include="Diagnostics\finaldiagnostics.html" />
+    <Content Include="EFile\capaymentdetail.html" />
+    <Content Include="EFile\catransmissiondetail.html" />
+    <Content Include="EFile\efileacknowledge.html" />
+    <Content Include="EFile\efilediagnostics.html" />
+    <Content Include="EFile\federalfilingnotselected.html" />
+    <Content Include="EFile\filingoption.html" />
+    <Content Include="EFile\federalefileinformation.html" />
+    <Content Include="EFile\returnstatus.html" />
+    <Content Include="EFile\returntransmitted.html" />
+    <Content Include="EFile\federalpaymentdetail.html" />
+    <Content Include="EFile\filingoptionsummary.html" />
+    <Content Include="EFile\efileerrors.html" />
+    <Content Include="EFile\reviewtaxreturn.html" />
+    <Content Include="EFile\taxduepaymentoption.html" />
+    <Content Include="errorpage.html" />
+    <Content Include="Finalpage\signout.html" />
+    <Content Include="Finalpage\userrating.html" />
+    <Content Include="Finalpage\userreferral.html" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Images\audit-report.jpg" />
+    <Content Include="Images\BankAccoutInfo.png" />
+    <Content Include="Images\bottom.jpg" />
+    <Content Include="Images\bullet.jpg" />
+    <Content Include="Images\center.jpg" />
+    <Content Include="Images\chrome.jpg" />
+    <Content Include="Images\Firefox.jpg" />
+    <Content Include="Images\ie.jpg" />
+    <Content Include="Images\left.jpg" />
+    <Content Include="Images\logo.jpg" />
+    <Content Include="Images\mail.jpg" />
+    <Content Include="Images\onlyin.jpg" />
+    <Content Include="Images\opera.jpg" />
+    <Content Include="Images\our-services.jpg" />
+    <Content Include="Images\phone.jpg" />
+    <Content Include="Images\right.jpg" />
+    <Content Include="Images\Safari.jpg" />
+    <Content Include="Images\sep.jpg" />
+    <Content Include="Images\star%402x.png" />
+    <Content Include="Images\star.png" />
+    <Content Include="Income\f1099int.html" />
+    <Content Include="Income\f1099oid.html" />
+    <Content Include="Income\incomegateway.html" />
+    <Content Include="Income\incomesummary.html" />
+    <Content Include="Income\interestincome.html" />
+    <Content Include="Income\interestincomechecklist.html" />
+    <Content Include="Income\interestincomesummary.html" />
+    <Content Include="Income\otherincome.html" />
+    <Content Include="Income\otherincomegateway.html" />
+    <Content Include="Income\otherincomesummary.html" />
+    <Content Include="Income\unemployment.html" />
+    <Content Include="Income\unemploymentsummary.html" />
+    <Content Include="Income\w2employmentandownertype.html" />
+    <Content Include="lib\browsercompatibility.js" />
+    <Content Include="lib\config.js" />
+    <Content Include="lib\constants.js" />
+    <Content Include="lib\controlconfig.js" />
+    <Content Include="lib\creditleftmenu.js" />
+    <Content Include="lib\deductionleftmenu.js" />
+    <Content Include="lib\popovercontent.js" />
+    <Content Include="lib\reviewleftmenu.js" />
+    <Content Include="lib\rightmenu.js" />
+    <Content Include="lib\slidemenu.js" />
+    <Content Include="lib\taxesandwrapupleftmenu.js" />
+    <Content Include="Login.html" />
+    <Content Include="F1040Eligibility\1040EZEligibilityCheck.html" />
+    <Content Include="PaperFile\fileoption.html" />
+    <Content Include="PaperFile\paperfile.html" />
+    <Content Include="PaperFile\previewreturn.html" />
+    <Content Include="Payment\checkout.html" />
+    <Content Include="Payment\checkoutsummary.html" />
+    <Content Include="Payment\federalreturnsummary.html" />
+    <Content Include="Payment\filingsteps.html" />
+    <Content Include="Payment\invoice.html" />
+    <Content Include="Payment\irspayment.html" />
+    <Content Include="PersonalInfo\nonsupportedstatesummary.html" />
+    <Content Include="PersonalInfo\nonsupportedstatefinal.html" />
+    <Content Include="Review\efilerejection.html" />
+    <Content Include="Review\finalsummary.html" />
+    <Content Include="Review\noteligibilityfor1040EZ.html" />
+    <Content Include="Review\returnfinalization.html" />
+    <Content Include="Review\returnsummary.html" />
+    <Content Include="Review\taxaccuracyguarantee.html" />
+    <Content Include="Sample\incomegatewayold.html" />
+    <Content Include="lib\incomeleftmenu.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.js" />
+    <Content Include="Scripts\jquery.barrating.js" />
+    <Content Include="Scripts\jquery.idletimeout.js" />
+    <Content Include="Scripts\jquery.idletimer.js" />
+    <Content Include="Scripts\jquery.slidemenu.js" />
+    <Content Include="Scripts\Pages\Diagnostics\finaldiagnostics.js" />
+    <Content Include="Scripts\Pages\EFile\capaymentdetail.js" />
+    <Content Include="Scripts\Pages\EFile\catransmissiondetail.js" />
+    <Content Include="Scripts\Pages\EFile\efileacknowledge.js" />
+    <Content Include="Scripts\Pages\EFile\efilediagnostics.js" />
+    <Content Include="Scripts\Pages\EFile\efileerrors.js" />
+    <Content Include="Scripts\Pages\EFile\federalfilingnotselected.js" />
+    <Content Include="Scripts\Pages\EFile\filingoption.js" />
+    <Content Include="Scripts\Pages\EFile\federalefileinformation.js" />
+    <Content Include="Scripts\Pages\EFile\returnstatus.js" />
+    <Content Include="Scripts\Pages\EFile\federalpaymentdetail.js" />
+    <Content Include="Scripts\Pages\EFile\filingoptionsummary.js" />
+    <Content Include="Scripts\Pages\EFile\reviewtaxreturn.js" />
+    <Content Include="Scripts\Pages\Finalpage\signout.js" />
+    <Content Include="Scripts\Pages\Finalpage\userrating.js" />
+    <Content Include="Scripts\Pages\Finalpage\userreferral.js" />
+    <Content Include="Scripts\Pages\Income\incomesummary.js" />
+    <Content Include="Scripts\Pages\Payment\checkout.js" />
+    <Content Include="Scripts\Pages\Payment\checkoutsummary.js" />
+    <Content Include="Scripts\Pages\Payment\invoice.js" />
+    <Content Include="Scripts\Pages\Payment\irspayment.js" />
+    <Content Include="Scripts\Pages\PersonalInfo\nonsupportedstatefinal.js" />
+    <Content Include="Scripts\Pages\PersonalInfo\nonsupportedstatesummary.js" />
+    <Content Include="Scripts\Pages\PreLogin\createpassword.js" />
+    <Content Include="Scripts\Pages\PreLogin\emailrecoverybybothcondition.js" />
+    <Content Include="Scripts\Pages\PreLogin\emailrecoverybyusername.js" />
+    <Content Include="Scripts\Pages\PreLogin\forgotpassword.js" />
+    <Content Include="Scripts\Pages\PreLogin\forgotusername.js" />
+    <Content Include="Scripts\Pages\PreLogin\passwordresetcode.js" />
+    <Content Include="Scripts\Pages\PreLogin\recoverusernameandpassword.js" />
+    <Content Include="Scripts\Pages\PreLogin\registration.js" />
+    <Content Include="Scripts\Pages\PreLogin\securityquestionbycondition.js" />
+    <Content Include="Scripts\Pages\PreLogin\unabletoaccessemail.js" />
+    <Content Include="Scripts\Pages\PreLogin\updateemailaddress.js" />
+    <Content Include="Scripts\Pages\PreLogin\welcomepage.js" />
+    <Content Include="Scripts\Pages\Review\efilerejection.js" />
+    <Content Include="Scripts\Pages\Review\finalsummary.js" />
+    <Content Include="Scripts\Pages\Review\returnfinalization.js" />
+    <Content Include="Scripts\Pages\Review\returnsummary.js" />
+    <Content Include="Scripts\Pages\Review\taxaccuracyguarantee.js" />
+    <Content Include="Scripts\Pages\StateGateway\stategateway.js" />
+    <Content Include="Scripts\Pages\UserProfile\updateemail.js" />
+    <Content Include="Scripts\Pages\UserProfile\updatepassword.js" />
+    <Content Include="Scripts\Pages\UserProfile\updatesecurityquestion.js" />
+    <Content Include="Scripts\Pages\UserProfile\updateusername.js" />
+    <Content Include="Scripts\Pages\TaxesAndWrapUp\federaltaxsummary.js" />
+    <Content Include="Scripts\Pages\TaxesAndWrapUp\federalwrapupsummary.js" />
+    <Content Include="Scripts\Pages\TaxesAndWrapUp\taxesandwrapupchecklist.js" />
+    <Content Include="Scripts\Pages\TaxesAndWrapUp\taxesandwrapupinfo.js" />
+    <Content Include="StateGateway\stategateway.html" />
+    <Content Include="TaxesAndWrapUp\federaltaxsummary.html" />
+    <Content Include="TaxesAndWrapUp\taxesandwrapupinfo.html" />
+    <Content Include="TaxesAndWrapUp\federalwrapupsummary.html" />
+    <Content Include="TaxesAndWrapUp\taxesandwrapupchecklist.html" />
+    <Content Include="UserProfile\manageaccountgateway.html" />
+    <Content Include="PreLogin\recovery.html" />
+    <Content Include="Sample\w2sum.html" />
+    <Content Include="Sample\w2summ.html" />
+    <Content Include="lib\breadcrum.js" />
+    <Content Include="lib\footer.js" />
+    <Content Include="lib\header.js" />
+    <Content Include="lib\leftmenu.js" />
+    <Content Include="PersonalInfo\address.html" />
+    <Content Include="PersonalInfo\personalsummary.html" />
+    <Content Include="PreLogin\registration.html" />
+    <Content Include="Sample\EligibilityCheck2.html" />
+    <Content Include="Sample\EligibilityCheck3.html" />
+    <Content Include="PersonalInfo\filingstatus.html" />
+    <Content Include="font-awesome\css\font-awesome.css" />
+    <Content Include="font-awesome\css\font-awesome.min.css" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Images\l-arw.png" />
+    <Content Include="Income\w2summary.html" />
+    <Content Include="Income\w2.html" />
+    <Content Include="PersonalInfo\spouseinfo.html" />
+    <Content Include="Sample\AddressPersist.html" />
+    <Content Include="Sample\PersonInfoId.html" />
+    <Content Include="Sample\NewSpouseInfoPrimary.html" />
+    <Content Include="PersonalInfo\primaryfilerinfo.html" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Images\gicon.png" />
+    <Content Include="Images\l-arw.gif" />
+    <Content Include="Images\logo-bg.png" />
+    <Content Include="Images\mcafee.gif" />
+    <Content Include="Images\secure.gif" />
+    <Content Include="Images\t-arw.png" />
+    <Content Include="Images\Tax-Garden-Logo.png" />
+    <Content Include="Images\title-bg.gif" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\Tax1040Web.pubxml" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Sample\AddressPrimary.html" />
+    <Content Include="Sample\AddressSecondary.html" />
+    <Content Include="Sample\Dependent.html" />
+    <Content Include="Sample\DependentInfo1.html" />
+    <Content Include="Sample\DependentInfo2.html" />
+    <Content Include="Sample\PT_DOB.html" />
+    <Content Include="Sample\PT_ECF.html" />
+    <Content Include="Sample\PT_PersonalSituation.html" />
+    <Content Include="Sample\PT_PrimaryInfo.html" />
+    <Content Include="Sample\PT_SSN.html" />
+    <Content Include="Sample\worksheet.html" />
+    <Content Include="Sample\SpouseInfoPrimary.html" />
+    <Content Include="Sample\SpouseInfoSecondary.html" />
+    <Content Include="Sample\WizardFiling.html" />
+    <Content Include="Sample\WizardPersonalInfo.html" />
+    <Content Include="PreLogin\emailrecoverybybothcondition.html" />
+    <Content Include="PreLogin\emailrecoverybyusername.html" />
+    <Content Include="PreLogin\forgotpassword.html" />
+    <Content Include="PreLogin\forgotusername.html" />
+    <Content Include="PreLogin\createpassword.html" />
+    <Content Include="PreLogin\passwordresetcode.html" />
+    <Content Include="PreLogin\recoverusernameandpassword.html" />
+    <Content Include="Sample\SecurityQuestionByEmailAddress.html" />
+    <Content Include="Sample\SecurityQuestionByBothCondition.html" />
+    <Content Include="PreLogin\securityquestionbycondition.html" />
+    <Content Include="PreLogin\taxoverview.html" />
+    <Content Include="PreLogin\unabletoaccessemail.html" />
+    <Content Include="PreLogin\updateemailaddress.html" />
+    <Content Include="PreLogin\welcomepage.html" />
+    <Content Include="Sample\Recovery2.html" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery.bootstrap.wizard.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\less-1.6.3.min.js" />
+    <Content Include="Scripts\Pages\Credits\creditsummary.js" />
+    <Content Include="Scripts\Pages\Credits\eic.js" />
+    <Content Include="Scripts\Pages\Income\f1099int.js" />
+    <Content Include="Scripts\Pages\Income\f1099oid.js" />
+    <Content Include="Scripts\Pages\Income\incomegateway.js" />
+    <Content Include="Scripts\Pages\Income\interestincome.js" />
+    <Content Include="Scripts\Pages\Income\interestincomechecklist.js" />
+    <Content Include="Scripts\Pages\Income\interestincomesummary.js" />
+    <Content Include="Scripts\Pages\Income\otherincome.js" />
+    <Content Include="Scripts\Pages\Income\otherincomegateway.js" />
+    <Content Include="Scripts\Pages\Income\otherincomesummary.js" />
+    <Content Include="Scripts\Pages\Income\unemployment.js" />
+    <Content Include="Scripts\Pages\Income\unemploymentsummary.js" />
+    <Content Include="Scripts\Pages\Income\w2.js" />
+    <Content Include="Scripts\Pages\Deduction\deductionsummary.js" />
+    <Content Include="Scripts\Pages\Income\w2employmentandownertype.js" />
+    <Content Include="Scripts\Pages\Income\w2summary.js" />
+    <Content Include="Scripts\Pages\PreLogin\login.js" />
+    <Content Include="Scripts\Pages\PreLogin\taxoverview.js" />
+    <Content Include="Scripts\Pages\PersonalInfo\address.js" />
+    <Content Include="Scripts\Pages\PersonalInfo\filingstatus.js" />
+    <Content Include="Scripts\Pages\PersonalInfo\personalfilerinfo.js" />
+    <Content Include="Scripts\Pages\PersonalInfo\personalsummary.js" />
+    <Content Include="Scripts\Pages\PersonalInfo\spouseinfo.js" />
+    <Content Include="Sample\UserRegistration.html" />
+    <Content Include="Scripts\popover.js" />
+    <Content Include="Scripts\prettify.js" />
+    <Content Include="Scripts\tooltip.js" />
+    <Content Include="UserProfile\updateemail.html" />
+    <Content Include="UserProfile\updatepassword.html" />
+    <Content Include="UserProfile\updatesecurityquestion.html" />
+    <Content Include="UserProfile\updateusername.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\default.js" />
+    <None Include="index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Scripts\i18n\" />
+    <Folder Include="Scripts\Pages\State\CA\" />
+    <Folder Include="State\CA\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>1325</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:36260/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:36260/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

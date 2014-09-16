@@ -1,0 +1,14 @@
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\bin\Release\PdfXmlMappers\F1040EZPdfSchema.xml
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\bin\Release\JTL.Tax1040.PDFBinding.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\bin\Release\JTL.Tax1040.PDFBinding.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\bin\Release\itextsharp.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\bin\Release\JTL.Tax1040.BusinessObject.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\bin\Release\JTL.Tax1040.Core.Object.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\bin\Release\Newtonsoft.Json.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\bin\Release\JTL.Tax1040.BusinessObject.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\bin\Release\JTL.Tax1040.Core.Object.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\obj\Release\JTL.Tax1040.PDFBinding.csprojResolveAssemblyReference.cache
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\obj\Release\JTL.Tax1040.PDFBinding.PDFTemplates.resources
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\obj\Release\JTL.Tax1040.PDFBinding.csproj.GenerateResource.Cache
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\obj\Release\JTL.Tax1040.PDFBinding.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\Code\JTL.Tax1040.PDFBinding\obj\Release\JTL.Tax1040.PDFBinding.pdb

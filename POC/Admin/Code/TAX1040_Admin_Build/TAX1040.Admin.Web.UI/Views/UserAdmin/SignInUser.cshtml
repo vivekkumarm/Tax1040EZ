@@ -1,0 +1,40 @@
+﻿@model JTL.TAX1040.Admin.BusinessObject.UserAdmin
+
+@{
+    ViewBag.Title = "SignInUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Login</h2>
+<div>
+    @{
+        <h3 style="color: green">@ViewBag.Success</h3>
+    }
+
+</div>
+
+
+<section id="loginForm">
+<h3>Enter your username and password.</h3>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+        </ol>
+        <input type="submit" value="Log in" />
+    </fieldset>
+}
+</section>

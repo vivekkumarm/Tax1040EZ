@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaxGarden.com</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/EFile/reviewtaxreturn.js"></script>
+</head>
+<body>
+    <form id="reviewTaxReturn">
+        <div class="container">
+            <!--Header-->
+            <script type="text/javascript" src="../lib/header.js"></script>
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/breadcrum.js"></script>
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <!--   <script type="text/javascript" src="../lib/default.js"></script>-->
+                        <div class="">
+                            <!-- Right Help area -->
+                            <div id="riht">
+                                <script src="../lib/rightmenu.js"></script>
+                            </div>
+                            <!-- Center form area -->
+                            <div id="content">
+                                <div class="c4h8">
+                                    <div class="title">
+                                        <h2>Review and Transmit<a href="#" class="hidden-xs open pull-right" data-toggle="tooltip" data-original-title="Show / Hide Sidebar" id="changeSidebarPos">
+                                            <i class="transfer"></i>
+                                        </a></h2>
+                                    </div>
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue in">
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body ">
+                                                    <h4>Return Submission:</h4>
+                                                    <p>It's time to Submit your Tax returns.After Successful submission of tax return,you can get confirmation from IRS in any of the 3 ways</p>
+                                                    <div class="alert alert-info">
+                                                        <ul>
+                                                            <li>In our TaxGarden website</li>
+                                                            <li>To your Email</li>
+                                                            <li>To Your Phone Number</li>
+                                                        </ul>
+                                                    </div>
+                                                    <p>Review all Your tax Information and Filing Instructions,Before transmit your tax returns.</p>
+                                                    <p>Also, keep a print copy of tax return for your future reference.</p>
+                                                    <h4>If you want to change any of the details , please do change that by clicking the Concerned Menu links</h4>
+
+                                                    <div class="panel-body-grid">
+                                                        <div class="pangird head">
+                                                            <label class="col-md-4 ">Federal/ State(s)</label>
+                                                            <label class="col-md-4 ">Draft Version for Review </label>
+                                                           
+                                                            <label class="col-md-4 ">Transmission</label>
+                                                        </div>
+                                                        <div id="divSelectReturnFile" >
+
+                                                                
+                                                                <label class="col-md-4">Federal</label>
+                                                                <label class="col-md-4"><a href="#" title="Downlode" id="btnDownload" class="fa fa-file-pdf-o"></a></label>
+                                                                <label class="col-md-4"><button type="submit" id="btnTransmission" disabled="disabled" class="btn btn btn-primary btn-xs" >Transmit</button></label>
+                                                             
+                                                        </div>
+                                                        <div id="divReviewTaxReturn" class="pangird itm">
+                                                            </div></div>
+                                                      
+
+                                                    <h4 class="text-success">Note: Once you clicked "Transmit" button you can't cancel transmission.</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                 <button type="submit" id="btnBack" class="btn btn-primary" onclick="GoToPreviousPage();return false;">
+                                        Back</button>
+                                    <!--   <button type="submit" id="btnReviewTaxReturnContinue" class="btn btn-success">Continue</button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+
+</body>
+
+</html>
+
+

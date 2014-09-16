@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="Title"></title>
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <script src="../Scripts/jquery-2.1.0.js"></script>
+    <script src="../Scripts/less-1.6.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+    <script src="../Scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/tooltip.js"></script>
+    <script src="../Scripts/popover.js"></script>
+    <script src="../Scripts/custom.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Droid+Sans:400,700|Didact+Gothic|Comfortaa|Oswald'
+        rel='stylesheet' type='text/css' />
+    <script src="../lib/config.js"></script>
+    <script src="../Scripts/Pages/PersonalInfo/address.js"></script>
+    <script src="../Scripts/bootstrap-datepicker.js"></script>
+    <style type="text/css">
+        .hide-label label.error {  display:none !important;}
+
+    </style>
+</head>
+<body>
+    <form id="Address">
+        <div class="container">
+            <!--Header-->
+
+            <script type="text/javascript" src="../lib/header.js"></script>
+
+            <div class="whtwell" id="signin">
+                <div role="form" class="container-fluid">
+                    <!--Bread Crum-->
+                    <script type="text/javascript" src="../lib/BreadCrum.js"></script>
+                    <div class="innerform">
+                        <!-- Left menu -->
+                        <script type="text/javascript" src="../lib/leftmenu.js"></script>
+                        <div class="formfull">
+                            <!-- Right Help area -->
+                            <div id="riht">
+                                <script src="../lib/rightmenu.js"></script>
+                            </div>
+                            <div id="content">
+                                <div class="c12">
+                                    <div class="title">
+                                        <h2>Address <a id="changeSidebarPos" data-original-title="Show / Hide Sidebar" data-toggle="tooltip"
+                                            class="hidden-xs open pull-right" href="#">
+                                            <i class="transfer"></i>
+                                        </a></h2>
+                                    </div>
+
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-blue in">
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="address">Address Details</a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <h4>
+                                                        <label id="lblTaxPayerName"></label>, Where IRS can send you the Mails
+                                                    </h4>
+                                                    <div class="field-group">
+                                                            <label class="checkbox-inline" id="divUSAddress">
+                                                                <input id="radUsAddress" name="radAddress" checked="checked" type="radio" value="1"
+                                                                    tabindex="1" />
+                                                                US Address
+                                                            </label>
+                                                            <label class="checkbox-inline" id="divForeignAddress">
+                                                                <input id="radForeignAddress" name="radAddress" type="radio" value="2" tabindex="2" />
+                                                                Foreign Address
+                                                            </label>
+                                                        </div>
+                                                    <div id="divShowUSAddress">
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <input type="hidden" id="hdAddressId" value="0" />
+                                                                <label for="txtStreetAddress" id="lblStreetAddress">Street Address</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="35" tabindex="3" placeholder="Enter Street Address"
+                                                                    name="txtStreetAddress" id="txtStreetAddress" class="form-control tip" data-toggle="tooltip"
+                                                                    data-placement="right" title="Enter Street Address" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popStreetAddress" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtApartmentNumber" id="lblApartmentNumber">Apartment Number</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="5" id="txtApartmentNumber" tabindex="4" name="txtApartmentNumber"
+                                                                    placeholder="Enter Apartment Number" class="form-control tip" data-toggle="tooltip"
+                                                                    data-placement="right" title="Enter Apartment Number" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popApartmentNumber" href="#" class="help" data-html="true" data-content=""
+                                                                rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtCity" id="lblCity">City</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="20" placeholder="Enter City" name="txtCity" id="txtCity"
+                                                                    class="form-control tip" tabindex="5" data-toggle="tooltip" data-placement="right"
+                                                                    title="Enter City" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popCity" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="ddlState" id="lblState">State</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <select name="ddlState" id="ddlState" tabindex="6">
+                                                                </select>
+                                                            </div>
+                                                            <a id="popState" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtZipCode" id="lblZipCode">Zip Code</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="10" id="txtZipCode" name="txtZipCode" tabindex="7" placeholder="Enter Zip Code"
+                                                                    class="form-control tip" data-toggle="tooltip" data-placement="right" title="Enter Zip Code"
+                                                                    data-trigger="focus" onkeyup="javascript:return maskInput(this.value,this,'5',event,true);" />
+                                                            </div>
+                                                            <a id="popZipCode" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtPhoneNumber" id="lblPhoneNumber">Phone Number</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="12" placeholder="Phone Number" name="txtPhoneNumber"
+                                                                    id="txtPhoneNumber" class="form-control tip" data-toggle="tooltip" tabindex="8"
+                                                                    onkeyup="javascript:return maskInput(this.value,this,'3,7',event,false,true);" data-placement="right" title="Enter Phone Number" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popPhoneNumber" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div id="divShowForeignAddress" style="display: none">
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtStreetAddress" id="Label1">Street Address</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="35" placeholder="Enter Street Address" tabindex="9"
+                                                                    name="txtForeignStreetAddress" id="txtForeignStreetAddress" class="form-control tip"
+                                                                    data-toggle="tooltip" data-placement="right" title="Enter Street Address" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popForeignStreetAddress" href="#" class="help" data-html="true" data-content=""
+                                                                rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtApartmentNumber" id="Label2">Apartment Number</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="5" id="txtApartmentNumberForeign" name="txtApartmentNumberForeign"
+                                                                    tabindex="10" placeholder="Enter Apartment Number" class="form-control tip" data-toggle="tooltip"
+                                                                    data-placement="right" title="Enter Apartment Number" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popForeignApartmentNumber" href="#" class="help" data-html="true" data-content=""
+                                                                rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtCity" id="lblCityForeign">City</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="20" placeholder="Enter City" name="txtForeignCity"
+                                                                    id="txtForeignCity" tabindex="11" class="form-control tip" data-toggle="tooltip"
+                                                                    data-placement="right" title="Enter City" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popForeignCity" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="ddlCountryName" id="lblCountryName">Country Name</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <select id="ddlCountryName" name="ddlCountryName" tabindex="12">
+                                                                </select>
+                                                            </div>
+                                                            <a id="popCountryName" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtStateorprovince" id="lblStateorprovince">State or province</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="15" placeholder="Enter State or province" id="txtStateorprovince"
+                                                                    name="txtStateorprovince" tabindex="13" class="form-control tip" data-toggle="tooltip"
+                                                                    data-placement="right" title="Enter State or province" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popStateorprovince" href="#" class="help" data-html="true" data-content=""
+                                                                rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtPostalCode" id="lblPostalCode">Postal Code</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="10" id="txtPostalCode" name="txtPostalCode" tabindex="14"
+                                                                    placeholder="Enter Postal Code" class="form-control tip" data-toggle="tooltip"
+                                                                    data-placement="right" title="Enter Postal Code" data-trigger="focus" onkeyup="javascript:return maskInput(this.value,this,'5',event,true);" />
+                                                            </div>
+                                                            <a id="popPostalCode" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+                                                                <label for="txtForeignPhoneNumber" id="lblForeignPhoneNumber">Foreign Phone Number</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <input type="text" maxlength="12" placeholder="Enter Foreign Phone Number" name="txtForeignPhoneNumber"
+                                                                    tabindex="15" id="txtForeignPhoneNumber" class="form-control tip" data-toggle="tooltip"
+                                                                    onkeyup="javascript:return maskInput(this.value,this,'3,7',event,false,true);" data-placement="right" title="Enter Foreign Phone Number" data-trigger="focus" />
+                                                            </div>
+                                                            <a id="popForeignPhoneNumber" href="#" class="help" data-html="true" data-content=""
+                                                                rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="field-group">
+                                                        <div class="left-lbl"></div>
+                                                        <div class="right">
+                                                            <button type="submit" id="btnSubmitOne" class="btn btn-success" tabindex="16">
+                                                                Next</button>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-blue">
+
+                                            <div class="panel-heading1">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="state">State of Residence                                                    </a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <!-- <h4>There are numerous factors to be considered when considering your State of Residence and that one single term would not make you resident. The factors to be considered are: </h4>
+                                                       
+                                                        The place where you physically reside<br />
+                                                        The place where you  are permitted to vote<br />
+                                                        The State that has issued you the driver license<br />
+                                                        The State where you have your bank account maintained<br />-->
+
+                                                    <h4>Select your Residential State Information</h4>
+                                                    <div class="field-group" id="ddlStateCode">
+                                                        <div class="left-lbl">
+                                                            <label for="ddlStateOfResidence">State of Residence as of <span id="spanstateofresidence"></span></label>
+                                                        </div>
+                                                        <div class="right hide-label">
+                                                            <select name="ddlStateOfResidence" id="ddlStateOfResidence" tabindex="17">
+                                                            </select>
+                                                            <div style="display: none" id="divStateOfResidenceError" class="error"></div>
+                                                        </div>
+                                                        <a id="popStateOfResidence" href="#" class="help" data-html="true" data-content="" rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                    </div>
+                                                    <!-- </label>-->
+                                                    <h4>Additional State Information</h4>
+                                                   
+                                                    <label class="checkbox">
+                                                        <input id="chkLivedMoreThenOneStatCode" type="checkbox" name="terms" value="1" tabindex="18" />
+                                                        Did you lived in more than one State in <span id="spCurrentYear"></span>?</label>
+                                                    <div class="" id="divlivedinstate" style="display:none">
+                                                        <div class="field-group" id="divMoreThanOneState">
+                                                            <div class="left-lbl">
+
+                                                                <label for="ddlMoreThanOneState">State Name</label>
+                                                            </div>
+                                                            <div class="right hide-label">
+                                                                <select name="ddlMoreThanOneState" id="ddlMoreThanOneState" tabindex="19">
+                                                                </select>
+                                                                <div style="display: none" id="divMoreThanOneStateError" class="error"></div>
+                                                            </div>
+                                                            <a id="popMoreThanOneState" href="#" class="help" data-html="true" data-content=""
+                                                                rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                        <div class="field-group" id="Div2">
+                                                            <div class="left-lbl">
+
+                                                                <label for="dtFromDate">From Date</label>
+                                                            </div>
+
+                                                            <div class="right">
+                                                                <div class="input-group date"  id="divDtFromDate">
+                                                                    <input type="text" id="dtFromDate" tabindex="20" name="dtFromDate" readonly="true"
+                                                                        placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                        title="Enter From Date" data-trigger="focus" readonly="true" />
+                                                                    <span class="input-group-addon"><span class="cal"></span>
+                                                                    </span>
+                                                                </div>
+                                                                <div id="divFromDateErrorMsg" style="display: block; color: #cf1c16"></div>
+
+
+                                                            </div>
+                                                            <a id="popFromDate" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+
+                                                        </div>
+                                                        <div class="field-group">
+                                                            <div class="left-lbl">
+
+                                                                <label for="dtToDate">To Date</label>
+                                                            </div>
+                                                            <div class="right">
+                                                                <div class="input-group date" id="divDtToDate">
+                                                                    <input type="text" id="dtToDate" tabindex="21" name="dtToDate" readonly="true"
+                                                                        placeholder="MM/DD/YYYY" class="form-control tip" data-toggle="tooltip" data-placement="right"
+                                                                        title="Enter To Date" data-trigger="focus" readonly="true" />
+                                                                    <span class="input-group-addon"><span class="cal"></span>
+                                                                    </span>
+                                                                </div>
+                                                                <div id="divToDateErrorMsg" style="display: block; color: #cf1c16"></div>
+                                                            </div>
+                                                            <a id="popToDate" href="#" class="help" data-html="true" data-content="" rel="popover"
+                                                                data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+                                                    </div>
+                                                            
+                                                    <label class="checkbox">
+                                                        <input id="chkEarnedIncomeSateYouNotLived" type="checkbox" name="terms" value="1"
+                                                            tabindex="22" />
+                                                        Did you have earned Income in a State where you didn't live?
+                                                    </label>
+                                                    <div id="divEarnedIncomeState" style="display:none">
+                                                           <!-- <label>-->
+                                                        <div class="field-group" id="Div3">
+                                                            <div class="left-lbl">
+
+                                                                <label for="ddlEarnedIncomeStateNotLived">State Name</label>
+                                                            </div>
+                                                            <div class="right hide-label">
+                                                                <select name="ddlEarnedIncomeStateNotLived" id="ddlEarnedIncomeStateNotLived" tabindex="23">
+                                                                </select>
+                                                                <div style="display: none" id="divddlEarnedIncomeStateNotLived" class="error"></div>
+                                                            </div>
+                                                            <a id="popEarnedIncomeStateNotLived" href="#" class="help" data-html="true" data-content=""
+                                                                rel="popover" data-placement="right" data-original-title="Quick Help" data-trigger="focus"></a>
+                                                        </div>
+
+                                                    </div>
+                                                               
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="btnAddressBack" class="btn btn-primary" onclick="GoToPreviousPage();return false;" >
+                                        Back</button>
+                                    <button type="submit" id="btnAddessContinue" class="btn btn-success" tabindex="24">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Footer-->
+            <script type="text/javascript" src="../lib/footer.js"></script>
+        </div>
+    </form>
+</body>
+
+</html>
+

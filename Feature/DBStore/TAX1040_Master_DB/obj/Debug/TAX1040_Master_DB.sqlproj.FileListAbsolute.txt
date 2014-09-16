@@ -1,0 +1,10 @@
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Master_DB\bin\Debug\TAX1040_Master_DB.dacpac
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Master_DB\bin\Debug\TAX1040_Master_DB_Create.sql
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Master_DB\bin\Debug\TAX1040_Master_DB.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Master_DB\bin\Debug\TAX1040_Master_DB.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Master_DB\obj\Debug\TAX1040_Master_DB.dll
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Master_DB\obj\Debug\TAX1040_Master_DB.pdb
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Master_DB\obj\Debug\Model.xml
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Master_DB\obj\Debug\refactor.xml
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Master_DB\obj\Debug\postdeploy.sql
+E:\Tax1040EZ\Tax1040Latest\Jeevan1040\Feature\DBStore\TAX1040_Master_DB\obj\Debug\predeploy.sql

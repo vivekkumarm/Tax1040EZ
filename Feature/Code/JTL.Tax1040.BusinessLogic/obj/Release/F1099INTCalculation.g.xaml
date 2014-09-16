@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<local:F1099INTCalculation xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:jtb="clr-namespace:JTL.Tax1040.BusinessObject;assembly=JTL.Tax1040.BusinessObject" xmlns:jtco="clr-namespace:JTL.Tax1040.Core.Object;assembly=JTL.Tax1040.Core.Object" xmlns:local="clr-namespace:Tax1040WorkFlow.WorkFlow.Activities;assembly=JTL.Tax1040.BusinessLogic" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>JTL.Tax1040.BusinessObject</x:String>
+      <x:String>JTL.Tax1040.Core.Object</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Workflow.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Object</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.Core.Process</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.DataAccess</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessObject</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>JTL.Tax1040.BusinessLogic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <local:F1099INTCalculation.Implementation>
+    <Sequence DisplayName="F1099INT Calculation">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="jtb:Form1099INT" Name="Form1099INT" />
+      </Sequence.Variables>
+      <local:F1099INTBusinessValidationRules>
+        <local:F1099INTBusinessValidationRules.ErrorMessages>
+          <InArgument x:TypeArguments="jtco:ErrorMessages">
+            <mca:CSharpValue x:TypeArguments="jtco:ErrorMessages">ErrorMessages</mca:CSharpValue>
+          </InArgument>
+        </local:F1099INTBusinessValidationRules.ErrorMessages>
+        <local:F1099INTBusinessValidationRules.Tax1040Object>
+          <InOutArgument x:TypeArguments="jtb:Tax1040">
+            <mca:CSharpReference x:TypeArguments="jtb:Tax1040">Tax1040Object</mca:CSharpReference>
+          </InOutArgument>
+        </local:F1099INTBusinessValidationRules.Tax1040Object>
+      </local:F1099INTBusinessValidationRules>
+      <If DisplayName="If Tax1040ObjectCheck">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object != null) &amp;&amp; (Tax1040Object.Income != null))</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <Sequence DisplayName="1099 INT">
+            <If DisplayName="If F1099INTCheck">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">((Tax1040Object.Income.Form1099INT != null) &amp;&amp; (Tax1040Object.Income.Form1099INT.Any()))</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="F1099INT">
+                  <ForEach x:TypeArguments="jtb:Form1099INT" DisplayName="ForEach&lt;Form1099INTList&gt;">
+                    <ForEach.Values>
+                      <InArgument x:TypeArguments="scg:IEnumerable(jtb:Form1099INT)">
+                        <mca:CSharpValue x:TypeArguments="scg:IEnumerable(jtb:Form1099INT)">Tax1040Object.Income.Form1099INT</mca:CSharpValue>
+                      </InArgument>
+                    </ForEach.Values>
+                    <ActivityAction x:TypeArguments="jtb:Form1099INT">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="jtb:Form1099INT" Name="Form1099INT" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="1099INT">
+                        <Assign DisplayName="Taxable Interest">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">TotalTaxableInterest</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">TotalTaxableInterest + (Form1099INT.InterestIncome.HasValue?Form1099INT.InterestIncome.Value:0) + (Form1099INT.USBondsTreasury.HasValue?Form1099INT.USBondsTreasury.Value:0)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Tax Exempt Interest">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">
+                              <mca:CSharpReference x:TypeArguments="x:Double">TotaltaxExemptInterest1099INT</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">TotaltaxExemptInterest1099INT + (Form1099INT.TaxExemptInterest.HasValue?Form1099INT.TaxExemptInterest.Value:0)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </ForEach>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">TotalTaxableInterest</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(TotalTaxableInterest,MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Double">
+                        <mca:CSharpReference x:TypeArguments="x:Double">TotaltaxExemptInterest1099INT</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Double">
+                        <mca:CSharpValue x:TypeArguments="x:Double">Math.Round(TotaltaxExemptInterest1099INT, MidpointRounding.AwayFromZero)</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+        </If.Then>
+      </If>
+      <sads:DebugSymbol.Symbol>9xDBziC2C83oQ48MnhRefKrmeUU6XFRheDEwNDBFWlxUYXgxMDQwTGF0ZXN0XEplZXZhbjEwNDBcRmVhdHVyZVxDb2RlXEpUTC5UYXgxMDQwLkJ1c2luZXNzTG9naWNcV29ya0Zsb3dcQWN0aXZpdGllc1xGMTA5OUlOVENhbGN1bGF0aW9uLnhhbWwZPQOiAQ4CAQFBBUwtAgFSTQWgAQoCAQJJC0lhAgFZRAtEYAIBU1ALUI0BAgEDVAmeARQCAQlVC50BEAIBClgRWLABAgELXA+bARoCARFdEYIBGwIBLIMBEY4BGgIBH48BEZoBGgIBEmAXYI0BAgFMZxWAASACAS2LAReLAZMBAgEmhgEXhgFxAgEglwEXlwGdAQIBGZIBF5IBegIBE2gXcyACAT10F38gAgEucB1whwICAUVrHWt3AgE+fB18yQECATZ3HXeAAQIBLw==</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </local:F1099INTCalculation.Implementation>
+</local:F1099INTCalculation>
